@@ -1,0 +1,4 @@
+/**
+ * ユーザーインタフェース
+ */
+package library.presentation;

@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.2.2.RELEASE'
+    id 'org.dddjava.jig-gradle-plugin' version '2019.12.4'
+}
+
+sourceCompatibility = '11'
+
+sourceSets {
+    main {
+        resources.srcDirs = ["src/main/java", "src/main/resources"]
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation platform("org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
+
+    runtimeOnly("com.h2database:h2")
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude(group: 'org.junit.vintage')
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
+
+[compileJava, processResources]*.shouldRunAfter(clean)
+jigReports.dependsOn(clean, classes)
+

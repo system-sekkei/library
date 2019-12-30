@@ -1,0 +1,4 @@
+/**
+ * ビジネスルール
+ */
+package library.domain;
