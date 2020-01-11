@@ -1,4 +1,4 @@
-package library.domain.model;
+package library.domain.model.loan;
 
 import library.domain.type.date.Date;
 

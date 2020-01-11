@@ -1,4 +1,4 @@
-package library.domain.model;
+package library.domain.model.book;
 
 /**
  * 本種別

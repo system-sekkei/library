@@ -1,5 +1,6 @@
-package library.domain.model;
+package library.domain.model.loan;
 
+import library.domain.model.RetentionDeadline;
 import library.domain.type.date.Date;
 
 /**

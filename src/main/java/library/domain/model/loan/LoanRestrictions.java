@@ -1,4 +1,6 @@
-package library.domain.model;
+package library.domain.model.loan;
+
+import library.domain.model.member.MemberType;
 
 /**
  * 貸出制限

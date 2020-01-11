@@ -1,4 +1,4 @@
-package library.domain.model;
+package library.domain.model.loan;
 
 /**
  * 遅延日数

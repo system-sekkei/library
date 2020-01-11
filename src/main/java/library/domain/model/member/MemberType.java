@@ -1,4 +1,4 @@
-package library.domain.model;
+package library.domain.model.member;
 
 /**
  * 会員種別
