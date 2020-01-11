@@ -1,4 +1,4 @@
-package library.domain.model.loan;
+package library.domain.model.bookonloan;
 
 /**
  * 遅延日数

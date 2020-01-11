@@ -1,6 +1,6 @@
 package library.domain.model;
 
-import library.domain.model.loan.LoanPreparationCompletionDate;
+import library.domain.model.bookonloan.LoanPreparationCompletionDate;
 import library.domain.type.date.Date;
 
 /**
