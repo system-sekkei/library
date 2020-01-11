@@ -1,3 +1,45 @@
-build/
-.idea/
-.gradle/
+# For idea
+**/out
+.idea
+*.iml
+*.ipr
+*.iws
+
+# For eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# For Gradle
+**/build
+build/**
+.gradle
+
+# For astah
+*.lock
+
+# For local
+temp
+
+# For mac
+.DS_Store
+
+# backup files
+*.un~
+
+
+# log files
+*.log
+
+# For Eclipse
+.classpath
+.project
+.settings
+
+# For npm
+node_modules/
+
+# For Cypress
+cypress/videos
+cypress/screenshots
