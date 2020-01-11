@@ -1,6 +1,5 @@
 package library.domain.model.loan;
 
-import library.domain.model.RetentionDeadline;
 import library.domain.type.date.Date;
 
 /**
@@ -13,7 +12,7 @@ public class LoanPreparationCompletionDate {
         this.value = value;
     }
 
-    public RetentionDeadline deadline() {
-        return new RetentionDeadline(value.plusDays(7));
+    public Date value() {
+        return value;
     }
 }
