@@ -12,7 +12,7 @@ public class LoanDate {
         this.value = value;
     }
 
-    public LoanPeriod loanPeriod() {
-        return new LoanPeriod(value.plusDays(14));
+    public Date value() {
+        return value;
     }
 }
