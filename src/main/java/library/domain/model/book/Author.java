@@ -1,4 +1,4 @@
-package library.domain.model.collection;
+package library.domain.model.book;
 
 /**
  * 著者

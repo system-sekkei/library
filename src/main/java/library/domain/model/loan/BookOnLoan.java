@@ -1,12 +1,14 @@
 package library.domain.model.loan;
 
+import library.domain.model.book.Book;
+
 /**
  * 貸出図書
  */
 public class BookOnLoan {
-    String book;
+    Book book;
 
-    public BookOnLoan(String book) {
+    public BookOnLoan(Book book) {
         this.book = book;
     }
 }

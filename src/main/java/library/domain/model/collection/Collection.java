@@ -1,14 +1,14 @@
 package library.domain.model.collection;
 
+import library.domain.model.book.Book;
+
 /**
  * 蔵書
  */
 public class Collection {
-    Title title;
-    Author author;
+    Book value;
 
-    public Collection(Title title, Author author) {
-        this.title = title;
-        this.author = author;
+    public Collection(Book value) {
+        this.value = value;
     }
 }
