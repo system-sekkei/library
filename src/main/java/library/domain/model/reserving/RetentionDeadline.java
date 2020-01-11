@@ -1,6 +1,5 @@
-package library.domain.model;
+package library.domain.model.reserving;
 
-import library.domain.model.bookonloan.LoanPreparationCompletionDate;
 import library.domain.type.date.Date;
 
 /**
