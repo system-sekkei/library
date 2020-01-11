@@ -6,9 +6,11 @@ import library.domain.model.book.Book;
  * 蔵書
  */
 public class Collection {
-    Book value;
+    Book book;
+    CollectionStatus status;
 
-    public Collection(Book value) {
-        this.value = value;
+    public Collection(Book book, CollectionStatus status) {
+        this.book = book;
+        this.status = status;
     }
 }
