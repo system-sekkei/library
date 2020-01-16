@@ -1,4 +1,4 @@
-package library.domain.model.bookcollection;
+package library.domain.model.bookonloan;
 
 /**
  * 貸出期限状態
