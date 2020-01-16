@@ -9,5 +9,10 @@ import library.domain.model.member.Member;
 public class Reservation {
     Member member;
     Book book;
+    RetentionStatus retentionStatus;
     RetainedDate retainedDate;
+
+    public RetentionDeadline retentionDeadline() {
+        return null;
+    }
 }
