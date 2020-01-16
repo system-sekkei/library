@@ -7,10 +7,6 @@ import library.domain.model.book.Book;
  */
 public class BookCollection {
     Book book;
-    BookCollectionStatus status;
-
-    public BookCollection(Book book, BookCollectionStatus status) {
-        this.book = book;
-        this.status = status;
-    }
+    BookCollectionStatus bookCollectionStatus;
+    WebReservationStatus webReservationStatus;
 }
