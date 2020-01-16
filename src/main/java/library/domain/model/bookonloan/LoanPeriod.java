@@ -15,8 +15,4 @@ public class LoanPeriod {
     public static LoanPeriod loanPeriod(LoanDate loanDate) {
         return new LoanPeriod(loanDate.value().plusDays(14));
     }
-
-    public LoanPeriodStatus loanPeriodStatus() {
-        return null;
-    }
 }
