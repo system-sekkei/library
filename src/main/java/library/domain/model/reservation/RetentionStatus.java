@@ -1,9 +1,9 @@
 package library.domain.model.reservation;
 
 /**
- * Web予約中の状態
+ * 予約中(取り置き)の状態
  */
-public enum WebReservationReserveStatus {
+public enum RetentionStatus {
     未準備,
     準備完了
 }
