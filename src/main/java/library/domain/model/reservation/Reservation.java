@@ -9,5 +9,5 @@ import library.domain.model.member.Member;
 public class Reservation {
     Member member;
     Book book;
-    LoanPreparationCompletionDate loanPreparationCompletionDate;
+    RetainedDate retainedDate;
 }

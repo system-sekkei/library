@@ -3,12 +3,12 @@ package library.domain.model.reservation;
 import library.domain.type.date.Date;
 
 /**
- * 貸出準備完了日
+ * 取置日
  */
-public class LoanPreparationCompletionDate {
+public class RetainedDate {
     Date value;
 
-    public LoanPreparationCompletionDate(Date value) {
+    public RetainedDate(Date value) {
         this.value = value;
     }
 

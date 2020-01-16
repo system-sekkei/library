@@ -12,7 +12,7 @@ public class RetentionDeadline {
         this.value = value;
     }
 
-    public static RetentionDeadline deadline(LoanPreparationCompletionDate date) {
+    public static RetentionDeadline deadline(RetainedDate date) {
         return new RetentionDeadline(date.value().plusDays(7));
     }
 }
