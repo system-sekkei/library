@@ -1,4 +1,4 @@
-package library.domain.model.reserving;
+package library.domain.model.reservation;
 
 import library.domain.type.date.Date;
 

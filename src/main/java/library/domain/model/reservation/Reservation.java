@@ -1,4 +1,4 @@
-package library.domain.model.reserving;
+package library.domain.model.reservation;
 
 import library.domain.model.book.Book;
 import library.domain.model.member.Member;
@@ -6,7 +6,7 @@ import library.domain.model.member.Member;
 /**
  * 貸出予約
  */
-public class Reserving {
+public class Reservation {
     Member member;
     Book book;
     LoanPreparationCompletionDate loanPreparationCompletionDate;
