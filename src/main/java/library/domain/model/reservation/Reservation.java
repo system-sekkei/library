@@ -13,6 +13,6 @@ public class Reservation {
     RetainedDate retainedDate;
 
     public RetentionDeadline retentionDeadline() {
-        return null;
+        return RetentionDeadline.deadline(retainedDate);
     }
 }
