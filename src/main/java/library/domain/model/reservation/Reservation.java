@@ -10,9 +10,5 @@ public class Reservation {
     Member member;
     Book book;
     RetentionStatus retentionStatus;
-    RetainedDate retainedDate;
 
-    public RetentionDeadline retentionDeadline() {
-        return RetentionDeadline.deadline(retainedDate);
-    }
 }
