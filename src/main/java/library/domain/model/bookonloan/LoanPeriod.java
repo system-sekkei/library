@@ -19,4 +19,8 @@ public class LoanPeriod {
     public LoanPeriodStatus loanPeriodStatus() {
         return null;
     }
+
+    public Date value() {
+        return value;
+    }
 }

@@ -85,4 +85,8 @@ public class Date {
     public String yyyyMMdd() {
         return value.format(DateTimeFormatter.ofPattern("uuuuMMdd"));
     }
+
+    public static Date now() {
+        return new Date(LocalDate.now());
+    }
 }
