@@ -1,4 +1,4 @@
 /**
- * 貸出予約(取置)
+ * 貸出予約
  */
 package library.domain.model.reservation;

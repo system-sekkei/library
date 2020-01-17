@@ -1,4 +1,4 @@
-package library.domain.model.reservation;
+package library.domain.model.retention;
 
 import library.domain.model.bookcollection.BookCollection;
 
