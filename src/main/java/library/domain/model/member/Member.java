@@ -11,4 +11,8 @@ public class Member {
         this.name = name;
         this.memberType = memberType;
     }
+
+    public MemberType memberType() {
+        return memberType;
+    }
 }
