@@ -13,6 +13,7 @@ public enum DelayPeriod {
     それ以外;
 
     public static DelayPeriod from(LoanPeriod loanPeriod) {
+        // TODO: これはLoanPeriod側
         Date today = Date.now();
         int delay = Period.between(loanPeriod.value().value(), today.value()).getDays();
 
