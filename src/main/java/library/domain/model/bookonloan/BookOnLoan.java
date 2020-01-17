@@ -1,6 +1,6 @@
 package library.domain.model.bookonloan;
 
-import library.domain.model.book.Book;
+import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.member.Member;
 
 /**
@@ -8,7 +8,7 @@ import library.domain.model.member.Member;
  */
 public class BookOnLoan {
     Member member;
-    Book book;
+    BookCollection bookCollection;
     LoanDate loanDate;
 
     public LoanPeriod loanPeriod() {
