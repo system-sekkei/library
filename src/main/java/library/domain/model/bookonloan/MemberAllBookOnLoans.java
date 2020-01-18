@@ -13,19 +13,19 @@ public class MemberAllBookOnLoans {
     List<BookOnLoan> bookOnLoans;
 
     public LoanRestrictions loanRestrictions() {
-        DelayPeriod delayPeriod = worstDelayPeriod();
+        DelayStatus delayStatus = worstDelayPeriod();
         MemberType memberType = member.memberType();
 
-        if (memberType == MemberType.大人 && delayPeriod == DelayPeriod.遅延日数３日未満) {
+        if (memberType == MemberType.大人 && delayStatus == DelayStatus.遅延日数３日未満) {
             return LoanRestrictions.貸出５冊まで;
         }
 
         if (memberType == MemberType.子供) {
-            if (delayPeriod == DelayPeriod.遅延日数３日未満) {
+            if (delayStatus == DelayStatus.遅延日数３日未満) {
                 return LoanRestrictions.貸出７冊まで;
             }
 
-            if (delayPeriod == DelayPeriod.遅延日数７日未満) {
+            if (delayStatus == DelayStatus.遅延日数７日未満) {
                 return LoanRestrictions.貸出４冊まで;
             }
         }
@@ -33,7 +33,7 @@ public class MemberAllBookOnLoans {
         return LoanRestrictions.貸出不可;
     }
 
-    public DelayPeriod worstDelayPeriod()  {
+    public DelayStatus worstDelayPeriod()  {
         return null;
     }
 }

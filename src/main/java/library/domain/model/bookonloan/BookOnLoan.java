@@ -13,7 +13,7 @@ public class BookOnLoan {
         return LoanPeriod.loanPeriod(loanDate);
     }
 
-    public DelayPeriod delayPeriod() {
+    public DelayStatus delayPeriod() {
         return null;
     }
 }
