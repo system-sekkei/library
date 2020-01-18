@@ -17,7 +17,11 @@ public class LoanPeriod {
     }
 
     public LoanPeriodStatus loanPeriodStatus() {
-        return null;
+        Date today = Date.now();
+        if (value.isBefore(today)) {
+            return LoanPeriodStatus.期限切れ;
+        }
+        return LoanPeriodStatus.期限内;
     }
 
     public Date value() {
