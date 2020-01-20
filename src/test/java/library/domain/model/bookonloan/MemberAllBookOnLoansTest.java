@@ -29,10 +29,10 @@ class MemberAllBookOnLoansTest {
         Date today = Date.from("2020-01-20");
         Member member = new Member(new Name(""), memberType);
         List<BookOnLoan> bookOnLoans = new ArrayList<>();
-        bookOnLoans.add(new BookOnLoan(null, new LoanDate(Date.from(loanDate1))));
+        bookOnLoans.add(new BookOnLoan(member, null, new LoanDate(Date.from(loanDate1))));
 
         if (loanDate2 != null) {
-            bookOnLoans.add(new BookOnLoan(null, new LoanDate(Date.from(loanDate2))));
+            bookOnLoans.add(new BookOnLoan(member, null, new LoanDate(Date.from(loanDate2))));
         }
 
         MemberAllBookOnLoans memberAllBookOnLoans = new MemberAllBookOnLoans(member, bookOnLoans);
