@@ -22,9 +22,13 @@ public class BookOnLoan {
         return LoanPeriod.loanPeriod(loanDate);
     }
 
-    DelayPeriod delayPeriod() {
+    public DelayPeriod todayDelayPeriod() {
         Date today = Date.now();
-        int delay = Period.between(loanPeriod().value().value(), today.value()).getDays();
+        return delayPeriod(today);
+    }
+
+    public DelayPeriod delayPeriod(Date date) {
+        int delay = Period.between(loanPeriod().value().value(), date.value()).getDays();
         return new DelayPeriod(new Days(delay));
     }
 }
