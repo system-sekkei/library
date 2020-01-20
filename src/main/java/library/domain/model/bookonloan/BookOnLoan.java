@@ -13,12 +13,13 @@ public class BookOnLoan {
     BookCollection bookCollection;
     LoanDate loanDate;
 
-    public LoanPeriod loanPeriod() {
-        return LoanPeriod.loanPeriod(loanDate);
+    public BookOnLoan(BookCollection bookCollection, LoanDate loanDate) {
+        this.bookCollection = bookCollection;
+        this.loanDate = loanDate;
     }
 
-    public DelayStatus delayStatus() {
-        return delayPeriod().delayStatus();
+    public LoanPeriod loanPeriod() {
+        return LoanPeriod.loanPeriod(loanDate);
     }
 
     DelayPeriod delayPeriod() {

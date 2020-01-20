@@ -2,7 +2,9 @@ package library.domain.model.bookonloan;
 
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberType;
+import library.domain.type.date.Days;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,8 +14,13 @@ public class MemberAllBookOnLoans {
     Member member;
     List<BookOnLoan> bookOnLoans;
 
+    public MemberAllBookOnLoans(Member member, List<BookOnLoan> bookOnLoans) {
+        this.member = member;
+        this.bookOnLoans = bookOnLoans;
+    }
+
     public LoanRestrictions loanRestrictions() {
-        DelayStatus delayStatus = worstDelayPeriod();
+        DelayStatus delayStatus = worstDelayStatus();
         MemberType memberType = member.memberType();
 
         if (memberType == MemberType.大人 && delayStatus == DelayStatus.遅延日数３日未満) {
@@ -33,7 +40,12 @@ public class MemberAllBookOnLoans {
         return LoanRestrictions.貸出不可;
     }
 
-    public DelayStatus worstDelayPeriod()  {
-        return null;
+    DelayStatus worstDelayStatus()  {
+        DelayPeriod worstDelayPeriod = bookOnLoans.stream()
+                .map(BookOnLoan::delayPeriod)
+                .max(Comparator.comparingInt(period -> period.value.value()))
+                .orElse(new DelayPeriod(new Days(0)));
+
+        return worstDelayPeriod.delayStatus();
     }
 }
