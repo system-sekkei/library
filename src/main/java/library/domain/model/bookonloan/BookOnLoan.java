@@ -1,6 +1,7 @@
 package library.domain.model.bookonloan;
 
 import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.member.Member;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
@@ -10,10 +11,12 @@ import java.time.Period;
  * 貸出図書
  */
 public class BookOnLoan {
+    Member member;
     BookCollection bookCollection;
     LoanDate loanDate;
 
-    public BookOnLoan(BookCollection bookCollection, LoanDate loanDate) {
+    public BookOnLoan(Member member, BookCollection bookCollection, LoanDate loanDate) {
+        this.member = member;
         this.bookCollection = bookCollection;
         this.loanDate = loanDate;
     }
