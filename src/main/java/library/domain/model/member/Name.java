@@ -6,6 +6,9 @@ package library.domain.model.member;
 public class Name {
     String value;
 
+    public Name() {
+    }
+
     public Name(String value) {
         this.value = value;
     }

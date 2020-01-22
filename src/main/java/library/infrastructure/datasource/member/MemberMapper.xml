@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.member.MemberMapper">
-    <select id="selectMember">
+    <select id="selectMember" resultType="library.domain.model.member.Member">
         SELECT
             会員番号 as "memberNumber.value",
             氏名 as "name.value",
