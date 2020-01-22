@@ -10,6 +10,10 @@ public class MemberNumber {
         this.value = value;
     }
 
+    public static MemberNumber from(String value) {
+        return new MemberNumber(Integer.parseInt(value));
+    }
+
     @Override
     public String toString() {
         return value.toString();
