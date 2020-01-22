@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="library.infrastructure.datasource.member.MemberMapper">
+    <select id="selectMember">
+        SELECT
+            会員番号 as "memberNumber.value",
+            氏名 as "name.value",
+            会員種別 as "memberType"
+        FROM 会員
+        WHERE 会員番号 = #{memberNumber.value}
+    </select>
+
+    <insert id="insertMember">
+        INSERT INTO 会員(会員番号, 氏名, 会員種別)
+        VALUES (#{memberNumber.value}, #{name.value}, #{memberType})
+    </insert>
+</mapper>

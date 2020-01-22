@@ -8,6 +8,9 @@ public class Member {
     Name name;
     MemberType memberType;
 
+    public Member() {
+    }
+
     public Member(MemberNumber memberNumber, Name name, MemberType memberType) {
         this.memberNumber = memberNumber;
         this.name = name;
