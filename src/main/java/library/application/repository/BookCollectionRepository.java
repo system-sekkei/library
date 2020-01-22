@@ -1,7 +1,7 @@
 package library.application.repository;
 
 import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.bookcollection.BookCollections;
+import library.domain.model.bookcollection.BookCollectionCode;
 
 /**
  * 蔵書リポジトリ
@@ -9,5 +9,5 @@ import library.domain.model.bookcollection.BookCollections;
 public interface BookCollectionRepository {
     void registerBookCollection(BookCollection bookCollection);
 
-    BookCollections findBookCollections();
+    BookCollection findBookCollection(BookCollectionCode bookCollectionCode);
 }

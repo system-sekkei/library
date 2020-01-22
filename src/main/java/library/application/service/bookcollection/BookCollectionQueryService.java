@@ -1,7 +1,8 @@
 package library.application.service.bookcollection;
 
 import library.application.repository.BookCollectionRepository;
-import library.domain.model.bookcollection.BookCollections;
+import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.bookcollection.BookCollectionCode;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,9 +17,9 @@ public class BookCollectionQueryService {
     }
 
     /**
-     * 蔵書一覧
+     * 蔵書取得
      */
-    public BookCollections findBookCollections() {
-        return bookCollectionRepository.findBookCollections();
+    public BookCollection findBookCollection(BookCollectionCode bookCollectionCode) {
+        return bookCollectionRepository.findBookCollection(bookCollectionCode);
     }
 }
