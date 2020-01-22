@@ -6,18 +6,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class MemberDataSource implements MemberRepository {
+    MemberMapper memberMapper;
+
+    public MemberDataSource(MemberMapper memberMapper) {
+        this.memberMapper = memberMapper;
+    }
+
     @Override
     public void registerMember(Member member) {
-
+        memberMapper.insertMember(member);
     }
 
     @Override
     public Member findMember(MemberNumber memberNumber) {
-        // TODO:
-        return new Member(
-            new MemberNumber(1),
-            new Name("テスト会員"),
-            MemberType.大人);
+        return memberMapper.selectMember(memberNumber);
     }
 
     @Override
