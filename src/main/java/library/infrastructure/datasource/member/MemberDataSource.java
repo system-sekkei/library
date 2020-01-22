@@ -21,9 +21,4 @@ public class MemberDataSource implements MemberRepository {
     public Member findMember(MemberNumber memberNumber) {
         return memberMapper.selectMember(memberNumber);
     }
-
-    @Override
-    public Members findMembers() {
-        return null;
-    }
 }
