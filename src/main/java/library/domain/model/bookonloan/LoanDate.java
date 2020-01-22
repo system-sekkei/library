@@ -8,11 +8,19 @@ import library.domain.type.date.Date;
 public class LoanDate {
     Date value;
 
+    public LoanDate() {
+    }
+
     public LoanDate(Date value) {
         this.value = value;
     }
 
     public Date value() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }

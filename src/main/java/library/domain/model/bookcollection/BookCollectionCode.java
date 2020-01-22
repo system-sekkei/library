@@ -5,4 +5,12 @@ package library.domain.model.bookcollection;
  */
 public class BookCollectionCode {
     String value;
+
+    public BookCollectionCode() {
+    }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
