@@ -1,6 +1,7 @@
 package library.domain.model.bookonloan;
 
 import library.domain.model.member.Member;
+import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberType;
 import library.domain.model.member.Name;
 import library.domain.type.date.Date;
@@ -27,7 +28,7 @@ class MemberAllBookOnLoansTest {
     })
     void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, LoanRestrictions expected) {
         Date today = Date.from("2020-01-20");
-        Member member = new Member(new Name(""), memberType);
+        Member member = new Member(new MemberNumber(1), new Name(""), memberType);
         List<BookOnLoan> bookOnLoans = new ArrayList<>();
         bookOnLoans.add(new BookOnLoan(member, null, new LoanDate(Date.from(loanDate1))));
 
