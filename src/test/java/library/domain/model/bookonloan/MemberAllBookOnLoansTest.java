@@ -37,7 +37,7 @@ class MemberAllBookOnLoansTest {
             bookOnLoans.add(new BookOnLoan(memberNumber, null, new LoanDate(Date.from(loanDate2))));
         }
 
-        MemberAllBookOnLoans memberAllBookOnLoans = new MemberAllBookOnLoans(member, bookOnLoans);
+        MemberAllBookOnLoans memberAllBookOnLoans = new MemberAllBookOnLoans(member, new BookOnLoans(bookOnLoans));
 
         assertEquals(expected, memberAllBookOnLoans.loanRestrictions(today));
     }

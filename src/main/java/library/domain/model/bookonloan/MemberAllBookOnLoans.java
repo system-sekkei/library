@@ -6,16 +6,15 @@ import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
 import java.util.Comparator;
-import java.util.List;
 
 /**
  * 会員の全貸出図書
  */
 public class MemberAllBookOnLoans {
     Member member;
-    List<BookOnLoan> bookOnLoans;
+    BookOnLoans bookOnLoans;
 
-    public MemberAllBookOnLoans(Member member, List<BookOnLoan> bookOnLoans) {
+    public MemberAllBookOnLoans(Member member, BookOnLoans bookOnLoans) {
         this.member = member;
         this.bookOnLoans = bookOnLoans;
     }
@@ -52,7 +51,7 @@ public class MemberAllBookOnLoans {
     }
 
     DelayStatus worstDelayStatus(Date date) {
-        DelayPeriod worstDelayPeriod = bookOnLoans.stream()
+        DelayPeriod worstDelayPeriod = bookOnLoans.list.stream()
                 .map(loan -> loan.delayPeriod(date))
                 .max(Comparator.comparingInt(period -> period.value.value()))
                 .orElse(new DelayPeriod(new Days(0)));
