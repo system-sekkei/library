@@ -36,10 +36,7 @@ public class BookOnLoanRegisterController {
 
     @PostMapping
     String register(@ModelAttribute("boolOnLoanRegister") BookOnLoanRegister bookOnLoanRegister) {
-        // FIXME:
-        System.out.println(bookOnLoanRegister.memberNumber());
-        System.out.println(bookOnLoanRegister.bookCollectionCode());
-        System.out.println(bookOnLoanRegister.loanDate());
+        bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRegister);
 
         return "redirect:/bookonloan/register";
     }
