@@ -8,9 +8,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookOnLoanDataSource implements BookOnLoanRepository {
+    BookOnLoanMapper mapper;
+
+    public BookOnLoanDataSource(BookOnLoanMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public void registerBookOnLoan(BookOnLoanRegister bookOnLoanRegister) {
-
+        Integer bookOnLoanId = mapper.newBookOnLoanIdentifier();
+        mapper.insertBookOnLoan(
+            bookOnLoanId,
+            bookOnLoanRegister.memberNumber(),
+            bookOnLoanRegister.bookCollectionCode(),
+            bookOnLoanRegister.loanDate());
     }
 
     @Override
