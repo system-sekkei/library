@@ -1,18 +1,19 @@
 package library.infrastructure.datasource.bookonloan;
 
 import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookonloan.BookOnLoanRegister;
+import library.domain.model.bookonloan.BookOnLoan;
 import library.domain.model.bookonloan.LoanDate;
-import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface BookOnLoanMapper {
     Integer newBookOnLoanIdentifier();
 
-    MemberAllBookOnLoans findMemberAllBookOnLoans(@Param("memberNumber") MemberNumber memberNumber);
+    List<BookOnLoan> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
 
     void insertBookOnLoan(
         @Param("bookOnLoanId") Integer bookOnLoanId,

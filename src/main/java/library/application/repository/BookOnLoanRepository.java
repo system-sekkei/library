@@ -1,7 +1,7 @@
 package library.application.repository;
 
 import library.domain.model.bookonloan.BookOnLoanRegister;
-import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.BookOnLoans;
 import library.domain.model.member.MemberNumber;
 
 /**
@@ -11,5 +11,5 @@ public interface BookOnLoanRepository {
 
     void registerBookOnLoan(BookOnLoanRegister bookOnLoanRegister);
 
-    MemberAllBookOnLoans findMemberAllBookOnLoans(MemberNumber memberNumber);
+    BookOnLoans findMemberAllBookOnLoans(MemberNumber memberNumber);
 }
