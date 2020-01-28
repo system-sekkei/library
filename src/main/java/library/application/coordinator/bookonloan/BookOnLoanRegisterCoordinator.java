@@ -2,7 +2,7 @@ package library.application.coordinator.bookonloan;
 
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.bookonloan.BookOnLoanRegister;
+import library.domain.model.bookonloan.BookOnLoan;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,7 +20,7 @@ public class BookOnLoanRegisterCoordinator {
         this.bookOnLoanQueryCoordinator = bookOnLoanQueryCoordinator;
     }
 
-    public BookOnLoanValidResult isValid(BookOnLoanRegister bookOnLoanRegister) {
+    public BookOnLoanValidResult isValid(BookOnLoan bookOnLoan) {
         // TODO:
         return BookOnLoanValidResult.正常;
     }

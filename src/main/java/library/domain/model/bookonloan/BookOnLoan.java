@@ -34,4 +34,20 @@ public class BookOnLoan {
         int delay = Period.between(loanPeriod().value().value(), date.value()).getDays();
         return new DelayPeriod(new Days(delay));
     }
+
+    public static BookOnLoan blank() {
+        return new BookOnLoan(new MemberNumber(), new BookCollectionCode(), new LoanDate(Date.now()));
+    }
+
+    public MemberNumber memberNumber() {
+        return memberNumber;
+    }
+
+    public BookCollectionCode bookCollectionCode() {
+        return bookCollectionCode;
+    }
+
+    public LoanDate loanDate() {
+        return loanDate;
+    }
 }
