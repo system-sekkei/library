@@ -11,6 +11,8 @@
   <header th:replace="fragments/header::header('貸出図書の登録')"></header>
 
   <section class="attendanceInput has-text-centered">
+
+
     <form id="custom-form" class="form" name="body"
           method="post" action="#"
           th:object="${bookOnLoan}"
@@ -23,6 +25,10 @@
               <input class="input" type="text" placeholder="1"
                      th:field="*{memberNumber.value}"/>
             </p>
+            <p class="help is-danger has-text-left"
+               th:if="${#fields.hasErrors('memberNumber.value')}">
+              <span th:errors="*{memberNumber.value}"></span>
+            </p>
           </div>
         </div>
       </div>
@@ -34,6 +40,10 @@
               <input class="input" type="text" placeholder="1-A"
                      th:field="*{bookCollectionCode.value}"/>
             </p>
+            <p class="help is-danger has-text-left"
+               th:if="${#fields.hasErrors('bookCollectionCode.value')}">
+              <span th:errors="*{bookCollectionCode.value}"></span>
+            </p>
           </div>
         </div>
       </div>
@@ -44,6 +54,10 @@
             <p class="control">
               <input class="input" type="date" placeholder="2020-01-01"
                      th:field="*{loanDate.value}"/>
+            </p>
+            <p class="help is-danger has-text-left"
+               th:if="${#fields.hasErrors('loanDate.value')}">
+              <span th:errors="*{loanDate.value}"></span>
             </p>
           </div>
         </div>
