@@ -9,6 +9,10 @@ public class BookCollectionCode {
     public BookCollectionCode() {
     }
 
+    public BookCollectionCode(String value) {
+        this.value = value;
+    }
+
     @Override
     public String toString() {
         return value;

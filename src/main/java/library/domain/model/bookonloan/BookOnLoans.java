@@ -11,4 +11,8 @@ public class BookOnLoans {
     public BookOnLoans(List<BookOnLoan> list) {
         this.list = list;
     }
+
+    public List<BookOnLoan> list() {
+        return list;
+    }
 }

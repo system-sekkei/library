@@ -58,4 +58,12 @@ public class MemberAllBookOnLoans {
 
         return worstDelayPeriod.delayStatus();
     }
+
+    public BookOnLoans bookOnLoans() {
+        return bookOnLoans;
+    }
+
+    public Member member() {
+        return member;
+    }
 }

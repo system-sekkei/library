@@ -15,6 +15,9 @@ public class BookOnLoan {
     BookCollectionCode bookCollectionCode;
     LoanDate loanDate;
 
+    public BookOnLoan() {
+    }
+
     public BookOnLoan(MemberNumber memberNumber, BookCollectionCode bookCollectionCode, LoanDate loanDate) {
         this.memberNumber = memberNumber;
         this.bookCollectionCode = bookCollectionCode;
