@@ -1,8 +1,7 @@
 package library.presentation.controller.bookonloan;
 
-import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
 import library.application.service.bookonloan.BookOnLoanRecordService;
-import library.application.service.member.MemberQueryService;
 import library.domain.model.bookonloan.BookOnLoanRegister;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,17 +14,14 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("bookonloan/register")
 public class BookOnLoanRegisterController {
-    MemberQueryService memberQueryService;
-    BookCollectionQueryService bookCollectionQueryService;
     BookOnLoanRecordService bookOnLoanRecordService;
+    BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator;
 
     public BookOnLoanRegisterController(
-        MemberQueryService memberQueryService,
-        BookCollectionQueryService bookCollectionQueryService,
-        BookOnLoanRecordService bookOnLoanRecordService) {
-        this.memberQueryService = memberQueryService;
-        this.bookCollectionQueryService = bookCollectionQueryService;
+        BookOnLoanRecordService bookOnLoanRecordService,
+        BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator) {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
+        this.bookOnLoanRegisterCoordinator = bookOnLoanRegisterCoordinator;
     }
 
     @GetMapping
