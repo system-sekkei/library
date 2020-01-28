@@ -8,7 +8,8 @@ import library.domain.type.date.Date;
 public class LoanDate {
     Date value;
 
-    public LoanDate() {
+    @Deprecated
+    LoanDate() {
     }
 
     public LoanDate(Date value) {
