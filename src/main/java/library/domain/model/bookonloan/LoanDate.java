@@ -2,10 +2,15 @@ package library.domain.model.bookonloan;
 
 import library.domain.type.date.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+
 /**
  * 貸出日
  */
 public class LoanDate {
+    @Valid
+    @NotNull(message = "貸出日を入力してください")
     Date value;
 
     @Deprecated

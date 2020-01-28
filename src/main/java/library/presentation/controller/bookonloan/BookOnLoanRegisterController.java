@@ -10,6 +10,7 @@ import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -40,7 +41,9 @@ public class BookOnLoanRegisterController {
     }
 
     @PostMapping
-    String register(@ModelAttribute("bookOnLoan") BookOnLoan bookOnLoan, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("bookOnLoan") BookOnLoan bookOnLoan, BindingResult result, RedirectAttributes attributes) {
+        if (result.hasErrors()) return "bookonloan/register/form";
+
         BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(bookOnLoan);
 
         if (valid.hasError()) return "bookonloan/register/form";
