@@ -19,12 +19,20 @@ public class MemberAllBookOnLoans {
         this.bookOnLoans = bookOnLoans;
     }
 
-    public LoanRestrictions todayLoanRestrictions() {
+    public boolean canBorrowBookToday() {
+        return todayLoanRestrictions().limit > numberOfBookOnLoans();
+    }
+
+    int numberOfBookOnLoans() {
+        return bookOnLoans.list.size();
+    }
+
+    LoanRestrictions todayLoanRestrictions() {
         Date today = Date.now();
         return loanRestrictions(today);
     }
 
-    public LoanRestrictions loanRestrictions(Date date) {
+    LoanRestrictions loanRestrictions(Date date) {
         DelayStatus delayStatus = worstDelayStatus(date);
         MemberType memberType = member.memberType();
 

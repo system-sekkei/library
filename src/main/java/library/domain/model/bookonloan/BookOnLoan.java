@@ -6,7 +6,6 @@ import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.time.Period;
 
 /**
