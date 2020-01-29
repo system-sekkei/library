@@ -10,4 +10,8 @@ public class BookCollection {
     Book book;
     BookCollectionStatus bookCollectionStatus;
     WebReservationStatus webReservationStatus;
+
+    public BookCollectionStatus bookCollectionStatus() {
+        return bookCollectionStatus;
+    }
 }

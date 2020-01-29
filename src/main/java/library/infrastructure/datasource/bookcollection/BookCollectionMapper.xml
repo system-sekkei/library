@@ -28,7 +28,8 @@
             貸出.貸出ID,
             蔵書コード
          FROM 貸出
-        LEFT OUTER JOIN 返却 ON (貸出.蔵書コード = #{bookCollectionCode.value} AND 貸出.貸出ID = 返却.貸出ID AND 返却.貸出ID = null)
+        LEFT OUTER JOIN 返却 ON (貸出.蔵書コード = #{bookCollectionCode.value} AND 貸出.貸出ID = 返却.貸出ID)
+          WHERE 返却.貸出ID IS NULL
         ) as 蔵書の貸出 ON 蔵書.蔵書コード = 蔵書の貸出.蔵書コード
     </select>
 </mapper>

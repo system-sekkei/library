@@ -25,6 +25,6 @@
             貸出日
          FROM 貸出 WHERE 貸出.会員番号 = #{memberNumber.value}
         ) as 会員の貸出
-        LEFT OUTER JOIN 返却 ON (会員の貸出.貸出ID = 返却.貸出ID AND 返却.貸出ID = null)
+        LEFT OUTER JOIN 返却 ON (会員の貸出.貸出ID = 返却.貸出ID) WHERE 返却.貸出ID IS NULL
     </select>
 </mapper>
