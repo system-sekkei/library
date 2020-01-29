@@ -6,11 +6,12 @@ package library.domain.model.member;
 public class MemberNumber {
     Integer value;
 
-    public MemberNumber() {
-    }
-
     public MemberNumber(Integer value) {
         this.value = value;
+    }
+
+    @Deprecated
+    MemberNumber() {
     }
 
     public static MemberNumber from(String value) {

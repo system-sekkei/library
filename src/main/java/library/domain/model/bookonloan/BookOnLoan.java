@@ -46,7 +46,7 @@ public class BookOnLoan {
     }
 
     public static BookOnLoan blank() {
-        return new BookOnLoan(new MemberNumber(), new BookCollectionCode(), new LoanDate(Date.now()));
+        return new BookOnLoan(new MemberNumber(null), new BookCollectionCode(null), new LoanDate(Date.now()));
     }
 
     public MemberNumber memberNumber() {

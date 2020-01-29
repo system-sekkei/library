@@ -8,14 +8,14 @@ public class Member {
     Name name;
     MemberType memberType;
 
-    @Deprecated
-    Member() {
-    }
-
     public Member(MemberNumber memberNumber, Name name, MemberType memberType) {
         this.memberNumber = memberNumber;
         this.name = name;
         this.memberType = memberType;
+    }
+
+    @Deprecated
+    Member() {
     }
 
     public MemberNumber memberNumber() {

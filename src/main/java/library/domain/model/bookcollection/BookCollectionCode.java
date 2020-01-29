@@ -9,11 +9,12 @@ public class BookCollectionCode {
     @NotBlank(message = "蔵書コードを入力してください。")
     String value;
 
-    public BookCollectionCode() {
-    }
-
     public BookCollectionCode(String value) {
         this.value = value;
+    }
+
+    @Deprecated
+    BookCollectionCode() {
     }
 
     @Override
