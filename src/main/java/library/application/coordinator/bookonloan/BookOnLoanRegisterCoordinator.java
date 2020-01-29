@@ -49,6 +49,6 @@ public class BookOnLoanRegisterCoordinator {
             return BookOnLoanValidResult.貸出制限エラー;
         }
 
-        return BookOnLoanValidResult.正常;
+        return BookOnLoanValidResult.貸出可能;
     }
 }
