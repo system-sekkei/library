@@ -7,4 +7,8 @@ public class Book {
     Title title;
     Author author;
     BookType bookType;
+
+    @Deprecated
+    Book() {
+    }
 }

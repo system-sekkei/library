@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="library.infrastructure.datasource.bookcollection.BookCollectionMapper">
+    <select id="selectBookCollection" resultType="library.domain.model.bookcollection.BookCollection">
+        SELECT
+            蔵書コード as "bookCollectionCode.value",
+            本.タイトル as "book.title.value",
+            本.著者 as "book.author.value",
+            本.本種別 as "book.bookType"
+        FROM 蔵書
+        INNER JOIN 本 on (蔵書.本ID = 本.本ID)
+        WHERE 蔵書コード = #{bookCollectionCode.value}
+    </select>
+</mapper>

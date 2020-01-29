@@ -7,8 +7,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class BookCollectionDataSource implements BookCollectionRepository {
+    BookCollectionMapper mapper;
+
+    public BookCollectionDataSource(BookCollectionMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public BookCollection findBookCollection(BookCollectionCode bookCollectionCode) {
-        return null;
+        return mapper.selectBookCollection(bookCollectionCode);
     }
 }

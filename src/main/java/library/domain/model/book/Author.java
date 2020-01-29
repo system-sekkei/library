@@ -9,4 +9,8 @@ public class Author {
     public Author(String value) {
         this.value = value;
     }
+
+    @Deprecated
+    Author() {
+    }
 }

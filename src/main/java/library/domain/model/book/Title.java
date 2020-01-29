@@ -9,4 +9,8 @@ public class Title {
     public Title(String value) {
         this.value = value;
     }
+
+    @Deprecated
+    Title() {
+    }
 }
