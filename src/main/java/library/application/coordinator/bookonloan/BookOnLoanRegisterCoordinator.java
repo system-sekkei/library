@@ -1,5 +1,6 @@
 package library.application.coordinator.bookonloan;
 
+import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookonloan.BookOnLoan;
@@ -11,17 +12,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class BookOnLoanRegisterCoordinator {
     MemberQueryService memberQueryService;
+    BookCollectionQueryService bookCollectionQueryService;
     BookOnLoanQueryService bookOnLoanQueryService;
     BookOnLoanQueryCoordinator bookOnLoanQueryCoordinator;
 
-    public BookOnLoanRegisterCoordinator(MemberQueryService memberQueryService, BookOnLoanQueryService bookOnLoanQueryService, BookOnLoanQueryCoordinator bookOnLoanQueryCoordinator) {
+    public BookOnLoanRegisterCoordinator(
+        MemberQueryService memberQueryService,
+        BookCollectionQueryService bookCollectionQueryService,
+        BookOnLoanQueryService bookOnLoanQueryService,
+        BookOnLoanQueryCoordinator bookOnLoanQueryCoordinator) {
         this.memberQueryService = memberQueryService;
+        this.bookCollectionQueryService = bookCollectionQueryService;
         this.bookOnLoanQueryService = bookOnLoanQueryService;
         this.bookOnLoanQueryCoordinator = bookOnLoanQueryCoordinator;
     }
 
     public BookOnLoanValidResult isValid(BookOnLoan bookOnLoan) {
-        // TODO:
+        if (memberQueryService.findMember(bookOnLoan.memberNumber()) == null) {
+            return BookOnLoanValidResult.存在しない会員番号;
+        }
+
+        if (bookCollectionQueryService.findBookCollection(bookOnLoan.bookCollectionCode()) == null) {
+            return BookOnLoanValidResult.存在しない蔵書コード;
+        }
+
         return BookOnLoanValidResult.正常;
     }
 }

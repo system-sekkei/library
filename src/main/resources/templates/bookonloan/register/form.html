@@ -11,12 +11,14 @@
   <header th:replace="fragments/header::header('貸出図書の登録')"></header>
 
   <section class="attendanceInput has-text-centered">
-
-
     <form id="custom-form" class="form" name="body"
           method="post" action="#"
           th:object="${bookOnLoan}"
           th:action="@{/bookonloan/register}">
+
+      <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">
+        <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+      </ul>
 
       <div th:replace="fragments/field::macro('会員番号', ~{::div#memberNumberField})">
         <div id="memberNumberField" class="field-body">
