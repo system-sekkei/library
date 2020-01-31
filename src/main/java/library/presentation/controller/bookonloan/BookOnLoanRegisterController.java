@@ -8,7 +8,6 @@ import library.domain.model.bookonloan.BookOnLoan;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -43,7 +42,6 @@ public class BookOnLoanRegisterController {
     }
 
     @PostMapping
-    @Transactional
     String register(@Validated @ModelAttribute("bookOnLoan") BookOnLoan bookOnLoan, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "bookonloan/register/form";
 
