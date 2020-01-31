@@ -3,6 +3,8 @@ package library.application.coordinator.bookonloan;
 /**
  * 貸出図書 検証エラー
  */
+// TODO: 列挙として軸が違う。まず貸出可否。
+    // 存在チェック、貸出可否に関係ない
 public enum BookOnLoanValidResult {
     貸出可能(""),
     存在しない会員番号( "存在しない会員番号です。"),

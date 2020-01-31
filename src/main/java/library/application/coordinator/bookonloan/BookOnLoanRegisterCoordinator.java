@@ -31,6 +31,7 @@ public class BookOnLoanRegisterCoordinator {
     }
 
     public BookOnLoanValidResult isValid(BookOnLoan bookOnLoan) {
+        // TODO: 存在チェックと貸出
         if (memberQueryService.findMember(bookOnLoan.memberNumber()) == null) {
             return BookOnLoanValidResult.存在しない会員番号;
         }
