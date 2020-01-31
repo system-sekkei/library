@@ -31,10 +31,10 @@ class MemberAllBookOnLoansTest {
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = new Member(memberNumber, new Name(""), memberType);
         List<BookOnLoan> bookOnLoans = new ArrayList<>();
-        bookOnLoans.add(new BookOnLoan(memberNumber, null, new LoanDate(Date.from(loanDate1))));
+        bookOnLoans.add(new BookOnLoan(member, null, new LoanDate(Date.from(loanDate1))));
 
         if (loanDate2 != null) {
-            bookOnLoans.add(new BookOnLoan(memberNumber, null, new LoanDate(Date.from(loanDate2))));
+            bookOnLoans.add(new BookOnLoan(member, null, new LoanDate(Date.from(loanDate2))));
         }
 
         MemberAllBookOnLoans memberAllBookOnLoans = new MemberAllBookOnLoans(member, new BookOnLoans(bookOnLoans));

@@ -19,4 +19,24 @@
         LEFT OUTER JOIN 貸出 ON 蔵書.蔵書コード = 貸出.蔵書コード
         WHERE 蔵書.蔵書コード = #{bookCollectionCode.value}
     </select>
+
+    <select id="selectBookCollections" resultType="library.domain.model.bookcollection.BookCollection">
+        SELECT
+        蔵書.蔵書コード as "bookCollectionCode.value",
+        本.タイトル as "book.title.value",
+        本.著者 as "book.author.value",
+        本.本種別 as "book.bookType",
+        CASE
+        WHEN 貸出.貸出ID IS NULL THEN '在庫中'
+        WHEN EXISTS(SELECT 1 FROM 返却 WHERE 貸出.貸出ID = 返却.貸出ID) THEN '在庫中'
+        ELSE '貸出中'
+        END as "bookCollectionStatus",
+        FROM 蔵書
+        INNER JOIN 本 on (蔵書.本ID = 本.本ID)
+        LEFT OUTER JOIN 貸出 ON 蔵書.蔵書コード = 貸出.蔵書コード
+        WHERE 蔵書.蔵書コード IN
+        <foreach item="bookCollectionCode" collection="bookCollectionCodes" open="(" separator="," close=")">
+            #{bookCollectionCode.value}
+        </foreach>
+    </select>
 </mapper>

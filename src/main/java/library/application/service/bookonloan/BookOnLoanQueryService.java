@@ -1,8 +1,8 @@
 package library.application.service.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookonloan.BookOnLoans;
-import library.domain.model.member.MemberNumber;
+import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.member.Member;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,7 +16,7 @@ public class BookOnLoanQueryService {
         this.bookOnLoanRepository = bookOnLoanRepository;
     }
 
-    public BookOnLoans findMemberAllBookOnLoans(MemberNumber memberNumber) {
-        return bookOnLoanRepository.findMemberAllBookOnLoans(memberNumber);
+    public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
+        return bookOnLoanRepository.findMemberAllBookOnLoans(member);
     }
 }

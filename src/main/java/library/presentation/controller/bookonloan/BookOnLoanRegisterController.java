@@ -1,11 +1,15 @@
 package library.presentation.controller.bookonloan;
 
-import library.application.coordinator.bookonloan.BookOnLoanQueryCoordinator;
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
 import library.application.coordinator.bookonloan.BookOnLoanValidResult;
+import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
+import library.application.service.member.MemberQueryService;
+import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookonloan.BookOnLoan;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,26 +28,31 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class BookOnLoanRegisterController {
     BookOnLoanRecordService bookOnLoanRecordService;
     BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator;
-    BookOnLoanQueryCoordinator bookOnLoanQueryCoordinator;
+    BookOnLoanQueryService bookOnLoanQueryService;
+    MemberQueryService memberQueryService;
+    BookCollectionQueryService bookCollectionQueryService;
 
-    public BookOnLoanRegisterController(
-        BookOnLoanRecordService bookOnLoanRecordService,
-        BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator,
-        BookOnLoanQueryCoordinator bookOnLoanQueryCoordinator) {
+    public BookOnLoanRegisterController(BookOnLoanRecordService bookOnLoanRecordService, BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService, BookCollectionQueryService bookCollectionQueryService) {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
         this.bookOnLoanRegisterCoordinator = bookOnLoanRegisterCoordinator;
-        this.bookOnLoanQueryCoordinator = bookOnLoanQueryCoordinator;
+        this.bookOnLoanQueryService = bookOnLoanQueryService;
+        this.memberQueryService = memberQueryService;
+        this.bookCollectionQueryService = bookCollectionQueryService;
     }
 
     @GetMapping
     String init(Model model) {
-        model.addAttribute("bookOnLoan", BookOnLoan.blank());
+        model.addAttribute("bookOnLoanForm", new BookOnLoanForm());
         return "bookonloan/register/form";
     }
 
     @PostMapping
-    String register(@Validated @ModelAttribute("bookOnLoan") BookOnLoan bookOnLoan, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("bookOnLoanForm") BookOnLoanForm bookOnLoanForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "bookonloan/register/form";
+
+        Member member = memberQueryService.findMember(bookOnLoanForm.memberNumber);
+        BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookOnLoanForm.bookCollectionCode);
+        BookOnLoan bookOnLoan = new BookOnLoan(member, bookCollection, bookOnLoanForm.loanDate);
 
         BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(bookOnLoan);
 
@@ -54,13 +63,14 @@ public class BookOnLoanRegisterController {
 
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoan);
 
-        attributes.addAttribute("memberNumber", bookOnLoan.memberNumber());
+        attributes.addAttribute("memberNumber", bookOnLoan.member().memberNumber());
         return "redirect:/bookonloan/register/completed";
     }
 
     @GetMapping("completed")
     String completed(Model model, @RequestParam("memberNumber") MemberNumber memberNumber) {
-        MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryCoordinator.findMemberAllBookOnLoans(memberNumber);
+        Member member = memberQueryService.findMember(memberNumber);
+        MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(member);
         model.addAttribute("memberAllBookOnLoans", memberAllBookOnLoans);
         return "bookonloan/register/completed";
     }

@@ -14,4 +14,8 @@ public class BookCollection {
     public BookCollectionStatus bookCollectionStatus() {
         return bookCollectionStatus;
     }
+
+    public BookCollectionCode bookCollectionCode() {
+        return bookCollectionCode;
+    }
 }

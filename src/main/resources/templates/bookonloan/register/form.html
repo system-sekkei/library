@@ -13,7 +13,7 @@
   <section class="attendanceInput has-text-centered">
     <form id="custom-form" class="form" name="body"
           method="post" action="#"
-          th:object="${bookOnLoan}"
+          th:object="${bookOnLoanForm}"
           th:action="@{/bookonloan/register}">
 
       <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">

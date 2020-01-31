@@ -21,4 +21,8 @@ public class BookCollectionCode {
     public String toString() {
         return value;
     }
+
+    public boolean sameValue(BookCollectionCode other) {
+        return value.equals(other.value);
+    }
 }
