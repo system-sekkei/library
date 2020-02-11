@@ -21,3 +21,6 @@ jobs:
 
       - run: gradle build jig
 
+      - store_artifacts:
+          path: build/jig/
+          destination: jig
