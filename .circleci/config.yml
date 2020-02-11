@@ -21,6 +21,9 @@ jobs:
 
       - run: gradle build jig
 
+      - run: sudo apt-get update && sudo apt-get install -y graphviz fonts-ipafont
+      - run: gradle jig
+
       - store_artifacts:
           path: build/jig/
           destination: jig
