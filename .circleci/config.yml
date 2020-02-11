@@ -13,13 +13,13 @@ jobs:
       - restore_cache:
           keys:
             - gradle-dependencies-{{ checksum "build.gradle" }}
-      - run: gradle dependencies
+      - run: ./gradlew dependencies
       - save_cache:
           paths:
             - ~/.gradle
           key: gradle-dependencies-{{ checksum "build.gradle" }}
 
-      - run: gradle build jig
+      - run: ./gradlew build jig
 
       - store_artifacts:
           path: build/jig/
