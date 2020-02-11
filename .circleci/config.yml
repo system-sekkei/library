@@ -19,7 +19,7 @@ jobs:
             - ~/.gradle
           key: gradle-dependencies-{{ checksum "build.gradle" }}
 
-      - run: gradle build jig
+      - run: gradle build
 
       - run: sudo apt-get update && sudo apt-get install -y graphviz fonts-ipafont
       - run: gradle jig
