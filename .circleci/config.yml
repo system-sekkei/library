@@ -19,7 +19,7 @@ jobs:
             - ~/.gradle
           key: gradle-dependencies-{{ checksum "build.gradle" }}
 
-      - run: gradle build gradle jig
+      - run: gradle build jig
 
       - store_artifacts:
           path: build/jig/
