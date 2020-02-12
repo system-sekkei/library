@@ -21,6 +21,15 @@ jobs:
 
       - run: ./gradlew build jig
 
+      - run: zip -r {{ .Environment.CIRCLE_SHA1 }}-jig.zip build/jig
+      - run:
+        command: |
+          curl -Lo slackcat https://github.com/bcicen/slackcat/releases/download/v1.6/slackcat-1.6-$(uname -s)-amd64
+          sudo mv slackcat /usr/local/bin/
+          sudo chmod +x /usr/local/bin/slackcat
+          echo ${SLACK_TOKEN} > ~/.slackcat
+          slackcat --channel ${SLACK_CANNEL} ./{{ .Environment.CIRCLE_SHA1 }}-jig.zip
+
       - store_artifacts:
           path: build/jig/
           destination: jig
