@@ -24,13 +24,15 @@ jobs:
       - run: sudo apt update && sudo apt install -y imagemagick fonts-ipafont
       - run: sudo mkdir converted
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/*.svg converted/*.png
-      - run: sudo cp build/jig/*.xlsx converted
 
       - run: curl -Lo slackcat https://github.com/bcicen/slackcat/releases/download/v1.6/slackcat-1.6-$(uname -s)-amd64
       - run: sudo mv slackcat /usr/local/bin/
       - run: sudo chmod +x /usr/local/bin/slackcat
       - run: echo ${SLACK_TOKEN} > ~/.slackcat
       - run: for file in $(ls converted); do slackcat --channel ${SLACK_CANNEL} converted/${file}; done;
+
+      - run: slackcat --channel ${SLACK_CANNEL} build/jig/business-rule.xlsx
+      - run: slackcat --channel ${SLACK_CANNEL} build/jig/application.xlsx
 
       - store_artifacts:
           path: build/jig/
