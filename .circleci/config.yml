@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: irof/circleci-openjdk-graphviz:11-jdk
+      - image: irof/circleci-openjdk:11-jdk-graphviz-imagemagick
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
@@ -21,7 +21,6 @@ jobs:
 
       - run: ./gradlew build jig
 
-      - run: sudo apt update && sudo apt install -y imagemagick fonts-ipafont
       - run: sudo mkdir converted
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/*.svg converted/*.png
 
