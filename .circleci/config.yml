@@ -26,7 +26,6 @@ jobs:
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/*.svg converted/*.png
       - run: sudo cp build/jig/*.xlsx converted
 
-      - run: zip -r jig.zip build/jig
       - run: curl -Lo slackcat https://github.com/bcicen/slackcat/releases/download/v1.6/slackcat-1.6-$(uname -s)-amd64
       - run: sudo mv slackcat /usr/local/bin/
       - run: sudo chmod +x /usr/local/bin/slackcat
