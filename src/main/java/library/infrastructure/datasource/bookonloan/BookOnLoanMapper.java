@@ -24,4 +24,9 @@ public interface BookOnLoanMapper {
     void insertReturnBook(
             @Param("bookOnLoanId") Integer bookOnLoanId,
             @Param("returnDate") ReturnDate returnDate);
+
+    Integer getBookOnLoanIdentifier(
+            @Param("memberNumber") MemberNumber memberNumber,
+            @Param("bookCollectionCode") BookCollectionCode bookCollectionCode,
+            @Param("loanDate") LoanDate loanDate);
 }
