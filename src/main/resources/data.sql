@@ -21,4 +21,4 @@ VALUES
 
 INSERT INTO 貸出(貸出ID, 会員番号, 蔵書コード, 貸出日)
 VALUES
-(1, 1, '1-A', CURRENT_DATE);
+((SELECT NEXTVAL('貸出ID')), 1, '1-A', CURRENT_DATE);
