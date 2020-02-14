@@ -18,4 +18,9 @@
         FROM 貸出
         WHERE 貸出.会員番号 = #{memberNumber.value}
     </select>
+
+    <insert id="insertReturnBook">
+        INSERT INTO 返却(貸出ID, 返却日)
+        VALUES (#{bookOnLoanId.value}, #{returnDate.value.value})
+    </insert>
 </mapper>

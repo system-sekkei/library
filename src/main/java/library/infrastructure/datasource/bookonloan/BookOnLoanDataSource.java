@@ -6,6 +6,7 @@ import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.BookOnLoan;
 import library.domain.model.bookonloan.BookOnLoans;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.ReturnDate;
 import library.domain.model.member.Member;
 import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
 import org.springframework.stereotype.Repository;
@@ -34,8 +35,9 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
-    public void registerReturnBook(BookOnLoan bookOnLoan) {
-        // TODO:
+    public void registerReturnBook(BookOnLoan bookOnLoan, ReturnDate returnDate) {
+    // TODO:
+//        mapper.insertReturnBook(bookOnLoan, returnDate);
     }
 
     @Override

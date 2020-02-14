@@ -2,6 +2,7 @@ package library.application.service.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
 import library.domain.model.bookonloan.BookOnLoan;
+import library.domain.model.bookonloan.ReturnDate;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +16,7 @@ public class ReturnBookRecordService {
         this.bookOnLoanRepository = bookOnLoanRepository;
     }
 
-    public void registerReturnBook(BookOnLoan bookOnLoan) {
-        bookOnLoanRepository.registerReturnBook(bookOnLoan);
+    public void registerReturnBook(BookOnLoan bookOnLoan, ReturnDate returnDate) {
+        bookOnLoanRepository.registerReturnBook(bookOnLoan, returnDate);
     }
 }
