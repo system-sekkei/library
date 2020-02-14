@@ -31,6 +31,7 @@ CREATE TABLE 貸出 (
     登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     ,FOREIGN KEY (会員番号) REFERENCES 会員(会員番号)
     ,FOREIGN KEY (蔵書コード) REFERENCES 蔵書(蔵書コード)
+    ,UNIQUE(会員番号, 蔵書コード, 貸出日)
 );
 CREATE SEQUENCE 貸出ID;
 
