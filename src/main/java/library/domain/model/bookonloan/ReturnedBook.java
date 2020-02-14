@@ -1,9 +1,9 @@
 package library.domain.model.bookonloan;
 
 /**
- * 返却図書
+ * 返却された貸出図書
  */
-public class ReturnBook {
+public class ReturnedBook {
     BookOnLoan bookOnLoan;
     ReturnDate returnDate;
 }
