@@ -11,5 +11,7 @@ public interface BookOnLoanRepository {
 
     void registerBookOnLoan(BookOnLoan bookOnLoan);
 
+    void registerReturnBook(BookOnLoan bookOnLoan);
+
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 }

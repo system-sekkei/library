@@ -34,6 +34,11 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
+    public void registerReturnBook(BookOnLoan bookOnLoan) {
+        // TODO:
+    }
+
+    @Override
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
         List<BookOnLoanData> bookOnLoanDataList = mapper.selectByMemberNumber(member.memberNumber());
         List<BookOnLoan> bookOnLoans = bookOnLoans(member, bookOnLoanDataList);
