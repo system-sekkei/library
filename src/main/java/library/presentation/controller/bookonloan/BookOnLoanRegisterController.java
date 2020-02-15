@@ -50,6 +50,7 @@ public class BookOnLoanRegisterController {
     String register(@Validated @ModelAttribute("bookOnLoanForm") BookOnLoanForm bookOnLoanForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "bookonloan/register/form";
 
+        // TODO: コーディネーターにまとめる
         Member member = memberQueryService.findMember(bookOnLoanForm.memberNumber);
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookOnLoanForm.bookCollectionCode);
         BookOnLoan bookOnLoan = new BookOnLoan(member, bookCollection, bookOnLoanForm.loanDate);
