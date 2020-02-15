@@ -1,5 +1,6 @@
 package library.presentation.controller.returnbook;
 
+import library.application.coordinator.returnbook.ReturnBookCoordinator;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
 import library.application.service.member.MemberQueryService;
@@ -21,12 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("returnbook/register")
 public class ReturnBookRegisterController {
-    ReturnBookRecordService returnBookRecordService;
+    ReturnBookCoordinator returnBookCoordinator;
     BookOnLoanQueryService bookOnLoanQueryService;
     MemberQueryService memberQueryService;
 
-    public ReturnBookRegisterController(ReturnBookRecordService returnBookRecordService, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService) {
-        this.returnBookRecordService = returnBookRecordService;
+    public ReturnBookRegisterController(ReturnBookCoordinator returnBookCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService) {
+        this.returnBookCoordinator = returnBookCoordinator;
         this.bookOnLoanQueryService = bookOnLoanQueryService;
         this.memberQueryService = memberQueryService;
     }
@@ -41,19 +42,13 @@ public class ReturnBookRegisterController {
     String register(@Validated @ModelAttribute("returnBookForm") ReturnBookForm returnBookForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "returnbook/register/form";
 
-        BookOnLoan bookOnLoan = null;  // TODO:
+        returnBookCoordinator.returnBook(returnBookForm.bookCollectionCode, returnBookForm.returnDate);
 
-        returnBookRecordService.registerReturnBook(bookOnLoan, returnBookForm.returnDate);
-
-        attributes.addAttribute("memberNumber", bookOnLoan.member().memberNumber());
         return "redirect:/returnbook/register/completed";
     }
 
     @GetMapping("completed")
-    String completed(Model model, @RequestParam("memberNumber") MemberNumber memberNumber) {
-        Member member = memberQueryService.findMember(memberNumber);
-        MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(member);
-        model.addAttribute("memberAllBookOnLoans", memberAllBookOnLoans);
+    String completed(Model model) {
         return "returnbook/register/completed";
     }
 
