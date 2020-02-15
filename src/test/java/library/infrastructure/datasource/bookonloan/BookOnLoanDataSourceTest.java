@@ -27,11 +27,11 @@ class BookOnLoanDataSourceTest {
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
                         .param("bookCollectionCode.value", "2-C")
-                        .param("loanDate.value", "2020-02-15"));
+                        .param("loanDate.value", "2020-02-14"));
 
         BookCollectionCode bookCollectionCode = new BookCollectionCode("2-C");
         BookOnLoan bookOnLoan = bookOnLoanDataSource.findBookOnLoanByBookCollectionCode(bookCollectionCode);
 
-        assertEquals("2020-02-15", bookOnLoan.loanDate().toString());
+        assertEquals("2020-02-14", bookOnLoan.loanDate().toString());
     }
 }
