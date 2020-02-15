@@ -25,6 +25,8 @@ public class ReturnBookCoordinator {
      * 貸出図書の返却を登録する
      */
     public void returnBook(BookCollectionCode bookCollectionCode, ReturnDate returnDate) {
+        // TODO: 貸出図書の状態をここでチェックする
+
         BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, returnDate));
     }

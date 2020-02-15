@@ -22,6 +22,9 @@ public class BookOnLoanQueryService {
         return bookOnLoanRepository.findMemberAllBookOnLoans(member);
     }
 
+    /**
+     * 蔵書コードによる貸出図書取得
+     */
     public BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode) {
         return bookOnLoanRepository.findBookOnLoanByBookCollectionCode(bookCollectionCode);
     }
