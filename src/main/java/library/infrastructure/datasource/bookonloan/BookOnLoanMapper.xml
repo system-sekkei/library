@@ -33,7 +33,7 @@
         INSERT INTO 返却(貸出ID, 返却日)
         VALUES (#{bookOnLoanId}, #{returnDate.value.value})
     </insert>
-    
+
     <select id="selectByBookCollectionCode" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
         SELECT 貸出.蔵書コード as "bookCollectionCode.value",
                貸出.会員番号 as "memberNumber.value",
