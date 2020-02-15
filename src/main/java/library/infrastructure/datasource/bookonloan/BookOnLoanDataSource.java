@@ -9,6 +9,7 @@ import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.ReturnDate;
 import library.domain.model.member.Member;
 import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
+import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,10 +19,12 @@ import java.util.stream.Collectors;
 public class BookOnLoanDataSource implements BookOnLoanRepository {
     BookOnLoanMapper mapper;
     BookCollectionMapper bookCollectionMapper;
+    MemberMapper memberMapper;
 
-    public BookOnLoanDataSource(BookOnLoanMapper mapper, BookCollectionMapper bookCollectionMapper) {
+    public BookOnLoanDataSource(BookOnLoanMapper mapper, BookCollectionMapper bookCollectionMapper, MemberMapper memberMapper) {
         this.mapper = mapper;
         this.bookCollectionMapper = bookCollectionMapper;
+        this.memberMapper = memberMapper;
     }
 
     @Override
@@ -50,6 +53,14 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         List<BookOnLoan> bookOnLoans = bookOnLoans(member, bookOnLoanDataList);
 
         return new MemberAllBookOnLoans(member, new BookOnLoans(bookOnLoans));
+    }
+
+    @Override
+    public BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode) {
+        BookOnLoanData bookOnLoanData = mapper.selectByBookCollectionCode(bookCollectionCode);
+        Member member = memberMapper.selectMember(bookOnLoanData.memberNumber);
+        BookOnLoan bookOnLoan = bookOnLoans(member, List.of(bookOnLoanData)).get(0);
+        return bookOnLoan;
     }
 
     List<BookOnLoan> bookOnLoans(Member member, List<BookOnLoanData> bookOnLoanDataList) {

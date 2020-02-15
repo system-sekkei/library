@@ -1,5 +1,6 @@
 package library.application.repository;
 
+import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.BookOnLoan;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.ReturnDate;
@@ -15,4 +16,6 @@ public interface BookOnLoanRepository {
     void registerReturnBook(BookOnLoan bookOnLoan, ReturnDate returnDate);
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
+
+    BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode);
 }
