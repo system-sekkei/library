@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.bookonloan;
 
 import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookonloan.BookOnLoan;
+import library.domain.model.bookonloan.BookOnLoanId;
 import library.domain.model.bookonloan.LoanDate;
 import library.domain.model.bookonloan.ReturnDate;
 import library.domain.model.member.MemberNumber;
@@ -23,13 +23,8 @@ public interface BookOnLoanMapper {
             @Param("loanDate") LoanDate loanDate);
 
     void insertReturnBook(
-            @Param("bookOnLoanId") Integer bookOnLoanId,
+            @Param("bookOnLoanId") BookOnLoanId bookOnLoanId,
             @Param("returnDate") ReturnDate returnDate);
-
-    Integer getBookOnLoanIdentifier(
-            @Param("memberNumber") MemberNumber memberNumber,
-            @Param("bookCollectionCode") BookCollectionCode bookCollectionCode,
-            @Param("loanDate") LoanDate loanDate);
 
     BookOnLoanData selectByBookCollectionCode(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 }

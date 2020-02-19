@@ -21,18 +21,9 @@
         WHERE 貸出.会員番号 = #{memberNumber.value}
     </select>
 
-    <!-- TODO: 条件おかしい -->
-    <select id="getBookOnLoanIdentifier" resultType="Integer">
-        SELECT 貸出.貸出ID
-        FROM 貸出
-        WHERE 貸出.会員番号 = #{memberNumber.value}
-        AND 貸出.蔵書コード = #{bookCollectionCode.value}
-        AND 貸出.貸出日 = #{loanDate.value.value}
-    </select>
-
     <insert id="insertReturnBook">
         INSERT INTO 返却(貸出ID, 返却日)
-        VALUES (#{bookOnLoanId}, #{returnDate.value.value})
+        VALUES (#{bookOnLoanId.value}, #{returnDate.value.value})
     </insert>
 
     <select id="selectByBookCollectionCode" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">

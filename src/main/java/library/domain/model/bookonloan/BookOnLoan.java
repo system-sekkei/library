@@ -52,4 +52,8 @@ public class BookOnLoan {
     public LoanDate loanDate() {
         return loanDate;
     }
+
+    public BookOnLoanId bookOnLoanId() {
+        return bookOnLoanId;
+    }
 }
