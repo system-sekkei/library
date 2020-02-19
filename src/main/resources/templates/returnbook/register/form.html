@@ -20,21 +20,6 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="fragments/field::macro('会員番号', ~{::div#memberNumberField})">
-        <div id="memberNumberField" class="field-body">
-          <div class="field">
-            <p class="control">
-              <input class="input" type="text" placeholder="1"
-                     th:field="*{memberNumber.value}"/>
-            </p>
-            <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('memberNumber.value')}">
-              <span th:errors="*{memberNumber.value}"></span>
-            </p>
-          </div>
-        </div>
-      </div>
-
       <div th:replace="fragments/field::macro('蔵書コード', ~{::div#bookCollectionCodeField})">
         <div id="bookCollectionCodeField" class="field-body">
           <div class="field">
