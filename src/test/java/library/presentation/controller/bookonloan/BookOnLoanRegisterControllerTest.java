@@ -6,6 +6,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -16,6 +17,13 @@ class BookOnLoanRegisterControllerTest {
 
     @Autowired
     MockMvc mockMvc;
+
+    @Test
+    void 貸出画面が表示できる() throws Exception {
+        mockMvc.perform(
+                get("/bookonloan/register"))
+                .andExpect(status().isOk());
+    }
 
     @Test
     public void 貸出が登録できる() throws Exception {
