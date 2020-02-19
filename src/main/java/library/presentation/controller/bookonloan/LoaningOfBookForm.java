@@ -7,7 +7,7 @@ import library.domain.type.date.Date;
 
 import javax.validation.Valid;
 
-public class BookOnLoanForm {
+public class LoaningOfBookForm {
 
     @Valid
     MemberNumber memberNumber = null;

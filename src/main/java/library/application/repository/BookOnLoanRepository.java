@@ -2,6 +2,7 @@ package library.application.repository;
 
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.BookOnLoan;
+import library.domain.model.bookonloan.LoaningOfBook;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.ReturningBookOnLoan;
 import library.domain.model.member.Member;
@@ -11,7 +12,7 @@ import library.domain.model.member.Member;
  */
 public interface BookOnLoanRepository {
 
-    void registerBookOnLoan(BookOnLoan bookOnLoan);
+    void registerBookOnLoan(LoaningOfBook loaningOfBook);
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 

@@ -5,20 +5,16 @@ import library.domain.model.member.Member;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
-import javax.validation.Valid;
 import java.time.Period;
 
 /**
  * 貸出図書
  */
 public class BookOnLoan {
-    @Valid
     Member member;
 
-    @Valid
     BookCollection bookCollection;
 
-    @Valid
     LoanDate loanDate;
 
     @Deprecated

@@ -1,7 +1,7 @@
 package library.application.service.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookonloan.BookOnLoan;
+import library.domain.model.bookonloan.LoaningOfBook;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,7 +15,7 @@ public class BookOnLoanRecordService {
         this.bookOnLoanRepository = bookOnLoanRepository;
     }
 
-    public void registerBookOnLoan(BookOnLoan bookOnLoan) {
-        bookOnLoanRepository.registerBookOnLoan(bookOnLoan);
+    public void registerBookOnLoan(LoaningOfBook loaningOfBook) {
+        bookOnLoanRepository.registerBookOnLoan(loaningOfBook);
     }
 }

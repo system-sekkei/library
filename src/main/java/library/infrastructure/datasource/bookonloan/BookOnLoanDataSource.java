@@ -25,13 +25,13 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
-    public void registerBookOnLoan(BookOnLoan bookOnLoan) {
+    public void registerBookOnLoan(LoaningOfBook loaningOfBook) {
         Integer bookOnLoanId = mapper.newBookOnLoanIdentifier();
         mapper.insertBookOnLoan(
                 bookOnLoanId,
-                bookOnLoan.member().memberNumber(),
-                bookOnLoan.bookCollection().bookCollectionCode(),
-                bookOnLoan.loanDate());
+                loaningOfBook.member().memberNumber(),
+                loaningOfBook.bookCollection().bookCollectionCode(),
+                loaningOfBook.loanDate());
     }
 
     @Override

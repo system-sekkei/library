@@ -7,7 +7,7 @@ import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.bookonloan.BookOnLoan;
+import library.domain.model.bookonloan.LoaningOfBook;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -42,29 +42,29 @@ public class BookOnLoanRegisterController {
 
     @GetMapping
     String init(Model model) {
-        model.addAttribute("bookOnLoanForm", new BookOnLoanForm());
+        model.addAttribute("bookOnLoanForm", new LoaningOfBookForm());
         return "bookonloan/register/form";
     }
 
     @PostMapping
-    String register(@Validated @ModelAttribute("bookOnLoanForm") BookOnLoanForm bookOnLoanForm, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("bookOnLoanForm") LoaningOfBookForm loaningOfBookForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         // TODO: コーディネーターにまとめる
-        Member member = memberQueryService.findMember(bookOnLoanForm.memberNumber);
-        BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookOnLoanForm.bookCollectionCode);
-        BookOnLoan bookOnLoan = new BookOnLoan(member, bookCollection, bookOnLoanForm.loanDate);
+        Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
+        BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
+        LoaningOfBook loaningOfBook = new LoaningOfBook(member, bookCollection, loaningOfBookForm.loanDate);
 
-        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(bookOnLoan);
+        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(loaningOfBook);
 
         if (valid.hasError()) {
             result.addError(new ObjectError("error", valid.message()));
             return "bookonloan/register/form";
         }
 
-        bookOnLoanRecordService.registerBookOnLoan(bookOnLoan);
+        bookOnLoanRecordService.registerBookOnLoan(loaningOfBook);
 
-        attributes.addAttribute("memberNumber", bookOnLoan.member().memberNumber());
+        attributes.addAttribute("memberNumber", loaningOfBook.member().memberNumber());
         return "redirect:/bookonloan/register/completed";
     }
 
