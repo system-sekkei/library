@@ -75,7 +75,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
                         bookCollections.stream()
                                 .filter(bookCollection -> bookCollection.bookCollectionCode().sameValue(bookOnLoanData.bookCollectionCode))
                                 .findFirst()
-                                .map(bookCollection -> new BookOnLoan(member, bookCollection, bookOnLoanData.loanDate))
+                                .map(bookCollection -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, bookCollection, bookOnLoanData.loanDate))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }

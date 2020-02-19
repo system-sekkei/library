@@ -11,17 +11,17 @@ import java.time.Period;
  * 貸出図書
  */
 public class BookOnLoan {
+    BookOnLoanId bookOnLoanId;
     Member member;
-
     BookCollection bookCollection;
-
     LoanDate loanDate;
 
     @Deprecated
     BookOnLoan() {
     }
 
-    public BookOnLoan(Member member, BookCollection bookCollection, LoanDate loanDate) {
+    public BookOnLoan(BookOnLoanId bookOnLoanId, Member member, BookCollection bookCollection, LoanDate loanDate) {
+        this.bookOnLoanId = bookOnLoanId;
         this.member = member;
         this.bookCollection = bookCollection;
         this.loanDate = loanDate;
