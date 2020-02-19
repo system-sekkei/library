@@ -42,12 +42,12 @@ public class BookOnLoanRegisterController {
 
     @GetMapping
     String init(Model model) {
-        model.addAttribute("bookOnLoanForm", new LoaningOfBookForm());
+        model.addAttribute("loaningOfBookForm", new LoaningOfBookForm());
         return "bookonloan/register/form";
     }
 
     @PostMapping
-    String register(@Validated @ModelAttribute("bookOnLoanForm") LoaningOfBookForm loaningOfBookForm, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("loaningOfBookForm") LoaningOfBookForm loaningOfBookForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         // TODO: コーディネーターにまとめる
