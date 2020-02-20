@@ -47,10 +47,10 @@ class BookOnLoanDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-C")
+                        .param("bookCollectionCode.value", "2-D")
                         .param("loanDate.value", "2020-02-14"));
 
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-C");
+        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-D");
         returnBookCoordinator.returnBook(bookCollectionCode, new ReturnDate(Date.from("2019-01-01")));
 
         assertThrows(NullPointerException.class, () -> {
