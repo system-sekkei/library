@@ -11,4 +11,10 @@ public class Book {
     @Deprecated
     Book() {
     }
+
+    public Book(Title title, Author author, BookType bookType) {
+        this.title = title;
+        this.author = author;
+        this.bookType = bookType;
+    }
 }

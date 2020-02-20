@@ -25,4 +25,8 @@ public class MemberNumber {
     public String toString() {
         return value.toString();
     }
+
+    public Integer value() {
+        return value;
+    }
 }
