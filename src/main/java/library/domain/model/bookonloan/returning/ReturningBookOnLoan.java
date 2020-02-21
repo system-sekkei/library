@@ -1,4 +1,6 @@
-package library.domain.model.bookonloan;
+package library.domain.model.bookonloan.returning;
+
+import library.domain.model.bookonloan.BookOnLoan;
 
 /**
  * 返却しようとしている貸出図書

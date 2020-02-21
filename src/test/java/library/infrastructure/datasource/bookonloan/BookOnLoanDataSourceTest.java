@@ -3,7 +3,7 @@ package library.infrastructure.datasource.bookonloan;
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.BookOnLoan;
-import library.domain.model.bookonloan.ReturnDate;
+import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

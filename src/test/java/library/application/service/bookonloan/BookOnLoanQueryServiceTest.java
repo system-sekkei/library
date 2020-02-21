@@ -6,6 +6,8 @@ import library.application.service.returnbook.ReturnBookRecordService;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.*;
+import library.domain.model.bookonloan.returning.ReturnDate;
+import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;

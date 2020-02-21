@@ -4,6 +4,7 @@ import library.application.repository.BookOnLoanRepository;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.*;
+import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
 import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
 import library.infrastructure.datasource.member.MemberMapper;

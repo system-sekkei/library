@@ -4,8 +4,8 @@ import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.BookOnLoan;
-import library.domain.model.bookonloan.ReturnDate;
-import library.domain.model.bookonloan.ReturningBookOnLoan;
+import library.domain.model.bookonloan.returning.ReturnDate;
+import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import org.springframework.stereotype.Service;
 
 /**
