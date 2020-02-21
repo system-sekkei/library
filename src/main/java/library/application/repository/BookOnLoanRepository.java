@@ -1,9 +1,9 @@
 package library.application.repository;
 
 import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookonloan.BookOnLoan;
-import library.domain.model.bookonloan.LoaningOfBookCollection;
-import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.loan.BookOnLoan;
+import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
+import library.domain.model.bookonloan.loan.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
 

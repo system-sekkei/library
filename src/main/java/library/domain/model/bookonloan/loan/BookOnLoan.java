@@ -1,4 +1,4 @@
-package library.domain.model.bookonloan;
+package library.domain.model.bookonloan.loan;
 
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.member.Member;

@@ -4,8 +4,8 @@ import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollectionStatus;
-import library.domain.model.bookonloan.LoaningOfBookCollection;
-import library.domain.model.bookonloan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
+import library.domain.model.bookonloan.loan.MemberAllBookOnLoans;
 import org.springframework.stereotype.Service;
 
 /**
