@@ -32,10 +32,7 @@ public class BookOnLoanRegisterCoordinator {
         }
 
         MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(loaningOfBookCollection.member());
-        if (!memberAllBookOnLoans.canBorrowBookToday()) {
-            return BookOnLoanValidResult.貸出制限エラー;
-        }
-
-        return BookOnLoanValidResult.貸出可能;
+        return BookOnLoanValidResult.bookOnLoanValidResult(memberAllBookOnLoans.canBorrowBookToday());
     }
+
 }

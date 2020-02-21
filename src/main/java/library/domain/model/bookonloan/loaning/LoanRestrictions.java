@@ -17,8 +17,11 @@ public enum LoanRestrictions {
         this.limit = limit;
     }
 
-    public boolean canLoan(BookOnLoans bookOnLoans) {
-        return limit > bookOnLoans.numberOfBookOnLoans().value();
+    public CanLoan canLoan(BookOnLoans bookOnLoans) {
+        if (limit > bookOnLoans.numberOfBookOnLoans().value()) {
+            return CanLoan.貸出可能;
+        }
+        return CanLoan.貸出不可;
     }
 
 }
