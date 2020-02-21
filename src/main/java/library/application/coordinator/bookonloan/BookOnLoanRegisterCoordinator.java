@@ -4,7 +4,7 @@ import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollectionStatus;
-import library.domain.model.bookonloan.LoaningOfBook;
+import library.domain.model.bookonloan.LoaningOfBookCollection;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import org.springframework.stereotype.Service;
 
@@ -26,12 +26,12 @@ public class BookOnLoanRegisterCoordinator {
         this.bookOnLoanQueryService = bookOnLoanQueryService;
     }
 
-    public BookOnLoanValidResult isValid(LoaningOfBook loaningOfBook) {
-        if (loaningOfBook.bookCollection().bookCollectionStatus() == BookCollectionStatus.貸出中) {
+    public BookOnLoanValidResult isValid(LoaningOfBookCollection loaningOfBookCollection) {
+        if (loaningOfBookCollection.bookCollection().bookCollectionStatus() == BookCollectionStatus.貸出中) {
             return BookOnLoanValidResult.貸出中の蔵書;
         }
 
-        MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(loaningOfBook.member());
+        MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(loaningOfBookCollection.member());
         if (!memberAllBookOnLoans.canBorrowBookToday()) {
             return BookOnLoanValidResult.貸出制限エラー;
         }

@@ -56,7 +56,7 @@ class BookOnLoanQueryServiceTest {
     private void registerBookOnLoan(BookCollectionCode bookCollectionCode){
         Member member = memberQueryService.findMember(new MemberNumber(1));
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
-        LoaningOfBook loaningOfBook = new LoaningOfBook(member, bookCollection, new LoanDate(Date.from("2020-02-20")));
-        bookOnLoanRecordService.registerBookOnLoan(loaningOfBook);
+        LoaningOfBookCollection loaningOfBookCollection = new LoaningOfBookCollection(member, bookCollection, new LoanDate(Date.from("2020-02-20")));
+        bookOnLoanRecordService.registerBookOnLoan(loaningOfBookCollection);
     }
 }

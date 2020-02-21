@@ -7,7 +7,7 @@ import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.bookonloan.LoaningOfBook;
+import library.domain.model.bookonloan.LoaningOfBookCollection;
 import library.domain.model.bookonloan.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -53,18 +53,18 @@ public class BookOnLoanRegisterController {
         // TODO: コーディネーターにまとめる
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
-        LoaningOfBook loaningOfBook = new LoaningOfBook(member, bookCollection, loaningOfBookForm.loanDate);
+        LoaningOfBookCollection loaningOfBookCollection = new LoaningOfBookCollection(member, bookCollection, loaningOfBookForm.loanDate);
 
-        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(loaningOfBook);
+        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(loaningOfBookCollection);
 
         if (valid.hasError()) {
             result.addError(new ObjectError("error", valid.message()));
             return "bookonloan/register/form";
         }
 
-        bookOnLoanRecordService.registerBookOnLoan(loaningOfBook);
+        bookOnLoanRecordService.registerBookOnLoan(loaningOfBookCollection);
 
-        attributes.addAttribute("memberNumber", loaningOfBook.member().memberNumber());
+        attributes.addAttribute("memberNumber", loaningOfBookCollection.member().memberNumber());
         return "redirect:/bookonloan/register/completed";
     }
 
