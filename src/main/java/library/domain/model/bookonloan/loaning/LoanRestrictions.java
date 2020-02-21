@@ -1,5 +1,7 @@
 package library.domain.model.bookonloan.loaning;
 
+import library.domain.model.bookonloan.loan.BookOnLoans;
+
 /**
  * 貸出制限
  */
@@ -15,7 +17,8 @@ public enum LoanRestrictions {
         this.limit = limit;
     }
 
-    public int limit() {
-        return limit;
+    public boolean canLoan(BookOnLoans bookOnLoans) {
+        return limit > bookOnLoans.numberOfBookOnLoans().value();
     }
+
 }

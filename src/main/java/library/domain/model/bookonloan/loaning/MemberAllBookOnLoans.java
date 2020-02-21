@@ -20,11 +20,8 @@ public class MemberAllBookOnLoans {
     }
 
     public boolean canBorrowBookToday() {
-        return todayLoanRestrictions().limit() > numberOfBookOnLoans();
-    }
-
-    int numberOfBookOnLoans() {
-        return bookOnLoans.list().size();
+        LoanRestrictions loanRestrictions = todayLoanRestrictions();
+        return loanRestrictions.canLoan(this.bookOnLoans);
     }
 
     LoanRestrictions todayLoanRestrictions() {
