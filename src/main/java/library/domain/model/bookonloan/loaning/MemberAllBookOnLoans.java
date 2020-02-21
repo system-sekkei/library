@@ -1,11 +1,11 @@
-package library.domain.model.bookonloan.loan;
+package library.domain.model.bookonloan.loaning;
 
+import library.domain.model.bookonloan.loan.BookOnLoans;
+import library.domain.model.bookonloan.loan.DelayPeriod;
+import library.domain.model.bookonloan.loan.DelayStatus;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberType;
 import library.domain.type.date.Date;
-import library.domain.type.date.Days;
-
-import java.util.Comparator;
 
 /**
  * 会員の全貸出図書
@@ -20,11 +20,11 @@ public class MemberAllBookOnLoans {
     }
 
     public boolean canBorrowBookToday() {
-        return todayLoanRestrictions().limit > numberOfBookOnLoans();
+        return todayLoanRestrictions().limit() > numberOfBookOnLoans();
     }
 
     int numberOfBookOnLoans() {
-        return bookOnLoans.list.size();
+        return bookOnLoans.list().size();
     }
 
     LoanRestrictions todayLoanRestrictions() {
@@ -59,10 +59,7 @@ public class MemberAllBookOnLoans {
     }
 
     DelayStatus worstDelayStatus(Date date) {
-        DelayPeriod worstDelayPeriod = bookOnLoans.list.stream()
-                .map(loan -> loan.delayPeriod(date))
-                .max(Comparator.comparingInt(period -> period.value.value()))
-                .orElse(new DelayPeriod(new Days(0)));
+        DelayPeriod worstDelayPeriod = bookOnLoans.worstDelayPeriod(date);
 
         return worstDelayPeriod.delayStatus();
     }

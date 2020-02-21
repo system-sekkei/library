@@ -8,7 +8,7 @@ import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
-import library.domain.model.bookonloan.loan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;

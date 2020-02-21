@@ -5,7 +5,7 @@ import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoans;
-import library.domain.model.bookonloan.loan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;

@@ -3,7 +3,7 @@ package library.application.service.bookonloan;
 import library.application.repository.BookOnLoanRepository;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.loan.MemberAllBookOnLoans;
+import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
 import org.springframework.stereotype.Service;
 
