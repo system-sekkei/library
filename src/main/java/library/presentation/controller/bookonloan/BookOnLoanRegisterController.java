@@ -55,15 +55,12 @@ public class BookOnLoanRegisterController {
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
         LoaningOfBookCollection loaningOfBookCollection = new LoaningOfBookCollection(member, bookCollection, loaningOfBookForm.loanDate);
 
-        // TODO: ここ以下、コーディネータにまとめる
-        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(loaningOfBookCollection);
+        BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.loaning(loaningOfBookCollection);
 
         if (valid.hasError()) {
             result.addError(new ObjectError("error", valid.message()));
             return "bookonloan/register/form";
         }
-
-        bookOnLoanRecordService.registerBookOnLoan(loaningOfBookCollection);
 
         attributes.addAttribute("memberNumber", loaningOfBookCollection.member().memberNumber());
         return "redirect:/bookonloan/register/completed";
