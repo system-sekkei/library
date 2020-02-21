@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.bookonloan;
 
+import library.LibraryDBTest;
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
@@ -8,14 +9,13 @@ import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 
-@SpringBootTest
+@LibraryDBTest
 @AutoConfigureMockMvc
 class BookOnLoanDataSourceTest {
 

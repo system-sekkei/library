@@ -1,5 +1,6 @@
 package library.application.service.bookonloan;
 
+import library.LibraryDBTest;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
@@ -15,12 +16,11 @@ import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
+@LibraryDBTest
 class BookOnLoanQueryServiceTest {
     @Autowired
     BookOnLoanQueryService bookOnLoanQueryService;
@@ -39,15 +39,15 @@ class BookOnLoanQueryServiceTest {
 
     @Test
     void 貸出図書を取得できる() {
-        registerBookOnLoan(new BookCollectionCode("1-A"));
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
+        registerBookOnLoan(new BookCollectionCode("2-A"));
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("2-A"));
 
         assertEquals(bookOnLoan.member().memberNumber().value(), 1);
     }
 
     @Test
     void 返却された貸出図書は取得できない() {
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("1-A");
+        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-B");
         registerBookOnLoan(bookCollectionCode);
         BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-21"))));

@@ -1,5 +1,6 @@
 package library.application.service.bookonloan;
 
+import library.LibraryDBTest;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
@@ -12,12 +13,11 @@ import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@LibraryDBTest
 class BookOnLoanRecordServiceTest {
     @Autowired
     BookOnLoanRecordService bookOnLoanRecordService;
