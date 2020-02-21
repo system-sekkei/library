@@ -5,8 +5,7 @@ import library.domain.model.bookonloan.loaning.CanLoan;
 /**
  * 貸出図書 検証エラー
  */
-// TODO: 列挙として軸が違う。まず貸出可否。
-// 存在チェック、貸出可否に関係ない
+// TODO: 登録結果を返すクラスに変更する
 public enum BookOnLoanValidResult {
     貸出可能("", CanLoan.貸出可能),
     貸出中の蔵書("現在貸出中の蔵書です。", null),

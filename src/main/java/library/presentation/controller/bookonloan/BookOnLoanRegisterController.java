@@ -55,6 +55,7 @@ public class BookOnLoanRegisterController {
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
         LoaningOfBookCollection loaningOfBookCollection = new LoaningOfBookCollection(member, bookCollection, loaningOfBookForm.loanDate);
 
+        // TODO: ここ以下、コーディネータにまとめる
         BookOnLoanValidResult valid = bookOnLoanRegisterCoordinator.isValid(loaningOfBookCollection);
 
         if (valid.hasError()) {
