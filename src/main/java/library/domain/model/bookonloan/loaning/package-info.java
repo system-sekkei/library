@@ -1,4 +1,4 @@
 /**
- * 貸し出されようとしている蔵書
+ * 貸出受付
  */
 package library.domain.model.bookonloan.loaning;
