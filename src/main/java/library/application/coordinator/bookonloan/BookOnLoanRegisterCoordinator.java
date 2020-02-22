@@ -30,19 +30,19 @@ public class BookOnLoanRegisterCoordinator {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
     }
 
-    public BookOnLoanValidResult loaning(LoaningOfBookCollection loaningOfBookCollection) {
+    public LoaningResult loaning(LoaningOfBookCollection loaningOfBookCollection) {
         if (loaningOfBookCollection.bookCollection().bookCollectionStatus() == BookCollectionStatus.貸出中) {
-            return BookOnLoanValidResult.貸出中の蔵書;
+            return LoaningResult.貸出中の蔵書;
         }
 
         MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(loaningOfBookCollection.member());
-        BookOnLoanValidResult bookOnLoanValidResult = BookOnLoanValidResult.bookOnLoanValidResult(memberAllBookOnLoans.canBorrowBookToday());
+        LoaningResult loaningResult = LoaningResult.bookOnLoanValidResult(memberAllBookOnLoans.canBorrowBookToday());
 
-        if (!bookOnLoanValidResult.hasError()) {
+        if (!loaningResult.hasError()) {
             bookOnLoanRecordService.registerBookOnLoan(loaningOfBookCollection);
         }
 
-        return bookOnLoanValidResult;
+        return loaningResult;
     }
 
 }
