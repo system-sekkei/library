@@ -27,4 +27,7 @@ public class BookOnLoans {
         return new NumberOfBookOnLoans(list.size());
     }
 
+    public List<BookOnLoan> list() {
+        return list;
+    }
 }
