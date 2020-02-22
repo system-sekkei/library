@@ -1,38 +1,47 @@
 package library.application.coordinator.bookonloan;
 
+import library.application.ExecutionResult;
+import library.application.Message;
+import library.domain.model.bookcollection.BookCollectionStatus;
 import library.domain.model.bookonloan.loaning.CanLoan;
 
 /**
  * 貸出図書 登録結果
  */
-public enum LoaningResult {
-    貸出可能("", CanLoan.貸出可能),
-    貸出中の蔵書("現在貸出中の蔵書です。", null),
-    貸出制限エラー("これ以上本を貸し出すことができません。", CanLoan.貸出不可);
+public class LoaningResult {
+    ExecutionResult result;
+    Message message;
 
-    String message;
-    CanLoan canLoan;
-
-    LoaningResult(String message, CanLoan canLoan) {
+    public LoaningResult(ExecutionResult result, Message message) {
+        this.result = result;
         this.message = message;
-        this.canLoan = canLoan;
     }
 
-    static public LoaningResult bookOnLoanValidResult(CanLoan canLoan) {
-        for (LoaningResult value : values()) {
-            if (value.canLoan == canLoan) {
-                return value;
-            }
+    static public LoaningResult from(CanLoan canLoan) {
+        if (canLoan == CanLoan.貸出不可) {
+            return new LoaningResult(ExecutionResult.NG, new Message("これ以上本を貸し出すことができません。"));
         }
 
-        throw new IllegalArgumentException("存在しないEnum値");
+        return new LoaningResult(ExecutionResult.OK, new Message("OK"));
+    }
+
+    static public LoaningResult from(BookCollectionStatus bookCollectionStatus) {
+        if (bookCollectionStatus == BookCollectionStatus.貸出中) {
+            return new LoaningResult(ExecutionResult.NG, new Message("現在貸出中の蔵書です。"));
+        }
+
+        return new LoaningResult(ExecutionResult.OK, new Message("OK"));
     }
 
     public String message() {
-        return message;
+        return message.toString();
     }
 
     public boolean hasError() {
-        return this != 貸出可能;
+        return result == ExecutionResult.NG;
+    }
+
+    public boolean ok() {
+        return result == ExecutionResult.OK;
     }
 }
