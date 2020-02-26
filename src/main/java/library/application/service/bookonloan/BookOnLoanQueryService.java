@@ -18,6 +18,9 @@ public class BookOnLoanQueryService {
         this.bookOnLoanRepository = bookOnLoanRepository;
     }
 
+    /**
+     * 会員の全貸出図書
+     */
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
         return bookOnLoanRepository.findMemberAllBookOnLoans(member);
     }

@@ -29,6 +29,9 @@ public class BookOnLoanRegisterCoordinator {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
     }
 
+    /**
+     * 図書の貸出受付
+     */
     public LoaningResult loaning(LoaningOfBookCollection loaningOfBookCollection) {
         LoaningResult result = LoaningResult.from(loaningOfBookCollection.bookCollection().bookCollectionStatus());
         if (result.hasError()) {

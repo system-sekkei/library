@@ -15,6 +15,9 @@ public class BookOnLoanRecordService {
         this.bookOnLoanRepository = bookOnLoanRepository;
     }
 
+    /**
+     * 貸出図書を登録
+     */
     public void registerBookOnLoan(LoaningOfBookCollection loaningOfBookCollection) {
         bookOnLoanRepository.registerBookOnLoan(loaningOfBookCollection);
     }
