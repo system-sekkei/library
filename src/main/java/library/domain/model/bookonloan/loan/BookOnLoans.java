@@ -3,6 +3,7 @@ package library.domain.model.bookonloan.loan;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public class BookOnLoans {
         return new NumberOfBookOnLoans(list.size());
     }
 
-    public List<BookOnLoan> list() {
-        return list;
+    public List<BookOnLoan> asList() {
+        return Collections.unmodifiableList(list);
     }
 }
