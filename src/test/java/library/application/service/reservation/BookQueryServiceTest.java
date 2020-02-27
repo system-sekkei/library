@@ -1,4 +1,4 @@
-package library.application.service.book;
+package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.domain.model.book.BookSearchKeyword;
