@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="library.infrastructure.datasource.book.BookMapper">
+    <select id="searchBooks" resultType="library.domain.model.book.Book">
+        SELECT
+            本.タイトル as "book.title.value",
+            本.著者 as "book.author.value",
+            本.本種別 as "book.bookType"
+        FROM 本
+        WHERE 本.タイトル || 本.著者 LIKE '%' || #{keyword.value} || '%'
+    </select>
+</mapper>

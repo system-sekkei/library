@@ -7,4 +7,12 @@ import java.util.List;
  */
 public class Books {
     List<Book> list;
+
+    public Books(List<Book> list) {
+        this.list = list;
+    }
+
+    public NumberOfBook size() {
+        return new NumberOfBook(list.size());
+    }
 }

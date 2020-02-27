@@ -2,7 +2,7 @@ package library.application.service.book;
 
 import library.application.repository.BookRepository;
 import library.domain.model.book.Books;
-import library.domain.model.book.SearchKeyword;
+import library.domain.model.book.BookSearchKeyword;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +19,7 @@ public class BookQueryService {
     /**
      * 本検索
      */
-    public Books search(SearchKeyword keyword) {
+    public Books search(BookSearchKeyword keyword) {
         return bookRepository.search(keyword);
     }
 }
