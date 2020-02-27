@@ -21,4 +21,11 @@ class BookQueryServiceTest {
         assertEquals(1, books.size().value());
     }
 
+    @Test
+    void 検索キーワードがブランクである場合は全件取得する() {
+        BookSearchKeyword bookSearchKeyword = new BookSearchKeyword(" ");
+        Books books = bookQueryService.search(bookSearchKeyword);
+
+        assertEquals(2, books.size().value());
+    }
 }

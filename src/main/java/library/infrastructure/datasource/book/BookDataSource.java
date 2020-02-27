@@ -18,6 +18,11 @@ public class BookDataSource implements BookRepository {
 
     @Override
     public Books search(BookSearchKeyword keyword) {
+        if (keyword.isBlank()) {
+            List<Book> books = bookMapper.selectAllBooks();
+            return new Books(books);
+        }
+
         List<Book> books = bookMapper.searchBooks(keyword);
         return new Books(books);
     }

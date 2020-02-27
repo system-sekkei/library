@@ -11,4 +11,12 @@
         FROM 本
         WHERE 本.タイトル || 本.著者 LIKE '%' || #{keyword.value} || '%'
     </select>
+
+    <select id="selectAllBooks" resultType="library.domain.model.book.Book">
+        SELECT
+            本.タイトル as "book.title.value",
+            本.著者 as "book.author.value",
+            本.本種別 as "book.bookType"
+        FROM 本
+    </select>
 </mapper>
