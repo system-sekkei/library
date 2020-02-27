@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: htmlhead(~{::title})">
+    <meta charset="utf-8"/>
+    <title>本の検索</title>
+</head>
+<body>
+<header th:replace="fragments/navigation::navigation('本の予約')"></header>
+
+<main class="container">
+    <header th:replace="fragments/header::header('本の検索')"></header>
+
+    <section class="attendanceInput has-text-centered">
+        <form id="custom-form" class="form" name="body"
+              method="get" action="#"
+              th:action="@{/reservation/books}">
+            <div class="field is-grouped">
+                <p class="control is-expanded">
+                    <input class="input" type="text" placeholder="検索キーワード" th:field="*{searchKeyword.value}">
+                </p>
+                <p class="control">
+                    <button class="button is-info">
+                        検索
+                    </button>
+                </p>
+            </div>
+        </form>
+    </section>
+
+</main>
+</body>
+</html>
