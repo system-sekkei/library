@@ -32,7 +32,7 @@ public class BookSearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") BookSearchKeyword searchKeyword, BindingResult result) {
-        if (searchKeyword.isBlank()) return "reservation/books/list";
+        if (searchKeyword.isNull() || searchKeyword.isBlank()) return "reservation/books/list";
 
         Books books = bookQueryService.search(searchKeyword);
 

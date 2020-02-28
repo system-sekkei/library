@@ -10,6 +10,10 @@ public class BookSearchKeyword {
         this.value = value;
     }
 
+    public boolean isNull() {
+        return value == null;
+    }
+
     public boolean isBlank() {
         return value.isBlank();
     }
