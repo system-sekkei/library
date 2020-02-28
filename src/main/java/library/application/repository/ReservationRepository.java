@@ -1,8 +1,7 @@
 package library.application.repository;
 
-import library.domain.model.book.Book;
-import library.domain.model.member.Member;
+import library.domain.model.reservation.Reservation;
 
 public interface ReservationRepository {
-    void registerReservation(Member member, Book book);
+    void registerReservation(Reservation reservation);
 }
