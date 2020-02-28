@@ -6,7 +6,7 @@ import library.domain.model.book.BookSearchKeyword;
 import org.springframework.stereotype.Service;
 
 /**
- * 本検索サービス
+ * 本参照サービス
  */
 @Service
 public class BookQueryService {
