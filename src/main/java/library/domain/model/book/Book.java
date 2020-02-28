@@ -17,4 +17,16 @@ public class Book {
         this.author = author;
         this.bookType = bookType;
     }
+
+    public Title title() {
+        return title;
+    }
+
+    public Author author() {
+        return author;
+    }
+
+    public BookType bookType() {
+        return bookType;
+    }
 }

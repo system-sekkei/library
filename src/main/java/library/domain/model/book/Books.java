@@ -15,4 +15,8 @@ public class Books {
     public NumberOfBook size() {
         return new NumberOfBook(list.size());
     }
+
+    public List<Book> asList() {
+        return list;
+    }
 }

@@ -13,4 +13,9 @@ public class Title {
     @Deprecated
     Title() {
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }
