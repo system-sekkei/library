@@ -9,6 +9,14 @@
 
     <insert id="insertReservation">
         INSERT INTO 予約(予約ID, 会員番号, 本ID)
-        VALUES (#{reservationId}, #{memberNumber.value}, #{bookId})
+        VALUES (#{reservationId}, #{memberNumber.value}, #{bookId.value})
     </insert>
+
+    <select id="selectByBookId" resultType="library.infrastructure.datasource.reservation.ReservationData">
+        SELECT 予約ID as "reservationId",
+               会員番号 as "memberNumber.value",
+               本ID as "bookId.value"
+        FROM 予約
+        WHERE 本ID = #{bookId.value}
+    </select>
 </mapper>

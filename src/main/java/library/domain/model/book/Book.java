@@ -20,6 +20,10 @@ public class Book {
         this.bookType = bookType;
     }
 
+    public BookId bookId() {
+        return bookId;
+    }
+
     public Title title() {
         return title;
     }

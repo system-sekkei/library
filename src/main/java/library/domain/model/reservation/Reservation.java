@@ -11,4 +11,21 @@ public class Reservation {
     Book book;
     RetentionStatus retentionStatus;
 
+    public Reservation(Member member, Book book, RetentionStatus retentionStatus) {
+        this.member = member;
+        this.book = book;
+        this.retentionStatus = retentionStatus;
+    }
+
+    public Member member() {
+        return member;
+    }
+
+    public Book book() {
+        return book;
+    }
+
+    public RetentionStatus retentionStatus() {
+        return retentionStatus;
+    }
 }

@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.reservation;
 
+import library.domain.model.book.BookId;
 import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -11,5 +12,7 @@ public interface ReservationMapper {
     void insertReservation(
             @Param("reservationId") Integer reservationId,
             @Param("memberNumber") MemberNumber memberNumber,
-            @Param("bookId") Integer bookId);
+            @Param("bookId") BookId bookId);
+
+    ReservationData selectByBookId(@Param("bookId") BookId bookId);
 }
