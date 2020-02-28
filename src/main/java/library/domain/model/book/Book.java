@@ -4,6 +4,7 @@ package library.domain.model.book;
  * 本
  */
 public class Book {
+    BookId bookId;
     Title title;
     Author author;
     BookType bookType;
@@ -12,7 +13,8 @@ public class Book {
     Book() {
     }
 
-    public Book(Title title, Author author, BookType bookType) {
+    public Book(BookId bookId, Title title, Author author, BookType bookType) {
+        this.bookId = bookId;
         this.title = title;
         this.author = author;
         this.bookType = bookType;

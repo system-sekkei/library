@@ -5,6 +5,7 @@
 <mapper namespace="library.infrastructure.datasource.book.BookMapper">
     <select id="searchBooks" resultType="library.domain.model.book.Book">
         SELECT
+            本.本ID as "bookId.value",
             本.タイトル as "title.value",
             本.著者 as "author.value",
             本.本種別 as "bookType"

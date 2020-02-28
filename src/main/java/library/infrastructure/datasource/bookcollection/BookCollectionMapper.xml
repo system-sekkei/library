@@ -6,6 +6,7 @@
     <select id="selectBookCollection" resultType="library.domain.model.bookcollection.BookCollection">
         SELECT
             蔵書.蔵書コード as "bookCollectionCode.value",
+            本.本ID as "book.bookId.value",
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
             本.本種別 as "book.bookType",
@@ -23,6 +24,7 @@
     <select id="selectBookCollections" resultType="library.domain.model.bookcollection.BookCollection">
         SELECT
         蔵書.蔵書コード as "bookCollectionCode.value",
+        本.本ID as "book.bookId.value",
         本.タイトル as "book.title.value",
         本.著者 as "book.author.value",
         本.本種別 as "book.bookType",
