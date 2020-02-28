@@ -13,4 +13,9 @@ public class BookSearchKeyword {
     public boolean isBlank() {
         return value.isBlank();
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

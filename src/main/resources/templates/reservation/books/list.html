@@ -13,11 +13,10 @@
     <section class="attendanceInput has-text-centered">
         <form id="custom-form" class="form" name="body"
               method="get" action="#"
-              th:object="${bookSearchForm}"
               th:action="@{/reservation/books/search}">
             <div class="field is-grouped">
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="検索キーワード" th:field="*{searchKeyword.value}">
+                    <input class="input" type="text" placeholder="検索キーワード" th:field="${searchKeyword.value}">
                 </p>
                 <p class="control">
                     <button class="button is-info">
@@ -28,21 +27,23 @@
         </form>
     </section>
 
-    <span th:text="${books.size()}"></span><span>件</span>
-    <table class="table">
-        <thead>
+    <th:block th:if="${books}">
+        <span th:text="${books.size()}"></span><span>件</span>
+        <table class="table">
+            <thead>
             <th>種別</th>
             <th>タイトル</th>
             <th>著者</th>
-        </thead>
-        <tbody>
-        <tr th:each="book : ${books.asList()}">
-            <td th:text="${book.bookType()}"></td>
-            <td th:text="${book.title()}"></td>
-            <td th:text="${book.author()}"></td>
-        </tr>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <tr th:each="book : ${books.asList()}">
+                <td th:text="${book.bookType()}"></td>
+                <td th:text="${book.title()}"></td>
+                <td th:text="${book.author()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
 </main>
 </body>
 </html>

@@ -24,12 +24,4 @@ class BookQueryServiceTest {
             "RDRA2.0 ハンドブック: 軽く柔軟で精度の高い要件定義のモデリング手法",
                     books.asList().get(0).title().toString()));
     }
-
-    @Test
-    void 検索キーワードがブランクである場合は全件取得する() {
-        BookSearchKeyword bookSearchKeyword = new BookSearchKeyword(" ");
-        Books books = bookQueryService.search(bookSearchKeyword);
-
-        assertEquals(2, books.size().value());
-    }
 }
