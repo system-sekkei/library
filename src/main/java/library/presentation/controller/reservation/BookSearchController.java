@@ -24,21 +24,15 @@ public class BookSearchController {
         this.bookQueryService = bookQueryService;
     }
 
-    @GetMapping
-    String init(Model model) {
-        model.addAttribute("searchKeyword", new BookSearchKeyword(""));
-        return "reservation/books/list";
-    }
-
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") BookSearchKeyword searchKeyword, BindingResult result) {
-        if (searchKeyword.isNull() || searchKeyword.isBlank()) return "reservation/books/list";
+        if (searchKeyword.isNull() || searchKeyword.isBlank()) return "reservation/books/search";
 
         Books books = bookQueryService.search(searchKeyword);
 
         model.addAttribute("books", books);
         model.addAttribute("searchKeyword", searchKeyword);
-        return "reservation/books/list";
+        return "reservation/books/search";
     }
 
     @InitBinder

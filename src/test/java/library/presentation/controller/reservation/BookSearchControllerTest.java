@@ -19,7 +19,7 @@ public class BookSearchControllerTest {
     @Test
     void 本の検索画面が表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/books"))
+                get("/reservation/books/search"))
                 .andExpect(status().isOk());
     }
 }
