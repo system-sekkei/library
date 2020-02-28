@@ -22,7 +22,7 @@ jobs:
       - run: ./gradlew build jig
 
       - run: sudo mkdir converted
-      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/package-relation-depth4.svg converted/package-relation-depth4.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/package-relation-depth5.svg converted/package-relation-depth5.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/category.svg converted/category.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/category-usage.svg converted/category-usage.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/service-method-call-hierarchy.svg converted/service-method-call-hierarchy.png
