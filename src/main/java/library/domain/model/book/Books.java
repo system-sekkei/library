@@ -1,5 +1,6 @@
 package library.domain.model.book;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,6 +18,6 @@ public class Books {
     }
 
     public List<Book> asList() {
-        return list;
+        return Collections.unmodifiableList(list);
     }
 }

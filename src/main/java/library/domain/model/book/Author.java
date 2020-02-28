@@ -13,4 +13,9 @@ public class Author {
     @Deprecated
     Author() {
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

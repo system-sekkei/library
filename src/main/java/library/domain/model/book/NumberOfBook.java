@@ -13,4 +13,9 @@ public class NumberOfBook {
     public int value() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
 }
