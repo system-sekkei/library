@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="library.infrastructure.datasource.reservation.ReservationMapper">
+    <select id="newReservationIdentifier" resultType="Integer">
+        SELECT NEXTVAL('予約ID')
+    </select>
+
+    <insert id="insertReservation">
+        INSERT INTO 予約(予約ID, 会員番号, 本ID)
+        VALUES (#{reservationId}, #{memberNumber.value}, #{bookId})
+    </insert>
+</mapper>

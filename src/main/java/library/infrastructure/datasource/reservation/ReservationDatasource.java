@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class ReservationDatasource implements ReservationRepository {
+    ReservationMapper reservationMapper;
+
+    public ReservationDatasource(ReservationMapper reservationMapper) {
+        this.reservationMapper = reservationMapper;
+    }
 
     @Override
     public void registerReservation(Member member, Book book) {
