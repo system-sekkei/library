@@ -41,4 +41,11 @@
             #{bookCollectionCode.value}
         </foreach>
     </select>
+
+    <select id="getBookCollectionCodeWithLock" resultType="library.domain.model.bookcollection.BookCollectionCode">
+        SELECT
+            蔵書.蔵書コード as "value"
+        FROM 蔵書
+        WHERE 蔵書.蔵書コード = #{bookCollectionCode.value} FOR UPDATE NOWAIT
+    </select>
 </mapper>

@@ -12,4 +12,6 @@ public interface BookCollectionMapper {
     BookCollection selectBookCollection(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 
     List<BookCollection> selectBookCollections(@Param("bookCollectionCodes") List<BookCollectionCode> bookCollectionCodes);
+
+    BookCollectionCode getBookCollectionCodeWithLock(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 }

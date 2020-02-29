@@ -12,6 +12,7 @@ import library.domain.model.member.Member;
 import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -29,13 +30,24 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
+    @Transactional
     public void registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
+        bookCollectionMapper.getBookCollectionCodeWithLock(bookOnLoanRequest.bookCollection().bookCollectionCode());
+
+        // 蔵書を取得して、在庫状況を確認
+                // 他から処理があったらこまる
+        // 貸出中なら例外
+
+        // 在庫中なら貸出図書を登録
+
         Integer bookOnLoanId = mapper.newBookOnLoanIdentifier();
         mapper.insertBookOnLoan(
                 bookOnLoanId,
                 bookOnLoanRequest.member().memberNumber(),
                 bookOnLoanRequest.bookCollection().bookCollectionCode(),
                 bookOnLoanRequest.loanDate());
+
+        // ロック解除
     }
 
     @Override
