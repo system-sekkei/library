@@ -3,15 +3,13 @@ package library.domain.model.bookonloan.loaning;
 /**
  * 貸し出せない理由
  */
-public class RejectReason {
-    String value;
+public enum RejectReason {
+    貸出冊数超過("これ以上本を貸し出すことができません。"),
+    蔵書が貸出中("現在貸出中の蔵書です。");
 
-    public RejectReason(String value) {
-        this.value = value;
-    }
+    String message;
 
-    @Override
-    public String toString() {
-        return value;
+    RejectReason(String message) {
+        this.message = message;
     }
 }

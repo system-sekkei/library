@@ -17,18 +17,18 @@ public class LoaningCard {
 
     static public LoaningCard from(CanLoan canLoan) {
         if (canLoan == CanLoan.貸出不可) {
-            return new LoaningCard(null, new RejectReason("これ以上本を貸し出すことができません。"));
+            return new LoaningCard(null, RejectReason.貸出冊数超過);
         }
         // FIXME:
-        return new LoaningCard(null, new RejectReason("OK"));
+        return new LoaningCard(null, null);
     }
 
     static public LoaningCard from(BookCollectionStatus bookCollectionStatus) {
         if (bookCollectionStatus == BookCollectionStatus.貸出中) {
-            return new LoaningCard(null, new RejectReason("現在貸出中の蔵書です。"));
+            return new LoaningCard(null, RejectReason.蔵書が貸出中);
         }
         // FIXME:
-        return new LoaningCard(null, new RejectReason("OK"));
+        return new LoaningCard(null, null);
     }
 
     public String message() {
