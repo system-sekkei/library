@@ -54,10 +54,10 @@ public class BookOnLoanRegisterController {
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, loaningOfBookForm.loanDate);
 
-        LoaningCard valid = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        if (valid.hasError()) {
-            result.addError(new ObjectError("error", valid.message()));
+        if (loaningCard.rejected()) {
+            result.addError(new ObjectError("error", loaningCard.message()));
             return "bookonloan/register/form";
         }
 

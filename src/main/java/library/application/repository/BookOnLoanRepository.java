@@ -12,7 +12,7 @@ import library.domain.model.member.Member;
  */
 public interface BookOnLoanRepository {
 
-    void registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest);
+    BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest);
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 

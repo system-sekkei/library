@@ -1,6 +1,5 @@
 package library.domain.model.bookonloan.loaning;
 
-import library.domain.model.bookcollection.BookCollectionStatus;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 
 /**
@@ -10,32 +9,24 @@ public class LoaningCard {
     BookOnLoan bookOnLoan;
     RejectReason rejectReason;
 
-    public LoaningCard(BookOnLoan bookOnLoan, RejectReason rejectReason) {
+    private LoaningCard(BookOnLoan bookOnLoan, RejectReason rejectReason) {
         this.bookOnLoan = bookOnLoan;
         this.rejectReason = rejectReason;
     }
 
-    static public LoaningCard from(CanLoan canLoan) {
-        if (canLoan == CanLoan.貸出不可) {
-            return new LoaningCard(null, RejectReason.貸出冊数超過);
-        }
-        // FIXME:
-        return new LoaningCard(null, null);
+    public LoaningCard(RejectReason rejectReason) {
+        this(null, rejectReason);
     }
 
-    static public LoaningCard from(BookCollectionStatus bookCollectionStatus) {
-        if (bookCollectionStatus == BookCollectionStatus.貸出中) {
-            return new LoaningCard(null, RejectReason.蔵書が貸出中);
-        }
-        // FIXME:
-        return new LoaningCard(null, null);
+    public LoaningCard(BookOnLoan bookOnLoan) {
+        this(bookOnLoan, null);
     }
 
     public String message() {
         return rejectReason.toString();
     }
 
-    public boolean hasError() {
+    public boolean rejected() {
         return bookOnLoan == null;
     }
 

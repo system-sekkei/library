@@ -12,11 +12,13 @@ import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
+import library.infrastructure.datasource.bookonloan.RegisterBookOnLoanException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
@@ -46,9 +48,10 @@ class BookOnLoanRegisterCoordinatorTest {
     void 貸出中の蔵書は貸し出すことができない() {
         BookOnLoanRequest bookOnLoanRequest =
             generate(1, "1-A", "2020-02-20");
-        LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        assertTrue(loaningCard.hasError());
+        assertThrows(RegisterBookOnLoanException.class, () -> {
+            bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        });
     }
 
     @Test
@@ -65,7 +68,7 @@ class BookOnLoanRegisterCoordinatorTest {
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        assertTrue(loaningCard.hasError());
+        assertTrue(loaningCard.rejected());
     }
 
     private BookOnLoanRequest generate(int memberNumber, String bookCollectionCode, String loanDate) {

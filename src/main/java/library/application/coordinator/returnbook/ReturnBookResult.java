@@ -13,12 +13,12 @@ public class ReturnBookResult {
         this.rejectReason = rejectReason;
     }
 
+    // FIXME:
     static public ReturnBookResult from(BookCollectionStatus bookCollectionStatus) {
         if (bookCollectionStatus == BookCollectionStatus.在庫中) {
-//            return new ReturnBookResult(ExecutionResult.NG, new RejectReason("貸し出されていない蔵書です。"));
+            return null;
         }
 
-//        return new ReturnBookResult(ExecutionResult.OK, new RejectReason("OK"));
         return null;
     }
 

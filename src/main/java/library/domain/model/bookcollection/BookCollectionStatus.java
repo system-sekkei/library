@@ -5,5 +5,9 @@ package library.domain.model.bookcollection;
  */
 public enum BookCollectionStatus {
     在庫中,
-    貸出中
+    貸出中;
+
+    public boolean unLoanable() {
+        return this == 貸出中;
+    }
 }

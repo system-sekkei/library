@@ -2,14 +2,18 @@ package library.infrastructure.datasource.bookonloan;
 
 import library.LibraryDBTest;
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
+import library.application.service.bookcollection.BookCollectionQueryService;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
+import library.domain.model.bookonloan.loan.LoanDate;
+import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -27,6 +31,9 @@ class BookOnLoanDataSourceTest {
 
     @Autowired
     ReturnBookCoordinator returnBookCoordinator;
+
+    @Autowired
+    BookCollectionQueryService bookCollectionQueryService;
 
     @Test
     void 蔵書コードで貸出図書を取得できる() throws Exception {
