@@ -1,12 +1,12 @@
 package library.domain.model.bookonloan.loaning;
 
 /**
- * メッセージ
+ * 貸し出せない理由
  */
-public class Message {
+public class RejectReason {
     String value;
 
-    public Message(String value) {
+    public RejectReason(String value) {
         this.value = value;
     }
 
