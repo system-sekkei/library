@@ -1,7 +1,7 @@
 package library.application.coordinator.returnbook;
 
 import library.application.ExecutionResult;
-import library.application.Message;
+import library.domain.model.bookonloan.loan.Message;
 import library.domain.model.bookcollection.BookCollectionStatus;
 
 /**
