@@ -7,7 +7,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.LoanDate;
-import library.domain.model.bookonloan.loan.LoaningCard;
+import library.domain.model.bookonloan.loaning.LoaningCard;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;

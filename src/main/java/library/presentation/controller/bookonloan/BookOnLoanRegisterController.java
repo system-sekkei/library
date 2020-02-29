@@ -1,7 +1,7 @@
 package library.presentation.controller.bookonloan;
 
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
-import library.domain.model.bookonloan.loan.LoaningCard;
+import library.domain.model.bookonloan.loaning.LoaningCard;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;

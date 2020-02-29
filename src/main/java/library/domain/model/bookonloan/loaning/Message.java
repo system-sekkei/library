@@ -1,4 +1,4 @@
-package library.domain.model.bookonloan.loan;
+package library.domain.model.bookonloan.loaning;
 
 /**
  * メッセージ

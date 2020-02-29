@@ -1,7 +1,7 @@
-package library.domain.model.bookonloan.loan;
+package library.domain.model.bookonloan.loaning;
 
 import library.domain.model.bookcollection.BookCollectionStatus;
-import library.domain.model.bookonloan.loaning.CanLoan;
+import library.domain.model.bookonloan.loan.BookOnLoan;
 
 /**
  * 貸出票
