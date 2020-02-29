@@ -1,13 +1,13 @@
 package library.application.coordinator.bookonloan;
 
 import library.LibraryDBTest;
-import library.application.ExecutionResult;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.LoanDate;
+import library.domain.model.bookonloan.loan.LoaningCard;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
 class BookOnLoanRegisterCoordinatorTest {
@@ -37,18 +37,18 @@ class BookOnLoanRegisterCoordinatorTest {
     void 図書を貸し出すことができる() {
         BookOnLoanRequest bookOnLoanRequest =
             generate(1, "2-A", "2020-02-20");
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        assertEquals(ExecutionResult.OK, loaningResult.result);
+        assertTrue(loaningCard.ok());
     }
 
     @Test
     void 貸出中の蔵書は貸し出すことができない() {
         BookOnLoanRequest bookOnLoanRequest =
             generate(1, "1-A", "2020-02-20");
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        assertEquals(ExecutionResult.NG, loaningResult.result);
+        assertTrue(loaningCard.hasError());
     }
 
     @Test
@@ -63,9 +63,9 @@ class BookOnLoanRegisterCoordinatorTest {
         BookOnLoanRequest bookOnLoanRequest =
                 generate(3, "2-H", "2020-02-20");
 
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
-        assertEquals(ExecutionResult.NG, loaningResult.result);
+        assertTrue(loaningCard.hasError());
     }
 
     private BookOnLoanRequest generate(int memberNumber, String bookCollectionCode, String loanDate) {

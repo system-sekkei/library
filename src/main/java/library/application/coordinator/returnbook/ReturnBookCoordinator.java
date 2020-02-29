@@ -1,6 +1,5 @@
 package library.application.coordinator.returnbook;
 
-import library.application.coordinator.bookonloan.LoaningResult;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;

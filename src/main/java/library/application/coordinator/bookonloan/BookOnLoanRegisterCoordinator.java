@@ -4,6 +4,7 @@ import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
+import library.domain.model.bookonloan.loan.LoaningCard;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import org.springframework.stereotype.Service;
@@ -32,20 +33,20 @@ public class BookOnLoanRegisterCoordinator {
     /**
      * 図書の貸出受付
      */
-    public LoaningResult loaning(BookOnLoanRequest bookOnLoanRequest) {
-        LoaningResult result = LoaningResult.from(bookOnLoanRequest.bookCollection().bookCollectionStatus());
+    public LoaningCard loaning(BookOnLoanRequest bookOnLoanRequest) {
+        LoaningCard result = LoaningCard.from(bookOnLoanRequest.bookCollection().bookCollectionStatus());
         if (result.hasError()) {
             return result;
         }
 
         MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(bookOnLoanRequest.member());
-        LoaningResult loaningResult = LoaningResult.from(memberAllBookOnLoans.canBorrowBookToday());
+        LoaningCard loaningCard = LoaningCard.from(memberAllBookOnLoans.canBorrowBookToday());
 
-        if (loaningResult.ok()) {
+        if (loaningCard.ok()) {
             bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
         }
 
-        return loaningResult;
+        return loaningCard;
     }
 
 }

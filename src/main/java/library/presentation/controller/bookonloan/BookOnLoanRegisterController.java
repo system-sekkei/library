@@ -1,7 +1,7 @@
 package library.presentation.controller.bookonloan;
 
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
-import library.application.coordinator.bookonloan.LoaningResult;
+import library.domain.model.bookonloan.loan.LoaningCard;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
@@ -54,7 +54,7 @@ public class BookOnLoanRegisterController {
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, loaningOfBookForm.loanDate);
 
-        LoaningResult valid = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+        LoaningCard valid = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
         if (valid.hasError()) {
             result.addError(new ObjectError("error", valid.message()));
