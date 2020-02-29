@@ -2,7 +2,7 @@ package library.application.repository;
 
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
+import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
@@ -12,7 +12,7 @@ import library.domain.model.member.Member;
  */
 public interface BookOnLoanRepository {
 
-    void registerBookOnLoan(LoaningOfBookCollection loaningOfBookCollection);
+    void registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest);
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 

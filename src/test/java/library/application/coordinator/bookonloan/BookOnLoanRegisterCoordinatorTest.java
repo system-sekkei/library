@@ -8,7 +8,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.LoanDate;
-import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
+import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -35,18 +35,18 @@ class BookOnLoanRegisterCoordinatorTest {
 
     @Test
     void 図書を貸し出すことができる() {
-        LoaningOfBookCollection loaningOfBookCollection =
+        BookOnLoanRequest bookOnLoanRequest =
             generate(1, "2-A", "2020-02-20");
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(loaningOfBookCollection);
+        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
         assertEquals(ExecutionResult.OK, loaningResult.result);
     }
 
     @Test
     void 貸出中の蔵書は貸し出すことができない() {
-        LoaningOfBookCollection loaningOfBookCollection =
+        BookOnLoanRequest bookOnLoanRequest =
             generate(1, "1-A", "2020-02-20");
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(loaningOfBookCollection);
+        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
         assertEquals(ExecutionResult.NG, loaningResult.result);
     }
@@ -55,22 +55,22 @@ class BookOnLoanRegisterCoordinatorTest {
     void 貸出制限冊数を超える会員には図書を貸し出すことができない() {
         List<String> bookCollectionCode = List.of("2-C", "2-D", "2-E", "2-F", "2-G");
         for (String code : bookCollectionCode) {
-            LoaningOfBookCollection loaningOfBookCollection =
+            BookOnLoanRequest bookOnLoanRequest =
                 generate(3, code, "2020-02-20");
-            bookOnLoanRegisterCoordinator.loaning(loaningOfBookCollection);
+            bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
         }
 
-        LoaningOfBookCollection loaningOfBookCollection =
+        BookOnLoanRequest bookOnLoanRequest =
                 generate(3, "2-H", "2020-02-20");
 
-        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(loaningOfBookCollection);
+        LoaningResult loaningResult = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
         assertEquals(ExecutionResult.NG, loaningResult.result);
     }
 
-    private LoaningOfBookCollection generate(int memberNumber, String bookCollectionCode, String loanDate) {
+    private BookOnLoanRequest generate(int memberNumber, String bookCollectionCode, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
         BookCollection bookCollection = bookCollectionQueryService.findBookCollection(new BookCollectionCode(bookCollectionCode));
-        return new LoaningOfBookCollection(member, bookCollection, new LoanDate(Date.from(loanDate)));
+        return new BookOnLoanRequest(member, bookCollection, new LoanDate(Date.from(loanDate)));
     }
 }

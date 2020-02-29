@@ -6,7 +6,7 @@ import library.domain.model.bookcollection.BookCollectionCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoans;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
-import library.domain.model.bookonloan.loaning.LoaningOfBookCollection;
+import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
 import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
@@ -29,13 +29,13 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
-    public void registerBookOnLoan(LoaningOfBookCollection loaningOfBookCollection) {
+    public void registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
         Integer bookOnLoanId = mapper.newBookOnLoanIdentifier();
         mapper.insertBookOnLoan(
                 bookOnLoanId,
-                loaningOfBookCollection.member().memberNumber(),
-                loaningOfBookCollection.bookCollection().bookCollectionCode(),
-                loaningOfBookCollection.loanDate());
+                bookOnLoanRequest.member().memberNumber(),
+                bookOnLoanRequest.bookCollection().bookCollectionCode(),
+                bookOnLoanRequest.loanDate());
     }
 
     @Override
