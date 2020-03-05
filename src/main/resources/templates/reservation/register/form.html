@@ -20,31 +20,31 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="fragments/field::macro('本ID', ~{::div#bookCollectionCodeField})">
-        <div id="bookCollectionCodeField" class="field-body">
+      <div th:replace="fragments/field::macro('会員番号', ~{::div#memberNumberField})">
+        <div id="memberNumberField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="text" placeholder="1-A"
-                     th:field="*{bookCollectionCode.value}"/>
+              <input class="input" type="text" placeholder="1"
+                     th:field="*{memberNumber.value}"/>
             </p>
             <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('bookCollectionCode.value')}">
-              <span th:errors="*{bookCollectionCode.value}"></span>
+               th:if="${#fields.hasErrors('memberNumber.value')}">
+              <span th:errors="*{memberNumber.value}"></span>
             </p>
           </div>
         </div>
       </div>
 
-      <div th:replace="fragments/field::macro('返却日', ~{::div#returnDateField})">
-        <div id="returnDateField" class="field-body">
+      <div th:replace="fragments/field::macro('本ID', ~{::div#bookIdField})">
+        <div id="bookIdField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="date" placeholder="2020-01-01"
-                     th:field="*{returnDate.value}"/>
+              <input class="input" type="text" placeholder="1"
+                     th:field="*{bookId.value}"/>
             </p>
             <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('returnDate.value')}">
-              <span th:errors="*{returnDate.value}"></span>
+               th:if="${#fields.hasErrors('bookId.value')}">
+              <span th:errors="*{bookId.value}"></span>
             </p>
           </div>
         </div>
