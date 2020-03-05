@@ -1,6 +1,8 @@
 package library.application.service.reservation;
 
 import library.application.repository.BookRepository;
+import library.domain.model.book.Book;
+import library.domain.model.book.BookId;
 import library.domain.model.book.Books;
 import library.domain.model.book.BookSearchKeyword;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,13 @@ public class BookQueryService {
 
     BookQueryService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
+    }
+
+    /**
+     * 本取得
+     */
+    public Book findBook(BookId bookId) {
+        return bookRepository.findBook(bookId);
     }
 
     /**
