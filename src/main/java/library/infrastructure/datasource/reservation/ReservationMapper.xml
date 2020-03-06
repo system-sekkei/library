@@ -12,14 +12,6 @@
         VALUES (#{reservationId}, #{memberNumber.value}, #{bookId.value})
     </insert>
 
-    <select id="selectByBookId" resultType="library.infrastructure.datasource.reservation.ReservationData">
-        SELECT 予約ID as "reservationId",
-               会員番号 as "memberNumber.value",
-               本ID as "bookId.value"
-        FROM 予約
-        WHERE 本ID = #{bookId.value}
-    </select>
-
     <!-- TODO: 未取置のもののみ取得する -->
     <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.Reservation">
         SELECT 会員.会員番号 as "member.memberNumber.value",
