@@ -11,6 +11,10 @@ public class Reservation {
     Book book;
     RetentionStatus retentionStatus;
 
+    @Deprecated
+    Reservation() {
+    }
+
     public Reservation(Member member, Book book, RetentionStatus retentionStatus) {
         this.member = member;
         this.book = book;

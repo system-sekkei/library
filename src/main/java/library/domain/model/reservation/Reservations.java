@@ -11,4 +11,8 @@ public class Reservations {
     public Reservations(List<Reservation> list) {
         this.list = list;
     }
+
+    public NumberOfReservation numberOfReservation() {
+        return new NumberOfReservation(list.size());
+    }
 }
