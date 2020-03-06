@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.bookcollection;
 
+import library.domain.model.book.BookId;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
 import org.apache.ibatis.annotations.Mapper;
@@ -12,6 +13,8 @@ public interface BookCollectionMapper {
     BookCollection selectBookCollection(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 
     List<BookCollection> selectBookCollections(@Param("bookCollectionCodes") List<BookCollectionCode> bookCollectionCodes);
+
+    List<BookCollection> selectInStockBookCollectionsByBookIds(@Param("bookIds") List<BookId> bookIds);
 
     BookCollectionCode getBookCollectionCodeWithLock(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 }
