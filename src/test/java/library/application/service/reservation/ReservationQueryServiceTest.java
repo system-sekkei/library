@@ -34,7 +34,7 @@ class ReservationQueryServiceTest {
         TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        Reservations reservations = reservationQueryService.findInStockReservations();
+        Reservations reservations = reservationQueryService.findReservations();
 
         assertEquals(1, reservations.numberOfReservation().value());
     }

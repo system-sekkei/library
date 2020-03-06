@@ -6,5 +6,5 @@ import library.domain.model.reservation.TryingToReserveBook;
 public interface ReservationRepository {
     void registerReservation(TryingToReserveBook tryingToReserveBook);
 
-    Reservations findInStockReservations();
+    Reservations findReservations();
 }

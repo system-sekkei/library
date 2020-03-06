@@ -16,9 +16,9 @@ public class ReservationQueryService {
     }
 
     /**
-     * 在庫ありの貸出予約一覧
+     * 貸出予約一覧
      */
-    public Reservations findInStockReservations() {
-        return reservationRepository.findInStockReservations();
+    public Reservations findReservations() {
+        return reservationRepository.findReservations();
     }
 }

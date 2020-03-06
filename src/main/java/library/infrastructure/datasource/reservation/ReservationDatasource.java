@@ -27,7 +27,7 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
-    public Reservations findInStockReservations() {
+    public Reservations findReservations() {
         List<Reservation> reservations = reservationMapper.selectAllNotRetainedReservation();
         return new Reservations(reservations);
     }
