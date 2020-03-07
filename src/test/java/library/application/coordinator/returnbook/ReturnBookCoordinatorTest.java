@@ -23,7 +23,7 @@ class ReturnBookCoordinatorTest {
         BookCollectionCode bookCollectionCode = new BookCollectionCode("1-A");
         returnBookCoordinator.returnBook(bookCollectionCode, new ReturnDate(Date.from("2020-02-25")));
 
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
         });
     }
@@ -32,7 +32,7 @@ class ReturnBookCoordinatorTest {
     void 貸出中ではない蔵書は返却することができない() {
         BookCollectionCode bookCollectionCode = new BookCollectionCode("2-A");
 
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             returnBookCoordinator.returnBook(bookCollectionCode, new ReturnDate(Date.from("2020-02-25")));
         });
     }
