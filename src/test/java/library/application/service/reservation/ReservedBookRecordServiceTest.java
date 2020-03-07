@@ -6,18 +6,18 @@ import library.domain.model.book.Book;
 import library.domain.model.book.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.Reservations;
+import library.domain.model.reservation.ReservedBook;
 import library.domain.model.reservation.TryingToReserveBook;
+import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
-class ReservationQueryServiceTest {
-    @Autowired
-    ReservationQueryService reservationQueryService;
-
+class ReservedBookRecordServiceTest {
     @Autowired
     ReservationRecordService reservationRecordService;
 
@@ -27,16 +27,19 @@ class ReservationQueryServiceTest {
     @Autowired
     BookQueryService bookQueryService;
 
+    @Autowired
+    ReservationMapper reservationMapper;
+
     @Test
-    void 予約図書一覧を取得することができる() {
+    void 貸出予約を登録することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+
         TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        Reservations reservations = reservationQueryService.findReservations();
+        List<ReservedBook> result = reservationMapper.selectAllNotRetainedReservation();
 
-        assertAll(
-            () -> assertEquals(1, reservations.numberOfReservation().value()));
+        assertEquals(result.size(), 1);
     }
 }

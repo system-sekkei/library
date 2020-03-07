@@ -35,4 +35,8 @@ public class Book {
     public BookType bookType() {
         return bookType;
     }
+
+    public boolean sameBook(Book other) {
+        return bookId().sameValue(other.bookId);
+    }
 }

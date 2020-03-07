@@ -6,15 +6,15 @@ import library.domain.model.member.Member;
 /**
  * 貸出予約
  */
-public class Reservation {
+public class ReservedBook {
     Member member;
     Book book;
 
     @Deprecated
-    Reservation() {
+    ReservedBook() {
     }
 
-    public Reservation(Member member, Book book) {
+    public ReservedBook(Member member, Book book) {
         this.member = member;
         this.book = book;
     }

@@ -1,23 +1,28 @@
 package library.domain.model.retention;
 
+
+import library.domain.model.book.Book;
 import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.reservation.Reservation;
-import library.domain.type.date.Date;
+import library.domain.model.bookcollection.BookCollections;
 
 /**
  * 取置
  */
 public class Retention {
-    Reservation reservation;
-    RetainedDate retainedDate;
-    BookCollection bookCollection;
+    BookCollections bookCollections;
+    Retentions retentions;
 
-    public RetentionDeadline retentionDeadline() {
-        return RetentionDeadline.deadline(retainedDate);
+    Retentionability retentionability(Book book) {
+        for (BookCollection bookCollection : bookCollections.list()) {
+            if (bookCollection.sameBook(book) && retentionability(bookCollection)) {
+                return Retentionability.取置可能;
+            }
+        }
+        return Retentionability.取置不可能;
     }
 
-    public boolean isExpired() {
-        Date today = Date.now();
-        return retainedDate.value.isBefore(today);
+    private boolean retentionability(BookCollection bookCollection) {
+        return bookCollection.bookCollectionStatus.retentionable() && retentions.notContains(bookCollection);
     }
+
 }

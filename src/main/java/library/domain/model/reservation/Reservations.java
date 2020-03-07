@@ -6,9 +6,9 @@ import java.util.List;
  * 貸出予約リスト
  */
 public class Reservations {
-    List<Reservation> list;
+    List<ReservedBook> list;
 
-    public Reservations(List<Reservation> list) {
+    public Reservations(List<ReservedBook> list) {
         this.list = list;
     }
 
@@ -16,7 +16,7 @@ public class Reservations {
         return new NumberOfReservation(list.size());
     }
 
-    public List<Reservation> list() {
+    public List<ReservedBook> list() {
         return list;
     }
 }

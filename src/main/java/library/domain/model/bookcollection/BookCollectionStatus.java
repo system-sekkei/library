@@ -10,4 +10,8 @@ public enum BookCollectionStatus {
     public boolean unLoanable() {
         return this == 貸出中;
     }
+
+    public boolean retentionable() {
+        return this == 在庫中;
+    }
 }

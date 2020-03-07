@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservedBook;
 import library.domain.model.reservation.Reservations;
 import library.domain.model.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Repository;
@@ -28,7 +28,7 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     public Reservations findReservations() {
-        List<Reservation> reservations = reservationMapper.selectAllNotRetainedReservation();
-        return new Reservations(reservations);
+        List<ReservedBook> reservedBooks = reservationMapper.selectAllNotRetainedReservation();
+        return new Reservations(reservedBooks);
     }
 }

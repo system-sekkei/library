@@ -8,7 +8,7 @@ import library.domain.model.book.Book;
 public class BookCollection {
     BookCollectionCode bookCollectionCode;
     Book book;
-    BookCollectionStatus bookCollectionStatus;
+    public BookCollectionStatus bookCollectionStatus;
     WebReservationStatus webReservationStatus;
 
     @Deprecated
@@ -29,4 +29,9 @@ public class BookCollection {
     public BookCollectionCode bookCollectionCode() {
         return bookCollectionCode;
     }
+
+    public boolean sameBook(Book other) {
+        return this.book.sameBook(other);
+    }
+
 }

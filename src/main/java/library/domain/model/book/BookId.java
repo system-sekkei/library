@@ -20,4 +20,8 @@ public class BookId {
     public int value() {
         return value;
     }
+
+    public boolean sameValue(BookId other) {
+        return this.value == other.value;
+    }
 }
