@@ -28,4 +28,8 @@ public interface BookOnLoanMapper {
             @Param("returnDate") ReturnDate returnDate);
 
     Optional<BookOnLoanData> selectByBookCollectionCode(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
+
+    List<BookOnLoanData> selectByBookCollectionCodes(@Param("bookCollectionCodes") List<BookCollectionCode> bookCollectionCodes);
+
+    List<BookOnLoanId> selectReturnedBookLoanIdByBookCollectionCodes(@Param("bookCollectionCodes") List<BookCollectionCode> bookCollectionCodes);
 }
