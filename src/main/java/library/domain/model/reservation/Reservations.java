@@ -15,4 +15,8 @@ public class Reservations {
     public NumberOfReservation numberOfReservation() {
         return new NumberOfReservation(list.size());
     }
+
+    public List<Reservation> list() {
+        return list;
+    }
 }

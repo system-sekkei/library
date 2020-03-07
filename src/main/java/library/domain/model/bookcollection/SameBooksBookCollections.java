@@ -16,4 +16,8 @@ public class SameBooksBookCollections {
         }
         return BookCollectionStatus.貸出中;
     }
+
+    public Book book() {
+        return book;
+    }
 }

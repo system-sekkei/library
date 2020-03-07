@@ -36,6 +36,8 @@ class ReservationQueryServiceTest {
 
         Reservations reservations = reservationQueryService.findReservations();
 
-        assertEquals(1, reservations.numberOfReservation().value());
+        assertAll(
+            () -> assertEquals(1, reservations.numberOfReservation().value()),
+            () -> assertEquals(1, reservations.list().get(0).sameBooksBookCollections().book().bookId().value()));
     }
 }
