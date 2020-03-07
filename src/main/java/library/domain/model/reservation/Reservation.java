@@ -9,23 +9,17 @@ import library.domain.model.member.Member;
 public class Reservation {
     Member member;
     Book book;
-    RetentionStatus retentionStatus;
 
     @Deprecated
     Reservation() {
     }
 
-    public Reservation(Member member, Book book, RetentionStatus retentionStatus) {
+    public Reservation(Member member, Book book) {
         this.member = member;
         this.book = book;
-        this.retentionStatus = retentionStatus;
     }
 
     public Member member() {
         return member;
-    }
-
-    public RetentionStatus retentionStatus() {
-        return retentionStatus;
     }
 }
