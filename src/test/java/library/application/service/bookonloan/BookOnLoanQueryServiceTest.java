@@ -53,7 +53,7 @@ class BookOnLoanQueryServiceTest {
         BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-21"))));
 
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
         });
     }

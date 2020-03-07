@@ -44,7 +44,7 @@ class ReturnBookRecordServiceTest {
         ReturningBookOnLoan returningBookOnLoan = new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-20")));
         returnBookRecordService.registerReturnBook(returningBookOnLoan);
 
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
         });
     }

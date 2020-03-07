@@ -57,7 +57,7 @@ class BookOnLoanDataSourceTest {
         BookCollectionCode bookCollectionCode = new BookCollectionCode("2-D");
         returnBookCoordinator.returnBook(bookCollectionCode, new ReturnDate(Date.from("2019-01-01")));
 
-        assertThrows(NullPointerException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             bookOnLoanDataSource.findBookOnLoanByBookCollectionCode(bookCollectionCode);
         });
     }
