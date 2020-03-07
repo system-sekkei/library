@@ -39,3 +39,7 @@ jobs:
       - store_artifacts:
           path: build/jig/
           destination: jig
+
+      - store_artifacts:
+          path: build/reports/
+          destination: reports
