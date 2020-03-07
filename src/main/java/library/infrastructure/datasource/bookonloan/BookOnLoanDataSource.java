@@ -67,11 +67,8 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
 
     @Override
     public BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode) {
-        BookOnLoanData bookOnLoanData = mapper.selectByBookCollectionCode(bookCollectionCode);
-
-        if (bookOnLoanData == null) {
-            throw new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", bookCollectionCode));
-        }
+        BookOnLoanData bookOnLoanData = mapper.selectByBookCollectionCode(bookCollectionCode).orElseThrow(() ->
+            new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", bookCollectionCode)));
 
         Member member = memberMapper.selectMember(bookOnLoanData.memberNumber);
         BookOnLoan bookOnLoan = bookOnLoans(member, List.of(bookOnLoanData)).get(0);

@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 @Mapper
 public interface BookOnLoanMapper {
@@ -26,5 +27,5 @@ public interface BookOnLoanMapper {
             @Param("bookOnLoanId") BookOnLoanId bookOnLoanId,
             @Param("returnDate") ReturnDate returnDate);
 
-    BookOnLoanData selectByBookCollectionCode(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
+    Optional<BookOnLoanData> selectByBookCollectionCode(@Param("bookCollectionCode") BookCollectionCode bookCollectionCode);
 }
