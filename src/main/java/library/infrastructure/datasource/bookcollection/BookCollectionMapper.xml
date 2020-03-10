@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.bookcollection.BookCollectionMapper">
+    <!-- TODO: 蔵書の状態をSQLで判断するのをやめる -->
     <select id="selectBookCollection" resultType="library.domain.model.bookcollection.BookCollection">
         SELECT
             蔵書.蔵書コード as "bookCollectionCode.value",
