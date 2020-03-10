@@ -51,6 +51,7 @@
         </foreach>
     </select>
 
+    <!-- TODO: 不要そうなら消す -->
     <select id="selectInStockBookCollectionsByBookIds" resultType="library.domain.model.bookcollection.BookCollection">
         SELECT
             蔵書.蔵書コード as "bookCollectionCode.value",
