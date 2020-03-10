@@ -22,7 +22,7 @@ public class Retention {
     }
 
     private boolean retentionability(BookCollection bookCollection) {
-        return bookCollection.bookCollectionStatus.retentionable() && retentions.notContains(bookCollection);
+        return bookCollection.bookCollectionStatus().retentionable() && retentions.notContains(bookCollection);
     }
 
 }

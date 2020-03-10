@@ -8,7 +8,7 @@ import library.domain.model.book.Book;
 public class BookCollection {
     BookCollectionCode bookCollectionCode;
     Book book;
-    public BookCollectionStatus bookCollectionStatus;
+    BookCollectionStatus bookCollectionStatus;
     WebReservationStatus webReservationStatus;
 
     @Deprecated
