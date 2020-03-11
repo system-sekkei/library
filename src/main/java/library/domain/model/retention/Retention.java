@@ -3,18 +3,19 @@ package library.domain.model.retention;
 
 import library.domain.model.book.Book;
 import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.bookcollection.BookCollections;
+import library.domain.model.bookcollection.BookCollectionInStock;
+import library.domain.model.bookcollection.BookCollectionsInStock;
 
 /**
  * 取置
  */
 public class Retention {
-    BookCollections bookCollections;
+    BookCollectionsInStock bookCollectionsInStock;
     Retentions retentions;
 
     Retentionability retentionability(Book book) {
-        for (BookCollection bookCollection : bookCollections.list()) {
-            if (bookCollection.sameBook(book) && retentionability(bookCollection)) {
+        for (BookCollectionInStock bookCollectionInStock : bookCollectionsInStock.list()) {
+            if (bookCollectionInStock.bookCollection().sameBook(book) && retentionability(bookCollectionInStock.bookCollection())) {
                 return Retentionability.取置可能;
             }
         }
@@ -22,7 +23,7 @@ public class Retention {
     }
 
     private boolean retentionability(BookCollection bookCollection) {
-        return bookCollection.bookCollectionStatus().retentionable() && retentions.notContains(bookCollection);
+        return retentions.notContains(bookCollection);
     }
 
 }

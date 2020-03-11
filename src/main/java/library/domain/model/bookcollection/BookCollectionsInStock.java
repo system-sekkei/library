@@ -11,4 +11,8 @@ public class BookCollectionsInStock {
     BookCollectionsInStock(List<BookCollectionInStock> list) {
         this.list = list;
     }
+
+    public List<BookCollectionInStock> list() {
+        return list;
+    }
 }
