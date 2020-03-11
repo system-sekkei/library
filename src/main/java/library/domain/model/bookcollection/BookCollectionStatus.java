@@ -7,7 +7,7 @@ public enum BookCollectionStatus {
     在庫中,
     貸出中;
 
-    public boolean unLoanable() {
+    public boolean outOnLoan() {
         return this == 貸出中;
     }
 

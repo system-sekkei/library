@@ -38,7 +38,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
 
         BookCollection bookCollection = bookCollectionMapper.selectBookCollection(bookCollectionCode);
 
-        if (bookCollection.bookCollectionStatus().unLoanable()) {
+        if (bookCollection.bookCollectionStatus().outOnLoan()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
         }
 
