@@ -2,6 +2,7 @@ package library.application.service.bookcollection;
 
 import library.application.repository.BookCollectionRepository;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionInStock;
 import library.domain.model.bookcollection.BookCollectionOnLoan;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,12 @@ public class BookCollectionQueryService {
      */
     public BookCollectionOnLoan findBookCollectionOnLoan(BookCollectionCode bookCollectionCode) {
         return bookCollectionRepository.findBookCollectionOnLoan(bookCollectionCode);
+    }
+
+    /**
+     * 在庫中の蔵書取得
+     */
+    public BookCollectionInStock findBookCollectionInStock(BookCollectionCode bookCollectionCode) {
+        return bookCollectionRepository.findBookCollectionInStock(bookCollectionCode);
     }
 }

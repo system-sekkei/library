@@ -33,7 +33,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     @Override
     @Transactional
     public BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
-        BookCollectionCode bookCollectionCode = bookOnLoanRequest.bookCollection().bookCollectionCode();
+        BookCollectionCode bookCollectionCode = bookOnLoanRequest.bookCollectionInStock().bookCollection().bookCollectionCode();
         bookCollectionMapper.getBookCollectionCodeWithLock(bookCollectionCode);
 
         BookCollection bookCollection = bookCollectionMapper.selectBookCollection(bookCollectionCode);
@@ -46,7 +46,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         mapper.insertBookOnLoan(
                 bookOnLoanId,
                 bookOnLoanRequest.member().memberNumber(),
-                bookOnLoanRequest.bookCollection().bookCollectionCode(),
+                bookOnLoanRequest.bookCollectionInStock().bookCollection().bookCollectionCode(),
                 bookOnLoanRequest.loanDate());
 
         return findBookOnLoanByBookCollectionCode(bookCollectionCode);

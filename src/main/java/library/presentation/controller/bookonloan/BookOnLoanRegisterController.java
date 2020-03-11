@@ -1,6 +1,7 @@
 package library.presentation.controller.bookonloan;
 
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
+import library.domain.model.bookcollection.BookCollectionInStock;
 import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.bookonloan.loaning.LoaningCard;
 import library.application.service.bookcollection.BookCollectionQueryService;
@@ -51,8 +52,8 @@ public class BookOnLoanRegisterController {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollectionOnLoan(loaningOfBookForm.bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), loaningOfBookForm.loanDate);
+        BookCollectionInStock bookCollection = bookCollectionQueryService.findBookCollectionInStock(loaningOfBookForm.bookCollectionCode);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, loaningOfBookForm.loanDate);
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 

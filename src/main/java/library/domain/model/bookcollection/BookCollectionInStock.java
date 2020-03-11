@@ -9,4 +9,8 @@ public class BookCollectionInStock {
     public BookCollectionInStock(BookCollection bookCollection) {
         this.bookCollection = bookCollection;
     }
+
+    public BookCollection bookCollection() {
+        return bookCollection;
+    }
 }
