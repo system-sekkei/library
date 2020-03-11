@@ -4,8 +4,8 @@ import library.LibraryDBTest;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
-import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
@@ -83,8 +83,8 @@ class BookOnLoanQueryServiceTest {
 
     private void registerBookOnLoan(BookCollectionCode bookCollectionCode, int memberNumber){
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, new LoanDate(Date.from("2020-02-20")));
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
     }
 }

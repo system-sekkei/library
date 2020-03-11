@@ -14,7 +14,7 @@ public class BookOnLoanRequest {
     Member member;
 
     @Valid
-    BookCollection bookCollection;
+    BookCollection bookCollection; // TODO: 在庫中の蔵書になる筈
 
     @Valid
     LoanDate loanDate;

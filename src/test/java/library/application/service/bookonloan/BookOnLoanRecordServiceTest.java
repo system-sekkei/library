@@ -3,8 +3,8 @@ package library.application.service.bookonloan;
 import library.LibraryDBTest;
 import library.application.service.bookcollection.BookCollectionQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
@@ -35,8 +35,8 @@ class BookOnLoanRecordServiceTest {
     void 貸出図書を登録できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         BookCollectionCode bookCollectionCode = new BookCollectionCode("2-A");
-        BookCollection bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, new LoanDate(Date.from("2020-02-20")));
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
 
         BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);

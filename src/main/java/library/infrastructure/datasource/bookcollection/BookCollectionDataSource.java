@@ -3,6 +3,7 @@ package library.infrastructure.datasource.bookcollection;
 import library.application.repository.BookCollectionRepository;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -14,7 +15,8 @@ public class BookCollectionDataSource implements BookCollectionRepository {
     }
 
     @Override
-    public BookCollection findBookCollection(BookCollectionCode bookCollectionCode) {
-        return mapper.selectBookCollection(bookCollectionCode);
+    public BookCollectionOnLoan findBookCollection(BookCollectionCode bookCollectionCode) {
+        BookCollection bookCollection = mapper.selectBookCollection(bookCollectionCode);
+        return new BookCollectionOnLoan(bookCollection);
     }
 }

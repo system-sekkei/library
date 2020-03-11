@@ -3,6 +3,7 @@ package library.infrastructure.datasource.bookonloan;
 import library.application.repository.BookOnLoanRepository;
 import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoans;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
@@ -89,7 +90,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
                         bookCollections.stream()
                                 .filter(bookCollection -> bookCollection.bookCollectionCode().sameValue(bookOnLoanData.bookCollectionCode))
                                 .findFirst()
-                                .map(bookCollection -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, bookCollection, bookOnLoanData.loanDate))
+                                .map(bookCollection -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new BookCollectionOnLoan(bookCollection), bookOnLoanData.loanDate))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }

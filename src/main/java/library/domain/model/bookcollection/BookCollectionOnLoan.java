@@ -5,4 +5,12 @@ package library.domain.model.bookcollection;
  */
 public class BookCollectionOnLoan {
     BookCollection bookCollection;
+
+    public BookCollectionOnLoan(BookCollection bookCollection) {
+        this.bookCollection = bookCollection;
+    }
+
+    public BookCollection bookCollection() {
+        return bookCollection;
+    }
 }

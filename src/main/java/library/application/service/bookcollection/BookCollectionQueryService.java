@@ -1,8 +1,8 @@
 package library.application.service.bookcollection;
 
 import library.application.repository.BookCollectionRepository;
-import library.domain.model.bookcollection.BookCollection;
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +19,8 @@ public class BookCollectionQueryService {
     /**
      * 蔵書取得
      */
-    public BookCollection findBookCollection(BookCollectionCode bookCollectionCode) {
+     // TODO: 貸出中の蔵書取得に修正する？
+    public BookCollectionOnLoan findBookCollection(BookCollectionCode bookCollectionCode) {
         return bookCollectionRepository.findBookCollection(bookCollectionCode);
     }
 }

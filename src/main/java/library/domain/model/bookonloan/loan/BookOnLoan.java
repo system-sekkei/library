@@ -1,6 +1,6 @@
 package library.domain.model.bookonloan.loan;
 
-import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.member.Member;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
@@ -13,17 +13,17 @@ import java.time.Period;
 public class BookOnLoan {
     BookOnLoanId bookOnLoanId;
     Member member;
-    BookCollection bookCollection;
+    BookCollectionOnLoan bookCollectionOnLoan;
     LoanDate loanDate;
 
     @Deprecated
     BookOnLoan() {
     }
 
-    public BookOnLoan(BookOnLoanId bookOnLoanId, Member member, BookCollection bookCollection, LoanDate loanDate) {
+    public BookOnLoan(BookOnLoanId bookOnLoanId, Member member, BookCollectionOnLoan bookCollectionOnLoan, LoanDate loanDate) {
         this.bookOnLoanId = bookOnLoanId;
         this.member = member;
-        this.bookCollection = bookCollection;
+        this.bookCollectionOnLoan = bookCollectionOnLoan;
         this.loanDate = loanDate;
     }
 
@@ -45,8 +45,8 @@ public class BookOnLoan {
         return member;
     }
 
-    public BookCollection bookCollection() {
-        return bookCollection;
+    public BookCollectionOnLoan bookCollectionOnLoan() {
+        return bookCollectionOnLoan;
     }
 
     public LoanDate loanDate() {
