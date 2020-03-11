@@ -2,7 +2,9 @@ package library.domain.type.date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.Duration;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -68,6 +70,10 @@ public class Date {
 
     public Date plusDays(int days) {
         return new Date(value.plusDays(days));
+    }
+
+    public Date plus(Period period) {
+        return new Date(value.plus(period));
     }
 
     public Date previousDay() {

@@ -29,4 +29,8 @@ public class LoanDate {
     public String toString() {
         return value.toString();
     }
+
+    public DueDate dueDateWith(LoanPeriod loanPeriod) {
+        return new DueDate(value.plus(loanPeriod.value()));
+    }
 }

@@ -28,7 +28,7 @@ public class BookOnLoan {
     }
 
     public DueDate dueDate() {
-        return DueDate.dueDateFrom(loanDate);
+        return loanDate.dueDateWith(LoanPeriod.standard());
     }
 
     public DelayPeriod todayDelayPeriod() {

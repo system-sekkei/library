@@ -12,10 +12,6 @@ public class DueDate {
         this.value = value;
     }
 
-    public static DueDate dueDateFrom(LoanDate loanDate) {
-        return new DueDate(loanDate.value().plusDays(14));
-    }
-
     public LoanStatus loanStatus() {
         Date today = Date.now();
         if (value.isBefore(today)) {
