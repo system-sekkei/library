@@ -1,4 +1,4 @@
-package library.domain.model.bookonloan;
+package library.domain.model.bookonloan.librarycard;
 
 /**
  * 図書カード

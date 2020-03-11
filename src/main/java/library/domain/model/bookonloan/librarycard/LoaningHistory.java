@@ -1,4 +1,4 @@
-package library.domain.model.bookonloan;
+package library.domain.model.bookonloan.librarycard;
 
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.member.Member;
