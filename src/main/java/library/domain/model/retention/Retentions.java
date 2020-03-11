@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.holding.Holding;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import java.util.List;
  * 取置のリスト
  */
 public class Retentions {
-    List<RetainedBookCollection> list;
+    List<RetainedHolding> list;
 
-    public boolean notContains(BookCollection bookCollection) {
-        return list.stream().noneMatch(retainedBookCollection -> retainedBookCollection.isA(bookCollection));
+    public boolean notContains(Holding holding) {
+        return list.stream().noneMatch(retainedHolding -> retainedHolding.isA(holding));
     }
 }

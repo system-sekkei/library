@@ -1,8 +1,8 @@
-package library.infrastructure.datasource.bookcollection;
+package library.infrastructure.datasource.holding;
 
 import library.LibraryDBTest;
 import library.domain.model.book.BookId;
-import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.holding.Holding;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -15,10 +15,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class BookCollectionMapperTest {
+class HoldingMapperTest {
 
     @Autowired
-    BookCollectionMapper bookCollectionMapper;
+    HoldingMapper holdingMapper;
 
     @Autowired
     MockMvc mockMvc;
@@ -28,11 +28,11 @@ class BookCollectionMapperTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-A")
+                        .param("holdingCode.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        List<BookCollection> bookCollections = bookCollectionMapper.selectInStockBookCollectionsByBookIds(List.of(new BookId(2)));
+        List<Holding> holdings = holdingMapper.selectInStockHoldingsByBookIds(List.of(new BookId(2)));
 
-        assertEquals(7, bookCollections.size());
+        assertEquals(7, holdings.size());
     }
 }

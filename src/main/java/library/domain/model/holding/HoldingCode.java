@@ -1,20 +1,20 @@
-package library.domain.model.bookcollection;
+package library.domain.model.holding;
 
 import javax.validation.constraints.NotBlank;
 
 /**
  * 蔵書コード
  */
-public class BookCollectionCode {
+public class HoldingCode {
     @NotBlank(message = "蔵書コードを入力してください。")
     String value;
 
-    public BookCollectionCode(String value) {
+    public HoldingCode(String value) {
         this.value = value;
     }
 
     @Deprecated
-    BookCollectionCode() {
+    HoldingCode() {
     }
 
     @Override
@@ -22,7 +22,7 @@ public class BookCollectionCode {
         return value;
     }
 
-    public boolean sameValue(BookCollectionCode other) {
+    public boolean sameValue(HoldingCode other) {
         return value.equals(other.value);
     }
 }

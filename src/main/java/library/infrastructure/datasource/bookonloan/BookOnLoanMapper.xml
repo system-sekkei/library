@@ -9,12 +9,12 @@
 
     <insert id="insertBookOnLoan">
         INSERT INTO 貸出(貸出ID, 会員番号, 蔵書コード, 貸出日)
-        VALUES (#{bookOnLoanId}, #{memberNumber.value}, #{bookCollectionCode.value}, #{loanDate.value.value})
+        VALUES (#{bookOnLoanId}, #{memberNumber.value}, #{holdingCode.value}, #{loanDate.value.value})
     </insert>
 
     <select id="selectByMemberNumber" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
         SELECT 貸出.貸出ID as "bookOnLoanId.value",
-               貸出.蔵書コード as "bookCollectionCode.value",
+               貸出.蔵書コード as "holdingCode.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
         FROM 貸出
@@ -27,35 +27,35 @@
         VALUES (#{bookOnLoanId.value}, #{returnDate.value.value})
     </insert>
 
-    <select id="selectByBookCollectionCode" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
+    <select id="selectByHoldingCode" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
         SELECT 貸出.貸出ID as "bookOnLoanId.value",
-               貸出.蔵書コード as "bookCollectionCode.value",
+               貸出.蔵書コード as "holdingCode.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
         FROM 貸出
         LEFT OUTER JOIN 返却 ON 貸出.貸出ID = 返却.貸出ID
-        WHERE 貸出.蔵書コード = #{bookCollectionCode.value} AND 返却.貸出ID IS NULL
+        WHERE 貸出.蔵書コード = #{holdingCode.value} AND 返却.貸出ID IS NULL
     </select>
 
-    <select id="selectByBookCollectionCodes" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
+    <select id="selectByHoldingCodes" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
         SELECT 貸出.貸出ID as "bookOnLoanId.value",
-               貸出.蔵書コード as "bookCollectionCode.value",
+               貸出.蔵書コード as "holdingCode.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
         FROM 貸出
         WHERE 貸出.蔵書コード IN
-        <foreach item="bookCollectionCode" collection="bookCollectionCodes" open="(" separator="," close=")">
-            #{bookCollectionCode.value}
+        <foreach item="holdingCode" collection="holdingCodes" open="(" separator="," close=")">
+            #{holdingCode.value}
         </foreach>
     </select>
 
-    <select id="selectReturnedBookLoanIdByBookCollectionCodes" resultType="library.domain.model.bookonloan.loan.BookOnLoanId">
+    <select id="selectReturnedBookLoanIdByHoldingCodes" resultType="library.domain.model.bookonloan.loan.BookOnLoanId">
         SELECT 返却.貸出ID as "value"
         FROM 返却
         INNER JOIN 貸出 ON 返却.貸出ID = 貸出.貸出ID
         WHERE 貸出.蔵書コード IN
-        <foreach item="bookCollectionCode" collection="bookCollectionCodes" open="(" separator="," close=")">
-            #{bookCollectionCode.value}
+        <foreach item="holdingCode" collection="holdingCodes" open="(" separator="," close=")">
+            #{holdingCode.value}
         </foreach>
     </select>
 </mapper>

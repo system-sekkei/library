@@ -1,6 +1,6 @@
 package library.application.repository;
 
-import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
@@ -16,7 +16,7 @@ public interface BookOnLoanRepository {
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 
-    BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode);
+    BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode);
 
     void registerReturnBook(ReturningBookOnLoan returningBookOnLoan);
 }

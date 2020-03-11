@@ -2,8 +2,8 @@ package library.infrastructure.datasource.bookonloan;
 
 import library.LibraryDBTest;
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
-import library.application.service.bookcollection.BookCollectionQueryService;
-import library.domain.model.bookcollection.BookCollectionCode;
+import library.application.service.holding.HoldingQueryService;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.type.date.Date;
@@ -30,18 +30,18 @@ class BookOnLoanDataSourceTest {
     ReturnBookCoordinator returnBookCoordinator;
 
     @Autowired
-    BookCollectionQueryService bookCollectionQueryService;
+    HoldingQueryService holdingQueryService;
 
     @Test
     void 蔵書コードで貸出図書を取得できる() throws Exception {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-C")
+                        .param("holdingCode.value", "2-C")
                         .param("loanDate.value", "2020-02-14"));
 
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-C");
-        BookOnLoan bookOnLoan = bookOnLoanDataSource.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+        HoldingCode holdingCode = new HoldingCode("2-C");
+        BookOnLoan bookOnLoan = bookOnLoanDataSource.findBookOnLoanByHoldingCode(holdingCode);
 
         assertEquals("2020-02-14", bookOnLoan.loanDate().toString());
     }
@@ -51,14 +51,14 @@ class BookOnLoanDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-D")
+                        .param("holdingCode.value", "2-D")
                         .param("loanDate.value", "2020-02-14"));
 
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-D");
-        returnBookCoordinator.returnBook(bookCollectionCode, new ReturnDate(Date.from("2019-01-01")));
+        HoldingCode holdingCode = new HoldingCode("2-D");
+        returnBookCoordinator.returnBook(holdingCode, new ReturnDate(Date.from("2019-01-01")));
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanDataSource.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+            bookOnLoanDataSource.findBookOnLoanByHoldingCode(holdingCode);
         });
     }
 }

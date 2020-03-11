@@ -1,12 +1,11 @@
 package library.application.service.bookonloan;
 
 import library.LibraryDBTest;
-import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.service.holding.HoldingQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
-import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookcollection.BookCollectionInStock;
-import library.domain.model.bookcollection.BookCollectionOnLoan;
+import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.HoldingInStock;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
@@ -36,32 +35,32 @@ class BookOnLoanQueryServiceTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    BookCollectionQueryService bookCollectionQueryService;
+    HoldingQueryService holdingQueryService;
 
     @Test
     void 貸出図書を取得できる() {
-        registerBookOnLoan(new BookCollectionCode("2-A"), 1);
+        registerBookOnLoan(new HoldingCode("2-A"), 1);
 
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("2-A"));
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(new HoldingCode("2-A"));
 
         assertEquals(bookOnLoan.member().memberNumber().value(), 1);
     }
 
     @Test
     void 返却された貸出図書は取得できない() {
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-B");
-        registerBookOnLoan(bookCollectionCode, 1);
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+        HoldingCode holdingCode = new HoldingCode("2-B");
+        registerBookOnLoan(holdingCode, 1);
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(holdingCode);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-21"))));
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+            bookOnLoanQueryService.findBookOnLoanByHoldingCode(holdingCode);
         });
     }
 
     @Test
     void 会員が現在借りている全貸出図書を取得できる() {
-        registerBookOnLoan(new BookCollectionCode("2-A"), 2);
+        registerBookOnLoan(new HoldingCode("2-A"), 2);
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
         MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(member);
@@ -71,9 +70,9 @@ class BookOnLoanQueryServiceTest {
 
     @Test
     void 会員が現在借りている全貸出図書取得時に返却した貸出図書が含まれない() {
-        BookCollectionCode bookCollectionCode = new BookCollectionCode("2-B");
-        registerBookOnLoan(bookCollectionCode, 2);
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+        HoldingCode holdingCode = new HoldingCode("2-B");
+        registerBookOnLoan(holdingCode, 2);
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(holdingCode);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-21"))));
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
@@ -82,10 +81,10 @@ class BookOnLoanQueryServiceTest {
         assertEquals(memberAllBookOnLoans.bookOnLoans().numberOfBookOnLoans().value(), 0);
     }
 
-    private void registerBookOnLoan(BookCollectionCode bookCollectionCode, int memberNumber){
+    private void registerBookOnLoan(HoldingCode holdingCode, int memberNumber){
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        BookCollectionInStock bookCollection = bookCollectionQueryService.findBookCollectionInStock(bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, new LoanDate(Date.from("2020-02-20")));
+        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(holdingCode);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, holdingInStock, new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
     }
 }

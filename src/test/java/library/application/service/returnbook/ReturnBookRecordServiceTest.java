@@ -1,11 +1,11 @@
 package library.application.service.returnbook;
 
 import library.LibraryDBTest;
-import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.service.holding.HoldingQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
@@ -30,17 +30,17 @@ class ReturnBookRecordServiceTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    BookCollectionQueryService bookCollectionQueryService;
+    HoldingQueryService holdingQueryService;
 
     @Test
     void 返却を登録できる() {
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(new HoldingCode("1-A"));
 
         ReturningBookOnLoan returningBookOnLoan = new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-20")));
         returnBookRecordService.registerReturnBook(returningBookOnLoan);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
+            bookOnLoanQueryService.findBookOnLoanByHoldingCode(new HoldingCode("1-A"));
         });
     }
 }

@@ -1,16 +1,16 @@
 package library.domain.model.retention;
 
-import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.holding.Holding;
 import library.domain.model.reservation.ReservedBook;
 import library.domain.type.date.Date;
 
 /**
  * 取置済み蔵書
  */
-public class RetainedBookCollection {
+public class RetainedHolding {
     ReservedBook reservedBook;
     RetainedDate retainedDate;
-    BookCollection bookCollection;
+    Holding holding;
 
     public RetentionDeadline retentionDeadline() {
         return RetentionDeadline.deadline(retainedDate);
@@ -21,7 +21,7 @@ public class RetainedBookCollection {
         return retainedDate.value.isBefore(today);
     }
 
-    public boolean isA(BookCollection bookCollection) {
-        return bookCollection.bookCollectionCode().sameValue(this.bookCollection.bookCollectionCode());
+    public boolean isA(Holding holding) {
+        return holding.holdingCode().sameValue(this.holding.holdingCode());
     }
 }

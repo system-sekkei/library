@@ -1,7 +1,7 @@
 package library.application.service.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
@@ -28,7 +28,7 @@ public class BookOnLoanQueryService {
     /**
      * 蔵書コードによる貸出図書取得
      */
-    public BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode) {
-        return bookOnLoanRepository.findBookOnLoanByBookCollectionCode(bookCollectionCode);
+    public BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode) {
+        return bookOnLoanRepository.findBookOnLoanByHoldingCode(holdingCode);
     }
 }

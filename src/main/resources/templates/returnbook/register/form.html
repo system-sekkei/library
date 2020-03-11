@@ -20,16 +20,16 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="fragments/field::macro('蔵書コード', ~{::div#bookCollectionCodeField})">
-        <div id="bookCollectionCodeField" class="field-body">
+      <div th:replace="fragments/field::macro('蔵書コード', ~{::div#holdingCodeField})">
+        <div id="holdingCodeField" class="field-body">
           <div class="field">
             <p class="control">
               <input class="input" type="text" placeholder="1-A"
-                     th:field="*{bookCollectionCode.value}"/>
+                     th:field="*{holdingCode.value}"/>
             </p>
             <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('bookCollectionCode.value')}">
-              <span th:errors="*{bookCollectionCode.value}"></span>
+               th:if="${#fields.hasErrors('holdingCode.value')}">
+              <span th:errors="*{holdingCode.value}"></span>
             </p>
           </div>
         </div>

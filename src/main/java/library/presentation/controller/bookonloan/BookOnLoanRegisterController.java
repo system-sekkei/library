@@ -1,10 +1,9 @@
 package library.presentation.controller.bookonloan;
 
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
-import library.domain.model.bookcollection.BookCollectionInStock;
-import library.domain.model.bookcollection.BookCollectionOnLoan;
+import library.domain.model.holding.HoldingInStock;
 import library.domain.model.bookonloan.loaning.LoaningCard;
-import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.service.holding.HoldingQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
@@ -31,14 +30,14 @@ public class BookOnLoanRegisterController {
     BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator;
     BookOnLoanQueryService bookOnLoanQueryService;
     MemberQueryService memberQueryService;
-    BookCollectionQueryService bookCollectionQueryService;
+    HoldingQueryService holdingQueryService;
 
-    public BookOnLoanRegisterController(BookOnLoanRecordService bookOnLoanRecordService, BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService, BookCollectionQueryService bookCollectionQueryService) {
+    public BookOnLoanRegisterController(BookOnLoanRecordService bookOnLoanRecordService, BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService, HoldingQueryService holdingQueryService) {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
         this.bookOnLoanRegisterCoordinator = bookOnLoanRegisterCoordinator;
         this.bookOnLoanQueryService = bookOnLoanQueryService;
         this.memberQueryService = memberQueryService;
-        this.bookCollectionQueryService = bookCollectionQueryService;
+        this.holdingQueryService = holdingQueryService;
     }
 
     @GetMapping
@@ -52,8 +51,8 @@ public class BookOnLoanRegisterController {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
-        BookCollectionInStock bookCollection = bookCollectionQueryService.findBookCollectionInStock(loaningOfBookForm.bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection, loaningOfBookForm.loanDate);
+        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(loaningOfBookForm.holdingCode);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, holdingInStock, loaningOfBookForm.loanDate);
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
@@ -78,7 +77,7 @@ public class BookOnLoanRegisterController {
     public void initBinder(WebDataBinder binder) {
         binder.setAllowedFields(
                 "memberNumber.value",
-                "bookCollectionCode.value",
+                "holdingCode.value",
                 "loanDate.value"
         );
     }

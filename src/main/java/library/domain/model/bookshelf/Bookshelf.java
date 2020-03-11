@@ -1,6 +1,6 @@
 package library.domain.model.bookshelf;
 
-import library.domain.model.bookcollection.BookCollection;
+import library.domain.model.holding.Holding;
 
 import java.util.List;
 
@@ -8,5 +8,5 @@ import java.util.List;
  * 書架
  */
 public class Bookshelf {
-    List<BookCollection> values;
+    List<Holding> values;
 }

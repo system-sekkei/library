@@ -1,11 +1,11 @@
 package library.application.coordinator.bookonloan;
 
 import library.LibraryDBTest;
-import library.application.service.bookcollection.BookCollectionQueryService;
+import library.application.service.holding.HoldingQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookcollection.BookCollectionInStock;
+import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.HoldingInStock;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.loaning.LoaningCard;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
@@ -30,7 +30,7 @@ class BookOnLoanRegisterCoordinatorTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    BookCollectionQueryService bookCollectionQueryService;
+    HoldingQueryService holdingQueryService;
 
     @Autowired
     BookOnLoanQueryService bookOnLoanQueryService;
@@ -56,8 +56,8 @@ class BookOnLoanRegisterCoordinatorTest {
 
     @Test
     void 貸出制限冊数を超える会員には図書を貸し出すことができない() {
-        List<String> bookCollectionCode = List.of("2-C", "2-D", "2-E", "2-F", "2-G");
-        for (String code : bookCollectionCode) {
+        List<String> list = List.of("2-C", "2-D", "2-E", "2-F", "2-G");
+        for (String code : list) {
             BookOnLoanRequest bookOnLoanRequest =
                 generate(3, code, "2020-02-20");
             bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
@@ -71,9 +71,9 @@ class BookOnLoanRegisterCoordinatorTest {
         assertTrue(loaningCard.rejected());
     }
 
-    private BookOnLoanRequest generate(int memberNumber, String bookCollectionCode, String loanDate) {
+    private BookOnLoanRequest generate(int memberNumber, String holdingCode, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        BookCollectionInStock bookCollection = bookCollectionQueryService.findBookCollectionInStock(new BookCollectionCode(bookCollectionCode));
-        return new BookOnLoanRequest(member, bookCollection, new LoanDate(Date.from(loanDate)));
+        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(new HoldingCode(holdingCode));
+        return new BookOnLoanRequest(member, holdingInStock, new LoanDate(Date.from(loanDate)));
     }
 }

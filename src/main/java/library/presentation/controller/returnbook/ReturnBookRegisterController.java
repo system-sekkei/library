@@ -37,7 +37,7 @@ public class ReturnBookRegisterController {
     String register(@Validated @ModelAttribute("returnBookForm") ReturnBookForm returnBookForm, BindingResult result, RedirectAttributes attributes) {
         if (result.hasErrors()) return "returnbook/register/form";
 
-        returnBookCoordinator.returnBook(returnBookForm.bookCollectionCode, returnBookForm.returnDate);
+        returnBookCoordinator.returnBook(returnBookForm.holdingCode, returnBookForm.returnDate);
 
         return "redirect:/returnbook/register/completed";
     }
@@ -51,7 +51,7 @@ public class ReturnBookRegisterController {
     public void initBinder(WebDataBinder binder) {
         binder.setAllowedFields(
                 "memberNumber.value",
-                "bookCollectionCode.value",
+                "holdingCode.value",
                 "loanDate.value"
         );
     }

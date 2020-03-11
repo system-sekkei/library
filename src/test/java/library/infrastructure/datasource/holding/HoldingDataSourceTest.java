@@ -1,8 +1,8 @@
-package library.infrastructure.datasource.bookcollection;
+package library.infrastructure.datasource.holding;
 
 import library.LibraryDBTest;
-import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookcollection.BookCollectionOnLoan;
+import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.HoldingOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -13,10 +13,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class BookCollectionDataSourceTest {
+class HoldingDataSourceTest {
 
     @Autowired
-    BookCollectionDataSource bookCollectionDataSource;
+    HoldingDataSource holdingDataSource;
 
     @Autowired
     MockMvc mockMvc;
@@ -26,22 +26,22 @@ class BookCollectionDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-A")
+                        .param("holdingCode.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
         mockMvc.perform(
                 post("/returnbook/register")
-                        .param("bookCollectionCode.value", "2-A")
+                        .param("holdingCode.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("bookCollectionCode.value", "2-A")
+                        .param("holdingCode.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        BookCollectionOnLoan bookCollection = bookCollectionDataSource.findBookCollectionOnLoan(new BookCollectionCode("2-A"));
+        HoldingOnLoan holdingOnLoan = holdingDataSource.findHoldingOnLoan(new HoldingCode("2-A"));
 
-        assertEquals("2-A", bookCollection.bookCollection().bookCollectionCode().toString());
+        assertEquals("2-A", holdingOnLoan.holding().holdingCode().toString());
     }
 }

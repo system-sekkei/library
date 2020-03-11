@@ -1,9 +1,9 @@
-package library.domain.model.bookcollection;
+package library.domain.model.holding;
 
 /**
  * 蔵書の状態
  */
-public enum BookCollectionStatus {
+public enum HoldingStatus {
     在庫中,
     貸出中;
 

@@ -1,16 +1,16 @@
 package library.infrastructure.datasource.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookcollection.BookCollection;
-import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookcollection.BookCollectionOnLoan;
+import library.domain.model.holding.Holding;
+import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.HoldingOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoans;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
 import library.domain.model.member.Member;
-import library.infrastructure.datasource.bookcollection.BookCollectionMapper;
+import library.infrastructure.datasource.holding.HoldingMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,24 +21,24 @@ import java.util.stream.Collectors;
 @Repository
 public class BookOnLoanDataSource implements BookOnLoanRepository {
     BookOnLoanMapper mapper;
-    BookCollectionMapper bookCollectionMapper;
+    HoldingMapper holdingMapper;
     MemberMapper memberMapper;
 
-    public BookOnLoanDataSource(BookOnLoanMapper mapper, BookCollectionMapper bookCollectionMapper, MemberMapper memberMapper) {
+    public BookOnLoanDataSource(BookOnLoanMapper mapper, HoldingMapper holdingMapper, MemberMapper memberMapper) {
         this.mapper = mapper;
-        this.bookCollectionMapper = bookCollectionMapper;
+        this.holdingMapper = holdingMapper;
         this.memberMapper = memberMapper;
     }
 
     @Override
     @Transactional
     public BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
-        BookCollectionCode bookCollectionCode = bookOnLoanRequest.bookCollectionInStock().bookCollection().bookCollectionCode();
-        bookCollectionMapper.getBookCollectionCodeWithLock(bookCollectionCode);
+        HoldingCode holdingCode = bookOnLoanRequest.holdingInStock().holding().holdingCode();
+        holdingMapper.lockHolding(holdingCode);
 
-        BookCollection bookCollection = bookCollectionMapper.selectBookCollection(bookCollectionCode);
+        Holding holding = holdingMapper.selectHolding(holdingCode);
 
-        if (bookCollection.bookCollectionStatus().outOnLoan()) {
+        if (holding.holdingStatus().outOnLoan()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
         }
 
@@ -46,10 +46,10 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         mapper.insertBookOnLoan(
                 bookOnLoanId,
                 bookOnLoanRequest.member().memberNumber(),
-                bookOnLoanRequest.bookCollectionInStock().bookCollection().bookCollectionCode(),
+                bookOnLoanRequest.holdingInStock().holding().holdingCode(),
                 bookOnLoanRequest.loanDate());
 
-        return findBookOnLoanByBookCollectionCode(bookCollectionCode);
+        return findBookOnLoanByHoldingCode(holdingCode);
     }
 
     @Override
@@ -67,9 +67,9 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
-    public BookOnLoan findBookOnLoanByBookCollectionCode(BookCollectionCode bookCollectionCode) {
-        BookOnLoanData bookOnLoanData = mapper.selectByBookCollectionCode(bookCollectionCode).orElseThrow(() ->
-            new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", bookCollectionCode)));
+    public BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode) {
+        BookOnLoanData bookOnLoanData = mapper.selectByHoldingCode(holdingCode).orElseThrow(() ->
+            new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", holdingCode)));
 
         Member member = memberMapper.selectMember(bookOnLoanData.memberNumber);
         BookOnLoan bookOnLoan = bookOnLoans(member, List.of(bookOnLoanData)).get(0);
@@ -79,18 +79,18 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     List<BookOnLoan> bookOnLoans(Member member, List<BookOnLoanData> bookOnLoanDataList) {
         if (bookOnLoanDataList.isEmpty()) return List.of();
 
-        List<BookCollectionCode> bookCollectionCodes =
+        List<HoldingCode> holdingCodes =
                 bookOnLoanDataList.stream()
-                        .map(bookOnLoanData -> bookOnLoanData.bookCollectionCode)
+                        .map(bookOnLoanData -> bookOnLoanData.holdingCode)
                         .collect(Collectors.toList());
-        List<BookCollection> bookCollections = bookCollectionMapper.selectBookCollections(bookCollectionCodes);
+        List<Holding> holdings = holdingMapper.selectHoldings(holdingCodes);
 
         return bookOnLoanDataList.stream()
                 .map(bookOnLoanData ->
-                        bookCollections.stream()
-                                .filter(bookCollection -> bookCollection.bookCollectionCode().sameValue(bookOnLoanData.bookCollectionCode))
+                        holdings.stream()
+                                .filter(holding -> holding.holdingCode().sameValue(bookOnLoanData.holdingCode))
                                 .findFirst()
-                                .map(bookCollection -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new BookCollectionOnLoan(bookCollection), bookOnLoanData.loanDate))
+                                .map(holding -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new HoldingOnLoan(holding), bookOnLoanData.loanDate))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }
