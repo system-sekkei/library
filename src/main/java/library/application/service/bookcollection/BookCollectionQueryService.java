@@ -17,10 +17,9 @@ public class BookCollectionQueryService {
     }
 
     /**
-     * 蔵書取得
+     * 貸出中の蔵書取得
      */
-     // TODO: 貸出中の蔵書取得に修正する？
-    public BookCollectionOnLoan findBookCollection(BookCollectionCode bookCollectionCode) {
-        return bookCollectionRepository.findBookCollection(bookCollectionCode);
+    public BookCollectionOnLoan findBookCollectionOnLoan(BookCollectionCode bookCollectionCode) {
+        return bookCollectionRepository.findBookCollectionOnLoan(bookCollectionCode);
     }
 }

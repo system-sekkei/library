@@ -17,7 +17,7 @@ class BookCollectionQueryServiceTest {
     @Test
     void 貸出中の蔵書を取得できる() {
         BookCollectionCode bookCollectionCode = new BookCollectionCode("1-A");
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollectionOnLoan(bookCollectionCode);
 
         assertTrue(bookCollection.bookCollection().bookCollectionCode().sameValue(bookCollectionCode));
     }

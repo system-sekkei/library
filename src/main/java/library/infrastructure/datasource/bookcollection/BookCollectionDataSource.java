@@ -15,7 +15,7 @@ public class BookCollectionDataSource implements BookCollectionRepository {
     }
 
     @Override
-    public BookCollectionOnLoan findBookCollection(BookCollectionCode bookCollectionCode) {
+    public BookCollectionOnLoan findBookCollectionOnLoan(BookCollectionCode bookCollectionCode) {
         BookCollection bookCollection = mapper.selectBookCollection(bookCollectionCode);
         return new BookCollectionOnLoan(bookCollection);
     }

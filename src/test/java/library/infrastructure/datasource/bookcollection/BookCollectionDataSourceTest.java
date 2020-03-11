@@ -40,7 +40,7 @@ class BookCollectionDataSourceTest {
                         .param("bookCollectionCode.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        BookCollectionOnLoan bookCollection = bookCollectionDataSource.findBookCollection(new BookCollectionCode("2-A"));
+        BookCollectionOnLoan bookCollection = bookCollectionDataSource.findBookCollectionOnLoan(new BookCollectionCode("2-A"));
 
         assertEquals("2-A", bookCollection.bookCollection().bookCollectionCode().toString());
     }

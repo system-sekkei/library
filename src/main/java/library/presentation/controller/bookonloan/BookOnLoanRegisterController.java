@@ -51,7 +51,7 @@ public class BookOnLoanRegisterController {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(loaningOfBookForm.bookCollectionCode);
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollectionOnLoan(loaningOfBookForm.bookCollectionCode);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), loaningOfBookForm.loanDate);
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);

@@ -73,7 +73,7 @@ class BookOnLoanRegisterCoordinatorTest {
 
     private BookOnLoanRequest generate(int memberNumber, String bookCollectionCode, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(new BookCollectionCode(bookCollectionCode));
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollectionOnLoan(new BookCollectionCode(bookCollectionCode));
         return new BookOnLoanRequest(member, bookCollection.bookCollection(), new LoanDate(Date.from(loanDate)));
     }
 }

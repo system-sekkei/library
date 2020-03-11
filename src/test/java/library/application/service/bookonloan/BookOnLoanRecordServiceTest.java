@@ -35,7 +35,7 @@ class BookOnLoanRecordServiceTest {
     void 貸出図書を登録できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         BookCollectionCode bookCollectionCode = new BookCollectionCode("2-A");
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
+        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollectionOnLoan(bookCollectionCode);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
 

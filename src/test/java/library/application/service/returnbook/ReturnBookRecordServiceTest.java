@@ -6,14 +6,9 @@ import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookcollection.BookCollectionCode;
-import library.domain.model.bookcollection.BookCollectionOnLoan;
 import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.loan.LoanDate;
-import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
-import library.domain.model.member.Member;
-import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +42,5 @@ class ReturnBookRecordServiceTest {
         assertThrows(IllegalArgumentException.class, () -> {
             bookOnLoanQueryService.findBookOnLoanByBookCollectionCode(new BookCollectionCode("1-A"));
         });
-    }
-
-    private void registerBookOnLoan(BookCollectionCode bookCollectionCode){
-        Member member = memberQueryService.findMember(new MemberNumber(1));
-        BookCollectionOnLoan bookCollection = bookCollectionQueryService.findBookCollection(bookCollectionCode);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, bookCollection.bookCollection(), new LoanDate(Date.from("2020-02-20")));
-        bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
     }
 }
