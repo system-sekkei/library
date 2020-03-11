@@ -1,8 +1,8 @@
 package library.application.coordinator.bookonloan;
 
-import library.application.service.holding.HoldingQueryService;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
+import library.application.service.holding.HoldingQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loaning.*;

@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.bookonloan;
 
-import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoanId;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.returning.ReturnDate;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

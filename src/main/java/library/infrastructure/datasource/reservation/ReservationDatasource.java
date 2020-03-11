@@ -1,8 +1,8 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.reservation.ReservedBook;
 import library.domain.model.reservation.Reservations;
+import library.domain.model.reservation.ReservedBook;
 import library.domain.model.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Repository;
 
@@ -21,9 +21,9 @@ public class ReservationDatasource implements ReservationRepository {
         Integer reservationId = reservationMapper.newReservationIdentifier();
 
         reservationMapper.insertReservation(
-            reservationId,
-            tryingToReserveBook.member().memberNumber(),
-            tryingToReserveBook.book().bookId());
+                reservationId,
+                tryingToReserveBook.member().memberNumber(),
+                tryingToReserveBook.book().bookId());
     }
 
     @Override

@@ -8,7 +8,8 @@ import library.domain.model.book.Books;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
 class BookQueryServiceTest {
@@ -21,10 +22,10 @@ class BookQueryServiceTest {
         Books books = bookQueryService.search(bookSearchKeyword);
 
         assertAll(
-            () -> assertEquals(1, books.size().value()),
-            () -> assertEquals(
-            "RDRA2.0 ハンドブック: 軽く柔軟で精度の高い要件定義のモデリング手法",
-                    books.asList().get(0).title().toString()));
+                () -> assertEquals(1, books.size().value()),
+                () -> assertEquals(
+                        "RDRA2.0 ハンドブック: 軽く柔軟で精度の高い要件定義のモデリング手法",
+                        books.asList().get(0).title().toString()));
     }
 
     @Test

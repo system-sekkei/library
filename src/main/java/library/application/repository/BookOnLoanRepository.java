@@ -1,10 +1,10 @@
 package library.application.repository;
 
-import library.domain.model.holding.HoldingCode;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
+import library.domain.model.holding.HoldingCode;
 import library.domain.model.member.Member;
 
 /**
