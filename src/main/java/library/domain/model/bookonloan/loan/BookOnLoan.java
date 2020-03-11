@@ -27,8 +27,8 @@ public class BookOnLoan {
         this.loanDate = loanDate;
     }
 
-    public LoanPeriod loanPeriod() {
-        return LoanPeriod.loanPeriod(loanDate);
+    public DueDate dueDate() {
+        return DueDate.dueDateFrom(loanDate);
     }
 
     public DelayPeriod todayDelayPeriod() {
@@ -37,7 +37,7 @@ public class BookOnLoan {
     }
 
     public DelayPeriod delayPeriod(Date date) {
-        int delay = Period.between(loanPeriod().value().value(), date.value()).getDays();
+        int delay = Period.between(dueDate().value().value(), date.value()).getDays();
         return new DelayPeriod(new Days(delay));
     }
 
