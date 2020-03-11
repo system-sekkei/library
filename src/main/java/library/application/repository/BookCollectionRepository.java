@@ -1,6 +1,7 @@
 package library.application.repository;
 
 import library.domain.model.bookcollection.BookCollectionCode;
+import library.domain.model.bookcollection.BookCollectionInStock;
 import library.domain.model.bookcollection.BookCollectionOnLoan;
 
 /**
@@ -8,4 +9,6 @@ import library.domain.model.bookcollection.BookCollectionOnLoan;
  */
 public interface BookCollectionRepository {
     BookCollectionOnLoan findBookCollectionOnLoan(BookCollectionCode bookCollectionCode);
+
+    BookCollectionInStock findBookCollectionInStock(BookCollectionCode bookCollectionCode);
 }

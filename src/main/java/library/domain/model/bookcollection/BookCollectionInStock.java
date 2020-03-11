@@ -5,4 +5,8 @@ package library.domain.model.bookcollection;
  */
 public class BookCollectionInStock {
     BookCollection bookCollection;
+
+    public BookCollectionInStock(BookCollection bookCollection) {
+        this.bookCollection = bookCollection;
+    }
 }
