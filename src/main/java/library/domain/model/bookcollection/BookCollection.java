@@ -8,7 +8,7 @@ import library.domain.model.book.Book;
 public class BookCollection {
     BookCollectionCode bookCollectionCode;
     Book book;
-    BookCollectionStatus bookCollectionStatus;
+    BookCollectionStatus bookCollectionStatus; // TODO: あとで消す
 
     @Deprecated
     BookCollection() {
