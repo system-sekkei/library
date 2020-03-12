@@ -47,10 +47,11 @@ class BookOnLoanRegisterCoordinatorTest {
     @Test
     void 貸出中の蔵書は貸し出すことができない() {
         BookOnLoanRequest bookOnLoanRequest =
-                generate(1, "1-A", "2020-02-20");
+                generate(2, "2-B", new LoanDate(Date.now()).toString());
+        bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
 
         assertThrows(RegisterBookOnLoanException.class, () -> {
-            bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
+            LoaningCard loaning = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
         });
     }
 

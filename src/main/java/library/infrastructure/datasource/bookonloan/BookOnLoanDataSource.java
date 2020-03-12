@@ -36,9 +36,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         HoldingCode holdingCode = bookOnLoanRequest.holdingInStock().holding().holdingCode();
         holdingMapper.lockHolding(holdingCode);
 
-        Holding holding = holdingMapper.selectHolding(holdingCode);
-
-        if (holding.holdingStatus().outOnLoan()) {
+        if (mapper.selectByHoldingCode(holdingCode).isPresent()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
         }
 
