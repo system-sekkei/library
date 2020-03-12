@@ -2,6 +2,7 @@ package library.infrastructure.datasource.holding;
 
 import library.LibraryDBTest;
 import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.HoldingInStock;
 import library.domain.model.holding.HoldingOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ class HoldingDataSourceTest {
     MockMvc mockMvc;
 
     @Test
-    void 貸出履歴が複数ある蔵書を取得できる() throws Exception {
+    void 貸出履歴が複数ある貸出中の蔵書を取得できる() throws Exception {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
@@ -43,5 +44,23 @@ class HoldingDataSourceTest {
         HoldingOnLoan holdingOnLoan = holdingDataSource.findHoldingOnLoan(new HoldingCode("2-A"));
 
         assertEquals("2-A", holdingOnLoan.holding().holdingCode().toString());
+    }
+
+    @Test
+    void 貸出履歴が複数ある在庫中の蔵書を取得できる() throws Exception {
+        mockMvc.perform(
+                post("/bookonloan/register")
+                        .param("memberNumber.value", "1")
+                        .param("holdingCode.value", "2-A")
+                        .param("loanDate.value", "2020-02-14"));
+
+        mockMvc.perform(
+                post("/returnbook/register")
+                        .param("holdingCode.value", "2-A")
+                        .param("returnDate.value", "2020-02-14"));
+
+        HoldingInStock holdingInStock = holdingDataSource.findHoldingInStock(new HoldingCode("2-A"));
+
+        assertEquals("2-A", holdingInStock.holding().holdingCode().toString());
     }
 }

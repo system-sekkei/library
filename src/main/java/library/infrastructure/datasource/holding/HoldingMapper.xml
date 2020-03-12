@@ -3,7 +3,6 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.holding.HoldingMapper">
-    <!-- TODO: 蔵書の状態をSQLで判断するのをやめる -->
     <select id="selectHolding" resultType="library.domain.model.holding.Holding">
         SELECT
             蔵書.蔵書コード as "holdingCode.value",
@@ -11,18 +10,9 @@
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
             本.本種別 as "book.bookType",
-            CASE
-               WHEN 現在の貸出.貸出ID IS NULL THEN '在庫中'
-               ELSE '貸出中'
-            END as "holdingStatus",
+            '在庫中' as "holdingStatus"
         FROM 蔵書
         INNER JOIN 本 on (蔵書.本ID = 本.本ID)
-        LEFT OUTER JOIN
-            (SELECT
-                貸出.貸出ID as 貸出ID,
-                貸出.蔵書コード as 蔵書コード
-            FROM 貸出 LEFT OUTER JOIN 返却 ON 貸出.貸出ID = 返却.貸出ID WHERE 返却.貸出ID IS NULL) 現在の貸出
-        ON 蔵書.蔵書コード = 現在の貸出.蔵書コード
         WHERE 蔵書.蔵書コード = #{holdingCode.value}
     </select>
 

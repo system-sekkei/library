@@ -1,8 +1,7 @@
 package library.infrastructure.datasource.holding;
 
 import library.domain.model.book.BookId;
-import library.domain.model.holding.Holding;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.holding.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

@@ -5,27 +5,38 @@ import library.domain.model.holding.Holding;
 import library.domain.model.holding.HoldingCode;
 import library.domain.model.holding.HoldingInStock;
 import library.domain.model.holding.HoldingOnLoan;
+import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class HoldingDataSource implements HoldingRepository {
-    HoldingMapper mapper;
+    HoldingMapper holdingMapper;
+    BookOnLoanMapper bookOnLoanMapper;
 
-    public HoldingDataSource(HoldingMapper mapper) {
-        this.mapper = mapper;
+    public HoldingDataSource(HoldingMapper holdingMapper, BookOnLoanMapper bookOnLoanMapper) {
+        this.holdingMapper = holdingMapper;
+        this.bookOnLoanMapper = bookOnLoanMapper;
     }
 
     @Override
     public HoldingOnLoan findHoldingOnLoan(HoldingCode holdingCode) {
-        // TODO: 貸出中の蔵書を返却するようにする
-        Holding holding = mapper.selectHolding(holdingCode);
+        Holding holding = holdingMapper.selectHolding(holdingCode);
+
+        if (bookOnLoanMapper.selectByHoldingCode(holdingCode).isEmpty()) {
+            throw new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", holdingCode));
+        }
+
         return new HoldingOnLoan(holding);
     }
 
     @Override
     public HoldingInStock findHoldingInStock(HoldingCode holdingCode) {
-        // TODO: 在庫中の蔵書を返却するようにする
-        Holding holding = mapper.selectHolding(holdingCode);
+        Holding holding = holdingMapper.selectHolding(holdingCode);
+
+        if (bookOnLoanMapper.selectByHoldingCode(holdingCode).isPresent()) {
+            throw new IllegalArgumentException(String.format("現在在庫にない蔵書です。蔵書コード：%s", holdingCode));
+        }
+
         return new HoldingInStock(holding);
     }
 }
