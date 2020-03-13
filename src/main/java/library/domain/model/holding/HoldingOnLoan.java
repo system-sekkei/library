@@ -10,6 +10,10 @@ public class HoldingOnLoan {
         this.holding = holding;
     }
 
+    public HoldingStatus holdingStatus() {
+        return HoldingStatus.貸出中;
+    }
+
     public Holding holding() {
         return holding;
     }

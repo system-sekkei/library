@@ -10,6 +10,10 @@ public class HoldingInStock {
         this.holding = holding;
     }
 
+    public HoldingStatus holdingStatus() {
+        return HoldingStatus.在庫中;
+    }
+
     public Holding holding() {
         return holding;
     }

@@ -8,20 +8,14 @@ import library.domain.model.book.Book;
 public class Holding {
     HoldingCode holdingCode;
     Book book;
-    HoldingStatus holdingStatus; // TODO: あとで消す
 
     @Deprecated
     Holding() {
     }
 
-    public Holding(HoldingCode holdingCode, Book book, HoldingStatus holdingStatus) {
+    public Holding(HoldingCode holdingCode, Book book) {
         this.holdingCode = holdingCode;
         this.book = book;
-        this.holdingStatus = holdingStatus;
-    }
-
-    public HoldingStatus holdingStatus() {
-        return holdingStatus;
     }
 
     public HoldingCode holdingCode() {
