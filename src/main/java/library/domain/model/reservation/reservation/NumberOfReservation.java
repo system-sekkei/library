@@ -1,4 +1,4 @@
-package library.domain.model.reservation;
+package library.domain.model.reservation.reservation;
 
 /**
  * 予約の件数

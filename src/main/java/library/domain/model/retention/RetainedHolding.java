@@ -1,7 +1,7 @@
 package library.domain.model.retention;
 
 import library.domain.model.holding.Holding;
-import library.domain.model.reservation.ReservedBook;
+import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.type.date.Date;
 
 /**

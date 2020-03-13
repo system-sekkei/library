@@ -5,7 +5,7 @@ import library.application.service.reservation.BookQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.book.Book;
 import library.domain.model.member.Member;
-import library.domain.model.reservation.TryingToReserveBook;
+import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

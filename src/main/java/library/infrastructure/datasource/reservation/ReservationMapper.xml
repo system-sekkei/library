@@ -13,7 +13,7 @@
     </insert>
 
     <!-- TODO: 未取置のもののみ取得する -->
-    <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.ReservedBook">
+    <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.reservation.ReservedBook">
         SELECT 会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
                会員.会員種別 as "member.memberType",

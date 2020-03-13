@@ -6,8 +6,8 @@ import library.domain.model.book.Book;
 import library.domain.model.book.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.Reservations;
-import library.domain.model.reservation.TryingToReserveBook;
+import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

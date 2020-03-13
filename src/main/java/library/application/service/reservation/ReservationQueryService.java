@@ -1,7 +1,7 @@
 package library.application.service.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.reservation.Reservations;
+import library.domain.model.reservation.reservation.Reservations;
 import org.springframework.stereotype.Service;
 
 /**

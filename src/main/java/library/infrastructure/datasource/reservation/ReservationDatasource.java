@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.reservation.Reservations;
-import library.domain.model.reservation.ReservedBook;
-import library.domain.model.reservation.TryingToReserveBook;
+import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.reservation.ReservedBook;
+import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
