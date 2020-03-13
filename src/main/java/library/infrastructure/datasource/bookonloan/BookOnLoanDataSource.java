@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 
 @Repository
 public class BookOnLoanDataSource implements BookOnLoanRepository {
-    BookOnLoanMapper mapper;
+    BookOnLoanMapper bookOnLoanMapper;
     HoldingMapper holdingMapper;
     MemberMapper memberMapper;
 
-    public BookOnLoanDataSource(BookOnLoanMapper mapper, HoldingMapper holdingMapper, MemberMapper memberMapper) {
-        this.mapper = mapper;
+    public BookOnLoanDataSource(BookOnLoanMapper bookOnLoanMapper, HoldingMapper holdingMapper, MemberMapper memberMapper) {
+        this.bookOnLoanMapper = bookOnLoanMapper;
         this.holdingMapper = holdingMapper;
         this.memberMapper = memberMapper;
     }
@@ -36,12 +36,12 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         HoldingCode holdingCode = bookOnLoanRequest.holdingInStock().holding().holdingCode();
         holdingMapper.lockHolding(holdingCode);
 
-        if (mapper.selectByHoldingCode(holdingCode).isPresent()) {
+        if (bookOnLoanMapper.selectByHoldingCode(holdingCode).isPresent()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
         }
 
-        Integer bookOnLoanId = mapper.newBookOnLoanIdentifier();
-        mapper.insertBookOnLoan(
+        Integer bookOnLoanId = bookOnLoanMapper.newBookOnLoanIdentifier();
+        bookOnLoanMapper.insertBookOnLoan(
                 bookOnLoanId,
                 bookOnLoanRequest.member().memberNumber(),
                 bookOnLoanRequest.holdingInStock().holding().holdingCode(),
@@ -53,12 +53,12 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     @Override
     public void registerReturnBook(ReturningBookOnLoan returningBookOnLoan) {
         BookOnLoan bookOnLoan = returningBookOnLoan.bookOnLoan();
-        mapper.insertReturnBook(bookOnLoan.bookOnLoanId(), returningBookOnLoan.returnDate());
+        bookOnLoanMapper.insertReturnBook(bookOnLoan.bookOnLoanId(), returningBookOnLoan.returnDate());
     }
 
     @Override
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
-        List<BookOnLoanData> bookOnLoanDataList = mapper.selectByMemberNumber(member.memberNumber());
+        List<BookOnLoanData> bookOnLoanDataList = bookOnLoanMapper.selectByMemberNumber(member.memberNumber());
         List<BookOnLoan> bookOnLoans = bookOnLoans(member, bookOnLoanDataList);
 
         return new MemberAllBookOnLoans(member, new BookOnLoans(bookOnLoans));
@@ -66,7 +66,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
 
     @Override
     public BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode) {
-        BookOnLoanData bookOnLoanData = mapper.selectByHoldingCode(holdingCode).orElseThrow(() ->
+        BookOnLoanData bookOnLoanData = bookOnLoanMapper.selectByHoldingCode(holdingCode).orElseThrow(() ->
                 new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", holdingCode)));
 
         Member member = memberMapper.selectMember(bookOnLoanData.memberNumber);
