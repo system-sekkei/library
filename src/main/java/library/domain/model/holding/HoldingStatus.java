@@ -5,6 +5,7 @@ package library.domain.model.holding;
  */
 public enum HoldingStatus {
     在庫中,
+    取置中,
     貸出中;
 
     public boolean outOnLoan() {
