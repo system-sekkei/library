@@ -1,4 +1,4 @@
-package library.domain.model.holding;
+package library.domain.model.reservation.reservation;
 
 /**
  * Web予約の状態
