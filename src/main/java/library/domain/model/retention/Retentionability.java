@@ -5,5 +5,5 @@ package library.domain.model.retention;
  */
 public enum Retentionability {
     取置可能,
-    取置不可能;
+    取置キャンセル;
 }

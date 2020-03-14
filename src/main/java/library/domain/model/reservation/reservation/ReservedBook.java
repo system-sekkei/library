@@ -22,4 +22,8 @@ public class ReservedBook {
     public Member member() {
         return member;
     }
+
+    public Book book() {
+        return book;
+    }
 }
