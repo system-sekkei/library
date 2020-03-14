@@ -1,9 +1,9 @@
 package library.domain.model.retention;
 
 /**
- * 取り置けるかどうか
+ * 貸出予約一覧出力条件
  */
 public enum Retentionability {
-    取置可能,
-    取置キャンセル;
+    対象,
+    対象外;
 }

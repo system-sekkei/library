@@ -6,7 +6,7 @@ import library.domain.model.book.Book;
 import library.domain.model.book.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.reservation.ReservedBooks;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ class ReservedBookQueryServiceTest {
         TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        Reservations reservations = reservationQueryService.findReservations();
+        ReservedBooks reservedBooks = reservationQueryService.findReservations();
 
         assertAll(
-                () -> assertEquals(1, reservations.numberOfReservation().value()));
+                () -> assertEquals(1, reservedBooks.numberOfReservation().value()));
     }
 }
