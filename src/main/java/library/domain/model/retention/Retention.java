@@ -17,6 +17,11 @@ public class Retention {
     HoldingsInStock holdingsInStock;
     Retentions retentions;
 
+    public Retention(HoldingsInStock holdingsInStock, Retentions retentions) {
+        this.holdingsInStock = holdingsInStock;
+        this.retentions = retentions;
+    }
+
     public RetentionableReservedBooks retentionableReservedBooks(ReservedBooks reservedBooks) {
         List<ReservedBook> list = new ArrayList<>();
         for (ReservedBook reservedBook : reservedBooks.list()) {

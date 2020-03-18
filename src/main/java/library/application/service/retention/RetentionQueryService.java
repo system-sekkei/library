@@ -1,5 +1,7 @@
 package library.application.service.retention;
 
+import library.application.repository.HoldingRepository;
+import library.domain.model.holding.HoldingsInStock;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Service;
 
@@ -8,10 +10,15 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RetentionQueryService {
+    HoldingRepository holdingRepository;
 
-    public Retention getRetention() {
-        // TODO: 蔵書
-        Retention retention = new Retention();
-        return retention;
+    public RetentionQueryService(HoldingRepository holdingRepository) {
+        this.holdingRepository = holdingRepository;
+    }
+
+    public Retention retention() {
+        HoldingsInStock holdingsInStock = holdingRepository.allHoldingsInStock();
+
+        return new Retention(holdingsInStock, null);
     }
 }

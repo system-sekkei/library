@@ -13,6 +13,8 @@ public interface HoldingMapper {
 
     List<Holding> selectHoldings(@Param("holdingCodes") List<HoldingCode> holdingCodes);
 
+    List<Holding> selectAllHoldingsInStock();
+
     List<Holding> selectHoldingsByBookIds(@Param("bookIds") List<BookId> bookIds);
 
     HoldingCode lockHolding(@Param("holdingCode") HoldingCode holdingCode);
