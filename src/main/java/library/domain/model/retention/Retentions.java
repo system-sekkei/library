@@ -10,6 +10,10 @@ import java.util.List;
 public class Retentions {
     List<RetainedHolding> list;
 
+    public Retentions(List<RetainedHolding> list) {
+        this.list = list;
+    }
+
     public boolean notContains(Holding holding) {
         return list.stream().noneMatch(retainedHolding -> retainedHolding.isA(holding));
     }

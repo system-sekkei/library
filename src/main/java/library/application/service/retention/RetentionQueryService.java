@@ -18,7 +18,7 @@ public class RetentionQueryService {
 
     public Retention retention() {
         HoldingsInStock holdingsInStock = holdingRepository.allHoldingsInStock();
-        // TODO:  retentions
+        // TODO: Retentions取得
 
         return new Retention(holdingsInStock, null);
     }
