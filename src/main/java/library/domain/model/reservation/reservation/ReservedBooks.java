@@ -16,8 +16,7 @@ public class ReservedBooks {
         return new NumberOfReservation(list.size());
     }
 
-    public List<ReservedBook> list() {
+    public List<ReservedBook> asList() {
         return list;
     }
-
 }

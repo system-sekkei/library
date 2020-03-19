@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/layout :: htmlhead(~{::title})">
+    <meta charset="utf-8"/>
+    <title>予約図書一覧</title>
+</head>
+<body>
+<header th:replace="fragments/navigation::navigation('予約図書一覧')"></header>
+
+<main class="container">
+    <header th:replace="fragments/header::header('予約図書一覧')"></header>
+
+    <th:block th:if="${reservedBooks}">
+        <span th:text="${reservedBooks.numberOfReservation().value()}"></span><span>件</span>
+        <table class="table">
+            <thead>
+            <th>会員番号</th>
+            <th>種別</th>
+            <th>タイトル</th>
+            <th>著者</th>
+            </thead>
+            <tbody>
+            <tr th:each="reservedBook : ${reservedBooks.asList()}">
+                <td th:text="${reservedBook.member().name()}"></td>
+                <td th:text="${reservedBook.book().bookType()}"></td>
+                <td th:text="${reservedBook.book().title()}"></td>
+                <td th:text="${reservedBook.book().author()}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </th:block>
+
+</main>
+</body>
+</html>

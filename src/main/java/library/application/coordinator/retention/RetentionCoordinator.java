@@ -18,7 +18,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 貸出予約図書一覧を出力する
+     * 取置可能な貸出予約図書一覧を出力する
      */
     public RetentionableReservedBooks retention() {
         ReservedBooks reservedBooks = reservationQueryService.findReservations();

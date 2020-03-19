@@ -28,6 +28,11 @@
           <span class="icon"><i class="fas mdiBookOpenVariant"></i></span>
           <span>本の貸出予約</span>
       </a>
+        <a class="navbar-item" th:classappend="${active.equals('予約図書一覧')} ? 'is-active' : ''"
+           th:href="@{/reservation/list}">
+            <span class="icon"><i class="fas mdiBookOpenVariant"></i></span>
+            <span>予約図書一覧</span>
+        </a>
     </div>
   </nav>
 </header>

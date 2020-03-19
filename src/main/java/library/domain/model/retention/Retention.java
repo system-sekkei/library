@@ -24,7 +24,7 @@ public class Retention {
 
     public RetentionableReservedBooks retentionableReservedBooks(ReservedBooks reservedBooks) {
         List<ReservedBook> list = new ArrayList<>();
-        for (ReservedBook reservedBook : reservedBooks.list()) {
+        for (ReservedBook reservedBook : reservedBooks.asList()) {
             if (retentionability(reservedBook) == Retentionability.対象) {
                 list.add(reservedBook);
             }
