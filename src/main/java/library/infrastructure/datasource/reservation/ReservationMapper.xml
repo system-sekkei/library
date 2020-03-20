@@ -26,4 +26,8 @@
         INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
         INNER JOIN 本 on 予約.本ID = 本.本ID
     </select>
+
+    <insert id="insertCancelReservation">
+        INSERT INTO 予約取消(予約ID) VALUES (#{reservationId})
+    </insert>
 </mapper>
