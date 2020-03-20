@@ -21,8 +21,7 @@
                本.本ID as "book.bookId.value",
                本.タイトル as "book.title.value",
                本.著者 as "book.author.value",
-               本.本種別 as "book.bookType",
-                '未準備' as "retentionStatus"
+               本.本種別 as "book.bookType"
         FROM 予約
         INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
         INNER JOIN 本 on 予約.本ID = 本.本ID
