@@ -31,4 +31,9 @@ public class ReservationDatasource implements ReservationRepository {
         List<ReservedBook> reservedBooks = reservationMapper.selectAllNotRetainedReservation();
         return new ReservedBooks(reservedBooks);
     }
+
+    @Override
+    public void cancelReservation(ReservedBook reservedBook) {
+        // TODO:
+    }
 }

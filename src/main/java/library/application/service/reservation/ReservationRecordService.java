@@ -1,6 +1,7 @@
 package library.application.service.reservation;
 
 import library.application.repository.ReservationRepository;
+import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,12 @@ public class ReservationRecordService {
      */
     public void registerReservation(TryingToReserveBook tryingToReserveBook) {
         reservationRepository.registerReservation(tryingToReserveBook);
+    }
+
+    /**
+     * 貸出予約の取消
+     */
+    public void cancelReservation(ReservedBook reservedBook) {
+        reservationRepository.cancelReservation(reservedBook);
     }
 }
