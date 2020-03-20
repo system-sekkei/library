@@ -14,7 +14,7 @@
 
     <!-- TODO: 未取置のもののみ取得する -->
     <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.reservation.ReservedBook">
-        SELECT 予約ID as "reservationId.value",
+        SELECT 予約.予約ID as "reservationId.value",
                会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
                会員.会員種別 as "member.memberType",
@@ -26,6 +26,8 @@
         FROM 予約
         INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
         INNER JOIN 本 on 予約.本ID = 本.本ID
+        LEFT OUTER JOIN 予約取消 on 予約.予約ID = 予約取消.予約ID
+        WHERE 予約取消.予約ID IS NULL
     </select>
 
     <insert id="insertCancelReservation">

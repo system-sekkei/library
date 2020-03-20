@@ -15,11 +15,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
 class ReservedBookRecordServiceTest {
     @Autowired
     ReservationRecordService reservationRecordService;
+
+    @Autowired
+    ReservationQueryService reservationQueryService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -41,5 +45,22 @@ class ReservedBookRecordServiceTest {
         List<ReservedBook> result = reservationMapper.selectAllNotRetainedReservation();
 
         assertEquals(result.size(), 1);
+    }
+
+    @Test
+    void 貸出予約を取り消すことができる() {
+        Member member = memberQueryService.findMember(new MemberNumber(2));
+        Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+
+        TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
+        reservationRecordService.registerReservation(tryingToReserveBook);
+
+        ReservedBook reservedBook = reservationMapper.selectAllNotRetainedReservation().get(0);
+
+        reservationRecordService.cancelReservation(reservedBook);
+
+        List<ReservedBook> reservedBooks = reservationMapper.selectAllNotRetainedReservation();
+
+        assertTrue(reservedBooks.stream().noneMatch(r -> r.reservationId().value() == reservedBook.reservationId().value()));
     }
 }
