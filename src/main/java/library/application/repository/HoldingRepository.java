@@ -1,5 +1,6 @@
 package library.application.repository;
 
+import library.domain.model.book.BookIds;
 import library.domain.model.holding.HoldingCode;
 import library.domain.model.holding.HoldingInStock;
 import library.domain.model.holding.HoldingOnLoan;
@@ -13,5 +14,5 @@ public interface HoldingRepository {
 
     HoldingInStock findHoldingInStock(HoldingCode holdingCode);
 
-    HoldingsInStock allHoldingsInStock();
+    HoldingsInStock findHoldingsInStockByBookIds(BookIds bookIds);
 }

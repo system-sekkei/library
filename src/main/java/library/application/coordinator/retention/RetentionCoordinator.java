@@ -22,7 +22,7 @@ public class RetentionCoordinator {
      */
     public RetentionableReservedBooks retention() {
         ReservedBooks reservedBooks = reservationQueryService.findReservations();
-        Retention retention = retentionQueryService.retention();
+        Retention retention = retentionQueryService.retention(reservedBooks);
         return retention.retentionableReservedBooks(reservedBooks);
     }
 }

@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.holding;
 
 import library.application.repository.HoldingRepository;
+import library.domain.model.book.BookIds;
 import library.domain.model.holding.*;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import org.springframework.stereotype.Repository;
@@ -41,9 +42,13 @@ public class HoldingDataSource implements HoldingRepository {
     }
 
     @Override
-    public HoldingsInStock allHoldingsInStock() {
+    public HoldingsInStock findHoldingsInStockByBookIds(BookIds bookIds) {
+        if (bookIds.isEmpty()) {
+            return new HoldingsInStock(List.of());
+        }
+
         List<HoldingInStock> holdingInStocks =
-            holdingMapper.selectAllHoldingsInStock().stream().map(HoldingInStock::new).collect(Collectors.toList());
+            holdingMapper.selectHoldingsInStockByBookIds(bookIds.asList()).stream().map(HoldingInStock::new).collect(Collectors.toList());
         return new HoldingsInStock(holdingInStocks);
     }
 }
