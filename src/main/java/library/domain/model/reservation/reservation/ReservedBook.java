@@ -7,6 +7,7 @@ import library.domain.model.member.Member;
  * 貸出予約
  */
 public class ReservedBook {
+    ReservationId reservationId;
     Member member;
     Book book;
 
@@ -14,7 +15,8 @@ public class ReservedBook {
     ReservedBook() {
     }
 
-    public ReservedBook(Member member, Book book) {
+    public ReservedBook(ReservationId reservationId, Member member, Book book) {
+        this.reservationId = reservationId;
         this.member = member;
         this.book = book;
     }

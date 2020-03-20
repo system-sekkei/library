@@ -14,7 +14,8 @@
 
     <!-- TODO: 未取置のもののみ取得する -->
     <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.reservation.ReservedBook">
-        SELECT 会員.会員番号 as "member.memberNumber.value",
+        SELECT 予約ID as "reservationId.value",
+               会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
                会員.会員種別 as "member.memberType",
                本.本ID as "book.bookId.value",
