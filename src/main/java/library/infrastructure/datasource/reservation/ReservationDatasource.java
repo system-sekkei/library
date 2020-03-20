@@ -34,6 +34,6 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     public void cancelReservation(ReservedBook reservedBook) {
-        // TODO:
+        reservationMapper.insertCancelReservation(reservedBook.reservationId());
     }
 }

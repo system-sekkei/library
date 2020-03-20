@@ -2,6 +2,7 @@ package library.infrastructure.datasource.reservation;
 
 import library.domain.model.book.BookId;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.reservation.reservation.ReservationId;
 import library.domain.model.reservation.reservation.ReservedBook;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -19,5 +20,5 @@ public interface ReservationMapper {
 
     List<ReservedBook> selectAllNotRetainedReservation();
 
-    void insertCancelReservation(@Param("reservationId") Integer reservationId);
+    void insertCancelReservation(@Param("reservationId") ReservationId reservationId);
 }

@@ -29,6 +29,6 @@
     </select>
 
     <insert id="insertCancelReservation">
-        INSERT INTO 予約取消(予約ID) VALUES (#{reservationId})
+        INSERT INTO 予約取消(予約ID) VALUES (#{reservationId.value})
     </insert>
 </mapper>

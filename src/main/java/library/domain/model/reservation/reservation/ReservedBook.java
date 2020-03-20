@@ -28,4 +28,8 @@ public class ReservedBook {
     public Book book() {
         return book;
     }
+
+    public ReservationId reservationId() {
+        return reservationId;
+    }
 }

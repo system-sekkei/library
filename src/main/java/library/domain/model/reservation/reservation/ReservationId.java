@@ -13,4 +13,8 @@ public class ReservationId {
     public ReservationId(int value) {
         this.value = value;
     }
+
+    public int value() {
+        return value;
+    }
 }
