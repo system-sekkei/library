@@ -1,5 +1,6 @@
 package library.application.repository;
 
+import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.model.reservation.reservation.ReservedBooks;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
@@ -10,4 +11,6 @@ public interface ReservationRepository {
     ReservedBooks findReservations();
 
     void cancelReservation(ReservedBook reservedBook);
+
+    ReservedBooks findReservationsByMember(Member member);
 }

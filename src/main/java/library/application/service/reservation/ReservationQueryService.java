@@ -1,6 +1,7 @@
 package library.application.service.reservation;
 
 import library.application.repository.ReservationRepository;
+import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.ReservedBooks;
 import org.springframework.stereotype.Service;
 
@@ -20,5 +21,12 @@ public class ReservationQueryService {
      */
     public ReservedBooks findReservations() {
         return reservationRepository.findReservations();
+    }
+
+    /**
+     * 会員の現在の貸出予約一覧
+     */
+    public ReservedBooks findReservationsByMember(Member member) {
+        return reservationRepository.findReservationsByMember(member);
     }
 }

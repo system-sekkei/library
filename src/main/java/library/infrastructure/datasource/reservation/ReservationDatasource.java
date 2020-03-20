@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
+import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.ReservedBooks;
 import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
@@ -35,5 +36,11 @@ public class ReservationDatasource implements ReservationRepository {
     @Override
     public void cancelReservation(ReservedBook reservedBook) {
         reservationMapper.insertCancelReservation(reservedBook.reservationId());
+    }
+
+    @Override
+    public ReservedBooks findReservationsByMember(Member member) {
+        List<ReservedBook> reservedBooks = reservationMapper.selectReservationsByMemberNumber(member.memberNumber());
+        return new ReservedBooks(reservedBooks);
     }
 }

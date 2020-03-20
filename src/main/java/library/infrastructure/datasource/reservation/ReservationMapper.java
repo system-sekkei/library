@@ -4,6 +4,7 @@ import library.domain.model.book.BookId;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.ReservationId;
 import library.domain.model.reservation.reservation.ReservedBook;
+import library.domain.model.reservation.reservation.ReservedBooks;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -21,4 +22,6 @@ public interface ReservationMapper {
     List<ReservedBook> selectAllNotRetainedReservation();
 
     void insertCancelReservation(@Param("reservationId") ReservationId reservationId);
+
+    List<ReservedBook> selectReservationsByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
 }

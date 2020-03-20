@@ -32,4 +32,20 @@
     <insert id="insertCancelReservation">
         INSERT INTO 予約取消(予約ID) VALUES (#{reservationId.value})
     </insert>
+
+    <select id="selectReservationsByMemberNumber" resultType="library.domain.model.reservation.reservation.ReservedBook">
+        SELECT 予約.予約ID as "reservationId.value",
+               会員.会員番号 as "member.memberNumber.value",
+               会員.氏名   as "member.name.value",
+               会員.会員種別 as "member.memberType",
+               本.本ID as "book.bookId.value",
+               本.タイトル as "book.title.value",
+               本.著者 as "book.author.value",
+               本.本種別 as "book.bookType"
+        FROM 予約
+        INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
+        INNER JOIN 本 on 予約.本ID = 本.本ID
+        LEFT OUTER JOIN 予約取消 on 予約.予約ID = 予約取消.予約ID
+        WHERE 会員.会員番号 = #{memberNumber.value} AND 予約取消.予約ID IS NULL
+    </select>
 </mapper>

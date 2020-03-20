@@ -40,4 +40,17 @@ class ReservedBookQueryServiceTest {
         assertAll(
                 () -> assertEquals(1, reservedBooks.numberOfReservation().value()));
     }
+
+    @Test
+    void 会員の現在の貸出予約一覧を取得することができる() {
+        Member member = memberQueryService.findMember(new MemberNumber(2));
+        Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+        TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
+        reservationRecordService.registerReservation(tryingToReserveBook);
+
+        ReservedBooks reservedBooks = reservationQueryService.findReservationsByMember(member);
+
+        assertAll(
+                () -> assertEquals(1, reservedBooks.numberOfReservation().value()));
+    }
 }
