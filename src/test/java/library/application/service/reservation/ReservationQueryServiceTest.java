@@ -8,6 +8,7 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.reservation.ReservedBook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,7 +35,7 @@ class ReservationQueryServiceTest {
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
         Member member1 = member;
         Book book1 = book;
-        Reservation tryingToReserveBook = new Reservation(member1, book1);
+        Reservation tryingToReserveBook = new Reservation(member1, new ReservedBook(book1));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         Reservations reservations = reservationQueryService.findReservations();
@@ -49,7 +50,7 @@ class ReservationQueryServiceTest {
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
         Member member1 = member;
         Book book1 = book;
-        Reservation tryingToReserveBook = new Reservation(member1, book1);
+        Reservation tryingToReserveBook = new Reservation(member1, new ReservedBook(book1));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         Reservations reservations = reservationQueryService.findReservationsByMember(member);

@@ -7,6 +7,7 @@ import library.domain.model.book.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.ReservedBook;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ class ReservationRecordServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveBook = new Reservation(member, book);
+        Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         List<Reservation> result = reservationMapper.selectAllNotRetainedReservation();
@@ -51,7 +52,7 @@ class ReservationRecordServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveBook = new Reservation(member, book);
+        Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         Reservation reservation = reservationMapper.selectAllNotRetainedReservation().get(0);

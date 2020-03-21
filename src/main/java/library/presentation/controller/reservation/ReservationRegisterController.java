@@ -6,6 +6,7 @@ import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.book.Book;
 import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.ReservedBook;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,9 +43,7 @@ public class ReservationRegisterController {
 
         Member member = memberQueryService.findMember(reservationForm.memberNumber);
         Book book = bookQueryService.findBook(reservationForm.bookId);
-        Member member1 = member;
-        Book book1 = book;
-        Reservation tryingToReserveBook = new Reservation(member1, book1);
+        Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
 
         reservationRecordService.registerReservation(tryingToReserveBook);
 
