@@ -23,7 +23,7 @@ public class ReservationDatasource implements ReservationRepository {
         reservationMapper.insertReservation(
                 reservationId,
                 tryingToReserveBook.member().memberNumber(),
-                tryingToReserveBook.book().bookId());
+                tryingToReserveBook.reservedBook().book().bookId());
     }
 
     @Override

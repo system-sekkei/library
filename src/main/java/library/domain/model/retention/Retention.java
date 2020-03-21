@@ -35,7 +35,7 @@ public class Retention {
 
     public Retentionability retentionability(Reservation reservation) {
         for (HoldingInStock holdingInStock : holdingsInStock.list()) {
-            if (holdingInStock.holding().sameBook(reservation.book()) && retentionability(holdingInStock.holding())) {
+            if (holdingInStock.holding().sameBook(reservation.reservedBook().book()) && retentionability(holdingInStock.holding())) {
                 return Retentionability.対象;
             }
         }
