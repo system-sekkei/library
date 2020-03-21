@@ -24,4 +24,16 @@ public class RetainedHolding {
     public boolean isA(Holding holding) {
         return holding.holdingCode().sameValue(this.holding.holdingCode());
     }
+
+    public ReservedBook reservedBook() {
+        return reservedBook;
+    }
+
+    public RetainedDate retainedDate() {
+        return retainedDate;
+    }
+
+    public Holding holding() {
+        return holding;
+    }
 }
