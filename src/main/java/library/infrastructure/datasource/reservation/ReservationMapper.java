@@ -4,7 +4,6 @@ import library.domain.model.book.BookId;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.ReservationId;
 import library.domain.model.reservation.reservation.ReservedBook;
-import library.domain.model.reservation.reservation.ReservedBooks;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

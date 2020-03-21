@@ -6,6 +6,7 @@ import library.domain.model.member.Member;
 /**
  * 貸出予約
  */
+ // TODO: パッケージはReservation(=貸出予約)にしている。こっちは貸出予約図書？？
 public class ReservedBook {
     ReservationId reservationId;
     Member member;
