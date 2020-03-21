@@ -1,14 +1,14 @@
 package library.domain.model.retention;
 
 import library.domain.model.holding.Holding;
-import library.domain.model.reservation.reservation.ReservedBook;
+import library.domain.model.reservation.reservation.Reservation;
 import library.domain.type.date.Date;
 
 /**
  * 取置済み蔵書
  */
 public class RetainedHolding {
-    ReservedBook reservedBook;
+    Reservation reservation;
     RetainedDate retainedDate;
     Holding holding;
 
@@ -25,8 +25,8 @@ public class RetainedHolding {
         return holding.holdingCode().sameValue(this.holding.holdingCode());
     }
 
-    public ReservedBook reservedBook() {
-        return reservedBook;
+    public Reservation reservedBook() {
+        return reservation;
     }
 
     public RetainedDate retainedDate() {

@@ -1,16 +1,16 @@
 package library.application.repository;
 
 import library.domain.model.member.Member;
-import library.domain.model.reservation.reservation.ReservedBook;
-import library.domain.model.reservation.reservation.ReservedBooks;
+import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
 
 public interface ReservationRepository {
     void registerReservation(TryingToReserveBook tryingToReserveBook);
 
-    ReservedBooks findReservations();
+    Reservations findReservations();
 
-    void cancelReservation(ReservedBook reservedBook);
+    void cancelReservation(Reservation reservation);
 
-    ReservedBooks findReservationsByMember(Member member);
+    Reservations findReservationsByMember(Member member);
 }

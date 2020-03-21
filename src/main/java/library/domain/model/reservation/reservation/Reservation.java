@@ -6,17 +6,16 @@ import library.domain.model.member.Member;
 /**
  * 貸出予約
  */
- // TODO: パッケージはReservation(=貸出予約)にしている。こっちは貸出予約図書？？
-public class ReservedBook {
+public class Reservation {
     ReservationId reservationId;
     Member member;
     Book book;
 
     @Deprecated
-    ReservedBook() {
+    Reservation() {
     }
 
-    public ReservedBook(ReservationId reservationId, Member member, Book book) {
+    public Reservation(ReservationId reservationId, Member member, Book book) {
         this.reservationId = reservationId;
         this.member = member;
         this.book = book;

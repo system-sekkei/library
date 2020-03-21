@@ -4,8 +4,8 @@ package library.domain.model.retention;
 import library.domain.model.holding.Holding;
 import library.domain.model.holding.HoldingInStock;
 import library.domain.model.holding.HoldingsInStock;
-import library.domain.model.reservation.reservation.ReservedBook;
-import library.domain.model.reservation.reservation.ReservedBooks;
+import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.Reservations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,20 +22,20 @@ public class Retention {
         this.retentions = retentions;
     }
 
-    public RetentionableReservedBooks retentionableReservedBooks(ReservedBooks reservedBooks) {
-        List<ReservedBook> list = new ArrayList<>();
-        for (ReservedBook reservedBook : reservedBooks.asList()) {
-            if (retentionability(reservedBook) == Retentionability.対象) {
-                list.add(reservedBook);
+    public RetentionableReservedBooks retentionableReservedBooks(Reservations reservations) {
+        List<Reservation> list = new ArrayList<>();
+        for (Reservation reservation : reservations.asList()) {
+            if (retentionability(reservation) == Retentionability.対象) {
+                list.add(reservation);
             }
         }
 
         return new RetentionableReservedBooks(list);
     }
 
-    public Retentionability retentionability(ReservedBook reservedBook) {
+    public Retentionability retentionability(Reservation reservation) {
         for (HoldingInStock holdingInStock : holdingsInStock.list()) {
-            if (holdingInStock.holding().sameBook(reservedBook.book()) && retentionability(holdingInStock.holding())) {
+            if (holdingInStock.holding().sameBook(reservation.book()) && retentionability(holdingInStock.holding())) {
                 return Retentionability.対象;
             }
         }

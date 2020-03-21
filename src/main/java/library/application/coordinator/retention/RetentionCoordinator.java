@@ -2,7 +2,7 @@ package library.application.coordinator.retention;
 
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.retention.RetentionQueryService;
-import library.domain.model.reservation.reservation.ReservedBooks;
+import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.retention.Retention;
 import library.domain.model.retention.RetentionableReservedBooks;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,16 @@ public class RetentionCoordinator {
      * 取置可能な貸出予約図書一覧を出力する
      */
     public RetentionableReservedBooks retention() {
-        ReservedBooks reservedBooks = reservationQueryService.findReservations();
-        Retention retention = retentionQueryService.retention(reservedBooks);
-        return retention.retentionableReservedBooks(reservedBooks);
+        Reservations reservations = reservationQueryService.findReservations();
+        Retention retention = retentionQueryService.retention(reservations);
+        return retention.retentionableReservedBooks(reservations);
+    }
+
+    /**
+     * 貸出予約
+     */
+    public Reservations findReservedBooks() {
+        // TODO:
+        return null;
     }
 }

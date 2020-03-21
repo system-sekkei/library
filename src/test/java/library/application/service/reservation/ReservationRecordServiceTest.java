@@ -6,21 +6,24 @@ import library.domain.model.book.Book;
 import library.domain.model.book.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.reservation.ReservedBooks;
+import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.TryingToReserveBook;
+import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
-class ReservedBookQueryServiceTest {
-    @Autowired
-    ReservationQueryService reservationQueryService;
-
+class ReservationRecordServiceTest {
     @Autowired
     ReservationRecordService reservationRecordService;
+
+    @Autowired
+    ReservationQueryService reservationQueryService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -28,29 +31,36 @@ class ReservedBookQueryServiceTest {
     @Autowired
     BookQueryService bookQueryService;
 
+    @Autowired
+    ReservationMapper reservationMapper;
+
     @Test
-    void 予約図書一覧を取得することができる() {
+    void 貸出予約を登録することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+
         TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        ReservedBooks reservedBooks = reservationQueryService.findReservations();
+        List<Reservation> result = reservationMapper.selectAllNotRetainedReservation();
 
-        assertAll(
-                () -> assertEquals(1, reservedBooks.numberOfReservation().value()));
+        assertEquals(result.size(), 1);
     }
 
     @Test
-    void 会員の現在の貸出予約一覧を取得することができる() {
+    void 貸出予約を取り消すことができる() {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+
         TryingToReserveBook tryingToReserveBook = new TryingToReserveBook(member, book);
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        ReservedBooks reservedBooks = reservationQueryService.findReservationsByMember(member);
+        Reservation reservation = reservationMapper.selectAllNotRetainedReservation().get(0);
 
-        assertAll(
-                () -> assertEquals(1, reservedBooks.numberOfReservation().value()));
+        reservationRecordService.cancelReservation(reservation);
+
+        List<Reservation> reservations = reservationMapper.selectAllNotRetainedReservation();
+
+        assertTrue(reservations.stream().noneMatch(r -> r.reservationId().value() == reservation.reservationId().value()));
     }
 }
