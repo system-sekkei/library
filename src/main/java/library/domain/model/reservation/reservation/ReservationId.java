@@ -14,6 +14,11 @@ public class ReservationId {
         this.value = value;
     }
 
+    public static ReservationId generate() {
+        // TODO:
+        return new ReservationId(0);
+    }
+
     public int value() {
         return value;
     }

@@ -15,6 +15,10 @@ public class Reservation {
     Reservation() {
     }
 
+    public Reservation(Member member, Book book) {
+        this(ReservationId.generate(), member, book);
+    }
+
     public Reservation(ReservationId reservationId, Member member, Book book) {
         this.reservationId = reservationId;
         this.member = member;

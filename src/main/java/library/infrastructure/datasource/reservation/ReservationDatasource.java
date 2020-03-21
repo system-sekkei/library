@@ -4,7 +4,6 @@ import library.application.repository.ReservationRepository;
 import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.reservation.TryingToReserveBook;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
-    public void registerReservation(TryingToReserveBook tryingToReserveBook) {
+    public void registerReservation(Reservation tryingToReserveBook) {
         Integer reservationId = reservationMapper.newReservationIdentifier();
 
         reservationMapper.insertReservation(
