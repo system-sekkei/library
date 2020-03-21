@@ -5,12 +5,12 @@ import library.domain.model.holding.Holding;
 import java.util.List;
 
 /**
- * 取置のリスト
+ * 取置棚
  */
-public class Retentions {
+public class RetentionShelf {
     List<RetainedHolding> list;
 
-    public Retentions(List<RetainedHolding> list) {
+    public RetentionShelf(List<RetainedHolding> list) {
         this.list = list;
     }
 

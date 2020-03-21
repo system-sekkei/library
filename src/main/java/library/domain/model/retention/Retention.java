@@ -15,11 +15,11 @@ import java.util.List;
  */
 public class Retention {
     HoldingsInStock holdingsInStock;
-    Retentions retentions;
+    RetentionShelf retentionShelf;
 
-    public Retention(HoldingsInStock holdingsInStock, Retentions retentions) {
+    public Retention(HoldingsInStock holdingsInStock, RetentionShelf retentionShelf) {
         this.holdingsInStock = holdingsInStock;
-        this.retentions = retentions;
+        this.retentionShelf = retentionShelf;
     }
 
     public RetentionableReservedBooks retentionableReservedBooks(Reservations reservations) {
@@ -43,7 +43,7 @@ public class Retention {
     }
 
     private boolean retentionability(Holding holding) {
-        return retentions.notContains(holding);
+        return retentionShelf.notContains(holding);
     }
 
 }
