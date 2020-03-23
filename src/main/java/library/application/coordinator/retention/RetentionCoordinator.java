@@ -1,9 +1,10 @@
 package library.application.coordinator.retention;
 
+import library.application.repository.CounterRepository;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.retention.RetentionQueryService;
+import library.domain.model.counter.Counter;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.counter.Retention;
 import library.domain.model.retention.RetentionableReservedBooks;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,12 @@ import org.springframework.stereotype.Service;
 public class RetentionCoordinator {
     ReservationQueryService reservationQueryService;
     RetentionQueryService retentionQueryService;
+    CounterRepository counterRepository;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, RetentionQueryService retentionQueryService) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService, RetentionQueryService retentionQueryService, CounterRepository counterRepository) {
         this.reservationQueryService = reservationQueryService;
         this.retentionQueryService = retentionQueryService;
+        this.counterRepository = counterRepository;
     }
 
     /**
@@ -22,8 +25,8 @@ public class RetentionCoordinator {
      */
     public RetentionableReservedBooks retention() {
         Reservations reservations = reservationQueryService.findReservations();
-        Retention retention = retentionQueryService.retention(reservations);
-        return retention.retentionableReservedBooks(reservations);
+        Counter counter = retentionQueryService.counter(reservations);
+        return counter.retentionableReservedBooks(reservations);
     }
 
     /**
