@@ -12,7 +12,7 @@ public enum HoldingStatus {
         return this == 貸出中;
     }
 
-    public boolean retentionable() {
+    public boolean loanable() {
         return this == 在庫中;
     }
 }
