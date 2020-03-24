@@ -1,12 +1,14 @@
 package library.domain.model.bookonloan.librarycard;
 
-import library.domain.model.bookonloan.loan.LoanDate;
-import library.domain.model.member.Member;
+import java.util.List;
 
 /**
  * 貸出履歴
  */
 public class LoaningHistory {
-    Member member;
-    LoanDate loanDate;
+    List<LoaningRecord> loaningRecords;
+
+    HistoryCount historyCount() {
+        return new HistoryCount(loaningRecords.size());
+    }
 }

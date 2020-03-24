@@ -11,8 +11,7 @@ public class LibraryCard {
     ReturningHistory returningHistory;
 
     public boolean isLoaning() {
-        // TODO:
-        return true;
+        return loaningHistory.historyCount().minus(returningHistory.historyCount()) >= 1;
     }
 
     public boolean isStocked() {

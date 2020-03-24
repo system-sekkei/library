@@ -1,12 +1,14 @@
 package library.domain.model.bookonloan.librarycard;
 
-import library.domain.model.bookonloan.returning.ReturnDate;
-import library.domain.model.member.Member;
+import java.util.List;
 
 /**
  * 返却履歴
  */
 public class ReturningHistory {
-    Member member;
-    ReturnDate returnDate;
+    List<ReturningRecord> returningRecords;
+
+    HistoryCount historyCount() {
+        return new HistoryCount(returningRecords.size());
+    }
 }
