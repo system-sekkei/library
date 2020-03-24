@@ -14,4 +14,8 @@ public class LibraryCard {
         // TODO:
         return true;
     }
+
+    public boolean isStocked() {
+        return !isLoaning();
+    }
 }

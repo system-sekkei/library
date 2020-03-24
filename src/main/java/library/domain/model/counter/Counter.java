@@ -2,12 +2,11 @@ package library.domain.model.counter;
 
 import library.domain.model.bookonloan.librarycard.LibraryCardShelf;
 import library.domain.model.holding.Catalog;
-import library.domain.model.holding.HoldingStatus;
+import library.domain.model.holding.Holding;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.model.retention.RetentionShelf;
-import library.domain.model.retention.Retentionability;
 import library.domain.model.retention.RetentionableReservedBooks;
 
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class Counter {
     public RetentionableReservedBooks retentionableReservedBooks(Reservations reservations) {
         List<Reservation> list = new ArrayList<>();
         for (Reservation reservation : reservations.asList()) {
-            if (retentionability(reservation) == Retentionability.対象) {
+            if (stockStatus(reservation.reservedBook()) == StockStatus.在庫あり) {
                 list.add(reservation);
             }
         }
@@ -38,13 +37,15 @@ public class Counter {
         return new RetentionableReservedBooks(list);
     }
 
-    private Retentionability retentionability(Reservation reservation) {
-        // TODO:
-        return Retentionability.対象外;
-    }
+    private StockStatus stockStatus(ReservedBook reservedBook) {
+        Catalog sameBookHoldings = catalog.findHoldingsByBook(reservedBook.book());
 
-    private HoldingStatus checkHoldingStatus(ReservedBook reservedBook) {
-        // TODO: 在庫チェック処理
-        return HoldingStatus.在庫中;
+        for (Holding holding : sameBookHoldings.list()) {
+            if (libraryCardShelf.findLibraryCard(holding).isStocked() && retentionShelf.notContains(holding)) {
+                return StockStatus.在庫あり;
+            }
+        }
+
+        return StockStatus.在庫なし;
     }
 }
