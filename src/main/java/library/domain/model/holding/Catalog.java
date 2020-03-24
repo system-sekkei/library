@@ -1,21 +1,18 @@
 package library.domain.model.holding;
 
-import library.domain.model.book.BookId;
-import library.domain.model.holding.Holdings;
+import java.util.List;
 
 /**
  * 目録
  */
 public class Catalog {
-    BookId bookId;
-    Holdings holdings;
+    List<Holding> list;
 
-    public Catalog(BookId bookId, Holdings holdings) {
-        this.bookId = bookId;
-        this.holdings = holdings;
+    public Catalog(List<Holding> list) {
+        this.list = list;
     }
 
-    public boolean sameBook(BookId bookId) {
-        return this.bookId.sameValue(bookId);
+    public List<Holding> list() {
+        return list;
     }
 }

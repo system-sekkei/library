@@ -1,7 +1,7 @@
 package library.domain.model.counter;
 
 import library.domain.model.bookonloan.librarycard.LibraryCardShelf;
-import library.domain.model.holding.CatalogShelf;
+import library.domain.model.holding.Catalog;
 import library.domain.model.holding.HoldingStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
@@ -17,12 +17,12 @@ import java.util.List;
  * カウンター
  */
 public class Counter {
-    CatalogShelf catalogShelf;
+    Catalog catalog;
     LibraryCardShelf libraryCardShelf;
     RetentionShelf retentionShelf;
 
-    public Counter(CatalogShelf catalogShelf, LibraryCardShelf libraryCardShelf, RetentionShelf retentionShelf) {
-        this.catalogShelf = catalogShelf;
+    public Counter(Catalog catalog, LibraryCardShelf libraryCardShelf, RetentionShelf retentionShelf) {
+        this.catalog = catalog;
         this.libraryCardShelf = libraryCardShelf;
         this.retentionShelf = retentionShelf;
     }
