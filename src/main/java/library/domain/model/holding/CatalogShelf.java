@@ -1,4 +1,4 @@
-package library.domain.model.counter;
+package library.domain.model.holding;
 
 import java.util.List;
 

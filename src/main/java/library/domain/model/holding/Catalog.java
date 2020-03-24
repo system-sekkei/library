@@ -1,4 +1,4 @@
-package library.domain.model.counter;
+package library.domain.model.holding;
 
 import library.domain.model.book.BookId;
 import library.domain.model.holding.Holdings;
