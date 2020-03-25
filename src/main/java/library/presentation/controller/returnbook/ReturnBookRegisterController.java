@@ -52,7 +52,7 @@ public class ReturnBookRegisterController {
         binder.setAllowedFields(
                 "memberNumber.value",
                 "holdingCode.value",
-                "loanDate.value"
+                "returnDate.value"
         );
     }
 }
