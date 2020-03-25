@@ -31,5 +31,5 @@ public interface BookOnLoanMapper {
 
     List<BookOnLoanData> selectByHoldingCodes(@Param("holdingCodes") List<HoldingCode> holdingCodes);
 
-    List<BookOnLoanId> selectReturnedBookLoanIdByHoldingCodes(@Param("holdingCodes") List<HoldingCode> holdingCodes);
+    List<ReturnBookData> selectReturnedBookByHoldingCodes(@Param("holdingCodes") List<HoldingCode> holdingCodes);
 }

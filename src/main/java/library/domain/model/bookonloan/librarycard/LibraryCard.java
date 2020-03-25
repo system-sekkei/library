@@ -10,6 +10,12 @@ public class LibraryCard {
     LoaningHistory loaningHistory;
     ReturningHistory returningHistory;
 
+    public LibraryCard(HoldingCode holdingCode, LoaningHistory loaningHistory, ReturningHistory returningHistory) {
+        this.holdingCode = holdingCode;
+        this.loaningHistory = loaningHistory;
+        this.returningHistory = returningHistory;
+    }
+
     public boolean isLoaning() {
         return loaningHistory.historyCount().minus(returningHistory.historyCount()) >= 1;
     }

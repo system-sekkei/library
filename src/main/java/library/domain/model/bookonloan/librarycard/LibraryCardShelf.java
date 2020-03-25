@@ -10,6 +10,10 @@ import java.util.List;
 public class LibraryCardShelf {
     List<LibraryCard> libraryCardList;
 
+    public LibraryCardShelf(List<LibraryCard> libraryCardList) {
+        this.libraryCardList = libraryCardList;
+    }
+
     public LibraryCard findLibraryCard(Holding holding) {
         return libraryCardList.stream()
             .filter( libraryCard -> libraryCard.holdingCode.sameValue(holding.holdingCode()) )

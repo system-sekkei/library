@@ -9,4 +9,9 @@ public class BookOnLoanId {
     public Integer value() {
         return value;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(value);
+    }
 }

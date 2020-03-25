@@ -49,8 +49,11 @@
         </foreach>
     </select>
 
-    <select id="selectReturnedBookLoanIdByHoldingCodes" resultType="library.domain.model.bookonloan.loan.BookOnLoanId">
-        SELECT 返却.貸出ID as "value"
+    <select id="selectReturnedBookByHoldingCodes" resultType="library.infrastructure.datasource.bookonloan.ReturnBookData">
+        SELECT 貸出.貸出ID as "bookOnLoanId.value",
+               貸出.蔵書コード as "holdingCode.value",
+               貸出.会員番号 as "memberNumber.value",
+               返却.返却日   as "returnDate.value.value"
         FROM 返却
         INNER JOIN 貸出 ON 返却.貸出ID = 貸出.貸出ID
         WHERE 貸出.蔵書コード IN

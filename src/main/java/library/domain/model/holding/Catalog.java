@@ -23,4 +23,8 @@ public class Catalog {
         List<Holding> holdings = list.stream().filter(holding -> holding.book.sameBook(book)).collect(Collectors.toList());
         return new Catalog(holdings);
     }
+
+    public List<HoldingCode> holdingsCodes() {
+        return null;
+    }
 }
