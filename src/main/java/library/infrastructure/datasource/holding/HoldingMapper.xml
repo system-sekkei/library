@@ -30,7 +30,7 @@
         </foreach>
     </select>
 
-    <select id="selectHoldingsInStockByBookIds" resultType="library.domain.model.holding.Holding">
+    <select id="selectHoldingsByBookIds" resultType="library.domain.model.holding.Holding">
         SELECT
             蔵書.蔵書コード as "holdingCode.value",
             本.本ID as "book.bookId.value",
@@ -39,10 +39,7 @@
             本.本種別 as "book.bookType"
         FROM 蔵書
         INNER JOIN 本 on (蔵書.本ID = 本.本ID)
-        LEFT OUTER JOIN 貸出 on 蔵書.蔵書コード = 貸出.蔵書コード
-        LEFT OUTER JOIN 返却 on 貸出.貸出ID = 返却.貸出ID
-        WHERE NOT (貸出.貸出ID IS NOT NULL AND 返却.貸出ID IS NULL)
-              AND 本.本ID IN
+        WHERE 本.本ID IN
               <foreach item="bookId" collection="bookIds" open="(" separator="," close=")">
                 #{bookId.value}
               </foreach>
