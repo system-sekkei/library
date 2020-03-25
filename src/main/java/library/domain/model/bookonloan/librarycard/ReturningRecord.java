@@ -9,4 +9,9 @@ import library.domain.model.member.MemberNumber;
 public class ReturningRecord {
     MemberNumber memberNumber;
     ReturnDate returnDate;
+
+    public ReturningRecord(MemberNumber memberNumber, ReturnDate returnDate) {
+        this.memberNumber = memberNumber;
+        this.returnDate = returnDate;
+    }
 }

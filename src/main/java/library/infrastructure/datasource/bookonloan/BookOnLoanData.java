@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.bookonloan;
 
+import library.domain.model.bookonloan.librarycard.LoaningRecord;
 import library.domain.model.bookonloan.loan.BookOnLoanId;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.holding.HoldingCode;
@@ -13,5 +14,13 @@ public class BookOnLoanData {
 
     @Deprecated
     BookOnLoanData() {
+    }
+
+    public HoldingCode holdingCode() {
+        return holdingCode;
+    }
+
+    public LoaningRecord toLoaningRecord() {
+        return new LoaningRecord(memberNumber, loanDate);
     }
 }

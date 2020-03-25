@@ -8,6 +8,10 @@ import java.util.List;
 public class LoaningHistory {
     List<LoaningRecord> loaningRecords;
 
+    public LoaningHistory(List<LoaningRecord> loaningRecords) {
+        this.loaningRecords = loaningRecords;
+    }
+
     HistoryCount historyCount() {
         return new HistoryCount(loaningRecords.size());
     }

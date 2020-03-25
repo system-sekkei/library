@@ -9,4 +9,9 @@ import library.domain.model.member.MemberNumber;
 public class LoaningRecord {
     MemberNumber memberNumber;
     LoanDate loanDate;
+
+    public LoaningRecord(MemberNumber memberNumber, LoanDate loanDate) {
+        this.memberNumber = memberNumber;
+        this.loanDate = loanDate;
+    }
 }
