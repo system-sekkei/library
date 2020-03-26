@@ -1,4 +1,4 @@
 /**
- * 貸出中
+ * 貸出
  */
 package library.domain.model.bookonloan.loan;
