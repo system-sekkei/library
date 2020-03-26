@@ -7,7 +7,7 @@ import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.ReservedBook;
 import library.domain.model.retention.RetentionShelf;
-import library.domain.model.retention.RetentionableReservedBooks;
+import library.domain.model.retention.RetentionableReservations;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Counter {
         return new Counter(Catalog.empty(), LibraryCardShelf.empty(), RetentionShelf.empty());
     }
 
-    public RetentionableReservedBooks retentionableReservedBooks(Reservations reservations) {
+    public RetentionableReservations retentionableReservedBooks(Reservations reservations) {
         List<Reservation> list = new ArrayList<>();
         for (Reservation reservation : reservations.asList()) {
             if (stockStatus(reservation.reservedBook()) == StockStatus.在庫あり) {
@@ -38,7 +38,7 @@ public class Counter {
             }
         }
 
-        return new RetentionableReservedBooks(list);
+        return new RetentionableReservations(list);
     }
 
     private StockStatus stockStatus(ReservedBook reservedBook) {

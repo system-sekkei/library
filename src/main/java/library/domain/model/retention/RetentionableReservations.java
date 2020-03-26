@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * 取置可能な貸出予約
  */
-public class RetentionableReservedBooks {
+public class RetentionableReservations {
     List<Reservation> list;
 
-    public RetentionableReservedBooks(List<Reservation> list) {
+    public RetentionableReservations(List<Reservation> list) {
         this.list = list;
     }
 

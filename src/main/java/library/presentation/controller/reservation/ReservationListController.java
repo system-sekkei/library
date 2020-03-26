@@ -1,7 +1,7 @@
 package library.presentation.controller.reservation;
 
 import library.application.coordinator.retention.RetentionCoordinator;
-import library.domain.model.retention.RetentionableReservedBooks;
+import library.domain.model.retention.RetentionableReservations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +22,8 @@ public class ReservationListController {
     @GetMapping
     String init(Model model) {
         // TODO: 在庫ありの本のみにするかどうかは画面側で切り替えられるようにしたい
-        RetentionableReservedBooks retentionableReservedBooks = retentionCoordinator.retention();
-        model.addAttribute("reservedBooks", retentionableReservedBooks);
+        RetentionableReservations retentionableReservations = retentionCoordinator.retention();
+        model.addAttribute("reservations", retentionableReservations);
         return "reservation/list";
     }
 }

@@ -40,8 +40,8 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private RetentionShelf retentionShelf() {
-        // TODO: 取置取得処理
-        return null;
+        // TODO: 取置情報を取得する
+        return RetentionShelf.empty();
     }
 
     private LibraryCardShelf libraryCardShelf(Catalog catalog) {

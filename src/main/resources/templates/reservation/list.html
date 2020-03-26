@@ -22,9 +22,9 @@
             <tbody>
             <tr th:each="reservation : ${reservations.asList()}">
                 <td th:text="${reservation.member().name()}"></td>
-                <td th:text="${reservation.book().bookType()}"></td>
-                <td th:text="${reservation.book().title()}"></td>
-                <td th:text="${reservation.book().author()}"></td>
+                <td th:text="${reservation.reservedBook().book().bookType()}"></td>
+                <td th:text="${reservation.reservedBook().book().title()}"></td>
+                <td th:text="${reservation.reservedBook().book().author()}"></td>
             </tr>
             </tbody>
         </table>

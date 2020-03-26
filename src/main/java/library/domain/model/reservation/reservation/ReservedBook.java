@@ -13,6 +13,10 @@ public class ReservedBook {
         this.book = book;
     }
 
+    @Deprecated
+    ReservedBook() {
+    }
+
     public Book book() {
         return book;
     }
