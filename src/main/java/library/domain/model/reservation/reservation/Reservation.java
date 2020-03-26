@@ -1,6 +1,5 @@
 package library.domain.model.reservation.reservation;
 
-import library.domain.model.book.Book;
 import library.domain.model.member.Member;
 
 /**

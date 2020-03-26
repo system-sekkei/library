@@ -42,7 +42,7 @@ class ReservationRecordServiceTest {
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        List<Reservation> result = reservationMapper.selectAllNotRetainedReservation();
+        List<Reservation> result = reservationMapper.selectAllReservation();
 
         assertEquals(result.size(), 1);
     }
@@ -55,11 +55,11 @@ class ReservationRecordServiceTest {
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
-        Reservation reservation = reservationMapper.selectAllNotRetainedReservation().get(0);
+        Reservation reservation = reservationMapper.selectAllReservation().get(0);
 
         reservationRecordService.cancelReservation(reservation);
 
-        List<Reservation> reservations = reservationMapper.selectAllNotRetainedReservation();
+        List<Reservation> reservations = reservationMapper.selectAllReservation();
 
         assertTrue(reservations.stream().noneMatch(r -> r.reservationId().value() == reservation.reservationId().value()));
     }

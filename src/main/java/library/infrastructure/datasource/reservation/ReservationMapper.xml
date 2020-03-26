@@ -12,8 +12,7 @@
         VALUES (#{reservationId}, #{memberNumber.value}, #{bookId.value})
     </insert>
 
-    <!-- TODO: 未取置のもののみ取得する -->
-    <select id="selectAllNotRetainedReservation" resultType="library.domain.model.reservation.reservation.Reservation">
+    <select id="selectAllReservation" resultType="library.domain.model.reservation.reservation.Reservation">
         SELECT 予約.予約ID as "reservationId.value",
                会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
