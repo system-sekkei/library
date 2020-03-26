@@ -19,6 +19,10 @@ public class Catalog {
         return list;
     }
 
+    public static Catalog empty() {
+        return new Catalog(List.of());
+    }
+
     public Catalog findHoldingsByBook(Book book) {
         List<Holding> holdings = list.stream().filter(holding -> holding.book.sameBook(book)).collect(Collectors.toList());
         return new Catalog(holdings);

@@ -14,6 +14,10 @@ public class LibraryCardShelf {
         this.libraryCardList = libraryCardList;
     }
 
+    public static LibraryCardShelf empty() {
+        return new LibraryCardShelf(List.of());
+    }
+
     public LibraryCard findLibraryCard(Holding holding) {
         return libraryCardList.stream()
             .filter( libraryCard -> libraryCard.holdingCode.sameValue(holding.holdingCode()) )

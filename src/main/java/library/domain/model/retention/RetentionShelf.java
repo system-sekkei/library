@@ -14,6 +14,10 @@ public class RetentionShelf {
         this.list = list;
     }
 
+    public static RetentionShelf empty() {
+        return new RetentionShelf(List.of());
+    }
+
     public boolean notContains(Holding holding) {
         return list.stream().noneMatch(retainedHolding -> retainedHolding.isA(holding));
     }

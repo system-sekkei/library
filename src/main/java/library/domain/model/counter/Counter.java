@@ -26,6 +26,10 @@ public class Counter {
         this.retentionShelf = retentionShelf;
     }
 
+    public static Counter empty() {
+        return new Counter(Catalog.empty(), LibraryCardShelf.empty(), RetentionShelf.empty());
+    }
+
     public RetentionableReservedBooks retentionableReservedBooks(Reservations reservations) {
         List<Reservation> list = new ArrayList<>();
         for (Reservation reservation : reservations.asList()) {

@@ -29,6 +29,10 @@ public class CounterDataSource implements CounterRepository {
 
     @Override
     public Counter counter(BookIds bookIds) {
+        if (bookIds.isEmpty()) {
+            return Counter.empty();
+        }
+
         List<Holding> holdings = holdingMapper.selectHoldingsByBookIds(bookIds.asList());
         Catalog catalog = new Catalog(holdings);
 
@@ -36,6 +40,7 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private RetentionShelf retentionShelf() {
+        // TODO: 取置取得処理
         return null;
     }
 
