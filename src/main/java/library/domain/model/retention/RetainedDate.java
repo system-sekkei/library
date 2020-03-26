@@ -4,6 +4,7 @@ import library.domain.type.date.Date;
 
 /**
  * 取置日
+ * TODO: バリエーション図では貸出準備完了日。
  */
 public class RetainedDate {
     Date value;

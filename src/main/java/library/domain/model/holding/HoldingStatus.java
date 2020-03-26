@@ -5,6 +5,7 @@ package library.domain.model.holding;
  */
 public enum HoldingStatus {
     在庫中,
+    // TODO: 状態モデルに存在しないが追加。(取置棚にある状態はは在庫中でも貸出中でもない)
     取置中,
     貸出中;
 
