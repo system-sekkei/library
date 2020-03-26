@@ -4,6 +4,7 @@ package library.domain.model.reservation.reservation;
  * 貸出予約ID
  */
 public class ReservationId {
+    // TODO: UUIDに変更する
     int value;
 
     @Deprecated
@@ -15,7 +16,7 @@ public class ReservationId {
     }
 
     public static ReservationId generate() {
-        // TODO:
+        // TODO: UUID生成処理
         return new ReservationId(0);
     }
 
