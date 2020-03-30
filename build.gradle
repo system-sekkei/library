@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '2.2.5.RELEASE'
-    id 'org.dddjava.jig-gradle-plugin' version '2020.3.3.2'
+    id 'org.dddjava.jig-gradle-plugin' version '2020.3.4.2'
 }
 
 sourceCompatibility = '11'
