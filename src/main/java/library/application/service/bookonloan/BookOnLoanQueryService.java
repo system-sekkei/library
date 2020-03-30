@@ -19,14 +19,14 @@ public class BookOnLoanQueryService {
     }
 
     /**
-     * 会員の全貸出図書
+     * 会員の全貸出図書の一覧を取得する
      */
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
         return bookOnLoanRepository.findMemberAllBookOnLoans(member);
     }
 
     /**
-     * 蔵書コードによる貸出図書取得
+     * 蔵書コードによる貸出図書を取得する
      */
     public BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode) {
         return bookOnLoanRepository.findBookOnLoanByHoldingCode(holdingCode);

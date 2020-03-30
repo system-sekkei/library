@@ -18,14 +18,14 @@ public class HoldingQueryService {
     }
 
     /**
-     * 貸出中の蔵書取得
+     * 貸出中の蔵書を取得する
      */
     public HoldingOnLoan findHoldingOnLoan(HoldingCode holdingCode) {
         return holdingRepository.findHoldingOnLoan(holdingCode);
     }
 
     /**
-     * 在庫中の蔵書取得
+     * 在庫中の蔵書を取得する
      */
     public HoldingInStock findHoldingInStock(HoldingCode holdingCode) {
         return holdingRepository.findHoldingInStock(holdingCode);

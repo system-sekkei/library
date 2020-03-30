@@ -19,14 +19,14 @@ public class BookQueryService {
     }
 
     /**
-     * 本取得
+     * 本を取得する
      */
     public Book findBook(BookId bookId) {
         return bookRepository.findBook(bookId);
     }
 
     /**
-     * 本検索
+     * 本を検索する
      */
     public Books search(BookSearchKeyword keyword) {
         return bookRepository.search(keyword);

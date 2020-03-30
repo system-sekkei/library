@@ -16,14 +16,14 @@ public class ReservationRecordService {
     }
 
     /**
-     * 貸出予約の登録
+     * 貸出予約を登録する
      */
     public void registerReservation(Reservation tryingToReserveBook) {
         reservationRepository.registerReservation(tryingToReserveBook);
     }
 
     /**
-     * 貸出予約の取消
+     * 貸出予約を取消す
      */
     public void cancelReservation(Reservation reservation) {
         reservationRepository.cancelReservation(reservation);

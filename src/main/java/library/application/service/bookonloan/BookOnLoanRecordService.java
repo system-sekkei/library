@@ -17,7 +17,7 @@ public class BookOnLoanRecordService {
     }
 
     /**
-     * 貸出図書を登録
+     * 貸出図書を登録する
      */
     public BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
         return bookOnLoanRepository.registerBookOnLoan(bookOnLoanRequest);

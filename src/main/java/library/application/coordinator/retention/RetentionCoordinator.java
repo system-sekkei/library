@@ -18,7 +18,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 取置可能な予約一覧を出力する
+     * 取置可能な予約一覧を取得する
      * TODO: UCでは予約「図書」となっているが、図書ではない
      */
     public RetentionableReservations retention() {

@@ -16,7 +16,7 @@ public class ReturnBookRecordService {
     }
 
     /**
-     * 貸出図書の返却を登録
+     * 貸出図書の返却を登録する
      */
     public void registerReturnBook(ReturningBookOnLoan returningBookOnLoan) {
         bookOnLoanRepository.registerReturnBook(returningBookOnLoan);

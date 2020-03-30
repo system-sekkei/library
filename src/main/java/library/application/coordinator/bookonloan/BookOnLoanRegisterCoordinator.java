@@ -30,7 +30,7 @@ public class BookOnLoanRegisterCoordinator {
     }
 
     /**
-     * 図書の貸出受付
+     * 図書の貸出を受付る
      */
     public LoaningCard loaning(BookOnLoanRequest bookOnLoanRequest) {
         MemberAllBookOnLoans memberAllBookOnLoans = bookOnLoanQueryService.findMemberAllBookOnLoans(bookOnLoanRequest.member());

@@ -17,7 +17,7 @@ public class MemberQueryService {
     }
 
     /**
-     * 会員取得
+     * 会員を取得する
      */
     public Member findMember(MemberNumber memberNumber) {
         return memberRepository.findMember(memberNumber);
