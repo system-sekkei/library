@@ -28,14 +28,9 @@ jobs:
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/service-method-call-hierarchy.svg converted/service-method-call-hierarchy.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/use-case-and-fellows.svg converted/use-case-and-fellows.png
 
-      - run: curl -Lo slackcat https://github.com/bcicen/slackcat/releases/download/v1.6/slackcat-1.6-$(uname -s)-amd64
-      - run: sudo mv slackcat /usr/local/bin/
-      - run: sudo chmod +x /usr/local/bin/slackcat
-      - run: echo ${SLACK_TOKEN} > ~/.slackcat
-
-      - run: slackcat --channel ${SLACK_CANNEL} build/jig/business-rule.xlsx
-      - run: slackcat --channel ${SLACK_CANNEL} build/jig/application.xlsx
-      - run: for file in $(ls converted); do slackcat --channel ${SLACK_CANNEL} converted/${file}; done;
+      - run: curl -X POST -F file=@build/jig/business-rule.xlsx -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
+      - run: curl -X POST -F file=@build/jig/application.xlsx -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
+      - run: for file in $(ls converted); do curl -X POST -F file=@converted/${file} -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload; done;
 
       - store_artifacts:
           path: build/jig/
