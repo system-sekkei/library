@@ -1,5 +1,6 @@
-package library.domain.type.date;
+package library.infrastructure.config;
 
+import library.domain.type.date.Date;
 import org.springframework.core.convert.converter.Converter;
 
 /**
