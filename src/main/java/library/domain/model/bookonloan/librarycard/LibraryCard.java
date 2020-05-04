@@ -1,17 +1,17 @@
 package library.domain.model.bookonloan.librarycard;
 
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.ItemNumber;
 
 /**
  * 図書カード
  */
 public class LibraryCard {
-    HoldingCode holdingCode;
+    ItemNumber itemNumber;
     LoaningHistory loaningHistory;
     ReturningHistory returningHistory;
 
-    public LibraryCard(HoldingCode holdingCode, LoaningHistory loaningHistory, ReturningHistory returningHistory) {
-        this.holdingCode = holdingCode;
+    public LibraryCard(ItemNumber itemNumber, LoaningHistory loaningHistory, ReturningHistory returningHistory) {
+        this.itemNumber = itemNumber;
         this.loaningHistory = loaningHistory;
         this.returningHistory = returningHistory;
     }

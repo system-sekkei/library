@@ -6,7 +6,7 @@ import library.application.service.returnbook.ReturnBookRecordService;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.ItemNumber;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,10 +27,10 @@ public class ReturnBookCoordinator {
     /**
      * 貸出図書の返却を登録する
      */
-    public void returnBook(HoldingCode holdingCode, ReturnDate returnDate) {
-        holdingQueryService.findHoldingOnLoan(holdingCode);
+    public void returnBook(ItemNumber itemNumber, ReturnDate returnDate) {
+        holdingQueryService.findHoldingOnLoan(itemNumber);
 
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(holdingCode);
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByItemNumber(itemNumber);
         returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(bookOnLoan, returnDate));
     }
 }

@@ -8,7 +8,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.returning.ReturnDate;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.ItemNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +34,13 @@ class ReturnBookRecordServiceTest {
 
     @Test
     void 返却を登録できる() {
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByHoldingCode(new HoldingCode("1-A"));
+        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByItemNumber(new ItemNumber("1-A"));
 
         ReturningBookOnLoan returningBookOnLoan = new ReturningBookOnLoan(bookOnLoan, new ReturnDate(Date.from("2020-02-20")));
         returnBookRecordService.registerReturnBook(returningBookOnLoan);
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanQueryService.findBookOnLoanByHoldingCode(new HoldingCode("1-A"));
+            bookOnLoanQueryService.findBookOnLoanByItemNumber(new ItemNumber("1-A"));
         });
     }
 }

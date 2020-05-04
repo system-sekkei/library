@@ -1,8 +1,8 @@
 package library.domain.model.counter;
 
 import library.domain.model.bookonloan.librarycard.LibraryCardShelf;
-import library.domain.model.holding.Catalog;
-import library.domain.model.holding.Holding;
+import library.domain.model.item.Catalog;
+import library.domain.model.item.Item;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.ReservedBook;
@@ -44,8 +44,8 @@ public class Counter {
     private StockStatus stockStatus(ReservedBook reservedBook) {
         Catalog sameBookHoldings = catalog.findHoldingsByBook(reservedBook.book());
 
-        for (Holding holding : sameBookHoldings.list()) {
-            if (libraryCardShelf.findLibraryCard(holding).isStocked() && retentionShelf.notContains(holding)) {
+        for (Item item : sameBookHoldings.list()) {
+            if (libraryCardShelf.findLibraryCard(item).isStocked() && retentionShelf.notContains(item)) {
                 return StockStatus.在庫あり;
             }
         }

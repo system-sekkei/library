@@ -40,11 +40,11 @@
           <div class="field">
             <p class="control">
               <input class="input" type="text" placeholder="1-A"
-                     th:field="*{holdingCode.value}"/>
+                     th:field="*{itemNumber.value}"/>
             </p>
             <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('holdingCode.value')}">
-              <span th:errors="*{holdingCode.value}"></span>
+               th:if="${#fields.hasErrors('itemNumber.value')}">
+              <span th:errors="*{itemNumber.value}"></span>
             </p>
           </div>
         </div>

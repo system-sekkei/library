@@ -1,9 +1,9 @@
-package library.infrastructure.datasource.holding;
+package library.infrastructure.datasource.item;
 
 import library.LibraryDBTest;
-import library.domain.model.holding.HoldingCode;
-import library.domain.model.holding.HoldingInStock;
-import library.domain.model.holding.HoldingOnLoan;
+import library.domain.model.item.ItemNumber;
+import library.domain.model.item.HoldingInStock;
+import library.domain.model.item.HoldingOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class HoldingDataSourceTest {
+class ItemDataSourceTest {
 
     @Autowired
     HoldingDataSource holdingDataSource;
@@ -27,23 +27,23 @@ class HoldingDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("holdingCode.value", "2-A")
+                        .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
         mockMvc.perform(
                 post("/returnbook/register")
-                        .param("holdingCode.value", "2-A")
+                        .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("holdingCode.value", "2-A")
+                        .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        HoldingOnLoan holdingOnLoan = holdingDataSource.findHoldingOnLoan(new HoldingCode("2-A"));
+        HoldingOnLoan holdingOnLoan = holdingDataSource.findHoldingOnLoan(new ItemNumber("2-A"));
 
-        assertEquals("2-A", holdingOnLoan.holding().holdingCode().toString());
+        assertEquals("2-A", holdingOnLoan.item().itemNumber().toString());
     }
 
     @Test
@@ -51,16 +51,16 @@ class HoldingDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("holdingCode.value", "2-A")
+                        .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
         mockMvc.perform(
                 post("/returnbook/register")
-                        .param("holdingCode.value", "2-A")
+                        .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
-        HoldingInStock holdingInStock = holdingDataSource.findHoldingInStock(new HoldingCode("2-A"));
+        HoldingInStock holdingInStock = holdingDataSource.findHoldingInStock(new ItemNumber("2-A"));
 
-        assertEquals("2-A", holdingInStock.holding().holdingCode().toString());
+        assertEquals("2-A", holdingInStock.holding().itemNumber().toString());
     }
 }

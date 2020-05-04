@@ -3,7 +3,7 @@ package library.infrastructure.datasource.bookonloan;
 import library.domain.model.bookonloan.loan.BookOnLoanId;
 import library.domain.model.bookonloan.loan.LoanDate;
 import library.domain.model.bookonloan.returning.ReturnDate;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -20,16 +20,16 @@ public interface BookOnLoanMapper {
     void insertBookOnLoan(
             @Param("bookOnLoanId") Integer bookOnLoanId,
             @Param("memberNumber") MemberNumber memberNumber,
-            @Param("holdingCode") HoldingCode holdingCode,
+            @Param("itemNumber") ItemNumber itemNumber,
             @Param("loanDate") LoanDate loanDate);
 
     void insertReturnBook(
             @Param("bookOnLoanId") BookOnLoanId bookOnLoanId,
             @Param("returnDate") ReturnDate returnDate);
 
-    Optional<BookOnLoanData> selectByHoldingCode(@Param("holdingCode") HoldingCode holdingCode);
+    Optional<BookOnLoanData> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
 
-    List<BookOnLoanData> selectByHoldingCodes(@Param("holdingCodes") List<HoldingCode> holdingCodes);
+    List<BookOnLoanData> selectByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 
-    List<ReturnBookData> selectReturnedBookByHoldingCodes(@Param("holdingCodes") List<HoldingCode> holdingCodes);
+    List<ReturnBookData> selectReturnedBookByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 }

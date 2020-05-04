@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.holding.Holding;
+import library.domain.model.item.Item;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ public class RetentionShelf {
         return new RetentionShelf(List.of());
     }
 
-    public boolean notContains(Holding holding) {
-        return list.stream().noneMatch(retainedHolding -> retainedHolding.isA(holding));
+    public boolean notContains(Item item) {
+        return list.stream().noneMatch(retainedHolding -> retainedHolding.isA(item));
     }
 }

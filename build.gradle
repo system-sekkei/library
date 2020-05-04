@@ -1,7 +1,7 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.2.5.RELEASE'
-    id 'org.dddjava.jig-gradle-plugin' version '2020.4.4'
+    id 'org.springframework.boot' version '2.2.6.RELEASE'
+    id 'org.dddjava.jig-gradle-plugin' version '2020.5.1'
 }
 
 sourceCompatibility = '11'
@@ -17,11 +17,12 @@ repositories {
 }
 
 dependencies {
-    implementation platform("org.springframework.boot:spring-boot-dependencies:2.2.5.RELEASE")
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation platform("org.springframework.boot:spring-boot-dependencies:2.2.6.RELEASE")
 
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    runtime("org.springframework.boot:spring-boot-starter-thymeleaf")
+
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2")
 
     runtimeOnly("com.h2database:h2")
 

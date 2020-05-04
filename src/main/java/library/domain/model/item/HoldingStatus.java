@@ -1,4 +1,4 @@
-package library.domain.model.holding;
+package library.domain.model.item;
 
 /**
  * 蔵書の状態

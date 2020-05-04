@@ -4,14 +4,14 @@ import library.application.repository.CounterRepository;
 import library.domain.model.book.BookIds;
 import library.domain.model.bookonloan.librarycard.*;
 import library.domain.model.counter.Counter;
-import library.domain.model.holding.Catalog;
-import library.domain.model.holding.Holding;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.Catalog;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.retention.RetentionShelf;
 import library.infrastructure.datasource.bookonloan.BookOnLoanData;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import library.infrastructure.datasource.bookonloan.ReturnBookData;
-import library.infrastructure.datasource.holding.HoldingMapper;
+import library.infrastructure.datasource.item.HoldingMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,6 +22,7 @@ public class CounterDataSource implements CounterRepository {
     HoldingMapper holdingMapper;
     BookOnLoanMapper bookOnLoanMapper;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public CounterDataSource(HoldingMapper holdingMapper, BookOnLoanMapper bookOnLoanMapper) {
         this.holdingMapper = holdingMapper;
         this.bookOnLoanMapper = bookOnLoanMapper;
@@ -33,8 +34,8 @@ public class CounterDataSource implements CounterRepository {
             return Counter.empty();
         }
 
-        List<Holding> holdings = holdingMapper.selectHoldingsByBookIds(bookIds.asList());
-        Catalog catalog = new Catalog(holdings);
+        List<Item> items = holdingMapper.selectHoldingsByBookIds(bookIds.asList());
+        Catalog catalog = new Catalog(items);
 
         return new Counter(catalog, libraryCardShelf(catalog), retentionShelf());
     }
@@ -45,8 +46,8 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private LibraryCardShelf libraryCardShelf(Catalog catalog) {
-        List<BookOnLoanData> bookOnLoansDataList = bookOnLoanMapper.selectByHoldingCodes(catalog.holdingsCodes());
-        List<ReturnBookData> returnBookDataList = bookOnLoanMapper.selectReturnedBookByHoldingCodes(catalog.holdingsCodes());
+        List<BookOnLoanData> bookOnLoansDataList = bookOnLoanMapper.selectByItemNumbers(catalog.holdingsCodes());
+        List<ReturnBookData> returnBookDataList = bookOnLoanMapper.selectReturnedBookByItemNumbers(catalog.holdingsCodes());
 
         List<LibraryCard> libraryCards = catalog.holdingsCodes().stream().map(holdingCode -> {
             List<LoaningRecord> loaningRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
@@ -58,16 +59,16 @@ public class CounterDataSource implements CounterRepository {
         return new LibraryCardShelf(libraryCards);
     }
 
-    private List<LoaningRecord> toLoaningRecords(List<BookOnLoanData> bookOnLoansDataList, HoldingCode holdingCode) {
+    private List<LoaningRecord> toLoaningRecords(List<BookOnLoanData> bookOnLoansDataList, ItemNumber itemNumber) {
         return bookOnLoansDataList.stream()
-            .filter(bookOnLoanData -> bookOnLoanData.holdingCode().sameValue(holdingCode))
+            .filter(bookOnLoanData -> bookOnLoanData.itemNumber().sameValue(itemNumber))
             .map(BookOnLoanData::toLoaningRecord)
             .collect(Collectors.toList());
     }
 
-    private List<ReturningRecord> toReturningRecords(List<ReturnBookData> returnBookDataList, HoldingCode holdingCode) {
+    private List<ReturningRecord> toReturningRecords(List<ReturnBookData> returnBookDataList, ItemNumber itemNumber) {
         return returnBookDataList.stream()
-                .filter(returnBookData -> returnBookData.holdingCode().sameValue(holdingCode))
+                .filter(returnBookData -> returnBookData.itemNumber().sameValue(itemNumber))
                 .map(ReturnBookData::toReturningRecord)
                 .collect(Collectors.toList());
     }

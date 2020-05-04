@@ -1,7 +1,7 @@
 package library.domain.model.bookonloan.loaning;
 
 import library.domain.model.bookonloan.loan.LoanDate;
-import library.domain.model.holding.HoldingInStock;
+import library.domain.model.item.HoldingInStock;
 import library.domain.model.member.Member;
 
 import javax.validation.Valid;

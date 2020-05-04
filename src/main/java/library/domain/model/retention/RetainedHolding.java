@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.holding.Holding;
+import library.domain.model.item.Item;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.type.date.Date;
 
@@ -10,7 +10,7 @@ import library.domain.type.date.Date;
 public class RetainedHolding {
     Reservation reservation;
     RetainedDate retainedDate;
-    Holding holding;
+    Item item;
 
     public RetentionDeadline retentionDeadline() {
         return RetentionDeadline.deadline(retainedDate);
@@ -21,8 +21,8 @@ public class RetainedHolding {
         return retainedDate.value.isBefore(today);
     }
 
-    public boolean isA(Holding holding) {
-        return holding.holdingCode().sameValue(this.holding.holdingCode());
+    public boolean isA(Item item) {
+        return item.itemNumber().sameValue(this.item.itemNumber());
     }
 
     public Reservation reservedBook() {
@@ -33,7 +33,7 @@ public class RetainedHolding {
         return retainedDate;
     }
 
-    public Holding holding() {
-        return holding;
+    public Item holding() {
+        return item;
     }
 }

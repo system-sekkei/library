@@ -1,6 +1,6 @@
 package library.domain.model.bookonloan.librarycard;
 
-import library.domain.model.holding.Holding;
+import library.domain.model.item.Item;
 
 import java.util.List;
 
@@ -18,9 +18,9 @@ public class LibraryCardShelf {
         return new LibraryCardShelf(List.of());
     }
 
-    public LibraryCard findLibraryCard(Holding holding) {
+    public LibraryCard findLibraryCard(Item item) {
         return libraryCardList.stream()
-            .filter( libraryCard -> libraryCard.holdingCode.sameValue(holding.holdingCode()) )
-            .findAny().orElseThrow(() -> new IllegalArgumentException("対象蔵書の貸出履歴が存在しません。 code:" + holding.holdingCode()));
+            .filter( libraryCard -> libraryCard.itemNumber.sameValue(item.itemNumber()) )
+            .findAny().orElseThrow(() -> new IllegalArgumentException("対象蔵書の貸出履歴が存在しません。 code:" + item.itemNumber()));
     }
 }

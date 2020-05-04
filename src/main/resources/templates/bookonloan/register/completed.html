@@ -20,7 +20,7 @@
     </thead>
     <tbody>
       <tr th:each="bookonloan : ${memberAllBookOnLoans.bookOnLoans().asList()}">
-        <td th:text="${bookonloan.holdingOnLoan().holding().holdingCode()}"></td>
+        <td th:text="${bookonloan.holdingOnLoan().item().itemNumber()}"></td>
         <td th:text="${bookonloan.loanDate()}"></td>
       </tr>
     </tbody>

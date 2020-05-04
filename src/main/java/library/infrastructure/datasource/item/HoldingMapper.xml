@@ -2,22 +2,22 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="library.infrastructure.datasource.holding.HoldingMapper">
-    <select id="selectHolding" resultType="library.domain.model.holding.Holding">
+<mapper namespace="library.infrastructure.datasource.item.HoldingMapper">
+    <select id="selectHolding" resultType="library.domain.model.item.Item">
         SELECT
-            蔵書.蔵書コード as "holdingCode.value",
+            蔵書.蔵書コード as "itemNumber.value",
             本.本ID as "book.bookId.value",
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
             本.本種別 as "book.bookType"
         FROM 蔵書
         INNER JOIN 本 on (蔵書.本ID = 本.本ID)
-        WHERE 蔵書.蔵書コード = #{holdingCode.value}
+        WHERE 蔵書.蔵書コード = #{itemNumber.value}
     </select>
 
-    <select id="selectHoldings" resultType="library.domain.model.holding.Holding">
+    <select id="selectHoldings" resultType="library.domain.model.item.Item">
         SELECT
-        蔵書.蔵書コード as "holdingCode.value",
+        蔵書.蔵書コード as "itemNumber.value",
         本.本ID as "book.bookId.value",
         本.タイトル as "book.title.value",
         本.著者 as "book.author.value",
@@ -25,14 +25,14 @@
         FROM 蔵書
         INNER JOIN 本 on (蔵書.本ID = 本.本ID)
         WHERE 蔵書.蔵書コード IN
-        <foreach item="holdingCode" collection="holdingCodes" open="(" separator="," close=")">
-            #{holdingCode.value}
+        <foreach item="itemNumber" collection="itemNumbers" open="(" separator="," close=")">
+            #{itemNumber.value}
         </foreach>
     </select>
 
-    <select id="selectHoldingsByBookIds" resultType="library.domain.model.holding.Holding">
+    <select id="selectHoldingsByBookIds" resultType="library.domain.model.item.Item">
         SELECT
-            蔵書.蔵書コード as "holdingCode.value",
+            蔵書.蔵書コード as "itemNumber.value",
             本.本ID as "book.bookId.value",
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
@@ -45,10 +45,10 @@
               </foreach>
     </select>
 
-    <select id="lockHolding" resultType="library.domain.model.holding.HoldingCode">
+    <select id="lockHolding" resultType="library.domain.model.item.ItemNumber">
         SELECT
             蔵書.蔵書コード as "value"
         FROM 蔵書
-        WHERE 蔵書.蔵書コード = #{holdingCode.value} FOR UPDATE NOWAIT
+        WHERE 蔵書.蔵書コード = #{itemNumber.value} FOR UPDATE NOWAIT
     </select>
 </mapper>

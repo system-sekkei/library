@@ -6,11 +6,11 @@ import library.domain.model.bookonloan.loan.BookOnLoans;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
 import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
-import library.domain.model.holding.Holding;
-import library.domain.model.holding.HoldingCode;
-import library.domain.model.holding.HoldingOnLoan;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
+import library.domain.model.item.HoldingOnLoan;
 import library.domain.model.member.Member;
-import library.infrastructure.datasource.holding.HoldingMapper;
+import library.infrastructure.datasource.item.HoldingMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +24,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     HoldingMapper holdingMapper;
     MemberMapper memberMapper;
 
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public BookOnLoanDataSource(BookOnLoanMapper bookOnLoanMapper, HoldingMapper holdingMapper, MemberMapper memberMapper) {
         this.bookOnLoanMapper = bookOnLoanMapper;
         this.holdingMapper = holdingMapper;
@@ -33,10 +34,10 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     @Override
     @Transactional
     public BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
-        HoldingCode holdingCode = bookOnLoanRequest.holdingInStock().holding().holdingCode();
-        holdingMapper.lockHolding(holdingCode);
+        ItemNumber itemNumber = bookOnLoanRequest.holdingInStock().holding().itemNumber();
+        holdingMapper.lockHolding(itemNumber);
 
-        if (bookOnLoanMapper.selectByHoldingCode(holdingCode).isPresent()) {
+        if (bookOnLoanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
         }
 
@@ -44,10 +45,10 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
         bookOnLoanMapper.insertBookOnLoan(
                 bookOnLoanId,
                 bookOnLoanRequest.member().memberNumber(),
-                bookOnLoanRequest.holdingInStock().holding().holdingCode(),
+                bookOnLoanRequest.holdingInStock().holding().itemNumber(),
                 bookOnLoanRequest.loanDate());
 
-        return findBookOnLoanByHoldingCode(holdingCode);
+        return findBookOnLoanByItemNumber(itemNumber);
     }
 
     @Override
@@ -65,9 +66,9 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     }
 
     @Override
-    public BookOnLoan findBookOnLoanByHoldingCode(HoldingCode holdingCode) {
-        BookOnLoanData bookOnLoanData = bookOnLoanMapper.selectByHoldingCode(holdingCode).orElseThrow(() ->
-                new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", holdingCode)));
+    public BookOnLoan findBookOnLoanByItemNumber(ItemNumber itemNumber) {
+        BookOnLoanData bookOnLoanData = bookOnLoanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
+                new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber)));
 
         Member member = memberMapper.selectMember(bookOnLoanData.memberNumber);
         BookOnLoan bookOnLoan = bookOnLoans(member, List.of(bookOnLoanData)).get(0);
@@ -77,16 +78,16 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     List<BookOnLoan> bookOnLoans(Member member, List<BookOnLoanData> bookOnLoanDataList) {
         if (bookOnLoanDataList.isEmpty()) return List.of();
 
-        List<HoldingCode> holdingCodes =
+        List<ItemNumber> itemNumbers =
                 bookOnLoanDataList.stream()
-                        .map(bookOnLoanData -> bookOnLoanData.holdingCode)
+                        .map(bookOnLoanData -> bookOnLoanData.itemNumber)
                         .collect(Collectors.toList());
-        List<Holding> holdings = holdingMapper.selectHoldings(holdingCodes);
+        List<Item> items = holdingMapper.selectHoldings(itemNumbers);
 
         return bookOnLoanDataList.stream()
                 .map(bookOnLoanData ->
-                        holdings.stream()
-                                .filter(holding -> holding.holdingCode().sameValue(bookOnLoanData.holdingCode))
+                        items.stream()
+                                .filter(holding -> holding.itemNumber().sameValue(bookOnLoanData.itemNumber))
                                 .findFirst()
                                 .map(holding -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new HoldingOnLoan(holding), bookOnLoanData.loanDate))
                                 .orElseThrow())

@@ -8,7 +8,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
 import library.domain.model.bookonloan.loaning.LoaningCard;
 import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
-import library.domain.model.holding.HoldingInStock;
+import library.domain.model.item.HoldingInStock;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
@@ -51,7 +51,7 @@ public class BookOnLoanRegisterController {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
-        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(loaningOfBookForm.holdingCode);
+        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(loaningOfBookForm.itemNumber);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, holdingInStock, loaningOfBookForm.loanDate);
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);
@@ -77,7 +77,7 @@ public class BookOnLoanRegisterController {
     public void initBinder(WebDataBinder binder) {
         binder.setAllowedFields(
                 "memberNumber.value",
-                "holdingCode.value",
+                "itemNumber.value",
                 "loanDate.value"
         );
     }

@@ -1,20 +1,20 @@
-package library.domain.model.holding;
+package library.domain.model.item;
 
 import javax.validation.constraints.NotBlank;
 
 /**
- * 蔵書コード
+ * 蔵書番号
  */
-public class HoldingCode {
+public class ItemNumber {
     @NotBlank(message = "蔵書コードを入力してください。")
     String value;
 
-    public HoldingCode(String value) {
+    public ItemNumber(String value) {
         this.value = value;
     }
 
     @Deprecated
-    HoldingCode() {
+    ItemNumber() {
     }
 
     @Override
@@ -22,7 +22,7 @@ public class HoldingCode {
         return value;
     }
 
-    public boolean sameValue(HoldingCode other) {
+    public boolean sameValue(ItemNumber other) {
         return value.equals(other.value);
     }
 }

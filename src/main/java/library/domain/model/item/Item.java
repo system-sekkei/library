@@ -1,25 +1,25 @@
-package library.domain.model.holding;
+package library.domain.model.item;
 
 import library.domain.model.book.Book;
 
 /**
  * 蔵書
  */
-public class Holding {
-    HoldingCode holdingCode;
+public class Item {
+    ItemNumber itemNumber;
     Book book;
 
     @Deprecated
-    Holding() {
+    Item() {
     }
 
-    public Holding(HoldingCode holdingCode, Book book) {
-        this.holdingCode = holdingCode;
+    public Item(ItemNumber itemNumber, Book book) {
+        this.itemNumber = itemNumber;
         this.book = book;
     }
 
-    public HoldingCode holdingCode() {
-        return holdingCode;
+    public ItemNumber itemNumber() {
+        return itemNumber;
     }
 
     // TODO: 予約本を探すメソッドにしたい (ReservedBookを受けるようにしたい)

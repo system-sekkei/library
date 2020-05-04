@@ -26,40 +26,8 @@ public class Date {
         this.value = value;
     }
 
-    public static Date distantPast() {
-        return new Date(LocalDate.of(1, 1, 1));
-    }
-
-    public static Date distantFuture() {
-        return new Date(LocalDate.of(9999, 12, 31));
-    }
-
     public LocalDate value() {
         return value;
-    }
-
-    public Year year() {
-        return new Year(value.getYear());
-    }
-
-    public Month month() {
-        return Month.of(value.getMonth().getValue());
-    }
-
-    public int dayOfMonth() {
-        return value.getDayOfMonth();
-    }
-
-    public DayOfWeek dayOfWeek() {
-        return DayOfWeek.of(value.getDayOfWeek());
-    }
-
-    public boolean hasSameValue(Date other) {
-        return value.equals(other.value);
-    }
-
-    public int compareTo(Date other) {
-        return value.compareTo(other.value);
     }
 
     @Override
@@ -75,24 +43,8 @@ public class Date {
         return new Date(value.plus(period));
     }
 
-    public Date previousDay() {
-        return new Date(value.minusDays(1));
-    }
-
-    public Date nextDay() {
-        return new Date(value.plusDays(1));
-    }
-
-    public boolean isAfter(Date date) {
-        return value.isAfter(date.value);
-    }
-
     public boolean isBefore(Date date) {
         return value.isBefore(date.value);
-    }
-
-    public String yyyyMMdd() {
-        return value.format(DateTimeFormatter.ofPattern("uuuuMMdd"));
     }
 
     public static Date now() {

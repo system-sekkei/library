@@ -5,7 +5,7 @@ import library.application.coordinator.returnbook.ReturnBookCoordinator;
 import library.application.service.holding.HoldingQueryService;
 import library.domain.model.bookonloan.loan.BookOnLoan;
 import library.domain.model.bookonloan.returning.ReturnDate;
-import library.domain.model.holding.HoldingCode;
+import library.domain.model.item.ItemNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +37,11 @@ class BookOnLoanDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("holdingCode.value", "2-C")
+                        .param("itemNumber.value", "2-C")
                         .param("loanDate.value", "2020-02-14"));
 
-        HoldingCode holdingCode = new HoldingCode("2-C");
-        BookOnLoan bookOnLoan = bookOnLoanDataSource.findBookOnLoanByHoldingCode(holdingCode);
+        ItemNumber itemNumber = new ItemNumber("2-C");
+        BookOnLoan bookOnLoan = bookOnLoanDataSource.findBookOnLoanByItemNumber(itemNumber);
 
         assertEquals("2020-02-14", bookOnLoan.loanDate().toString());
     }
@@ -51,14 +51,14 @@ class BookOnLoanDataSourceTest {
         mockMvc.perform(
                 post("/bookonloan/register")
                         .param("memberNumber.value", "1")
-                        .param("holdingCode.value", "2-D")
+                        .param("itemNumber.value", "2-D")
                         .param("loanDate.value", "2020-02-14"));
 
-        HoldingCode holdingCode = new HoldingCode("2-D");
-        returnBookCoordinator.returnBook(holdingCode, new ReturnDate(Date.from("2019-01-01")));
+        ItemNumber itemNumber = new ItemNumber("2-D");
+        returnBookCoordinator.returnBook(itemNumber, new ReturnDate(Date.from("2019-01-01")));
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanDataSource.findBookOnLoanByHoldingCode(holdingCode);
+            bookOnLoanDataSource.findBookOnLoanByItemNumber(itemNumber);
         });
     }
 }
