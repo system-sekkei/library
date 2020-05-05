@@ -1,8 +1,8 @@
 package library.application.service.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
+import library.domain.model.loan.loan.BookOnLoan;
+import library.domain.model.loan.rule.BookOnLoanRequest;
 import org.springframework.stereotype.Service;
 
 /**

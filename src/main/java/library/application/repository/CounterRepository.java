@@ -1,11 +1,11 @@
 package library.application.repository;
 
 import library.domain.model.book.BookIds;
-import library.domain.model.counter.Counter;
+import library.domain.model.reservation.availability.Availability;
 
 /**
  * カウンターリポジトリ
  */
 public interface CounterRepository {
-    Counter counter(BookIds bookIds);
+    Availability counter(BookIds bookIds);
 }

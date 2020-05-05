@@ -3,9 +3,9 @@ package library.application.coordinator.returnbook;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.holding.HoldingQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
-import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.returning.ReturnDate;
-import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
+import library.domain.model.loan.loan.BookOnLoan;
+import library.domain.model.loan.loan.ReturnDate;
+import library.domain.model.loan.loan.ReturningBookOnLoan;
 import library.domain.model.item.ItemNumber;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.retention;
 
 import library.application.repository.RetentionRepository;
-import library.domain.model.retention.RetainedHolding;
+import library.domain.model.reservation.retention.RetainedHolding;
 import org.springframework.stereotype.Repository;
 
 @Repository

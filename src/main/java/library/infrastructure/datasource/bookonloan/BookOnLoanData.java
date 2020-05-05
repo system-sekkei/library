@@ -1,8 +1,8 @@
 package library.infrastructure.datasource.bookonloan;
 
-import library.domain.model.bookonloan.librarycard.LoaningRecord;
-import library.domain.model.bookonloan.loan.BookOnLoanId;
-import library.domain.model.bookonloan.loan.LoanDate;
+import library.domain.model.loan.history.LoaningRecord;
+import library.domain.model.loan.loan.BookOnLoanId;
+import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 

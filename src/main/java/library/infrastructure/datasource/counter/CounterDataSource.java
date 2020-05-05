@@ -2,12 +2,12 @@ package library.infrastructure.datasource.counter;
 
 import library.application.repository.CounterRepository;
 import library.domain.model.book.BookIds;
-import library.domain.model.bookonloan.librarycard.*;
-import library.domain.model.counter.Counter;
-import library.domain.model.item.Catalog;
+import library.domain.model.loan.history.*;
+import library.domain.model.reservation.availability.Availability;
+import library.domain.model.item.Items;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.retention.RetentionShelf;
+import library.domain.model.reservation.retention.RetentionShelf;
 import library.infrastructure.datasource.bookonloan.BookOnLoanData;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import library.infrastructure.datasource.bookonloan.ReturnBookData;
@@ -29,15 +29,15 @@ public class CounterDataSource implements CounterRepository {
     }
 
     @Override
-    public Counter counter(BookIds bookIds) {
+    public Availability counter(BookIds bookIds) {
         if (bookIds.isEmpty()) {
-            return Counter.empty();
+            return Availability.empty();
         }
 
         List<Item> items = holdingMapper.selectHoldingsByBookIds(bookIds.asList());
-        Catalog catalog = new Catalog(items);
+        Items catalog = new Items(items);
 
-        return new Counter(catalog, libraryCardShelf(catalog), retentionShelf());
+        return new Availability(catalog, libraryCardShelf(catalog), retentionShelf());
     }
 
     private RetentionShelf retentionShelf() {
@@ -45,18 +45,18 @@ public class CounterDataSource implements CounterRepository {
         return RetentionShelf.empty();
     }
 
-    private LibraryCardShelf libraryCardShelf(Catalog catalog) {
-        List<BookOnLoanData> bookOnLoansDataList = bookOnLoanMapper.selectByItemNumbers(catalog.holdingsCodes());
-        List<ReturnBookData> returnBookDataList = bookOnLoanMapper.selectReturnedBookByItemNumbers(catalog.holdingsCodes());
+    private WholeLoanHistory libraryCardShelf(Items items) {
+        List<BookOnLoanData> bookOnLoansDataList = bookOnLoanMapper.selectByItemNumbers(items.holdingsCodes());
+        List<ReturnBookData> returnBookDataList = bookOnLoanMapper.selectReturnedBookByItemNumbers(items.holdingsCodes());
 
-        List<LibraryCard> libraryCards = catalog.holdingsCodes().stream().map(holdingCode -> {
+        List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(holdingCode -> {
             List<LoaningRecord> loaningRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
             List<ReturningRecord> returningRecords = toReturningRecords(returnBookDataList, holdingCode);
 
-            return new LibraryCard(holdingCode, new LoaningHistory(loaningRecords), new ReturningHistory(returningRecords));
+            return new LoanHistory(holdingCode, new LoaningHistory(loaningRecords), new ReturningHistory(returningRecords));
         }).collect(Collectors.toList());
 
-        return new LibraryCardShelf(libraryCards);
+        return new WholeLoanHistory(loanHistories);
     }
 
     private List<LoaningRecord> toLoaningRecords(List<BookOnLoanData> bookOnLoansDataList, ItemNumber itemNumber) {

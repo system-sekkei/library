@@ -1,7 +1,7 @@
 package library.presentation.controller.reservation;
 
 import library.application.coordinator.retention.RetentionCoordinator;
-import library.domain.model.retention.RetentionableReservations;
+import library.domain.model.reservation.retention.RetentionableReservations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

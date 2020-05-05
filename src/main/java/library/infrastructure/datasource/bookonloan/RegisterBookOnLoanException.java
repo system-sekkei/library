@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.bookonloan;
 
-import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
+import library.domain.model.loan.rule.BookOnLoanRequest;
 
 public class RegisterBookOnLoanException extends RuntimeException {
     BookOnLoanRequest bookOnLoanRequest;

@@ -1,11 +1,11 @@
 package library.infrastructure.datasource.bookonloan;
 
 import library.application.repository.BookOnLoanRepository;
-import library.domain.model.bookonloan.loan.BookOnLoan;
-import library.domain.model.bookonloan.loan.BookOnLoans;
-import library.domain.model.bookonloan.loaning.BookOnLoanRequest;
-import library.domain.model.bookonloan.loaning.MemberAllBookOnLoans;
-import library.domain.model.bookonloan.returning.ReturningBookOnLoan;
+import library.domain.model.loan.loan.BookOnLoan;
+import library.domain.model.loan.loan.BookOnLoans;
+import library.domain.model.loan.rule.BookOnLoanRequest;
+import library.domain.model.loan.rule.MemberAllBookOnLoans;
+import library.domain.model.loan.loan.ReturningBookOnLoan;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.HoldingOnLoan;
@@ -89,7 +89,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
                         items.stream()
                                 .filter(holding -> holding.itemNumber().sameValue(bookOnLoanData.itemNumber))
                                 .findFirst()
-                                .map(holding -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new HoldingOnLoan(holding), bookOnLoanData.loanDate))
+                                .map(item -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new HoldingOnLoan(item), bookOnLoanData.loanDate))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }

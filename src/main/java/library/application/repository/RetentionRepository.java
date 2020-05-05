@@ -1,6 +1,6 @@
 package library.application.repository;
 
-import library.domain.model.retention.RetainedHolding;
+import library.domain.model.reservation.retention.RetainedHolding;
 
 /**
  * 取置リポジトリ
