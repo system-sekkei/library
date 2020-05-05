@@ -1,8 +1,8 @@
 package library.infrastructure.datasource.book;
 
-import library.domain.model.book.Book;
-import library.domain.model.book.BookId;
-import library.domain.model.book.BookSearchKeyword;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookId;
+import library.domain.model.book.bibliography.BookSearchKeyword;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

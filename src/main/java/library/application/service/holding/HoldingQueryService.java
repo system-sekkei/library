@@ -1,9 +1,9 @@
 package library.application.service.holding;
 
 import library.application.repository.HoldingRepository;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.HoldingInStock;
-import library.domain.model.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.HoldingOnLoan;
 import org.springframework.stereotype.Service;
 
 /**

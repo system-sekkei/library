@@ -1,6 +1,6 @@
 package library.domain.model.loan.loan;
 
-import library.domain.model.item.HoldingOnLoan;
+import library.domain.model.book.item.HoldingOnLoan;
 import library.domain.model.member.Member;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;

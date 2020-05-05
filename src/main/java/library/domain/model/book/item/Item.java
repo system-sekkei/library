@@ -1,6 +1,6 @@
-package library.domain.model.item;
+package library.domain.model.book.item;
 
-import library.domain.model.book.Book;
+import library.domain.model.book.bibliography.Book;
 
 /**
  * 蔵書

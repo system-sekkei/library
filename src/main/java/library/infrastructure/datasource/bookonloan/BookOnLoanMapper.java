@@ -3,7 +3,7 @@ package library.infrastructure.datasource.bookonloan;
 import library.domain.model.loan.loan.BookOnLoanId;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.loan.ReturnDate;
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -1,12 +1,12 @@
 package library.infrastructure.datasource.counter;
 
 import library.application.repository.CounterRepository;
-import library.domain.model.book.BookIds;
+import library.domain.model.book.bibliography.BookIds;
 import library.domain.model.loan.history.*;
 import library.domain.model.reservation.availability.Availability;
-import library.domain.model.item.Items;
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.item.Items;
+import library.domain.model.book.item.Item;
+import library.domain.model.book.item.ItemNumber;
 import library.domain.model.reservation.retention.RetentionShelf;
 import library.infrastructure.datasource.bookonloan.BookOnLoanData;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;

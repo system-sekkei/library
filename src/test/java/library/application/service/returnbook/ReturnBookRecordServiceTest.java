@@ -8,7 +8,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.loan.BookOnLoan;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.loan.loan.ReturningBookOnLoan;
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.item.ItemNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

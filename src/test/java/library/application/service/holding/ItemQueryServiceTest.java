@@ -1,8 +1,8 @@
 package library.application.service.holding;
 
 import library.LibraryDBTest;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.HoldingOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

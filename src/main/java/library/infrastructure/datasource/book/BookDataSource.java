@@ -1,10 +1,10 @@
 package library.infrastructure.datasource.book;
 
 import library.application.repository.BookRepository;
-import library.domain.model.book.Book;
-import library.domain.model.book.BookId;
-import library.domain.model.book.BookSearchKeyword;
-import library.domain.model.book.Books;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookId;
+import library.domain.model.book.bibliography.BookSearchKeyword;
+import library.domain.model.book.bibliography.Books;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

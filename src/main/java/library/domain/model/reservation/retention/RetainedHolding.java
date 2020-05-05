@@ -1,6 +1,6 @@
 package library.domain.model.reservation.retention;
 
-import library.domain.model.item.Item;
+import library.domain.model.book.item.Item;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.type.date.Date;
 

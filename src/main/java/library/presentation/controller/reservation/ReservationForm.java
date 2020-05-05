@@ -1,6 +1,6 @@
 package library.presentation.controller.reservation;
 
-import library.domain.model.book.BookId;
+import library.domain.model.book.bibliography.BookId;
 import library.domain.model.member.MemberNumber;
 
 import javax.validation.Valid;

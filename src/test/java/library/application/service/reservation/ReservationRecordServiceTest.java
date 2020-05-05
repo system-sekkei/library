@@ -2,8 +2,8 @@ package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.book.Book;
-import library.domain.model.book.BookSearchKeyword;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookSearchKeyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;

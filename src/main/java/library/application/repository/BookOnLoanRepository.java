@@ -4,7 +4,7 @@ import library.domain.model.loan.loan.BookOnLoan;
 import library.domain.model.loan.rule.BookOnLoanRequest;
 import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.loan.loan.ReturningBookOnLoan;
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.item.ItemNumber;
 import library.domain.model.member.Member;
 
 /**

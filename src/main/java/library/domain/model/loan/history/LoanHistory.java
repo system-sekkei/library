@@ -1,6 +1,6 @@
 package library.domain.model.loan.history;
 
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.item.ItemNumber;
 
 /**
  * 貸出履歴

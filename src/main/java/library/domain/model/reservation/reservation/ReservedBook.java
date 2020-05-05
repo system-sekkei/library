@@ -1,7 +1,7 @@
 package library.domain.model.reservation.reservation;
 
-import library.domain.model.book.Book;
-import library.domain.model.book.BookId;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookId;
 
 /**
  * 予約図書

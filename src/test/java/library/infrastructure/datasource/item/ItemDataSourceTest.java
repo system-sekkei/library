@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.item;
 
 import library.LibraryDBTest;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.HoldingInStock;
-import library.domain.model.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.HoldingOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

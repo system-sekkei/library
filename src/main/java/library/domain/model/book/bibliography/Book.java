@@ -1,4 +1,4 @@
-package library.domain.model.book;
+package library.domain.model.book.bibliography;
 
 /**
  * 本

@@ -1,10 +1,10 @@
 package library.infrastructure.datasource.item;
 
 import library.application.repository.HoldingRepository;
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.HoldingInStock;
-import library.domain.model.item.HoldingOnLoan;
+import library.domain.model.book.item.Item;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.HoldingOnLoan;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import org.springframework.stereotype.Repository;
 

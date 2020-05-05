@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.book.BookMapper">
-    <select id="searchBooks" resultType="library.domain.model.book.Book">
+    <select id="searchBooks" resultType="library.domain.model.book.bibliography.Book">
         SELECT
             本.本ID as "bookId.value",
             本.タイトル as "title.value",
@@ -13,7 +13,7 @@
         WHERE 本.タイトル || 本.著者 LIKE '%' || #{keyword.value} || '%'
     </select>
 
-    <select id="findBook" resultType="library.domain.model.book.Book">
+    <select id="findBook" resultType="library.domain.model.book.bibliography.Book">
         SELECT
             本.本ID as "bookId.value",
             本.タイトル as "title.value",
