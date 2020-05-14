@@ -7,10 +7,10 @@ import library.domain.model.book.item.ItemNumber;
  */
 public class LoanHistory {
     ItemNumber itemNumber;
-    loanRecords loanRecords;
+    LoanRecords loanRecords;
     ReturnRecords returnRecords;
 
-    public LoanHistory(ItemNumber itemNumber, loanRecords loanRecords, ReturnRecords returnRecords) {
+    public LoanHistory(ItemNumber itemNumber, LoanRecords loanRecords, ReturnRecords returnRecords) {
         this.itemNumber = itemNumber;
         this.loanRecords = loanRecords;
         this.returnRecords = returnRecords;

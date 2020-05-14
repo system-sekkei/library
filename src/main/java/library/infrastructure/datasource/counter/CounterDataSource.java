@@ -53,7 +53,7 @@ public class CounterDataSource implements CounterRepository {
             List<LoanRecord> loanRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
             List<ReturnRecord> returnRecords = toReturningRecords(returnBookDataList, holdingCode);
 
-            return new LoanHistory(holdingCode, new loanRecords(loanRecords), new ReturnRecords(returnRecords));
+            return new LoanHistory(holdingCode, new LoanRecords(loanRecords), new ReturnRecords(returnRecords));
         }).collect(Collectors.toList());
 
         return new WholeLoanHistory(loanHistories);
