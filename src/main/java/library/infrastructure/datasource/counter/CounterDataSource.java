@@ -2,16 +2,16 @@ package library.infrastructure.datasource.counter;
 
 import library.application.repository.CounterRepository;
 import library.domain.model.book.bibliography.BookIds;
-import library.domain.model.loan.history.*;
-import library.domain.model.reservation.availability.Availability;
-import library.domain.model.book.item.Items;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.Items;
+import library.domain.model.loan.history.*;
+import library.domain.model.loan.loan.Loan;
+import library.domain.model.reservation.availability.Availability;
 import library.domain.model.reservation.retention.RetentionShelf;
-import library.infrastructure.datasource.loan.LoanData;
+import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.loan.LoanMapper;
 import library.infrastructure.datasource.loan.ReturnData;
-import library.infrastructure.datasource.item.ItemMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -46,7 +46,7 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private WholeLoanHistory libraryCardShelf(Items items) {
-        List<LoanData> bookOnLoansDataList = loanMapper.selectByItemNumbers(items.holdingsCodes());
+        List<Loan> bookOnLoansDataList = loanMapper.selectByItemNumbers(items.holdingsCodes());
         List<ReturnData> returnDataList = loanMapper.selectReturnedByItemNumbers(items.holdingsCodes());
 
         List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(holdingCode -> {
@@ -59,10 +59,10 @@ public class CounterDataSource implements CounterRepository {
         return new WholeLoanHistory(loanHistories);
     }
 
-    private List<LoanRecord> toLoaningRecords(List<LoanData> bookOnLoansDataList, ItemNumber itemNumber) {
+    private List<LoanRecord> toLoaningRecords(List<Loan> bookOnLoansDataList, ItemNumber itemNumber) {
         return bookOnLoansDataList.stream()
             .filter(loanData -> loanData.itemNumber().sameValue(itemNumber))
-            .map(LoanData::toLoaningRecord)
+            .map(Loan::toLoaningRecord)
             .collect(Collectors.toList());
     }
 

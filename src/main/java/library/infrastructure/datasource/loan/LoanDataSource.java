@@ -53,12 +53,12 @@ public class LoanDataSource implements LoanRepository {
     @Override
     public void registerReturnBook(Returned returned) {
         Loan loan = returned.bookOnLoan();
-        loanMapper.insertReturnBook(loan.bookOnLoanId(), returned.returnDate());
+        loanMapper.insertReturnBook(loan.loanNumber(), returned.returnDate());
     }
 
     @Override
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
-        List<LoanData> loanDataList = loanMapper.selectByMemberNumber(member.memberNumber());
+        List<Loan> loanDataList = loanMapper.selectByMemberNumber(member.memberNumber());
         List<Loan> loans = bookOnLoans(member, loanDataList);
 
         return new MemberAllBookOnLoans(member, new Loans(loans));
@@ -66,29 +66,29 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     public Loan findLoanByItemNumber(ItemNumber itemNumber) {
-        LoanData loanData = loanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
+        Loan loan = loanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
                 new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber)));
 
-        Member member = memberMapper.selectMember(loanData.memberNumber);
-        Loan loan = bookOnLoans(member, List.of(loanData)).get(0);
-        return loan;
+        Member member = memberMapper.selectMember(loan.memberNumber());
+        Loan loanResult = bookOnLoans(member, List.of(loan)).get(0);
+        return loanResult;
     }
 
-    List<Loan> bookOnLoans(Member member, List<LoanData> loanDataList) {
+    List<Loan> bookOnLoans(Member member, List<Loan> loanDataList) {
         if (loanDataList.isEmpty()) return List.of();
 
         List<ItemNumber> itemNumbers =
                 loanDataList.stream()
-                        .map(loanData -> loanData.itemNumber)
+                        .map(loanData -> loanData.itemNumber())
                         .collect(Collectors.toList());
         List<Item> items = itemMapper.selectItems(itemNumbers);
 
         return loanDataList.stream()
                 .map(loanData ->
                         items.stream()
-                                .filter(holding -> holding.itemNumber().sameValue(loanData.itemNumber))
+                                .filter(holding -> holding.itemNumber().sameValue(loanData.itemNumber()))
                                 .findFirst()
-                                .map(item -> new Loan(loanData.loanNumber, member, item, loanData.loanDate))
+                                .map(item -> new Loan(loanData.loanNumber(), member, item, loanData.loanDate()))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }

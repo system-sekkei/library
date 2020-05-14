@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.loan;
 
+import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.LoanNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.loan.ReturnDate;
@@ -15,7 +16,7 @@ import java.util.Optional;
 public interface LoanMapper {
     int newLoanNumber();
 
-    List<LoanData> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
+    List<Loan> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
 
     void insertLoan(
             @Param("loanNumber") int loanNumber,
@@ -27,9 +28,9 @@ public interface LoanMapper {
             @Param("loanNumber") LoanNumber loanNumber,
             @Param("returnDate") ReturnDate returnDate);
 
-    Optional<LoanData> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
+    Optional<Loan> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
 
-    List<LoanData> selectByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
+    List<Loan> selectByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 
     List<ReturnData> selectReturnedByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 }

@@ -1,7 +1,10 @@
 package library.domain.model.loan.loan;
 
 import library.domain.model.book.item.Item;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.loan.history.LoanRecord;
 import library.domain.model.member.Member;
+import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
@@ -13,17 +16,17 @@ import java.time.Period;
 public class Loan {
     LoanNumber loanNumber;
     Member member;
-    Item itemOnLoan;
+    Item item;
     LoanDate loanDate;
 
     @Deprecated
     Loan() {
     }
 
-    public Loan(LoanNumber loanNumber, Member member, Item itemOnLoan, LoanDate loanDate) {
+    public Loan(LoanNumber loanNumber, Member member, Item item, LoanDate loanDate) {
         this.loanNumber = loanNumber;
         this.member = member;
-        this.itemOnLoan = itemOnLoan;
+        this.item = item;
         this.loanDate = loanDate;
     }
 
@@ -49,7 +52,21 @@ public class Loan {
         return loanDate;
     }
 
-    public LoanNumber bookOnLoanId() {
+    public LoanNumber loanNumber() {
         return loanNumber;
     }
+
+    // TODO 削除：LoanData互換の暫定対応
+    public ItemNumber itemNumber() {
+        return item.itemNumber();
+    }
+
+    public MemberNumber memberNumber() {
+        return member.memberNumber();
+    }
+
+    public LoanRecord toLoaningRecord() {
+        return new LoanRecord(member.memberNumber(), loanDate);
+    }
+
 }
