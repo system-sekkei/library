@@ -1,6 +1,6 @@
-package library.infrastructure.datasource.bookonloan;
+package library.infrastructure.datasource.loan;
 
-import library.domain.model.loan.loan.BookOnLoanId;
+import library.domain.model.loan.loan.LoanNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
@@ -12,24 +12,24 @@ import java.util.List;
 import java.util.Optional;
 
 @Mapper
-public interface BookOnLoanMapper {
-    Integer newBookOnLoanIdentifier();
+public interface LoanMapper {
+    int newLoanNumber();
 
-    List<BookOnLoanData> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
+    List<LoanData> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
 
-    void insertBookOnLoan(
-            @Param("bookOnLoanId") Integer bookOnLoanId,
+    void insertLoan(
+            @Param("loanNumber") int loanNumber,
             @Param("memberNumber") MemberNumber memberNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("loanDate") LoanDate loanDate);
 
     void insertReturnBook(
-            @Param("bookOnLoanId") BookOnLoanId bookOnLoanId,
+            @Param("loanNumber") LoanNumber loanNumber,
             @Param("returnDate") ReturnDate returnDate);
 
-    Optional<BookOnLoanData> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
+    Optional<LoanData> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
 
-    List<BookOnLoanData> selectByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
+    List<LoanData> selectByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 
     List<ReturnBookData> selectReturnedBookByItemNumbers(@Param("itemNumbers") List<ItemNumber> itemNumbers);
 }

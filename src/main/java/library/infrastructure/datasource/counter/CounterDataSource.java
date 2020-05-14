@@ -8,9 +8,9 @@ import library.domain.model.book.item.Items;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.reservation.retention.RetentionShelf;
-import library.infrastructure.datasource.bookonloan.BookOnLoanData;
-import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
-import library.infrastructure.datasource.bookonloan.ReturnBookData;
+import library.infrastructure.datasource.loan.LoanData;
+import library.infrastructure.datasource.loan.LoanMapper;
+import library.infrastructure.datasource.loan.ReturnBookData;
 import library.infrastructure.datasource.item.ItemMapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 @Repository
 public class CounterDataSource implements CounterRepository {
     ItemMapper itemMapper;
-    BookOnLoanMapper bookOnLoanMapper;
+    LoanMapper loanMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public CounterDataSource(ItemMapper itemMapper, BookOnLoanMapper bookOnLoanMapper) {
+    public CounterDataSource(ItemMapper itemMapper, LoanMapper loanMapper) {
         this.itemMapper = itemMapper;
-        this.bookOnLoanMapper = bookOnLoanMapper;
+        this.loanMapper = loanMapper;
     }
 
     @Override
@@ -46,8 +46,8 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private WholeLoanHistory libraryCardShelf(Items items) {
-        List<BookOnLoanData> bookOnLoansDataList = bookOnLoanMapper.selectByItemNumbers(items.holdingsCodes());
-        List<ReturnBookData> returnBookDataList = bookOnLoanMapper.selectReturnedBookByItemNumbers(items.holdingsCodes());
+        List<LoanData> bookOnLoansDataList = loanMapper.selectByItemNumbers(items.holdingsCodes());
+        List<ReturnBookData> returnBookDataList = loanMapper.selectReturnedBookByItemNumbers(items.holdingsCodes());
 
         List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(holdingCode -> {
             List<LoaningRecord> loaningRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
@@ -59,10 +59,10 @@ public class CounterDataSource implements CounterRepository {
         return new WholeLoanHistory(loanHistories);
     }
 
-    private List<LoaningRecord> toLoaningRecords(List<BookOnLoanData> bookOnLoansDataList, ItemNumber itemNumber) {
+    private List<LoaningRecord> toLoaningRecords(List<LoanData> bookOnLoansDataList, ItemNumber itemNumber) {
         return bookOnLoansDataList.stream()
-            .filter(bookOnLoanData -> bookOnLoanData.itemNumber().sameValue(itemNumber))
-            .map(BookOnLoanData::toLoaningRecord)
+            .filter(loanData -> loanData.itemNumber().sameValue(itemNumber))
+            .map(LoanData::toLoaningRecord)
             .collect(Collectors.toList());
     }
 

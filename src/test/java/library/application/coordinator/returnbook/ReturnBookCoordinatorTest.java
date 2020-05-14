@@ -1,7 +1,7 @@
 package library.application.coordinator.returnbook;
 
 import library.LibraryDBTest;
-import library.application.service.bookonloan.BookOnLoanQueryService;
+import library.application.service.bookonloan.LoanQueryService;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.type.date.Date;
@@ -16,7 +16,7 @@ class ReturnBookCoordinatorTest {
     ReturnBookCoordinator returnBookCoordinator;
 
     @Autowired
-    BookOnLoanQueryService bookOnLoanQueryService;
+    LoanQueryService loanQueryService;
 
     @Test
     void 貸出中の蔵書を返却することができる() {
@@ -24,7 +24,7 @@ class ReturnBookCoordinatorTest {
         returnBookCoordinator.returnBook(itemNumber, new ReturnDate(Date.from("2020-02-25")));
 
         assertThrows(IllegalArgumentException.class, () -> {
-            bookOnLoanQueryService.findBookOnLoanByItemNumber(new ItemNumber("1-A"));
+            loanQueryService.findLoanByItemNumber(new ItemNumber("1-A"));
         });
     }
 

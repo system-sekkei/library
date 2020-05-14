@@ -19,7 +19,7 @@
       <th>貸出日</th>
     </thead>
     <tbody>
-      <tr th:each="bookonloan : ${memberAllBookOnLoans.bookOnLoans().asList()}">
+      <tr th:each="bookonloan : ${memberAllBookOnLoans.loans().asList()}">
         <td th:text="${bookonloan.itemOnLoan().item().itemNumber()}"></td>
         <td th:text="${bookonloan.loanDate()}"></td>
       </tr>

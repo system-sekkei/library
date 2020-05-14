@@ -1,13 +1,13 @@
-package library.infrastructure.datasource.bookonloan;
+package library.infrastructure.datasource.loan;
 
 import library.domain.model.loan.history.ReturningRecord;
-import library.domain.model.loan.loan.BookOnLoanId;
+import library.domain.model.loan.loan.LoanNumber;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 
 public class ReturnBookData {
-    BookOnLoanId bookOnLoanId;
+    LoanNumber loanNumber;
     MemberNumber memberNumber;
     ItemNumber itemNumber;
     ReturnDate returnDate;

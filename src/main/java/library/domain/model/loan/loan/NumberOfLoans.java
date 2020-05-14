@@ -1,12 +1,12 @@
 package library.domain.model.loan.loan;
 
 /**
- * 貸出図書の冊数
+ * 貸出冊数
  */
-public class NumberOfBookOnLoans {
+public class NumberOfLoans {
     int value;
 
-    public NumberOfBookOnLoans(int value) {
+    public NumberOfLoans(int value) {
 
         this.value = value;
     }

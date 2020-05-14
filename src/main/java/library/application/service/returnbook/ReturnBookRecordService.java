@@ -1,6 +1,6 @@
 package library.application.service.returnbook;
 
-import library.application.repository.BookOnLoanRepository;
+import library.application.repository.LoanRepository;
 import library.domain.model.loan.loan.ReturningBookOnLoan;
 import org.springframework.stereotype.Service;
 
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReturnBookRecordService {
-    BookOnLoanRepository bookOnLoanRepository;
+    LoanRepository loanRepository;
 
-    ReturnBookRecordService(BookOnLoanRepository bookOnLoanRepository) {
-        this.bookOnLoanRepository = bookOnLoanRepository;
+    ReturnBookRecordService(LoanRepository loanRepository) {
+        this.loanRepository = loanRepository;
     }
 
     /**
      * 貸出図書の返却を登録する
      */
     public void registerReturnBook(ReturningBookOnLoan returningBookOnLoan) {
-        bookOnLoanRepository.registerReturnBook(returningBookOnLoan);
+        loanRepository.registerReturnBook(returningBookOnLoan);
     }
 }

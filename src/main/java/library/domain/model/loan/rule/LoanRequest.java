@@ -7,9 +7,9 @@ import library.domain.model.member.Member;
 import javax.validation.Valid;
 
 /**
- * 図書の貸出申請
+ * 貸出申請
  */
-public class BookOnLoanRequest {
+public class LoanRequest {
     @Valid
     Member member;
 
@@ -20,10 +20,10 @@ public class BookOnLoanRequest {
     LoanDate loanDate;
 
     @Deprecated
-    BookOnLoanRequest() {
+    LoanRequest() {
     }
 
-    public BookOnLoanRequest(Member member, ItemInStock itemInStock, LoanDate loanDate) {
+    public LoanRequest(Member member, ItemInStock itemInStock, LoanDate loanDate) {
         this.member = member;
         this.itemInStock = itemInStock;
         this.loanDate = loanDate;

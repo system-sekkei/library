@@ -1,7 +1,7 @@
 package library.presentation.controller.returnbook;
 
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
-import library.application.service.bookonloan.BookOnLoanQueryService;
+import library.application.service.bookonloan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +18,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("returnbook/register")
 public class ReturnBookRegisterController {
     ReturnBookCoordinator returnBookCoordinator;
-    BookOnLoanQueryService bookOnLoanQueryService;
+    LoanQueryService loanQueryService;
     MemberQueryService memberQueryService;
 
-    public ReturnBookRegisterController(ReturnBookCoordinator returnBookCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService) {
+    public ReturnBookRegisterController(ReturnBookCoordinator returnBookCoordinator, LoanQueryService loanQueryService, MemberQueryService memberQueryService) {
         this.returnBookCoordinator = returnBookCoordinator;
-        this.bookOnLoanQueryService = bookOnLoanQueryService;
+        this.loanQueryService = loanQueryService;
         this.memberQueryService = memberQueryService;
     }
 

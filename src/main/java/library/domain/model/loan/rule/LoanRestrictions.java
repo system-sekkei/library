@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.BookOnLoans;
+import library.domain.model.loan.loan.Loans;
 
 /**
  * 貸出制限
@@ -17,8 +17,8 @@ public enum LoanRestrictions {
         this.limit = limit;
     }
 
-    public CanLoan canLoan(BookOnLoans bookOnLoans) {
-        if (limit > bookOnLoans.numberOfBookOnLoans().value()) {
+    public CanLoan canLoan(Loans loans) {
+        if (limit > loans.numberOfLoans().value()) {
             return CanLoan.貸出可能;
         }
         return CanLoan.貸出不可;

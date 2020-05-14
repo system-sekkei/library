@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * 貸出図書リスト
  */
-public class BookOnLoans {
-    List<BookOnLoan> list;
+public class Loans {
+    List<Loan> list;
 
-    public BookOnLoans(List<BookOnLoan> list) {
+    public Loans(List<Loan> list) {
         this.list = list;
     }
 
@@ -24,11 +24,11 @@ public class BookOnLoans {
                 .orElse(new DelayPeriod(new Days(0)));
     }
 
-    public NumberOfBookOnLoans numberOfBookOnLoans() {
-        return new NumberOfBookOnLoans(list.size());
+    public NumberOfLoans numberOfLoans() {
+        return new NumberOfLoans(list.size());
     }
 
-    public List<BookOnLoan> asList() {
+    public List<Loan> asList() {
         return Collections.unmodifiableList(list);
     }
 }

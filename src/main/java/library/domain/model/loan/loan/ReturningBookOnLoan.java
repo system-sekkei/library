@@ -4,16 +4,16 @@ package library.domain.model.loan.loan;
  * 返却しようとしている貸出図書
  */
 public class ReturningBookOnLoan {
-    BookOnLoan bookOnLoan;
+    Loan loan;
     ReturnDate returnDate;
 
-    public ReturningBookOnLoan(BookOnLoan bookOnLoan, ReturnDate returnDate) {
-        this.bookOnLoan = bookOnLoan;
+    public ReturningBookOnLoan(Loan loan, ReturnDate returnDate) {
+        this.loan = loan;
         this.returnDate = returnDate;
     }
 
-    public BookOnLoan bookOnLoan() {
-        return bookOnLoan;
+    public Loan bookOnLoan() {
+        return loan;
     }
 
     public ReturnDate returnDate() {

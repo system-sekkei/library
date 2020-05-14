@@ -4,25 +4,25 @@ import library.application.repository.ItemRepository;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemInStock;
 import library.domain.model.book.item.ItemNumber;
-import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
+import library.infrastructure.datasource.loan.LoanMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ItemDataSource implements ItemRepository {
     ItemMapper itemMapper;
-    BookOnLoanMapper bookOnLoanMapper;
+    LoanMapper loanMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public ItemDataSource(ItemMapper itemMapper, BookOnLoanMapper bookOnLoanMapper) {
+    public ItemDataSource(ItemMapper itemMapper, LoanMapper loanMapper) {
         this.itemMapper = itemMapper;
-        this.bookOnLoanMapper = bookOnLoanMapper;
+        this.loanMapper = loanMapper;
     }
 
     @Override
     public Item findItemOnLoan(ItemNumber itemNumber) {
         Item item = itemMapper.selectItem(itemNumber);
 
-        if (bookOnLoanMapper.selectByItemNumber(itemNumber).isEmpty()) {
+        if (loanMapper.selectByItemNumber(itemNumber).isEmpty()) {
             throw new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber));
         }
 
@@ -33,7 +33,7 @@ public class ItemDataSource implements ItemRepository {
     public ItemInStock findItemInStock(ItemNumber itemNumber) {
         Item item = itemMapper.selectItem(itemNumber);
 
-        if (bookOnLoanMapper.selectByItemNumber(itemNumber).isPresent()) {
+        if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new IllegalArgumentException(String.format("現在在庫にない蔵書です。蔵書コード：%s", itemNumber));
         }
 

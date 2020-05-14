@@ -2,18 +2,18 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="library.infrastructure.datasource.bookonloan.BookOnLoanMapper">
-    <select id="newBookOnLoanIdentifier" resultType="Integer">
+<mapper namespace="library.infrastructure.datasource.loan.LoanMapper">
+    <select id="newLoanNumber" resultType="int">
         SELECT NEXTVAL('貸出ID')
     </select>
 
-    <insert id="insertBookOnLoan">
+    <insert id="insertLoan">
         INSERT INTO 貸出(貸出ID, 会員番号, 蔵書コード, 貸出日)
-        VALUES (#{bookOnLoanId}, #{memberNumber.value}, #{itemNumber.value}, #{loanDate.value.value})
+        VALUES (#{loanNumber}, #{memberNumber.value}, #{itemNumber.value}, #{loanDate.value.value})
     </insert>
 
-    <select id="selectByMemberNumber" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
-        SELECT 貸出.貸出ID as "bookOnLoanId.value",
+    <select id="selectByMemberNumber" resultType="library.infrastructure.datasource.loan.LoanData">
+        SELECT 貸出.貸出ID as "loanNumber.value",
                貸出.蔵書コード as "itemNumber.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
@@ -24,11 +24,11 @@
 
     <insert id="insertReturnBook">
         INSERT INTO 返却(貸出ID, 返却日)
-        VALUES (#{bookOnLoanId.value}, #{returnDate.value.value})
+        VALUES (#{loanNumber.value}, #{returnDate.value.value})
     </insert>
 
-    <select id="selectByItemNumber" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
-        SELECT 貸出.貸出ID as "bookOnLoanId.value",
+    <select id="selectByItemNumber" resultType="library.infrastructure.datasource.loan.LoanData">
+        SELECT 貸出.貸出ID as "loanNumber.value",
                貸出.蔵書コード as "itemNumber.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
@@ -37,8 +37,8 @@
         WHERE 貸出.蔵書コード = #{itemNumber.value} AND 返却.貸出ID IS NULL
     </select>
 
-    <select id="selectByItemNumbers" resultType="library.infrastructure.datasource.bookonloan.BookOnLoanData">
-        SELECT 貸出.貸出ID as "bookOnLoanId.value",
+    <select id="selectByItemNumbers" resultType="library.infrastructure.datasource.loan.LoanData">
+        SELECT 貸出.貸出ID as "loanNumber.value",
                貸出.蔵書コード as "itemNumber.value",
                貸出.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value.value"
@@ -49,8 +49,8 @@
         </foreach>
     </select>
 
-    <select id="selectReturnedBookByItemNumbers" resultType="library.infrastructure.datasource.bookonloan.ReturnBookData">
-        SELECT 貸出.貸出ID as "bookOnLoanId.value",
+    <select id="selectReturnedBookByItemNumbers" resultType="library.infrastructure.datasource.loan.ReturnBookData">
+        SELECT 貸出.貸出ID as "loanNumber.value",
                貸出.蔵書コード as "itemNumber.value",
                貸出.会員番号 as "memberNumber.value",
                返却.返却日   as "returnDate.value.value"

@@ -10,18 +10,18 @@ import java.time.Period;
 /**
  * 貸出
  */
-public class BookOnLoan {
-    BookOnLoanId bookOnLoanId;
+public class Loan {
+    LoanNumber loanNumber;
     Member member;
     Item itemOnLoan;
     LoanDate loanDate;
 
     @Deprecated
-    BookOnLoan() {
+    Loan() {
     }
 
-    public BookOnLoan(BookOnLoanId bookOnLoanId, Member member, Item itemOnLoan, LoanDate loanDate) {
-        this.bookOnLoanId = bookOnLoanId;
+    public Loan(LoanNumber loanNumber, Member member, Item itemOnLoan, LoanDate loanDate) {
+        this.loanNumber = loanNumber;
         this.member = member;
         this.itemOnLoan = itemOnLoan;
         this.loanDate = loanDate;
@@ -49,7 +49,7 @@ public class BookOnLoan {
         return loanDate;
     }
 
-    public BookOnLoanId bookOnLoanId() {
-        return bookOnLoanId;
+    public LoanNumber bookOnLoanId() {
+        return loanNumber;
     }
 }

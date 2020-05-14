@@ -1,19 +1,19 @@
-package library.infrastructure.datasource.bookonloan;
+package library.infrastructure.datasource.loan;
 
 import library.domain.model.loan.history.LoaningRecord;
-import library.domain.model.loan.loan.BookOnLoanId;
+import library.domain.model.loan.loan.LoanNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 
-public class BookOnLoanData {
-    BookOnLoanId bookOnLoanId;
+public class LoanData {
+    LoanNumber loanNumber;
     MemberNumber memberNumber;
     ItemNumber itemNumber;
     LoanDate loanDate;
 
     @Deprecated
-    BookOnLoanData() {
+    LoanData() {
     }
 
     public ItemNumber itemNumber() {

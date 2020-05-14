@@ -3,9 +3,9 @@ package library.application.service.bookonloan;
 import library.LibraryDBTest;
 import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.loan.loan.BookOnLoan;
+import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.LoanDate;
-import library.domain.model.loan.rule.BookOnLoanRequest;
+import library.domain.model.loan.rule.LoanRequest;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.book.item.ItemInStock;
 import library.domain.model.member.Member;
@@ -18,9 +18,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
-class BookOnLoanRecordServiceTest {
+class LoanRegisterServiceTest {
     @Autowired
-    BookOnLoanRecordService bookOnLoanRecordService;
+    LoanRegisterService loanRegisterService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -29,20 +29,20 @@ class BookOnLoanRecordServiceTest {
     ItemQueryService itemQueryService;
 
     @Autowired
-    BookOnLoanQueryService bookOnLoanQueryService;
+    LoanQueryService loanQueryService;
 
     @Test
     void 貸出図書を登録できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         ItemNumber itemNumber = new ItemNumber("2-A");
         ItemInStock itemInStock = itemQueryService.findHoldingInStock(itemNumber);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, itemInStock, new LoanDate(Date.from("2020-02-20")));
-        bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
+        LoanRequest loanRequest = new LoanRequest(member, itemInStock, new LoanDate(Date.from("2020-02-20")));
+        loanRegisterService.registerLoan(loanRequest);
 
-        BookOnLoan bookOnLoan = bookOnLoanQueryService.findBookOnLoanByItemNumber(itemNumber);
+        Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);
 
         assertAll(
-                () -> assertEquals(bookOnLoan.member().memberNumber().value(), 1),
-                () -> assertEquals(bookOnLoan.loanDate().toString(), "2020-02-20"));
+                () -> assertEquals(loan.member().memberNumber().value(), 1),
+                () -> assertEquals(loan.loanDate().toString(), "2020-02-20"));
     }
 }

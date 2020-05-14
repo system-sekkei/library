@@ -1,16 +1,16 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.BookOnLoan;
+import library.domain.model.loan.loan.Loan;
 
 /**
  * 貸出票
  */
 public class LoaningCard {
-    BookOnLoan bookOnLoan;
+    Loan loan;
     RejectReason rejectReason;
 
-    private LoaningCard(BookOnLoan bookOnLoan, RejectReason rejectReason) {
-        this.bookOnLoan = bookOnLoan;
+    private LoaningCard(Loan loan, RejectReason rejectReason) {
+        this.loan = loan;
         this.rejectReason = rejectReason;
     }
 
@@ -18,8 +18,8 @@ public class LoaningCard {
         this(null, rejectReason);
     }
 
-    public LoaningCard(BookOnLoan bookOnLoan) {
-        this(bookOnLoan, null);
+    public LoaningCard(Loan loan) {
+        this(loan, null);
     }
 
     public String message() {
@@ -27,10 +27,10 @@ public class LoaningCard {
     }
 
     public boolean rejected() {
-        return bookOnLoan == null;
+        return loan == null;
     }
 
     public boolean ok() {
-        return bookOnLoan != null;
+        return loan != null;
     }
 }

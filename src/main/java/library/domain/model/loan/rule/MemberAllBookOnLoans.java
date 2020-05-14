@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.BookOnLoans;
+import library.domain.model.loan.loan.Loans;
 import library.domain.model.loan.loan.DelayPeriod;
 import library.domain.model.loan.loan.DelayStatus;
 import library.domain.model.member.Member;
@@ -12,16 +12,16 @@ import library.domain.type.date.Date;
  */
 public class MemberAllBookOnLoans {
     Member member;
-    BookOnLoans bookOnLoans;
+    Loans loans;
 
-    public MemberAllBookOnLoans(Member member, BookOnLoans bookOnLoans) {
+    public MemberAllBookOnLoans(Member member, Loans loans) {
         this.member = member;
-        this.bookOnLoans = bookOnLoans;
+        this.loans = loans;
     }
 
     public CanLoan canBorrowBookToday() {
         LoanRestrictions loanRestrictions = todayLoanRestrictions();
-        return loanRestrictions.canLoan(this.bookOnLoans);
+        return loanRestrictions.canLoan(this.loans);
     }
 
     LoanRestrictions todayLoanRestrictions() {
@@ -56,13 +56,13 @@ public class MemberAllBookOnLoans {
     }
 
     DelayStatus worstDelayStatus(Date date) {
-        DelayPeriod worstDelayPeriod = bookOnLoans.worstDelayPeriod(date);
+        DelayPeriod worstDelayPeriod = loans.worstDelayPeriod(date);
 
         return worstDelayPeriod.delayStatus();
     }
 
-    public BookOnLoans bookOnLoans() {
-        return bookOnLoans;
+    public Loans bookOnLoans() {
+        return loans;
     }
 
     public Member member() {
