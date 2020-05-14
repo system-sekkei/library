@@ -5,7 +5,7 @@ import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.Loans;
-import library.domain.model.loan.loan.ReturningBookOnLoan;
+import library.domain.model.loan.loan.Returned;
 import library.domain.model.loan.rule.LoanRequest;
 import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
@@ -51,9 +51,9 @@ public class LoanDataSource implements LoanRepository {
     }
 
     @Override
-    public void registerReturnBook(ReturningBookOnLoan returningBookOnLoan) {
-        Loan loan = returningBookOnLoan.bookOnLoan();
-        loanMapper.insertReturnBook(loan.bookOnLoanId(), returningBookOnLoan.returnDate());
+    public void registerReturnBook(Returned returned) {
+        Loan loan = returned.bookOnLoan();
+        loanMapper.insertReturnBook(loan.bookOnLoanId(), returned.returnDate());
     }
 
     @Override

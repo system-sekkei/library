@@ -1,13 +1,14 @@
 package library.domain.model.loan.loan;
 
 /**
- * 返却しようとしている貸出図書
+ * 貸出図書の返却
+ * （イベント）
  */
-public class ReturningBookOnLoan {
+public class Returned {
     Loan loan;
     ReturnDate returnDate;
 
-    public ReturningBookOnLoan(Loan loan, ReturnDate returnDate) {
+    public Returned(Loan loan, ReturnDate returnDate) {
         this.loan = loan;
         this.returnDate = returnDate;
     }

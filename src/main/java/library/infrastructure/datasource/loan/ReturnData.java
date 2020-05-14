@@ -6,20 +6,22 @@ import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 
-public class ReturnBookData {
+public class ReturnData {
     LoanNumber loanNumber;
     MemberNumber memberNumber;
     ItemNumber itemNumber;
     ReturnDate returnDate;
 
     @Deprecated
-    ReturnBookData() {
+    ReturnData() {
     }
 
     public ItemNumber itemNumber() {
         return itemNumber;
     }
 
+    // TODO ReturnRecordに直接マッピングする
+    // TODO Returned と ReturnRecordを統合する？
     public ReturnRecord toReturningRecord() {
         return new ReturnRecord(memberNumber, returnDate);
     }

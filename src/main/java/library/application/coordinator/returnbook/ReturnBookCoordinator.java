@@ -5,7 +5,7 @@ import library.application.service.holding.ItemQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.ReturnDate;
-import library.domain.model.loan.loan.ReturningBookOnLoan;
+import library.domain.model.loan.loan.Returned;
 import library.domain.model.book.item.ItemNumber;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +29,6 @@ public class ReturnBookCoordinator {
      */
     public void returnBook(ItemNumber itemNumber, ReturnDate returnDate) {
         Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);
-        returnBookRecordService.registerReturnBook(new ReturningBookOnLoan(loan, returnDate));
+        returnBookRecordService.registerReturnBook(new Returned(loan, returnDate));
     }
 }
