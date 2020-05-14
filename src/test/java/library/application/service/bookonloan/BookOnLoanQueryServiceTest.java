@@ -1,7 +1,7 @@
 package library.application.service.bookonloan;
 
 import library.LibraryDBTest;
-import library.application.service.holding.HoldingQueryService;
+import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returnbook.ReturnBookRecordService;
 import library.domain.model.loan.loan.BookOnLoan;
@@ -36,7 +36,7 @@ class BookOnLoanQueryServiceTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    HoldingQueryService holdingQueryService;
+    ItemQueryService itemQueryService;
 
     @Test
     void 貸出図書を取得できる() {
@@ -84,7 +84,7 @@ class BookOnLoanQueryServiceTest {
 
     private void registerBookOnLoan(ItemNumber itemNumber, int memberNumber) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        ItemInStock itemInStock = holdingQueryService.findHoldingInStock(itemNumber);
+        ItemInStock itemInStock = itemQueryService.findHoldingInStock(itemNumber);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, itemInStock, new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
     }

@@ -2,7 +2,7 @@ package library.application.coordinator.bookonloan;
 
 import library.LibraryDBTest;
 import library.application.service.bookonloan.BookOnLoanQueryService;
-import library.application.service.holding.HoldingQueryService;
+import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.rule.BookOnLoanRequest;
@@ -30,7 +30,7 @@ class BookOnLoanRegisterCoordinatorTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    HoldingQueryService holdingQueryService;
+    ItemQueryService itemQueryService;
 
     @Autowired
     BookOnLoanQueryService bookOnLoanQueryService;
@@ -74,7 +74,7 @@ class BookOnLoanRegisterCoordinatorTest {
 
     private BookOnLoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        ItemInStock itemInStock = holdingQueryService.findHoldingInStock(new ItemNumber(itemNumber));
+        ItemInStock itemInStock = itemQueryService.findHoldingInStock(new ItemNumber(itemNumber));
         return new BookOnLoanRequest(member, itemInStock, new LoanDate(Date.from(loanDate)));
     }
 }

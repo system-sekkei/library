@@ -3,7 +3,7 @@ package library.application.service.returnbook;
 import library.LibraryDBTest;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
-import library.application.service.holding.HoldingQueryService;
+import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.loan.BookOnLoan;
 import library.domain.model.loan.loan.ReturnDate;
@@ -30,7 +30,7 @@ class ReturnBookRecordServiceTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    HoldingQueryService holdingQueryService;
+    ItemQueryService itemQueryService;
 
     @Test
     void 返却を登録できる() {

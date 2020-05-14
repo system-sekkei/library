@@ -1,14 +1,14 @@
 package library.application.repository;
 
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemInStock;
-import library.domain.model.book.item.ItemOnLoan;
+import library.domain.model.book.item.ItemNumber;
 
 /**
  * 蔵書リポジトリ
  */
 public interface ItemRepository {
-    ItemOnLoan findItemOnLoan(ItemNumber itemNumber);
+    Item findItemOnLoan(ItemNumber itemNumber);
 
     ItemInStock findItemInStock(ItemNumber itemNumber);
 }

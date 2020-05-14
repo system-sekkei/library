@@ -2,7 +2,7 @@ package library.infrastructure.datasource.bookonloan;
 
 import library.LibraryDBTest;
 import library.application.coordinator.returnbook.ReturnBookCoordinator;
-import library.application.service.holding.HoldingQueryService;
+import library.application.service.holding.ItemQueryService;
 import library.domain.model.loan.loan.BookOnLoan;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
@@ -30,7 +30,7 @@ class BookOnLoanDataSourceTest {
     ReturnBookCoordinator returnBookCoordinator;
 
     @Autowired
-    HoldingQueryService holdingQueryService;
+    ItemQueryService itemQueryService;
 
     @Test
     void 蔵書コードで貸出図書を取得できる() throws Exception {

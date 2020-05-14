@@ -3,7 +3,7 @@ package library.presentation.controller.bookonloan;
 import library.application.coordinator.bookonloan.BookOnLoanRegisterCoordinator;
 import library.application.service.bookonloan.BookOnLoanQueryService;
 import library.application.service.bookonloan.BookOnLoanRecordService;
-import library.application.service.holding.HoldingQueryService;
+import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.rule.BookOnLoanRequest;
 import library.domain.model.loan.rule.LoaningCard;
@@ -30,14 +30,14 @@ public class BookOnLoanRegisterController {
     BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator;
     BookOnLoanQueryService bookOnLoanQueryService;
     MemberQueryService memberQueryService;
-    HoldingQueryService holdingQueryService;
+    ItemQueryService itemQueryService;
 
-    public BookOnLoanRegisterController(BookOnLoanRecordService bookOnLoanRecordService, BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService, HoldingQueryService holdingQueryService) {
+    public BookOnLoanRegisterController(BookOnLoanRecordService bookOnLoanRecordService, BookOnLoanRegisterCoordinator bookOnLoanRegisterCoordinator, BookOnLoanQueryService bookOnLoanQueryService, MemberQueryService memberQueryService, ItemQueryService itemQueryService) {
         this.bookOnLoanRecordService = bookOnLoanRecordService;
         this.bookOnLoanRegisterCoordinator = bookOnLoanRegisterCoordinator;
         this.bookOnLoanQueryService = bookOnLoanQueryService;
         this.memberQueryService = memberQueryService;
-        this.holdingQueryService = holdingQueryService;
+        this.itemQueryService = itemQueryService;
     }
 
     @GetMapping
@@ -51,7 +51,7 @@ public class BookOnLoanRegisterController {
         if (result.hasErrors()) return "bookonloan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
-        ItemInStock itemInStock = holdingQueryService.findHoldingInStock(loaningOfBookForm.itemNumber);
+        ItemInStock itemInStock = itemQueryService.findHoldingInStock(loaningOfBookForm.itemNumber);
         BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, itemInStock, loaningOfBookForm.loanDate);
 
         LoaningCard loaningCard = bookOnLoanRegisterCoordinator.loaning(bookOnLoanRequest);

@@ -1,26 +1,26 @@
 package library.application.service.holding;
 
 import library.application.repository.ItemRepository;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemInStock;
-import library.domain.model.book.item.ItemOnLoan;
+import library.domain.model.book.item.ItemNumber;
 import org.springframework.stereotype.Service;
 
 /**
  * 蔵書参照サービス
  */
 @Service
-public class HoldingQueryService {
+public class ItemQueryService {
     ItemRepository itemRepository;
 
-    HoldingQueryService(ItemRepository itemRepository) {
+    ItemQueryService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }
 
     /**
      * 貸出中の蔵書を取得する
      */
-    public ItemOnLoan findHoldingOnLoan(ItemNumber itemNumber) {
+    public Item findItemOnLoan(ItemNumber itemNumber) {
         return itemRepository.findItemOnLoan(itemNumber);
     }
 

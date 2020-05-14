@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.item;
 
 import library.LibraryDBTest;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemInStock;
-import library.domain.model.book.item.ItemOnLoan;
+import library.domain.model.book.item.ItemNumber;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -41,9 +41,9 @@ class ItemDataSourceTest {
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        ItemOnLoan itemOnLoan = itemDataSource.findItemOnLoan(new ItemNumber("2-A"));
+        Item itemOnLoan = itemDataSource.findItemOnLoan(new ItemNumber("2-A"));
 
-        assertEquals("2-A", itemOnLoan.item().itemNumber().toString());
+        assertEquals("2-A", itemOnLoan.itemNumber().toString());
     }
 
     @Test
