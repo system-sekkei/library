@@ -2,7 +2,7 @@ package library.application.service.holding;
 
 import library.LibraryDBTest;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,8 +17,8 @@ class ItemQueryServiceTest {
     @Test
     void 貸出中の蔵書を取得できる() {
         ItemNumber itemNumber = new ItemNumber("1-A");
-        HoldingOnLoan holdingOnLoan = holdingQueryService.findHoldingOnLoan(itemNumber);
+        ItemOnLoan itemOnLoan = holdingQueryService.findHoldingOnLoan(itemNumber);
 
-        assertTrue(holdingOnLoan.item().itemNumber().sameValue(itemNumber));
+        assertTrue(itemOnLoan.item().itemNumber().sameValue(itemNumber));
     }
 }

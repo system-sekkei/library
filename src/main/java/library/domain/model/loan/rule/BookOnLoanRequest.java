@@ -1,7 +1,7 @@
 package library.domain.model.loan.rule;
 
 import library.domain.model.loan.loan.LoanDate;
-import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.ItemInStock;
 import library.domain.model.member.Member;
 
 import javax.validation.Valid;
@@ -14,7 +14,7 @@ public class BookOnLoanRequest {
     Member member;
 
     @Valid
-    HoldingInStock holdingInStock;
+    ItemInStock itemInStock;
 
     @Valid
     LoanDate loanDate;
@@ -23,9 +23,9 @@ public class BookOnLoanRequest {
     BookOnLoanRequest() {
     }
 
-    public BookOnLoanRequest(Member member, HoldingInStock holdingInStock, LoanDate loanDate) {
+    public BookOnLoanRequest(Member member, ItemInStock itemInStock, LoanDate loanDate) {
         this.member = member;
-        this.holdingInStock = holdingInStock;
+        this.itemInStock = itemInStock;
         this.loanDate = loanDate;
     }
 
@@ -33,8 +33,8 @@ public class BookOnLoanRequest {
         return member;
     }
 
-    public HoldingInStock holdingInStock() {
-        return holdingInStock;
+    public ItemInStock holdingInStock() {
+        return itemInStock;
     }
 
     public LoanDate loanDate() {

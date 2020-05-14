@@ -8,9 +8,9 @@ import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.loan.loan.ReturningBookOnLoan;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemOnLoan;
 import library.domain.model.member.Member;
-import library.infrastructure.datasource.item.HoldingMapper;
+import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,13 +21,13 @@ import java.util.stream.Collectors;
 @Repository
 public class BookOnLoanDataSource implements BookOnLoanRepository {
     BookOnLoanMapper bookOnLoanMapper;
-    HoldingMapper holdingMapper;
+    ItemMapper itemMapper;
     MemberMapper memberMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public BookOnLoanDataSource(BookOnLoanMapper bookOnLoanMapper, HoldingMapper holdingMapper, MemberMapper memberMapper) {
+    public BookOnLoanDataSource(BookOnLoanMapper bookOnLoanMapper, ItemMapper itemMapper, MemberMapper memberMapper) {
         this.bookOnLoanMapper = bookOnLoanMapper;
-        this.holdingMapper = holdingMapper;
+        this.itemMapper = itemMapper;
         this.memberMapper = memberMapper;
     }
 
@@ -35,7 +35,7 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
     @Transactional
     public BookOnLoan registerBookOnLoan(BookOnLoanRequest bookOnLoanRequest) {
         ItemNumber itemNumber = bookOnLoanRequest.holdingInStock().holding().itemNumber();
-        holdingMapper.lockHolding(itemNumber);
+        itemMapper.lockItem(itemNumber);
 
         if (bookOnLoanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new RegisterBookOnLoanException(bookOnLoanRequest);
@@ -82,14 +82,14 @@ public class BookOnLoanDataSource implements BookOnLoanRepository {
                 bookOnLoanDataList.stream()
                         .map(bookOnLoanData -> bookOnLoanData.itemNumber)
                         .collect(Collectors.toList());
-        List<Item> items = holdingMapper.selectHoldings(itemNumbers);
+        List<Item> items = itemMapper.selectItems(itemNumbers);
 
         return bookOnLoanDataList.stream()
                 .map(bookOnLoanData ->
                         items.stream()
                                 .filter(holding -> holding.itemNumber().sameValue(bookOnLoanData.itemNumber))
                                 .findFirst()
-                                .map(item -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new HoldingOnLoan(item), bookOnLoanData.loanDate))
+                                .map(item -> new BookOnLoan(bookOnLoanData.bookOnLoanId, member, new ItemOnLoan(item), bookOnLoanData.loanDate))
                                 .orElseThrow())
                 .collect(Collectors.toList());
     }

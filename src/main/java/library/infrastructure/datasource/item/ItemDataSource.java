@@ -1,43 +1,43 @@
 package library.infrastructure.datasource.item;
 
-import library.application.repository.HoldingRepository;
+import library.application.repository.ItemRepository;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingInStock;
-import library.domain.model.book.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemInStock;
+import library.domain.model.book.item.ItemOnLoan;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class HoldingDataSource implements HoldingRepository {
-    HoldingMapper holdingMapper;
+public class ItemDataSource implements ItemRepository {
+    ItemMapper itemMapper;
     BookOnLoanMapper bookOnLoanMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public HoldingDataSource(HoldingMapper holdingMapper, BookOnLoanMapper bookOnLoanMapper) {
-        this.holdingMapper = holdingMapper;
+    public ItemDataSource(ItemMapper itemMapper, BookOnLoanMapper bookOnLoanMapper) {
+        this.itemMapper = itemMapper;
         this.bookOnLoanMapper = bookOnLoanMapper;
     }
 
     @Override
-    public HoldingOnLoan findHoldingOnLoan(ItemNumber itemNumber) {
-        Item item = holdingMapper.selectHolding(itemNumber);
+    public ItemOnLoan findItemOnLoan(ItemNumber itemNumber) {
+        Item item = itemMapper.selectItem(itemNumber);
 
         if (bookOnLoanMapper.selectByItemNumber(itemNumber).isEmpty()) {
             throw new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber));
         }
 
-        return new HoldingOnLoan(item);
+        return new ItemOnLoan(item);
     }
 
     @Override
-    public HoldingInStock findHoldingInStock(ItemNumber itemNumber) {
-        Item item = holdingMapper.selectHolding(itemNumber);
+    public ItemInStock findItemInStock(ItemNumber itemNumber) {
+        Item item = itemMapper.selectItem(itemNumber);
 
         if (bookOnLoanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new IllegalArgumentException(String.format("現在在庫にない蔵書です。蔵書コード：%s", itemNumber));
         }
 
-        return new HoldingInStock(item);
+        return new ItemInStock(item);
     }
 }

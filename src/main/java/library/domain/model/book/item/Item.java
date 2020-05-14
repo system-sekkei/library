@@ -8,6 +8,7 @@ import library.domain.model.book.bibliography.Book;
 public class Item {
     ItemNumber itemNumber;
     Book book;
+    ItemStatus status;
 
     @Deprecated
     Item() {

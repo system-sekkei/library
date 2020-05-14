@@ -11,7 +11,7 @@ import library.domain.model.reservation.retention.RetentionShelf;
 import library.infrastructure.datasource.bookonloan.BookOnLoanData;
 import library.infrastructure.datasource.bookonloan.BookOnLoanMapper;
 import library.infrastructure.datasource.bookonloan.ReturnBookData;
-import library.infrastructure.datasource.item.HoldingMapper;
+import library.infrastructure.datasource.item.ItemMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,12 +19,12 @@ import java.util.stream.Collectors;
 
 @Repository
 public class CounterDataSource implements CounterRepository {
-    HoldingMapper holdingMapper;
+    ItemMapper itemMapper;
     BookOnLoanMapper bookOnLoanMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public CounterDataSource(HoldingMapper holdingMapper, BookOnLoanMapper bookOnLoanMapper) {
-        this.holdingMapper = holdingMapper;
+    public CounterDataSource(ItemMapper itemMapper, BookOnLoanMapper bookOnLoanMapper) {
+        this.itemMapper = itemMapper;
         this.bookOnLoanMapper = bookOnLoanMapper;
     }
 
@@ -34,7 +34,7 @@ public class CounterDataSource implements CounterRepository {
             return Availability.empty();
         }
 
-        List<Item> items = holdingMapper.selectHoldingsByBookIds(bookIds.asList());
+        List<Item> items = itemMapper.selectItemsByBookIds(bookIds.asList());
         Items catalog = new Items(items);
 
         return new Availability(catalog, libraryCardShelf(catalog), retentionShelf());

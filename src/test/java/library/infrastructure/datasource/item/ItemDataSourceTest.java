@@ -2,8 +2,8 @@ package library.infrastructure.datasource.item;
 
 import library.LibraryDBTest;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingInStock;
-import library.domain.model.book.item.HoldingOnLoan;
+import library.domain.model.book.item.ItemInStock;
+import library.domain.model.book.item.ItemOnLoan;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class ItemDataSourceTest {
 
     @Autowired
-    HoldingDataSource holdingDataSource;
+    ItemDataSource itemDataSource;
 
     @Autowired
     MockMvc mockMvc;
@@ -41,9 +41,9 @@ class ItemDataSourceTest {
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
-        HoldingOnLoan holdingOnLoan = holdingDataSource.findHoldingOnLoan(new ItemNumber("2-A"));
+        ItemOnLoan itemOnLoan = itemDataSource.findItemOnLoan(new ItemNumber("2-A"));
 
-        assertEquals("2-A", holdingOnLoan.item().itemNumber().toString());
+        assertEquals("2-A", itemOnLoan.item().itemNumber().toString());
     }
 
     @Test
@@ -59,8 +59,8 @@ class ItemDataSourceTest {
                         .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
-        HoldingInStock holdingInStock = holdingDataSource.findHoldingInStock(new ItemNumber("2-A"));
+        ItemInStock itemInStock = itemDataSource.findItemInStock(new ItemNumber("2-A"));
 
-        assertEquals("2-A", holdingInStock.holding().itemNumber().toString());
+        assertEquals("2-A", itemInStock.holding().itemNumber().toString());
     }
 }

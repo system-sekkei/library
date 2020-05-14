@@ -3,15 +3,15 @@ package library.domain.model.book.item;
 /**
  * 在庫中の蔵書
  */
-public class HoldingInStock {
+public class ItemInStock {
     Item item;
 
-    public HoldingInStock(Item item) {
+    public ItemInStock(Item item) {
         this.item = item;
     }
 
-    public HoldingStatus holdingStatus() {
-        return HoldingStatus.在庫中;
+    public ItemStatus holdingStatus() {
+        return ItemStatus.在庫中;
     }
 
     public Item holding() {

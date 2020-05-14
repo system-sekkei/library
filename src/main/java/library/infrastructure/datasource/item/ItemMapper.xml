@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="library.infrastructure.datasource.item.HoldingMapper">
-    <select id="selectHolding" resultType="library.domain.model.book.item.Item">
+<mapper namespace="library.infrastructure.datasource.item.ItemMapper">
+    <select id="selectItem" resultType="library.domain.model.book.item.Item">
         SELECT
             蔵書.蔵書コード as "itemNumber.value",
             本.本ID as "book.bookId.value",
@@ -15,7 +15,7 @@
         WHERE 蔵書.蔵書コード = #{itemNumber.value}
     </select>
 
-    <select id="selectHoldings" resultType="library.domain.model.book.item.Item">
+    <select id="selectItems" resultType="library.domain.model.book.item.Item">
         SELECT
         蔵書.蔵書コード as "itemNumber.value",
         本.本ID as "book.bookId.value",
@@ -30,7 +30,7 @@
         </foreach>
     </select>
 
-    <select id="selectHoldingsByBookIds" resultType="library.domain.model.book.item.Item">
+    <select id="selectItemsByBookIds" resultType="library.domain.model.book.item.Item">
         SELECT
             蔵書.蔵書コード as "itemNumber.value",
             本.本ID as "book.bookId.value",
@@ -45,7 +45,7 @@
               </foreach>
     </select>
 
-    <select id="lockHolding" resultType="library.domain.model.book.item.ItemNumber">
+    <select id="lockItem" resultType="library.domain.model.book.item.ItemNumber">
         SELECT
             蔵書.蔵書コード as "value"
         FROM 蔵書

@@ -8,7 +8,7 @@ import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.rule.BookOnLoanRequest;
 import library.domain.model.loan.rule.LoaningCard;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.ItemInStock;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -74,7 +74,7 @@ class BookOnLoanRegisterCoordinatorTest {
 
     private BookOnLoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(new ItemNumber(itemNumber));
-        return new BookOnLoanRequest(member, holdingInStock, new LoanDate(Date.from(loanDate)));
+        ItemInStock itemInStock = holdingQueryService.findHoldingInStock(new ItemNumber(itemNumber));
+        return new BookOnLoanRequest(member, itemInStock, new LoanDate(Date.from(loanDate)));
     }
 }

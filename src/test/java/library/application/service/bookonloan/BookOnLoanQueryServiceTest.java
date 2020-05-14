@@ -11,7 +11,7 @@ import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.loan.loan.ReturnDate;
 import library.domain.model.loan.loan.ReturningBookOnLoan;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.HoldingInStock;
+import library.domain.model.book.item.ItemInStock;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -84,8 +84,8 @@ class BookOnLoanQueryServiceTest {
 
     private void registerBookOnLoan(ItemNumber itemNumber, int memberNumber) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        HoldingInStock holdingInStock = holdingQueryService.findHoldingInStock(itemNumber);
-        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, holdingInStock, new LoanDate(Date.from("2020-02-20")));
+        ItemInStock itemInStock = holdingQueryService.findHoldingInStock(itemNumber);
+        BookOnLoanRequest bookOnLoanRequest = new BookOnLoanRequest(member, itemInStock, new LoanDate(Date.from("2020-02-20")));
         bookOnLoanRecordService.registerBookOnLoan(bookOnLoanRequest);
     }
 }
