@@ -45,7 +45,7 @@ public class Availability {
         Items sameBookHoldings = items.findItemsByBook(reservedBook.book());
 
         for (Item item : sameBookHoldings.list()) {
-            if (loans.findLibraryCard(item).isStocked() && retentions.notContains(item)) {
+            if (loans.loanHistory(item).isStocked() && retentions.notContains(item)) {
                 return StockStatus.在庫あり;
             }
         }

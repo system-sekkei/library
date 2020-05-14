@@ -50,23 +50,23 @@ public class CounterDataSource implements CounterRepository {
         List<ReturnBookData> returnBookDataList = loanMapper.selectReturnedBookByItemNumbers(items.holdingsCodes());
 
         List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(holdingCode -> {
-            List<LoaningRecord> loaningRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
-            List<ReturningRecord> returningRecords = toReturningRecords(returnBookDataList, holdingCode);
+            List<LoanRecord> loanRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
+            List<ReturnRecord> returnRecords = toReturningRecords(returnBookDataList, holdingCode);
 
-            return new LoanHistory(holdingCode, new LoaningHistory(loaningRecords), new ReturningHistory(returningRecords));
+            return new LoanHistory(holdingCode, new loanRecords(loanRecords), new ReturnRecords(returnRecords));
         }).collect(Collectors.toList());
 
         return new WholeLoanHistory(loanHistories);
     }
 
-    private List<LoaningRecord> toLoaningRecords(List<LoanData> bookOnLoansDataList, ItemNumber itemNumber) {
+    private List<LoanRecord> toLoaningRecords(List<LoanData> bookOnLoansDataList, ItemNumber itemNumber) {
         return bookOnLoansDataList.stream()
             .filter(loanData -> loanData.itemNumber().sameValue(itemNumber))
             .map(LoanData::toLoaningRecord)
             .collect(Collectors.toList());
     }
 
-    private List<ReturningRecord> toReturningRecords(List<ReturnBookData> returnBookDataList, ItemNumber itemNumber) {
+    private List<ReturnRecord> toReturningRecords(List<ReturnBookData> returnBookDataList, ItemNumber itemNumber) {
         return returnBookDataList.stream()
                 .filter(returnBookData -> returnBookData.itemNumber().sameValue(itemNumber))
                 .map(ReturnBookData::toReturningRecord)

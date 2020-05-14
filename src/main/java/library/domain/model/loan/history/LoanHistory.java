@@ -7,17 +7,17 @@ import library.domain.model.book.item.ItemNumber;
  */
 public class LoanHistory {
     ItemNumber itemNumber;
-    LoaningHistory loaningHistory;
-    ReturningHistory returningHistory;
+    loanRecords loanRecords;
+    ReturnRecords returnRecords;
 
-    public LoanHistory(ItemNumber itemNumber, LoaningHistory loaningHistory, ReturningHistory returningHistory) {
+    public LoanHistory(ItemNumber itemNumber, loanRecords loanRecords, ReturnRecords returnRecords) {
         this.itemNumber = itemNumber;
-        this.loaningHistory = loaningHistory;
-        this.returningHistory = returningHistory;
+        this.loanRecords = loanRecords;
+        this.returnRecords = returnRecords;
     }
 
     public boolean isLoaning() {
-        return loaningHistory.historyCount().minus(returningHistory.historyCount()) >= 1;
+        return loanRecords.historyCount().minus(returnRecords.historyCount()) >= 1;
     }
 
     public boolean isStocked() {

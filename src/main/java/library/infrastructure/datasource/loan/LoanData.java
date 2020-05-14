@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.loan;
 
-import library.domain.model.loan.history.LoaningRecord;
+import library.domain.model.loan.history.LoanRecord;
 import library.domain.model.loan.loan.LoanNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.book.item.ItemNumber;
@@ -20,7 +20,7 @@ public class LoanData {
         return itemNumber;
     }
 
-    public LoaningRecord toLoaningRecord() {
-        return new LoaningRecord(memberNumber, loanDate);
+    public LoanRecord toLoaningRecord() {
+        return new LoanRecord(memberNumber, loanDate);
     }
 }
