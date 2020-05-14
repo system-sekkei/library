@@ -8,7 +8,7 @@ import library.domain.model.book.bibliography.Book;
 public class Item {
     ItemNumber itemNumber;
     Book book;
-    ItemStatus status;
+    ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
 
     @Deprecated
     Item() {

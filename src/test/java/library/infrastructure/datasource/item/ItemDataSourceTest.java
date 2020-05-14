@@ -2,7 +2,6 @@ package library.infrastructure.datasource.item;
 
 import library.LibraryDBTest;
 import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemInStock;
 import library.domain.model.book.item.ItemNumber;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,8 +58,8 @@ class ItemDataSourceTest {
                         .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
-        ItemInStock itemInStock = itemDataSource.findItemInStock(new ItemNumber("2-A"));
+        Item itemInStock = itemDataSource.findItemInStock(new ItemNumber("2-A"));
 
-        assertEquals("2-A", itemInStock.holding().itemNumber().toString());
+        assertEquals("2-A", itemInStock.itemNumber().toString());
     }
 }

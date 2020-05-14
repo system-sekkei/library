@@ -2,7 +2,6 @@ package library.infrastructure.datasource.item;
 
 import library.application.repository.ItemRepository;
 import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemInStock;
 import library.domain.model.book.item.ItemNumber;
 import library.infrastructure.datasource.loan.LoanMapper;
 import org.springframework.stereotype.Repository;
@@ -30,13 +29,13 @@ public class ItemDataSource implements ItemRepository {
     }
 
     @Override
-    public ItemInStock findItemInStock(ItemNumber itemNumber) {
+    public Item findItemInStock(ItemNumber itemNumber) {
         Item item = itemMapper.selectItem(itemNumber);
 
         if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new IllegalArgumentException(String.format("現在在庫にない蔵書です。蔵書コード：%s", itemNumber));
         }
 
-        return new ItemInStock(item);
+        return item;
     }
 }

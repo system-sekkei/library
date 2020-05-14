@@ -33,7 +33,7 @@ public class LoanDataSource implements LoanRepository {
     @Override
     @Transactional
     public Loan registerLoan(LoanRequest loanRequest) {
-        ItemNumber itemNumber = loanRequest.holdingInStock().holding().itemNumber();
+        ItemNumber itemNumber = loanRequest.item().itemNumber();
         itemMapper.lockItem(itemNumber);
 
         if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
@@ -44,7 +44,7 @@ public class LoanDataSource implements LoanRepository {
         loanMapper.insertLoan(
                 bookOnLoanId,
                 loanRequest.member().memberNumber(),
-                loanRequest.holdingInStock().holding().itemNumber(),
+                loanRequest.item().itemNumber(),
                 loanRequest.loanDate());
 
         return findLoanByItemNumber(itemNumber);

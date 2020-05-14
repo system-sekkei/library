@@ -4,11 +4,11 @@ import library.LibraryDBTest;
 import library.application.service.bookonloan.LoanQueryService;
 import library.application.service.holding.ItemQueryService;
 import library.application.service.member.MemberQueryService;
+import library.domain.model.book.item.Item;
+import library.domain.model.book.item.ItemNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.rule.LoanRequest;
 import library.domain.model.loan.rule.LoaningCard;
-import library.domain.model.book.item.ItemNumber;
-import library.domain.model.book.item.ItemInStock;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -74,7 +74,7 @@ class LoanRegisterCoordinatorTest {
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        ItemInStock itemInStock = itemQueryService.findHoldingInStock(new ItemNumber(itemNumber));
+        Item itemInStock = itemQueryService.findItemInStock(new ItemNumber(itemNumber));
         return new LoanRequest(member, itemInStock, new LoanDate(Date.from(loanDate)));
     }
 }

@@ -2,7 +2,6 @@ package library.application.service.holding;
 
 import library.application.repository.ItemRepository;
 import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemInStock;
 import library.domain.model.book.item.ItemNumber;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +26,7 @@ public class ItemQueryService {
     /**
      * 在庫中の蔵書を取得する
      */
-    public ItemInStock findHoldingInStock(ItemNumber itemNumber) {
+    public Item findItemInStock(ItemNumber itemNumber) {
         return itemRepository.findItemInStock(itemNumber);
     }
 }
