@@ -34,7 +34,7 @@
 
     <insert id="insertReturnBook">
         INSERT INTO 返却(貸出ID, 返却日)
-        VALUES (#{loanNumber.value}, #{returnDate.value.value})
+        VALUES (#{loanNumber.value}, #{returned.returnDate.value.value})
     </insert>
 
     <select id="selectByItemNumber" resultMap="loan">

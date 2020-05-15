@@ -1,15 +1,18 @@
 package library.presentation.controller.returnbook;
 
-import library.application.coordinator.returnbook.ReturnBookCoordinator;
 import library.application.service.bookonloan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
+import library.application.service.returnbook.ReturnBookRecordService;
+import library.domain.model.book.item.ItemNumber;
+import library.domain.model.loan.returned.ReturnDate;
+import library.domain.model.loan.returned.Returned;
+import library.domain.type.date.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * 貸出図書返却の登録
@@ -17,27 +20,27 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @RequestMapping("returnbook/register")
 public class ReturnBookRegisterController {
-    ReturnBookCoordinator returnBookCoordinator;
-    LoanQueryService loanQueryService;
+    ReturnBookRecordService returnBookRecordService;
     MemberQueryService memberQueryService;
 
-    public ReturnBookRegisterController(ReturnBookCoordinator returnBookCoordinator, LoanQueryService loanQueryService, MemberQueryService memberQueryService) {
-        this.returnBookCoordinator = returnBookCoordinator;
-        this.loanQueryService = loanQueryService;
+    public ReturnBookRegisterController(ReturnBookRecordService returnBookRecordService, LoanQueryService loanQueryService, MemberQueryService memberQueryService) {
+        this.returnBookRecordService = returnBookRecordService;
         this.memberQueryService = memberQueryService;
     }
 
     @GetMapping
     String init(Model model) {
-        model.addAttribute("returnBookForm", new ReturnBookForm());
+        Returned returned = new Returned(new ItemNumber(""), new ReturnDate(Date.now()));
+        model.addAttribute("returned", returned );
         return "returnbook/register/form";
     }
 
     @PostMapping
-    String register(@Validated @ModelAttribute("returnBookForm") ReturnBookForm returnBookForm, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("returned") Returned returned,
+                    BindingResult result) {
         if (result.hasErrors()) return "returnbook/register/form";
 
-        returnBookCoordinator.returnBook(returnBookForm.itemNumber, returnBookForm.returnDate);
+        returnBookRecordService.registerReturnBook(returned);
 
         return "redirect:/returnbook/register/completed";
     }
@@ -50,7 +53,6 @@ public class ReturnBookRegisterController {
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.setAllowedFields(
-                "memberNumber.value",
                 "itemNumber.value",
                 "returnDate.value"
         );

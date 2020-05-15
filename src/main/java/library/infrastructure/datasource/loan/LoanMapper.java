@@ -27,7 +27,7 @@ public interface LoanMapper {
 
     void insertReturnBook(
             @Param("loanNumber") LoanNumber loanNumber,
-            @Param("returnDate") ReturnDate returnDate);
+            @Param("returned") Returned returned);
 
     Optional<Loan> selectByItemNumber(@Param("itemNumber") ItemNumber itemNumber);
 

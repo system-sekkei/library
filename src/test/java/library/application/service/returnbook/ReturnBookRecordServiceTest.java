@@ -34,9 +34,10 @@ class ReturnBookRecordServiceTest {
 
     @Test
     void 返却を登録できる() {
-        Loan loan = loanQueryService.findLoanByItemNumber(new ItemNumber("1-A"));
+        ItemNumber itemNumber = new ItemNumber("1-A");
+        ReturnDate returnDate = new ReturnDate(Date.from("2020-02-20"));
 
-        Returned returned = new Returned(loan, new ReturnDate(Date.from("2020-02-20")));
+        Returned returned = new Returned(itemNumber, returnDate);
         returnBookRecordService.registerReturnBook(returned);
 
         assertThrows(IllegalArgumentException.class, () -> {

@@ -1,5 +1,6 @@
 package library.domain.model.loan.returned;
 
+import library.domain.model.book.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 
 /**
@@ -7,19 +8,15 @@ import library.domain.model.loan.loan.Loan;
  * （イベント）
  */
 public class Returned {
-    Loan loan;
+    ItemNumber itemNumber;
     ReturnDate returnDate;
 
-    public Returned(Loan loan, ReturnDate returnDate) {
-        this.loan = loan;
+    public Returned(ItemNumber itemNumber, ReturnDate returnDate) {
+        this.itemNumber = itemNumber;
         this.returnDate = returnDate;
     }
 
-    public Loan bookOnLoan() {
-        return loan;
-    }
-
-    public ReturnDate returnDate() {
-        return returnDate;
+    public ItemNumber itemNumber() {
+        return itemNumber;
     }
 }

@@ -51,8 +51,7 @@ class LoanQueryServiceTest {
     void 返却された貸出図書は取得できない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerBookOnLoan(itemNumber, 1);
-        Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);
-        returnBookRecordService.registerReturnBook(new Returned(loan, new ReturnDate(Date.from("2020-02-21"))));
+        returnBookRecordService.registerReturnBook(new Returned(itemNumber, new ReturnDate(Date.from("2020-02-21"))));
 
         assertThrows(IllegalArgumentException.class, () -> {
             loanQueryService.findLoanByItemNumber(itemNumber);
@@ -73,8 +72,7 @@ class LoanQueryServiceTest {
     void 会員が現在借りている全貸出図書取得時に返却した貸出図書が含まれない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerBookOnLoan(itemNumber, 2);
-        Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);
-        returnBookRecordService.registerReturnBook(new Returned(loan, new ReturnDate(Date.from("2020-02-21"))));
+        returnBookRecordService.registerReturnBook(new Returned(itemNumber, new ReturnDate(Date.from("2020-02-21"))));
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
         MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);

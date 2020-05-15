@@ -50,8 +50,10 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     public void registerReturnBook(Returned returned) {
-        Loan loan = returned.bookOnLoan();
-        loanMapper.insertReturnBook(loan.loanNumber(), returned.returnDate());
+        ItemNumber itemNumber = returned.itemNumber();
+        Loan loan = loanMapper.selectByItemNumber(itemNumber)
+                .orElseThrow(() -> new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber)));
+        loanMapper.insertReturnBook(loan.loanNumber(), returned);
     }
 
     @Override
