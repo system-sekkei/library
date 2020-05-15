@@ -20,9 +20,9 @@ public class LoanHistory {
 
     // TODO 時系列として最後が貸出か返却かで判断したい　貸出記録の最後に日付と返却記録の最後の日付を比較：記録ない場合は貸出中ではない
     public boolean isLoaning() {
-        HistoryCount loanCount = new HistoryCount(loans.numberOfLoans().value());
-        HistoryCount returnCount = returns.historyCount();
-        return loanCount.minus(returnCount) >= 1;
+        int loanCount = loans.count();
+        int returnCount = returns.count();
+        return (loanCount - returnCount) >= 1;
     }
 
     public boolean isStocked() {

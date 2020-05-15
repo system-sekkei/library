@@ -24,8 +24,8 @@ public class Loans {
                 .orElse(new DelayPeriod(new Days(0)));
     }
 
-    public NumberOfLoans numberOfLoans() {
-        return new NumberOfLoans(list.size());
+    public int count() {
+        return list.size();
     }
 
     public List<Loan> asList() {
