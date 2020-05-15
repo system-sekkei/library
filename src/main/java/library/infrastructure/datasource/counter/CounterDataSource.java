@@ -7,6 +7,7 @@ import library.domain.model.book.item.ItemNumber;
 import library.domain.model.book.item.Items;
 import library.domain.model.loan.history.*;
 import library.domain.model.loan.loan.Loan;
+import library.domain.model.loan.loan.Loans;
 import library.domain.model.reservation.availability.Availability;
 import library.domain.model.reservation.retention.RetentionShelf;
 import library.infrastructure.datasource.item.ItemMapper;
@@ -46,24 +47,16 @@ public class CounterDataSource implements CounterRepository {
     }
 
     private WholeLoanHistory libraryCardShelf(Items items) {
-        List<Loan> bookOnLoansDataList = loanMapper.selectByItemNumbers(items.holdingsCodes());
+        List<Loan> loans = loanMapper.selectByItemNumbers(items.holdingsCodes());
         List<ReturnData> returnDataList = loanMapper.selectReturnedByItemNumbers(items.holdingsCodes());
 
-        List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(holdingCode -> {
-            List<LoanRecord> loanRecords = toLoaningRecords(bookOnLoansDataList, holdingCode);
-            List<ReturnRecord> returnRecords = toReturningRecords(returnDataList, holdingCode);
+        List<LoanHistory> loanHistories = items.holdingsCodes().stream().map(itemNumber -> {
+            List<ReturnRecord> returnRecords = toReturningRecords(returnDataList, itemNumber);
 
-            return new LoanHistory(holdingCode, new LoanRecords(loanRecords), new ReturnRecords(returnRecords));
+            return new LoanHistory(itemNumber, new Loans(loans), new ReturnRecords(returnRecords));
         }).collect(Collectors.toList());
 
         return new WholeLoanHistory(loanHistories);
-    }
-
-    private List<LoanRecord> toLoaningRecords(List<Loan> bookOnLoansDataList, ItemNumber itemNumber) {
-        return bookOnLoansDataList.stream()
-            .filter(loanData -> loanData.itemNumber().sameValue(itemNumber))
-            .map(Loan::toLoaningRecord)
-            .collect(Collectors.toList());
     }
 
     private List<ReturnRecord> toReturningRecords(List<ReturnData> returnDataList, ItemNumber itemNumber) {

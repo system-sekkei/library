@@ -2,7 +2,6 @@ package library.domain.model.loan.loan;
 
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
-import library.domain.model.loan.history.LoanRecord;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -64,9 +63,4 @@ public class Loan {
     public MemberNumber memberNumber() {
         return member.memberNumber();
     }
-
-    public LoanRecord toLoaningRecord() {
-        return new LoanRecord(member.memberNumber(), loanDate);
-    }
-
 }
