@@ -1,7 +1,5 @@
 package library.domain.model.book.bibliography;
 
-import library.domain.model.book.NumberOfBook;
-
 import java.util.Collections;
 import java.util.List;
 

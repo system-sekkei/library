@@ -1,7 +1,8 @@
-package library.domain.model.book;
+package library.domain.model.book.bibliography;
 
 /**
- * 本の冊数
+ * 本の点数
+ * (本の種類の数)
  */
 public class NumberOfBook {
     int value;
