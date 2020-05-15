@@ -1,7 +1,9 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan.returned;
+
+import library.domain.model.loan.loan.Loan;
 
 /**
- * 貸出図書の返却
+ * 返却
  * （イベント）
  */
 public class Returned {

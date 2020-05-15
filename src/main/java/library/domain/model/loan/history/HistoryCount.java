@@ -3,10 +3,10 @@ package library.domain.model.loan.history;
 /**
  * 履歴件数
  */
-class HistoryCount {
+public class HistoryCount {
     int value;
 
-    HistoryCount(int value) {
+    public HistoryCount(int value) {
         this.value = value;
     }
 

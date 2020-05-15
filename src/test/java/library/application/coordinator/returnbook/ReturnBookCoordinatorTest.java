@@ -2,7 +2,7 @@ package library.application.coordinator.returnbook;
 
 import library.LibraryDBTest;
 import library.application.service.bookonloan.LoanQueryService;
-import library.domain.model.loan.loan.ReturnDate;
+import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;

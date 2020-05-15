@@ -1,11 +1,10 @@
 package library.infrastructure.datasource.loan;
 
 import library.application.repository.LoanRepository;
-import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.Loans;
-import library.domain.model.loan.loan.Returned;
+import library.domain.model.loan.returned.Returned;
 import library.domain.model.loan.rule.LoanRequest;
 import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
 public class LoanDataSource implements LoanRepository {
