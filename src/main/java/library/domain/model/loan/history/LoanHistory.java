@@ -8,12 +8,10 @@ import library.domain.model.loan.returned.Returns;
  * 貸出履歴
  */
 public class LoanHistory {
-    ItemNumber itemNumber;
     Loans loans;
     Returns returns;
 
-    public LoanHistory(ItemNumber itemNumber, Loans loans, Returns returns) {
-        this.itemNumber = itemNumber;
+    public LoanHistory(Loans loans, Returns returns) {
         this.loans = loans;
         this.returns = returns;
     }

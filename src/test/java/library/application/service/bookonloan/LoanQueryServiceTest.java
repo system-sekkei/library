@@ -66,7 +66,7 @@ class LoanQueryServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);
 
-        assertEquals(memberAllBookOnLoans.bookOnLoans().numberOfLoans().value(), 1);
+        assertEquals(memberAllBookOnLoans.bookOnLoans().count(), 1);
     }
 
     @Test
@@ -79,7 +79,7 @@ class LoanQueryServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);
 
-        assertEquals(memberAllBookOnLoans.bookOnLoans().numberOfLoans().value(), 0);
+        assertEquals(memberAllBookOnLoans.bookOnLoans().count(), 0);
     }
 
     private void registerBookOnLoan(ItemNumber itemNumber, int memberNumber) {

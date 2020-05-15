@@ -1,6 +1,7 @@
 package library.presentation.controller.reservation;
 
 import library.application.coordinator.retention.RetentionCoordinator;
+import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.retention.RetentionableReservations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +23,8 @@ public class ReservationListController {
     @GetMapping
     String init(Model model) {
         // TODO: 在庫ありの本のみにするかどうかは画面側で切り替えられるようにしたい
-        RetentionableReservations retentionableReservations = retentionCoordinator.retention();
-        model.addAttribute("reservations", retentionableReservations);
+        Reservations reservations = retentionCoordinator.retention();
+        model.addAttribute("reservations", reservations);
         return "reservation/list";
     }
 }

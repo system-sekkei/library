@@ -18,7 +18,7 @@ public enum LoanRestrictions {
     }
 
     public CanLoan canLoan(Loans loans) {
-        if (limit > loans.numberOfLoans().value()) {
+        if (limit > loans.count()) {
             return CanLoan.貸出可能;
         }
         return CanLoan.貸出不可;

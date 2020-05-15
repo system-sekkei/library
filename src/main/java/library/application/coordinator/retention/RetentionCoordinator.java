@@ -1,29 +1,28 @@
 package library.application.coordinator.retention;
 
-import library.application.repository.CounterRepository;
 import library.application.service.reservation.ReservationQueryService;
-import library.domain.model.reservation.availability.Availability;
+import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.retention.RetentionableReservations;
 import org.springframework.stereotype.Service;
+
+import java.util.Collections;
+import java.util.List;
 
 @Service
 public class RetentionCoordinator {
     ReservationQueryService reservationQueryService;
-    CounterRepository counterRepository;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, CounterRepository counterRepository) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService) {
         this.reservationQueryService = reservationQueryService;
-        this.counterRepository = counterRepository;
     }
 
     /**
      * 取置可能な予約一覧を取得する
      * TODO: UCでは予約「図書」となっているが、図書ではない
+     * TODO: 仕様の再定義から：現在は仮実装
      */
-    public RetentionableReservations retention() {
-        Reservations reservations = reservationQueryService.findReservations();
-        Availability availability = counterRepository.counter(reservations.bookIds());
-        return availability.retentionableReservedBooks(reservations);
+    public Reservations retention() {
+        List<Reservation> reservations = Collections.emptyList();
+        return new Reservations(reservations);
     }
 }

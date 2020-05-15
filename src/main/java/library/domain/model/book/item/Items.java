@@ -28,7 +28,7 @@ public class Items {
         return new Items(result);
     }
 
-    public List<ItemNumber> holdingsCodes() {
+    public List<ItemNumber> itemNumbers() {
         return list.stream().map(Item::itemNumber).collect(Collectors.toList());
     }
 }
