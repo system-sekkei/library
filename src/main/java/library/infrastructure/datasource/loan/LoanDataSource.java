@@ -58,40 +58,13 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     public MemberAllBookOnLoans findMemberAllBookOnLoans(Member member) {
-        List<Loan> loanDataList = loanMapper.selectByMemberNumber(member.memberNumber());
-        List<Loan> loans = bookOnLoans(member, loanDataList);
-
+        List<Loan> loans = loanMapper.selectByMemberNumber(member.memberNumber());
         return new MemberAllBookOnLoans(member, new Loans(loans));
     }
 
     @Override
     public Loan findLoanByItemNumber(ItemNumber itemNumber) {
-        Loan loan = loanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
+        return loanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
                 new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書コード：%s", itemNumber)));
-
-        Member member = memberMapper.selectMember(loan.memberNumber());
-        Loan loanResult = bookOnLoans(member, List.of(loan)).get(0);
-        return loanResult;
     }
-
-    List<Loan> bookOnLoans(Member member, List<Loan> loanDataList) {
-        if (loanDataList.isEmpty()) return List.of();
-
-        List<ItemNumber> itemNumbers =
-                loanDataList.stream()
-                        .map(loanData -> loanData.itemNumber())
-                        .collect(Collectors.toList());
-        List<Item> items = itemMapper.selectItems(itemNumbers);
-
-        return loanDataList.stream()
-                .map(loanData ->
-                        items.stream()
-                                .filter(holding -> holding.itemNumber().sameValue(loanData.itemNumber()))
-                                .findFirst()
-                                .map(item -> new Loan(loanData.loanNumber(), member, item, loanData.loanDate()))
-                                .orElseThrow())
-                .collect(Collectors.toList());
-    }
-
-
 }
