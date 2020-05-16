@@ -11,7 +11,7 @@
   <header th:replace="fragments/header::header('貸出図書の登録')"></header>
 
   <div class="notification">
-    会員番号: <span th:text="${memberAllBookOnLoans.member().memberNumber()}"></span> の貸出図書を登録しました。
+    会員番号: <span th:text="${currentLoans.member().memberNumber()}"></span> の貸出図書を登録しました。
   </div>
   <table class="table">
     <thead>
@@ -19,7 +19,7 @@
       <th>貸出日</th>
     </thead>
     <tbody>
-      <tr th:each="bookonloan : ${memberAllBookOnLoans.loans().asList()}">
+      <tr th:each="bookonloan : ${currentLoans.loans().asList()}">
         <td th:text="${bookonloan.itemOnLoan().item().itemNumber()}"></td>
         <td th:text="${bookonloan.loanDate()}"></td>
       </tr>

@@ -3,9 +3,9 @@ package library.domain.model.loan.rule;
 import library.domain.model.loan.loan.Loans;
 
 /**
- * 貸出制限
+ * 貸出制限の判定結果
  */
-public enum LoanRestrictions {
+public enum RestrictionType {
     貸出５冊まで(5),
     貸出７冊まで(7),
     貸出４冊まで(4),
@@ -13,11 +13,11 @@ public enum LoanRestrictions {
 
     int limit;
 
-    LoanRestrictions(int limit) {
+    RestrictionType(int limit) {
         this.limit = limit;
     }
 
-    public Restriction canLoan(Loans loans) {
+    public Restriction shouldRestrict(Loans loans) {
         if (limit > loans.count()) {
             return Restriction.貸出可能;
         }

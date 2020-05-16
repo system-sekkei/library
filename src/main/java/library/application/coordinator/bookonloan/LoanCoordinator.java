@@ -32,8 +32,8 @@ public class LoanCoordinator {
      * 貸出制限を判断する
      */
     public Restriction shouldRestrict(LoanRequest loanRequest) {
-        MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(loanRequest.member());
-        return memberAllBookOnLoans.canBorrowBookToday();
+        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(loanRequest.member());
+        return currentLoans.shouldRestrict();
     }
     /**
      * 貸出を受付る

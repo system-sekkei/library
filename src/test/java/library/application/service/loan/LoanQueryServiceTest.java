@@ -10,8 +10,8 @@ import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
+import library.domain.model.loan.rule.CurrentLoans;
 import library.domain.model.loan.rule.LoanRequest;
-import library.domain.model.loan.rule.MemberAllBookOnLoans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -63,9 +63,9 @@ class LoanQueryServiceTest {
         registerBookOnLoan(new ItemNumber("2-A"), 2);
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);
+        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(member);
 
-        assertEquals(memberAllBookOnLoans.bookOnLoans().count(), 1);
+        assertEquals(currentLoans.bookOnLoans().count(), 1);
     }
 
     @Test
@@ -75,9 +75,9 @@ class LoanQueryServiceTest {
         returnBookRecordService.registerReturnBook(new Returned(itemNumber, new ReturnDate(Date.from("2020-02-21"))));
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);
+        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(member);
 
-        assertEquals(memberAllBookOnLoans.bookOnLoans().count(), 0);
+        assertEquals(currentLoans.bookOnLoans().count(), 0);
     }
 
     private void registerBookOnLoan(ItemNumber itemNumber, int memberNumber) {

@@ -67,8 +67,8 @@ public class LoanRegisterController {
     @GetMapping("completed")
     String completed(Model model, @RequestParam("memberNumber") MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
-        MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(member);
-        model.addAttribute("memberAllBookOnLoans", memberAllBookOnLoans);
+        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(member);
+        model.addAttribute("memberAllBookOnLoans", currentLoans);
         return "bookonloan/register/completed";
     }
 
