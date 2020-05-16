@@ -52,10 +52,10 @@ public class LoanRegisterController {
         Item itemInStock = itemQueryService.findItemInStock(loaningOfBookForm.itemNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemInStock, loaningOfBookForm.loanDate);
 
-        CanLoan canLoan = loanCoordinator.shouldRestrict(loanRequest);
+        Restriction restriction = loanCoordinator.shouldRestrict(loanRequest);
 
-        if (canLoan.equals(CanLoan.貸出不可)) {
-            result.addError(new ObjectError("error", RejectReason.貸出冊数超過.toString()));
+        if (restriction != Restriction.貸出可能) {
+            result.addError(new ObjectError("error", restriction.message()));
             return "bookonloan/register/form";
         }
 

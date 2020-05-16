@@ -1,4 +1,4 @@
-package library.domain.model.member;
+package library.domain.model.loan.rule;
 
 /**
  * 会員種別

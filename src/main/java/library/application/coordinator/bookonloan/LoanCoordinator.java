@@ -4,7 +4,6 @@ import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRegisterService;
 import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.rule.*;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class LoanCoordinator {
     /**
      * 貸出制限を判断する
      */
-    public CanLoan shouldRestrict(LoanRequest loanRequest) {
+    public Restriction shouldRestrict(LoanRequest loanRequest) {
         MemberAllBookOnLoans memberAllBookOnLoans = loanQueryService.findMemberAllBookOnLoans(loanRequest.member());
         return memberAllBookOnLoans.canBorrowBookToday();
     }

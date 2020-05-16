@@ -17,11 +17,11 @@ public enum LoanRestrictions {
         this.limit = limit;
     }
 
-    public CanLoan canLoan(Loans loans) {
+    public Restriction canLoan(Loans loans) {
         if (limit > loans.count()) {
-            return CanLoan.貸出可能;
+            return Restriction.貸出可能;
         }
-        return CanLoan.貸出不可;
+        return Restriction.貸出不可;
     }
 
 }
