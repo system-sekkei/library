@@ -4,7 +4,7 @@ import library.LibraryDBTest;
 import library.application.service.book.BookQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookSearchKeyword;
+import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
@@ -38,7 +38,7 @@ class ReservationRecordServiceTest {
     @Test
     void 貸出予約を登録することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+        Book book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);
@@ -51,7 +51,7 @@ class ReservationRecordServiceTest {
     @Test
     void 貸出予約を取り消すことができる() {
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        Book book = bookQueryService.search(new BookSearchKeyword("ハンドブック")).asList().get(0);
+        Book book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(tryingToReserveBook);

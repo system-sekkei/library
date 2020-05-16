@@ -1,6 +1,6 @@
 package library.domain.model.reservation.reservation;
 
-import library.domain.model.book.bibliography.BookIds;
+import library.domain.model.book.bibliography.BookNumbers;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,9 +23,9 @@ public class Reservations {
         return list;
     }
 
-    public BookIds bookIds() {
-        return new BookIds(list.stream()
-            .map(reservedBook -> reservedBook.reservedBook().book().bookId())
+    public BookNumbers bookIds() {
+        return new BookNumbers(list.stream()
+            .map(reservedBook -> reservedBook.reservedBook().book().bookNumber())
             .collect(Collectors.toList()));
     }
 }

@@ -17,7 +17,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 取置可能な予約一覧を取得する
+     * 取置可能な予約を一覧する
      * TODO: UCでは予約「図書」となっているが、図書ではない
      * TODO: 仕様の再定義から：現在は仮実装
      */

@@ -4,7 +4,7 @@ package library.domain.model.book.bibliography;
  * 本
  */
 public class Book {
-    BookId bookId;
+    BookNumber bookNumber;
     Title title;
     Author author;
     BookType bookType;
@@ -13,15 +13,15 @@ public class Book {
     Book() {
     }
 
-    public Book(BookId bookId, Title title, Author author, BookType bookType) {
-        this.bookId = bookId;
+    public Book(BookNumber bookNumber, Title title, Author author, BookType bookType) {
+        this.bookNumber = bookNumber;
         this.title = title;
         this.author = author;
         this.bookType = bookType;
     }
 
-    public BookId bookId() {
-        return bookId;
+    public BookNumber bookNumber() {
+        return bookNumber;
     }
 
     public Title title() {
@@ -37,6 +37,6 @@ public class Book {
     }
 
     public boolean sameBook(Book other) {
-        return bookId().sameValue(other.bookId);
+        return bookNumber().sameValue(other.bookNumber);
     }
 }

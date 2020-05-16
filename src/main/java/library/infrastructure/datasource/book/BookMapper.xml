@@ -5,7 +5,7 @@
 <mapper namespace="library.infrastructure.datasource.book.BookMapper">
     <select id="searchBooks" resultType="library.domain.model.book.bibliography.Book">
         SELECT
-            本.本ID as "bookId.value",
+            本.本ID as "bookNumber.value",
             本.タイトル as "title.value",
             本.著者 as "author.value",
             本.本種別 as "bookType"
@@ -15,11 +15,11 @@
 
     <select id="findBook" resultType="library.domain.model.book.bibliography.Book">
         SELECT
-            本.本ID as "bookId.value",
+            本.本ID as "bookNumber.value",
             本.タイトル as "title.value",
             本.著者 as "author.value",
             本.本種別 as "bookType"
         FROM 本
-        WHERE 本.本ID = #{bookId.value}
+        WHERE 本.本ID = #{bookNumber.value}
     </select>
 </mapper>

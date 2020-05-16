@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 貸出登録画面
+ * 貸出の登録画面
  */
 @Controller
 @RequestMapping("bookonloan/register")

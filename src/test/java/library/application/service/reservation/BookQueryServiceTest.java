@@ -3,8 +3,8 @@ package library.application.service.reservation;
 import library.LibraryDBTest;
 import library.application.service.book.BookQueryService;
 import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookId;
-import library.domain.model.book.bibliography.BookSearchKeyword;
+import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.book.bibliography.Books;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ class BookQueryServiceTest {
 
     @Test
     void 本を検索できる() {
-        BookSearchKeyword bookSearchKeyword = new BookSearchKeyword("ハンドブック");
-        Books books = bookQueryService.search(bookSearchKeyword);
+        Keyword keyword = new Keyword("ハンドブック");
+        Books books = bookQueryService.search(keyword);
 
         assertAll(
                 () -> assertEquals(1, books.size().value()),
@@ -31,7 +31,7 @@ class BookQueryServiceTest {
 
     @Test
     void 本を取得できる() {
-        Book book = bookQueryService.findBook(new BookId(1));
-        assertEquals(book.bookId().value(), 1);
+        Book book = bookQueryService.findBook(new BookNumber(1));
+        assertEquals(book.bookNumber().value(), 1);
     }
 }

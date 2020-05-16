@@ -5,6 +5,7 @@ import library.domain.model.loan.loan.Loans;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.member.MemberType;
 import library.domain.model.member.Name;
 import library.domain.type.date.Date;
 import org.junit.jupiter.params.ParameterizedTest;

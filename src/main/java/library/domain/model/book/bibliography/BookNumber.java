@@ -3,17 +3,17 @@ package library.domain.model.book.bibliography;
 import javax.validation.constraints.NotNull;
 
 /**
- * 本ID
+ * 書籍番号
  */
-public class BookId {
+public class BookNumber {
     @NotNull(message = "本IDを入力してください。")
     int value;
 
     @Deprecated
-    BookId() {
+    BookNumber() {
     }
 
-    public BookId(int value) {
+    public BookNumber(int value) {
         this.value = value;
     }
 
@@ -21,7 +21,7 @@ public class BookId {
         return value;
     }
 
-    public boolean sameValue(BookId other) {
+    public boolean sameValue(BookNumber other) {
         return this.value == other.value;
     }
 }

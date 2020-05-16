@@ -15,7 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 貸出図書返却の登録
+ * 返却の登録画面
  */
 @Controller
 @RequestMapping("returnbook/register")

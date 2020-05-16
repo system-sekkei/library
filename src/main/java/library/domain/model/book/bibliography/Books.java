@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 本リスト
+ * 本のリスト
  */
 public class Books {
     List<Book> list;

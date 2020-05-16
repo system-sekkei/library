@@ -2,8 +2,8 @@ package library.application.service.book;
 
 import library.application.repository.BookRepository;
 import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookId;
-import library.domain.model.book.bibliography.BookSearchKeyword;
+import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.book.bibliography.Books;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +21,14 @@ public class BookQueryService {
     /**
      * 書籍番号で本を見つける
      */
-    public Book findBook(BookId bookId) {
-        return bookRepository.findBook(bookId);
+    public Book findBook(BookNumber bookNumber) {
+        return bookRepository.findBook(bookNumber);
     }
 
     /**
      * キーワードで本を探す
      */
-    public Books search(BookSearchKeyword keyword) {
+    public Books search(Keyword keyword) {
         return bookRepository.search(keyword);
     }
 }

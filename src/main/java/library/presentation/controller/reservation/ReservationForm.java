@@ -1,6 +1,6 @@
 package library.presentation.controller.reservation;
 
-import library.domain.model.book.bibliography.BookId;
+import library.domain.model.book.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
 
 import javax.validation.Valid;
@@ -11,5 +11,5 @@ public class ReservationForm {
     MemberNumber memberNumber = null;
 
     @Valid
-    BookId bookId = null;
+    BookNumber bookNumber = null;
 }

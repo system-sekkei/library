@@ -17,14 +17,14 @@ public class ItemQueryService {
     }
 
     /**
-     * 貸出中の蔵書を取得する
+     * 貸出中の蔵書を見つける
      */
     public Item findItemOnLoan(ItemNumber itemNumber) {
         return itemRepository.findItemOnLoan(itemNumber);
     }
 
     /**
-     * 貸出可能な蔵書を取得する
+     * 貸出可能な蔵書を見つける
      */
     public Item findItemInStock(ItemNumber itemNumber) {
         return itemRepository.findItemInStock(itemNumber);

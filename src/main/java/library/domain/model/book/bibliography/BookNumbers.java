@@ -3,16 +3,16 @@ package library.domain.model.book.bibliography;
 import java.util.List;
 
 /**
- * 本IDのリスト
+ * 書籍番号のリスト
  */
-public class BookIds {
-    List<BookId> list;
+public class BookNumbers {
+    List<BookNumber> list;
 
-    public BookIds(List<BookId> list) {
+    public BookNumbers(List<BookNumber> list) {
         this.list = list;
     }
 
-    public List<BookId> asList() {
+    public List<BookNumber> asList() {
         return list;
     }
 

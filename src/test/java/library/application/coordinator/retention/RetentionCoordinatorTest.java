@@ -6,7 +6,7 @@ import library.application.service.book.BookQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookId;
+import library.domain.model.book.bibliography.BookNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
@@ -34,7 +34,7 @@ class RetentionCoordinatorTest {
     @Test
     void 取置可能な貸出予約図書一覧を出力できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        Book book = bookQueryService.findBook(new BookId(2));
+        Book book = bookQueryService.findBook(new BookNumber(2));
         Reservation reservation = new Reservation(member, new ReservedBook(book));
         reservationRecordService.registerReservation(reservation);
 

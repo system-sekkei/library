@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 貸出予約の登録
+ * 貸出予約の登録画面
  */
 @Controller
 @RequestMapping("reservation/register")
@@ -42,7 +42,7 @@ public class ReservationRegisterController {
         if (result.hasErrors()) return "reservation/register/form";
 
         Member member = memberQueryService.findMember(reservationForm.memberNumber);
-        Book book = bookQueryService.findBook(reservationForm.bookId);
+        Book book = bookQueryService.findBook(reservationForm.bookNumber);
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
 
         reservationRecordService.registerReservation(tryingToReserveBook);

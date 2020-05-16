@@ -6,7 +6,7 @@
     <select id="selectItem" resultType="library.domain.model.book.item.Item">
         SELECT
             蔵書.蔵書コード as "itemNumber.value",
-            本.本ID as "book.bookId.value",
+            本.本ID as "book.bookNumber.value",
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
             本.本種別 as "book.bookType"

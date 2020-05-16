@@ -1,12 +1,12 @@
 package library.domain.model.book.bibliography;
 
 /**
- * 本の検索キーワード
+ * 検索キーワード
  */
-public class BookSearchKeyword {
+public class Keyword {
     String value;
 
-    public BookSearchKeyword(String value) {
+    public Keyword(String value) {
         this.value = value;
     }
 

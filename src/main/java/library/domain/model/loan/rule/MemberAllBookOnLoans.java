@@ -4,6 +4,7 @@ import library.domain.model.loan.loan.Loans;
 import library.domain.model.loan.loan.DelayPeriod;
 import library.domain.model.loan.loan.DelayStatus;
 import library.domain.model.member.Member;
+import library.domain.model.member.MemberType;
 import library.domain.type.date.Date;
 
 /**

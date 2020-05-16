@@ -17,14 +17,14 @@ public class ReservationQueryService {
     }
 
     /**
-     * 貸出予約の一覧を取得する
+     * 貸出予約を一覧する
      */
     public Reservations findReservations() {
         return reservationRepository.findReservations();
     }
 
     /**
-     * 会員の現在の貸出予約一覧を取得する
+     * 会員の貸出予約を一覧する
      */
     public Reservations findReservationsByMember(Member member) {
         return reservationRepository.findReservationsByMember(member);

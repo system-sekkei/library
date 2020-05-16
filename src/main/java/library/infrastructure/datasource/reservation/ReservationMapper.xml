@@ -9,7 +9,7 @@
 
     <insert id="insertReservation">
         INSERT INTO 予約(予約ID, 会員番号, 本ID)
-        VALUES (#{reservationId}, #{memberNumber.value}, #{bookId.value})
+        VALUES (#{reservationId}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
     <select id="selectAllReservation" resultType="library.domain.model.reservation.reservation.Reservation">
@@ -17,7 +17,7 @@
                会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
                会員.会員種別 as "member.memberType",
-               本.本ID as "reservedBook.book.bookId.value",
+               本.本ID as "reservedBook.book.bookNumber.value",
                本.タイトル as "reservedBook.book.title.value",
                本.著者 as "reservedBook.book.author.value",
                本.本種別 as "reservedBook.book.bookType"
@@ -37,7 +37,7 @@
                会員.会員番号 as "member.memberNumber.value",
                会員.氏名   as "member.name.value",
                会員.会員種別 as "member.memberType",
-               本.本ID as "reservedBook.book.bookId.value",
+               本.本ID as "reservedBook.book.bookNumber.value",
                本.タイトル as "reservedBook.book.title.value",
                本.著者 as "reservedBook.book.author.value",
                本.本種別 as "reservedBook.book.bookType"

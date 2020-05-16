@@ -16,7 +16,7 @@ public class ReservationRecordService {
     }
 
     /**
-     * 貸出予約を登録する
+     * 貸出を予約する
      */
     public void registerReservation(Reservation tryingToReserveBook) {
         reservationRepository.registerReservation(tryingToReserveBook);

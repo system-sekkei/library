@@ -1,7 +1,5 @@
 package library.domain.model.member;
 
-import library.domain.model.loan.rule.MemberType;
-
 /**
  * 会員
  */

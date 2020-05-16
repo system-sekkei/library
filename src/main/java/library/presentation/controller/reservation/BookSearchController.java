@@ -1,7 +1,7 @@
 package library.presentation.controller.reservation;
 
 import library.application.service.book.BookQueryService;
-import library.domain.model.book.bibliography.BookSearchKeyword;
+import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.book.bibliography.Books;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 本検索
+ * 本の検索画面
  */
 @Controller
 @RequestMapping("reservation/books")
@@ -25,7 +25,7 @@ public class BookSearchController {
     }
 
     @GetMapping("search")
-    String search(Model model, @ModelAttribute("searchKeyword") BookSearchKeyword searchKeyword, BindingResult result) {
+    String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
         if (searchKeyword.isNull() || searchKeyword.isBlank()) return "reservation/books/search";
 
         Books books = bookQueryService.search(searchKeyword);

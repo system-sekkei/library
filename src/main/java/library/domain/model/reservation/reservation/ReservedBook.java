@@ -1,7 +1,7 @@
 package library.domain.model.reservation.reservation;
 
 import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookId;
+import library.domain.model.book.bibliography.BookNumber;
 
 /**
  * 予約図書
@@ -21,7 +21,7 @@ public class ReservedBook {
         return book;
     }
 
-    public boolean isA(BookId bookId) {
-        return book.bookId().sameValue(bookId);
+    public boolean isA(BookNumber bookNumber) {
+        return book.bookNumber().sameValue(bookNumber);
     }
 }
