@@ -30,9 +30,8 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     @Transactional
-    public Loan registerLoan(LoanRequest loanRequest) {
+    public void registerLoan(LoanRequest loanRequest) {
         ItemNumber itemNumber = loanRequest.item().itemNumber();
-        itemMapper.lockItem(itemNumber);
 
         if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
             throw new RegisterLoanException(loanRequest);
@@ -44,8 +43,6 @@ public class LoanDataSource implements LoanRepository {
                 loanRequest.member().memberNumber(),
                 loanRequest.item().itemNumber(),
                 loanRequest.loanDate());
-
-        return findLoanByItemNumber(itemNumber);
     }
 
     @Override

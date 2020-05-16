@@ -1,4 +1,4 @@
-package library.application.service.holding;
+package library.application.service.item;
 
 import library.LibraryDBTest;
 import library.domain.model.book.item.Item;

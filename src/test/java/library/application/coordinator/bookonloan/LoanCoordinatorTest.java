@@ -1,8 +1,8 @@
 package library.application.coordinator.bookonloan;
 
 import library.LibraryDBTest;
-import library.application.service.bookonloan.LoanQueryService;
-import library.application.service.holding.ItemQueryService;
+import library.application.service.loan.LoanQueryService;
+import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;
@@ -22,9 +22,9 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
-class LoanRegisterCoordinatorTest {
+class LoanCoordinatorTest {
     @Autowired
-    LoanRegisterCoordinator loanRegisterCoordinator;
+    LoanCoordinator loanCoordinator;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -39,7 +39,7 @@ class LoanRegisterCoordinatorTest {
     void 図書を貸し出すことができる() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
-        LoaningCard loaningCard = loanRegisterCoordinator.loaning(loanRequest);
+        LoaningCard loaningCard = loanCoordinator.loaning(loanRequest);
 
         assertTrue(loaningCard.ok());
     }
@@ -48,10 +48,10 @@ class LoanRegisterCoordinatorTest {
     void 貸出中の蔵書は貸し出すことができない() {
         LoanRequest loanRequest =
                 generate(2, "2-B", new LoanDate(Date.now()).toString());
-        loanRegisterCoordinator.loaning(loanRequest);
+        loanCoordinator.loaning(loanRequest);
 
         assertThrows(RegisterLoanException.class, () -> {
-            LoaningCard loaning = loanRegisterCoordinator.loaning(loanRequest);
+            LoaningCard loaning = loanCoordinator.loaning(loanRequest);
         });
     }
 
@@ -61,13 +61,13 @@ class LoanRegisterCoordinatorTest {
         for (String code : list) {
             LoanRequest loanRequest =
                     generate(3, code, "2020-02-20");
-            loanRegisterCoordinator.loaning(loanRequest);
+            loanCoordinator.loaning(loanRequest);
         }
 
         LoanRequest loanRequest =
                 generate(3, "2-H", "2020-02-20");
 
-        LoaningCard loaningCard = loanRegisterCoordinator.loaning(loanRequest);
+        LoaningCard loaningCard = loanCoordinator.loaning(loanRequest);
 
         assertTrue(loaningCard.rejected());
     }

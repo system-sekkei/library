@@ -1,4 +1,4 @@
-package library.application.service.bookonloan;
+package library.application.service.loan;
 
 import library.application.repository.LoanRepository;
 import library.domain.model.loan.loan.Loan;
@@ -17,9 +17,9 @@ public class LoanRegisterService {
     }
 
     /**
-     * 貸出図書を登録する
+     * 貸出を登録する
      */
-    public Loan registerLoan(LoanRequest loanRequest) {
-        return loanRepository.registerLoan(loanRequest);
+    public void registerLoan(LoanRequest loanRequest) {
+        loanRepository.registerLoan(loanRequest);
     }
 }

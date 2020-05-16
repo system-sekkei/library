@@ -1,11 +1,11 @@
-package library.application.service.returnbook;
+package library.application.service.returns;
 
 import library.application.repository.LoanRepository;
 import library.domain.model.loan.returned.Returned;
 import org.springframework.stereotype.Service;
 
 /**
- * 貸出図書の返却登録サービス
+ * 返却登録サービス
  */
 @Service
 public class ReturnBookRecordService {
@@ -16,7 +16,7 @@ public class ReturnBookRecordService {
     }
 
     /**
-     * 貸出図書の返却を登録する
+     * 返却を登録する
      */
     public void registerReturnBook(Returned returned) {
         loanRepository.registerReturnBook(returned);

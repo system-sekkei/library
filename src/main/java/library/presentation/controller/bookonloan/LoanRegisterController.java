@@ -1,14 +1,12 @@
 package library.presentation.controller.bookonloan;
 
-import library.application.coordinator.bookonloan.LoanRegisterCoordinator;
-import library.application.service.bookonloan.LoanQueryService;
-import library.application.service.bookonloan.LoanRegisterService;
-import library.application.service.holding.ItemQueryService;
+import library.application.coordinator.bookonloan.LoanCoordinator;
+import library.application.service.loan.LoanQueryService;
+import library.application.service.loan.LoanRegisterService;
+import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.book.item.Item;
-import library.domain.model.loan.rule.LoanRequest;
-import library.domain.model.loan.rule.LoaningCard;
-import library.domain.model.loan.rule.MemberAllBookOnLoans;
+import library.domain.model.loan.rule.*;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
@@ -21,20 +19,20 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * 貸出図書の登録
+ * 貸出登録画面
  */
 @Controller
 @RequestMapping("bookonloan/register")
 public class LoanRegisterController {
     LoanRegisterService loanRegisterService;
-    LoanRegisterCoordinator loanRegisterCoordinator;
+    LoanCoordinator loanCoordinator;
     LoanQueryService loanQueryService;
     MemberQueryService memberQueryService;
     ItemQueryService itemQueryService;
 
-    public LoanRegisterController(LoanRegisterService loanRegisterService, LoanRegisterCoordinator loanRegisterCoordinator, LoanQueryService loanQueryService, MemberQueryService memberQueryService, ItemQueryService itemQueryService) {
+    public LoanRegisterController(LoanRegisterService loanRegisterService, LoanCoordinator loanCoordinator, LoanQueryService loanQueryService, MemberQueryService memberQueryService, ItemQueryService itemQueryService) {
         this.loanRegisterService = loanRegisterService;
-        this.loanRegisterCoordinator = loanRegisterCoordinator;
+        this.loanCoordinator = loanCoordinator;
         this.loanQueryService = loanQueryService;
         this.memberQueryService = memberQueryService;
         this.itemQueryService = itemQueryService;
@@ -54,13 +52,14 @@ public class LoanRegisterController {
         Item itemInStock = itemQueryService.findItemInStock(loaningOfBookForm.itemNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemInStock, loaningOfBookForm.loanDate);
 
-        LoaningCard loaningCard = loanRegisterCoordinator.loaning(loanRequest);
+        CanLoan canLoan = loanCoordinator.shouldRestrict(loanRequest);
 
-        if (loaningCard.rejected()) {
-            result.addError(new ObjectError("error", loaningCard.message()));
+        if (canLoan.equals(CanLoan.貸出不可)) {
+            result.addError(new ObjectError("error", RejectReason.貸出冊数超過.toString()));
             return "bookonloan/register/form";
         }
 
+        loanCoordinator.loan(loanRequest);
         attributes.addAttribute("memberNumber", loanRequest.member().memberNumber());
         return "redirect:/bookonloan/register/completed";
     }

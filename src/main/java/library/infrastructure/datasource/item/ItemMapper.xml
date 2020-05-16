@@ -14,41 +14,4 @@
         INNER JOIN 本 on (蔵書.本ID = 本.本ID)
         WHERE 蔵書.蔵書コード = #{itemNumber.value}
     </select>
-
-    <select id="selectItems" resultType="library.domain.model.book.item.Item">
-        SELECT
-        蔵書.蔵書コード as "itemNumber.value",
-        本.本ID as "book.bookId.value",
-        本.タイトル as "book.title.value",
-        本.著者 as "book.author.value",
-        本.本種別 as "book.bookType"
-        FROM 蔵書
-        INNER JOIN 本 on (蔵書.本ID = 本.本ID)
-        WHERE 蔵書.蔵書コード IN
-        <foreach item="itemNumber" collection="itemNumbers" open="(" separator="," close=")">
-            #{itemNumber.value}
-        </foreach>
-    </select>
-
-    <select id="selectItemsByBookIds" resultType="library.domain.model.book.item.Item">
-        SELECT
-            蔵書.蔵書コード as "itemNumber.value",
-            本.本ID as "book.bookId.value",
-            本.タイトル as "book.title.value",
-            本.著者 as "book.author.value",
-            本.本種別 as "book.bookType"
-        FROM 蔵書
-        INNER JOIN 本 on (蔵書.本ID = 本.本ID)
-        WHERE 本.本ID IN
-              <foreach item="bookId" collection="bookIds" open="(" separator="," close=")">
-                #{bookId.value}
-              </foreach>
-    </select>
-
-    <select id="lockItem" resultType="library.domain.model.book.item.ItemNumber">
-        SELECT
-            蔵書.蔵書コード as "value"
-        FROM 蔵書
-        WHERE 蔵書.蔵書コード = #{itemNumber.value} FOR UPDATE NOWAIT
-    </select>
 </mapper>

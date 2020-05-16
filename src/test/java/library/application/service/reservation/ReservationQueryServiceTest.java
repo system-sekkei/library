@@ -1,6 +1,7 @@
 package library.application.service.reservation;
 
 import library.LibraryDBTest;
+import library.application.service.book.BookQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.book.bibliography.Book;
 import library.domain.model.book.bibliography.BookSearchKeyword;

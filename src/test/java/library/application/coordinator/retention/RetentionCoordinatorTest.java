@@ -2,7 +2,7 @@ package library.application.coordinator.retention;
 
 import library.LibraryDBTest;
 import library.application.service.member.MemberQueryService;
-import library.application.service.reservation.BookQueryService;
+import library.application.service.book.BookQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.book.bibliography.Book;
@@ -10,13 +10,9 @@ import library.domain.model.book.bibliography.BookId;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.ReservedBook;
-import library.domain.model.reservation.retention.RetentionableReservations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @LibraryDBTest
 class RetentionCoordinatorTest {

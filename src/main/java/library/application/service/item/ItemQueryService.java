@@ -1,4 +1,4 @@
-package library.application.service.holding;
+package library.application.service.item;
 
 import library.application.repository.ItemRepository;
 import library.domain.model.book.item.Item;
@@ -24,7 +24,7 @@ public class ItemQueryService {
     }
 
     /**
-     * 在庫中の蔵書を取得する
+     * 貸出可能な蔵書を取得する
      */
     public Item findItemInStock(ItemNumber itemNumber) {
         return itemRepository.findItemInStock(itemNumber);

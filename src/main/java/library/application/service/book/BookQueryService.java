@@ -1,4 +1,4 @@
-package library.application.service.reservation;
+package library.application.service.book;
 
 import library.application.repository.BookRepository;
 import library.domain.model.book.bibliography.Book;
@@ -19,14 +19,14 @@ public class BookQueryService {
     }
 
     /**
-     * 本を取得する
+     * 書籍番号で本を見つける
      */
     public Book findBook(BookId bookId) {
         return bookRepository.findBook(bookId);
     }
 
     /**
-     * 本を検索する
+     * キーワードで本を探す
      */
     public Books search(BookSearchKeyword keyword) {
         return bookRepository.search(keyword);

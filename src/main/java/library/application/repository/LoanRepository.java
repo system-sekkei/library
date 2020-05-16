@@ -12,7 +12,7 @@ import library.domain.model.member.Member;
  */
 public interface LoanRepository {
 
-    Loan registerLoan(LoanRequest loanRequest);
+    void registerLoan(LoanRequest loanRequest);
 
     MemberAllBookOnLoans findMemberAllBookOnLoans(Member member);
 

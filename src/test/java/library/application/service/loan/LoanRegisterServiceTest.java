@@ -1,7 +1,7 @@
-package library.application.service.bookonloan;
+package library.application.service.loan;
 
 import library.LibraryDBTest;
-import library.application.service.holding.ItemQueryService;
+import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.book.item.Item;
 import library.domain.model.book.item.ItemNumber;

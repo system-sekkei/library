@@ -1,6 +1,6 @@
 package library.presentation.controller.reservation;
 
-import library.application.service.reservation.BookQueryService;
+import library.application.service.book.BookQueryService;
 import library.domain.model.book.bibliography.BookSearchKeyword;
 import library.domain.model.book.bibliography.Books;
 import org.springframework.stereotype.Controller;

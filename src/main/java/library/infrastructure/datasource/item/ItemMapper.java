@@ -10,10 +10,4 @@ import java.util.List;
 @Mapper
 public interface ItemMapper {
     Item selectItem(@Param("itemNumber") ItemNumber itemNumber);
-
-    List<Item> selectItems(@Param("itemNumbers") List<ItemNumber> itemNumbers);
-
-    List<Item> selectItemsByBookIds(@Param("bookIds") List<BookId> bookIds);
-
-    ItemNumber lockItem(@Param("itemNumber") ItemNumber itemNumber);
 }
