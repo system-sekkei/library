@@ -18,6 +18,6 @@ class MemberQueryServiceTest {
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = memberQueryService.findMember(memberNumber);
 
-        assertEquals(member.memberNumber().value(), 1);
+        assertEquals(member.number().value(), 1);
     }
 }

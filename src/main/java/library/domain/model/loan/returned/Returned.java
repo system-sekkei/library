@@ -1,7 +1,6 @@
 package library.domain.model.loan.returned;
 
-import library.domain.model.book.item.ItemNumber;
-import library.domain.model.loan.loan.Loan;
+import library.domain.model.item.ItemNumber;
 
 /**
  * 返却

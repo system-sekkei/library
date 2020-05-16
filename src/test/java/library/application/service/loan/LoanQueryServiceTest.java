@@ -4,14 +4,14 @@ import library.LibraryDBTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnBookRecordService;
-import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
-import library.domain.model.loan.rule.CurrentLoans;
-import library.domain.model.loan.rule.LoanRequest;
+import library.domain.model.loan.rule.LoanStatus;
+import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -44,7 +44,7 @@ class LoanQueryServiceTest {
 
         Loan loan = loanQueryService.findLoanByItemNumber(new ItemNumber("2-A"));
 
-        assertEquals(loan.member().memberNumber().value(), 1);
+        assertEquals(loan.member().number().value(), 1);
     }
 
     @Test
@@ -59,25 +59,15 @@ class LoanQueryServiceTest {
     }
 
     @Test
-    void 会員が現在借りている全貸出図書を取得できる() {
-        registerBookOnLoan(new ItemNumber("2-A"), 2);
-
-        Member member = memberQueryService.findMember(new MemberNumber(2));
-        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(member);
-
-        assertEquals(currentLoans.bookOnLoans().count(), 1);
-    }
-
-    @Test
     void 会員が現在借りている全貸出図書取得時に返却した貸出図書が含まれない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerBookOnLoan(itemNumber, 2);
         returnBookRecordService.registerReturnBook(new Returned(itemNumber, new ReturnDate(Date.from("2020-02-21"))));
 
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        CurrentLoans currentLoans = loanQueryService.findMemberAllBookOnLoans(member);
+        LoanStatus loanStatus = loanQueryService.findMemberAllBookOnLoans(member);
 
-        assertEquals(currentLoans.bookOnLoans().count(), 0);
+        assertEquals(loanStatus.count(), 0);
     }
 
     private void registerBookOnLoan(ItemNumber itemNumber, int memberNumber) {

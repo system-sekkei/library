@@ -1,8 +1,8 @@
 package library.infrastructure.datasource.item;
 
 import library.application.repository.ItemRepository;
-import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
 import library.infrastructure.datasource.loan.LoanMapper;
 import org.springframework.stereotype.Repository;
 

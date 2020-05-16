@@ -1,6 +1,6 @@
 package library.domain.model.reservation.reservation;
 
-import library.domain.model.book.bibliography.BookNumbers;
+import library.domain.model.item.bibliography.BookNumbers;
 
 import java.util.List;
 import java.util.stream.Collectors;

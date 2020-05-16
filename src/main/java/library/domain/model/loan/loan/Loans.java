@@ -8,7 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 
 /**
- * 貸出図書リスト
+ * 貸出のリスト
  */
 public class Loans {
     List<Loan> list;

@@ -18,7 +18,7 @@ public class Member {
     Member() {
     }
 
-    public MemberNumber memberNumber() {
+    public MemberNumber number() {
         return memberNumber;
     }
 
@@ -26,7 +26,7 @@ public class Member {
         return name;
     }
 
-    public MemberType memberType() {
+    public MemberType type() {
         return memberType;
     }
 }

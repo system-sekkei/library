@@ -1,4 +1,4 @@
-package library.domain.model.book.bibliography;
+package library.domain.model.item.bibliography;
 
 /**
  * 検索キーワード

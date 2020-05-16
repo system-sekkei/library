@@ -1,4 +1,4 @@
-package library.domain.model.book.item;
+package library.domain.model.item;
 
 import javax.validation.constraints.NotBlank;
 

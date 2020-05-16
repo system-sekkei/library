@@ -1,8 +1,8 @@
 package library.presentation.controller.reservation;
 
 import library.application.service.book.BookQueryService;
-import library.domain.model.book.bibliography.Keyword;
-import library.domain.model.book.bibliography.Books;
+import library.domain.model.item.bibliography.Keyword;
+import library.domain.model.item.bibliography.Books;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

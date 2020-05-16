@@ -4,11 +4,11 @@ import library.LibraryDBTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.book.item.Item;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.LoanDate;
-import library.domain.model.loan.rule.LoanRequest;
-import library.domain.model.loan.rule.Restriction;
+import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.rule.RestrictionResult;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -37,9 +37,9 @@ class LoanCoordinatorTest {
     void 図書を貸し出すことができる() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
-        Restriction restriction = loanCoordinator.shouldRestrict(loanRequest);
+        RestrictionResult restrictionResult = loanCoordinator.shouldRestrict(loanRequest);
 
-        assertTrue(restriction == Restriction.貸出可能);
+        assertTrue(restrictionResult == RestrictionResult.貸出可能);
     }
 
     // FIXME 貸出可能になる
@@ -47,8 +47,8 @@ class LoanCoordinatorTest {
     void 貸出中の蔵書は貸し出すことができない() {
         LoanRequest loanRequest =
                 generate(2, "2-B", new LoanDate(Date.now()).toString());
-        Restriction restriction = loanCoordinator.shouldRestrict(loanRequest);
-        assertTrue(restriction != Restriction.貸出可能);
+        RestrictionResult restrictionResult = loanCoordinator.shouldRestrict(loanRequest);
+        assertTrue(restrictionResult != RestrictionResult.貸出可能);
     }
 
     @Test
@@ -63,9 +63,9 @@ class LoanCoordinatorTest {
         LoanRequest loanRequest =
                 generate(3, "2-H", "2020-02-20");
 
-        Restriction restriction = loanCoordinator.shouldRestrict(loanRequest);
+        RestrictionResult restrictionResult = loanCoordinator.shouldRestrict(loanRequest);
 
-        assertTrue(restriction != Restriction.貸出可能);
+        assertTrue(restrictionResult != RestrictionResult.貸出可能);
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {

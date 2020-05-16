@@ -1,6 +1,6 @@
-package library.domain.model.book.item;
+package library.domain.model.item;
 
-import library.domain.model.book.bibliography.Book;
+import library.domain.model.item.bibliography.Book;
 
 import java.util.List;
 import java.util.stream.Collectors;

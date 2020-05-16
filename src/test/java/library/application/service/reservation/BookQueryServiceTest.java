@@ -2,10 +2,10 @@ package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.application.service.book.BookQueryService;
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
-import library.domain.model.book.bibliography.Keyword;
-import library.domain.model.book.bibliography.Books;
+import library.domain.model.item.bibliography.Book;
+import library.domain.model.item.bibliography.BookNumber;
+import library.domain.model.item.bibliography.Keyword;
+import library.domain.model.item.bibliography.Books;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

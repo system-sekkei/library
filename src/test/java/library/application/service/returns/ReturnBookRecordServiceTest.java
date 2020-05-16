@@ -7,7 +7,7 @@ import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.item.ItemNumber;
 import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

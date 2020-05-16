@@ -1,19 +1,42 @@
 package library.domain.model.loan.rule;
 
+import library.domain.model.loan.loan.DelayStatus;
+import library.domain.model.loan.loan.Loans;
+import library.domain.model.member.Member;
+import library.domain.model.member.MemberType;
+import library.domain.type.date.Date;
+
 /**
- * 貸出可否
+ * 貸出制限
  */
-public enum Restriction {
-    貸出不可("これ以上本を貸し出すことができません。"),
-    貸出可能("");
+class Restriction {
+    Member member;
+    Loans loans;
+    Date date;
 
-    String message;
-
-    Restriction(String message) {
-        this.message = message;
+    Restriction(Member member, Loans loans, Date date) {
+        this.member = member;
+        this.loans = loans;
+        this.date = date;
     }
 
-    public String message() {
-        return message;
+    RestrictionOfQuantity ofQuantity() {
+        DelayStatus delayStatus = loans.worst(date);
+        MemberType memberType = member.type();
+
+        if (memberType == MemberType.大人 && delayStatus == DelayStatus.遅延日数３日未満) {
+            return RestrictionOfQuantity.貸出５冊まで;
+        }
+
+        if (memberType == MemberType.子供) {
+            if (delayStatus == DelayStatus.遅延日数３日未満) {
+                return RestrictionOfQuantity.貸出７冊まで;
+            }
+
+            if (delayStatus == DelayStatus.遅延日数７日未満) {
+                return RestrictionOfQuantity.貸出４冊まで;
+            }
+        }
+        return RestrictionOfQuantity.貸出不可;
     }
 }

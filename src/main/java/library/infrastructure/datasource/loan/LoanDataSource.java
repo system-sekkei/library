@@ -1,13 +1,14 @@
 package library.infrastructure.datasource.loan;
 
 import library.application.repository.LoanRepository;
-import library.domain.model.book.item.ItemNumber;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.Loans;
 import library.domain.model.loan.returned.Returned;
-import library.domain.model.loan.rule.CurrentLoans;
-import library.domain.model.loan.rule.LoanRequest;
+import library.domain.model.loan.rule.LoanStatus;
+import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.member.Member;
+import library.domain.type.date.Date;
 import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import org.springframework.stereotype.Repository;
@@ -40,7 +41,7 @@ public class LoanDataSource implements LoanRepository {
         Integer bookOnLoanId = loanMapper.newLoanNumber();
         loanMapper.insertLoan(
                 bookOnLoanId,
-                loanRequest.member().memberNumber(),
+                loanRequest.member().number(),
                 loanRequest.item().itemNumber(),
                 loanRequest.loanDate());
     }
@@ -54,9 +55,9 @@ public class LoanDataSource implements LoanRepository {
     }
 
     @Override
-    public CurrentLoans findMemberAllBookOnLoans(Member member) {
-        List<Loan> loans = loanMapper.selectByMemberNumber(member.memberNumber());
-        return new CurrentLoans(member, new Loans(loans));
+    public LoanStatus loanStatus(Member member) {
+        List<Loan> loans = loanMapper.selectByMemberNumber(member.number());
+        return new LoanStatus(member, new Loans(loans), Date.now());
     }
 
     @Override

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.item.ItemMapper">
-    <select id="selectItem" resultType="library.domain.model.book.item.Item">
+    <select id="selectItem" resultType="library.domain.model.item.Item">
         SELECT
             蔵書.蔵書コード as "itemNumber.value",
             本.本ID as "book.bookNumber.value",

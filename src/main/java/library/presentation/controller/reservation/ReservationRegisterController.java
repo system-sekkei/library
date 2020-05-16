@@ -3,7 +3,7 @@ package library.presentation.controller.reservation;
 import library.application.service.member.MemberQueryService;
 import library.application.service.book.BookQueryService;
 import library.application.service.reservation.ReservationRecordService;
-import library.domain.model.book.bibliography.Book;
+import library.domain.model.item.bibliography.Book;
 import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservedBook;

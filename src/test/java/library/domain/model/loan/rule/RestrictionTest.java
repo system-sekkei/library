@@ -16,7 +16,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class MemberAllLoansTest {
+class RestrictionTest {
 
     @ParameterizedTest
     @CsvSource({
@@ -29,7 +29,7 @@ class MemberAllLoansTest {
             "子供, 2020-01-04, 2019-12-31, 貸出４冊まで",
             "子供, 2020-01-04, 2019-12-30, 貸出不可"
     })
-    void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, RestrictionType expected) {
+    void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, RestrictionOfQuantity expected) {
         Date dateOfJudgment = Date.from("2020-01-20");
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = new Member(memberNumber, new Name(""), memberType);
@@ -40,8 +40,8 @@ class MemberAllLoansTest {
             loans.add(new Loan(null, member, null, new LoanDate(Date.from(loanDate2))));
         }
 
-        CurrentLoans currentLoans = new CurrentLoans(member, new Loans(loans));
+        Restriction restriction = new Restriction(member, new Loans(loans), dateOfJudgment);
 
-        assertEquals(expected, currentLoans.determine(dateOfJudgment));
+        assertEquals(expected, restriction.ofQuantity());
     }
 }

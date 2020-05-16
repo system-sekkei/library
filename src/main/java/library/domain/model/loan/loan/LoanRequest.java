@@ -1,7 +1,6 @@
-package library.domain.model.loan.rule;
+package library.domain.model.loan.loan;
 
-import library.domain.model.book.item.Item;
-import library.domain.model.loan.loan.LoanDate;
+import library.domain.model.item.Item;
 import library.domain.model.member.Member;
 
 import javax.validation.Valid;

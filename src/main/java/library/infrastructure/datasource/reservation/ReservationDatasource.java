@@ -22,7 +22,7 @@ public class ReservationDatasource implements ReservationRepository {
 
         reservationMapper.insertReservation(
                 reservationId,
-                tryingToReserveBook.member().memberNumber(),
+                tryingToReserveBook.member().number(),
                 tryingToReserveBook.reservedBook().book().bookNumber());
     }
 
@@ -39,7 +39,7 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     public Reservations findReservationsByMember(Member member) {
-        List<Reservation> reservations = reservationMapper.selectReservationsByMemberNumber(member.memberNumber());
+        List<Reservation> reservations = reservationMapper.selectReservationsByMemberNumber(member.number());
         return new Reservations(reservations);
     }
 }

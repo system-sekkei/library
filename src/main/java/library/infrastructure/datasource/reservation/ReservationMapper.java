@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.reservation;
 
-import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.ReservationId;
 import library.domain.model.reservation.reservation.Reservation;

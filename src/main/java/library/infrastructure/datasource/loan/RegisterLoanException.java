@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.loan;
 
-import library.domain.model.loan.rule.LoanRequest;
+import library.domain.model.loan.loan.LoanRequest;
 
 public class RegisterLoanException extends RuntimeException {
     LoanRequest loanRequest;

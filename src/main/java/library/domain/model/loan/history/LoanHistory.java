@@ -1,6 +1,5 @@
 package library.domain.model.loan.history;
 
-import library.domain.model.book.item.ItemNumber;
 import library.domain.model.loan.loan.Loans;
 import library.domain.model.loan.returned.Returns;
 

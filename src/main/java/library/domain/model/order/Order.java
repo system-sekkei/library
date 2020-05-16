@@ -1,6 +1,6 @@
 package library.domain.model.order;
 
-import library.domain.model.book.bibliography.Book;
+import library.domain.model.item.bibliography.Book;
 
 /**
  * 書籍発注
