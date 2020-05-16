@@ -2,6 +2,7 @@ package library.domain.model.loan.loan;
 
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
+import library.domain.type.date.CurrentDate;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
@@ -29,7 +30,7 @@ public class Loan {
         this.loanDate = loanDate;
     }
 
-    public DaysLate daysLate(Date date) {
+    public DaysLate daysLate(CurrentDate date) {
         Date dueDate = loanDate.dueDate();
         int delay = Period.between(dueDate.value(), date.value()).getDays();
         return new DaysLate(new Days(delay));

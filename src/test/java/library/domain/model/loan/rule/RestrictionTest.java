@@ -7,6 +7,7 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberType;
 import library.domain.model.member.Name;
+import library.domain.type.date.CurrentDate;
 import library.domain.type.date.Date;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -30,7 +31,7 @@ class RestrictionTest {
             "子供, 2020-01-04, 2019-12-30, 貸出不可"
     })
     void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, RestrictionOfQuantity expected) {
-        Date dateOfJudgment = Date.from("2020-01-20");
+        CurrentDate currentDate = CurrentDate.parse("2020-01-20");
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = new Member(memberNumber, new Name(""), memberType);
         List<Loan> loans = new ArrayList<>();
@@ -40,7 +41,7 @@ class RestrictionTest {
             loans.add(new Loan(null, member, null, new LoanDate(Date.from(loanDate2))));
         }
 
-        Restriction restriction = new Restriction(member, new Loans(loans), dateOfJudgment);
+        Restriction restriction = new Restriction(member, new Loans(loans), currentDate);
 
         assertEquals(expected, restriction.ofQuantity());
     }

@@ -1,6 +1,6 @@
 package library.domain.model.loan.loan;
 
-import library.domain.type.date.Date;
+import library.domain.type.date.CurrentDate;
 import library.domain.type.date.Days;
 
 import java.util.Collections;
@@ -17,12 +17,12 @@ public class Loans {
         this.list = list;
     }
 
-    public DelayStatus worst(Date date) {
+    public DelayStatus worst(CurrentDate date) {
         DaysLate worstDays = worstDays(date);
         return worstDays.delayStatus();
     }
 
-    DaysLate worstDays(Date date) {
+    DaysLate worstDays(CurrentDate date) {
         return list.stream()
                 .map(loan -> loan.daysLate(date))
                 .max(Comparator.comparingInt(period -> period.intValue()))

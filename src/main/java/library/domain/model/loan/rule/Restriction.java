@@ -4,7 +4,7 @@ import library.domain.model.loan.loan.DelayStatus;
 import library.domain.model.loan.loan.Loans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberType;
-import library.domain.type.date.Date;
+import library.domain.type.date.CurrentDate;
 
 /**
  * 貸出制限
@@ -12,9 +12,9 @@ import library.domain.type.date.Date;
 class Restriction {
     Member member;
     Loans loans;
-    Date date;
+    CurrentDate date;
 
-    Restriction(Member member, Loans loans, Date date) {
+    Restriction(Member member, Loans loans, CurrentDate date) {
         this.member = member;
         this.loans = loans;
         this.date = date;
