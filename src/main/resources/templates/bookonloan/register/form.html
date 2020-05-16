@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: htmlhead(~{::title})">
+<head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
   <meta charset="utf-8"/>
   <title>貸出図書の登録</title>
 </head>
 <body>
-<header th:replace="fragments/navigation::navigation('貸出図書の登録')"></header>
+<header th:replace="_fragments/librarian/navigation::navigation('貸出図書の登録')"></header>
 
 <main class="container">
-  <header th:replace="fragments/header::header('貸出図書の登録')"></header>
+  <header th:replace="_fragments/member/header::header('貸出図書の登録')"></header>
 
   <section class="attendanceInput has-text-centered">
     <form id="custom-form" class="form" name="body"
@@ -20,7 +20,7 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="fragments/field::macro('会員番号', ~{::div#memberNumberField})">
+      <div th:replace="_fragments/member/field::macro('会員番号', ~{::div#memberNumberField})">
         <div id="memberNumberField" class="field-body">
           <div class="field">
             <p class="control">
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div th:replace="fragments/field::macro('蔵書コード', ~{::div#holdingCodeField})">
+      <div th:replace="_fragments/member/field::macro('蔵書コード', ~{::div#holdingCodeField})">
         <div id="holdingCodeField" class="field-body">
           <div class="field">
             <p class="control">
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div th:replace="fragments/field::macro('貸出日', ~{::div#loanDateField})">
+      <div th:replace="_fragments/member/field::macro('貸出日', ~{::div#loanDateField})">
         <div id="loanDateField" class="field-body">
           <div class="field">
             <p class="control">

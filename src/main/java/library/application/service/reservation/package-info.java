@@ -1,4 +1,4 @@
 /**
- * 貸出予約サービス
+ * Web予約サービス
  */
 package library.application.service.reservation;

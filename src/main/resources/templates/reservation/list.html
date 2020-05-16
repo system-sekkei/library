@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: htmlhead(~{::title})">
+<head>
     <meta charset="utf-8"/>
     <title>予約図書一覧</title>
+    <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
-<header th:replace="fragments/navigation::navigation('予約図書一覧')"></header>
+<header th:replace="_fragments/counter/navigation::navigation('予約図書一覧')"></header>
 
 <main class="container">
-    <header th:replace="fragments/header::header('予約図書一覧')"></header>
+    <header th:replace="_fragments/member/header::header('予約図書一覧')"></header>
 
     <th:block th:if="${reservations}">
         <span th:text="${reservations.numberOfReservation().value()}"></span><span>件</span>

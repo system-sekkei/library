@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: htmlhead(~{::title})">
+<head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
   <meta charset="utf-8"/>
   <title>本の貸出予約</title>
 </head>
 <body>
-<header th:replace="fragments/navigation::navigation('本の貸出予約')"></header>
+<header th:replace="_fragments/member/navigation::navigation('本の貸出予約')"></header>
 
 <main class="container">
-  <header th:replace="fragments/header::header('本の貸出予約')"></header>
+  <header th:replace="_fragments/member/header::header('本の貸出予約')"></header>
 
   <section class="attendanceInput has-text-centered">
     <form id="custom-form" class="form" name="body"
@@ -20,7 +20,7 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="fragments/field::macro('会員番号', ~{::div#memberNumberField})">
+      <div th:replace="_fragments/member/field::macro('会員番号', ~{::div#memberNumberField})">
         <div id="memberNumberField" class="field-body">
           <div class="field">
             <p class="control">
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div th:replace="fragments/field::macro('本ID', ~{::div#bookIdField})">
+      <div th:replace="_fragments/member/field::macro('本ID', ~{::div#bookIdField})">
         <div id="bookIdField" class="field-body">
           <div class="field">
             <p class="control">

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/layout :: htmlhead(~{::title})">
+<head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
   <meta charset="utf-8"/>
   <title>貸出図書の返却</title>
 </head>
 <body>
-<header th:replace="fragments/navigation::navigation('貸出図書の返却')"></header>
+<header th:replace="_fragments/librarian/navigation::navigation('貸出図書の返却')"></header>
 
 <main class="container">
-  <header th:replace="fragments/header::header('貸出図書の返却')"></header>
+  <header th:replace="_fragments/member/header::header('貸出図書の返却')"></header>
 
   <div class="notification">
     貸出図書を返却しました。

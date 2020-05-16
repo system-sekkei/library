@@ -5,9 +5,15 @@
 <body>
 <h2>業務</h2>
 <ul>
-    <li><a th:href="@{/reservation/books/search}">貸出・返却</a></li>
-    <li><a th:href="@{/}">会員管理</a></li>
-    <li><a th:href="@{/}">蔵書管理</a></li>
+    <li><a th:href="@{/bookonloan/register}">貸出・返却(窓口)</a></li>
+</ul>
+<ul>
+    <li><a th:href="@{/reservation/books/search}">Web予約(会員)</a></li>
+    <li><a th:href="@{/reservation/list}">取置(図書館員）</a></li>
+</ul>
+<ul>
+    <li><a th:href="@{/}">会員管理（図書館員）</a></li>
+    <li><a th:href="@{/}">蔵書管理（図書館員）</a></li>
 </ul>
 </body>
 </html>
