@@ -8,6 +8,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.type.date.Date;
 import library.domain.type.date.Days;
 
+import java.time.LocalDate;
 import java.time.Period;
 
 /**
@@ -31,7 +32,7 @@ public class Loan {
     }
 
     public DaysLate daysLate(CurrentDate date) {
-        Date dueDate = loanDate.dueDate();
+        DueDate dueDate = loanDate.dueDate();
         int delay = Period.between(dueDate.value(), date.value()).getDays();
         return new DaysLate(new Days(delay));
     }

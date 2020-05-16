@@ -36,7 +36,7 @@ class LoanRegisterServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         ItemNumber itemNumber = new ItemNumber("2-A");
         Item itemInStock = itemQueryService.findItemInStock(itemNumber);
-        LoanRequest loanRequest = new LoanRequest(member, itemInStock, new LoanDate(Date.from("2020-02-20")));
+        LoanRequest loanRequest = new LoanRequest(member, itemInStock, LoanDate.parse("2020-02-20"));
         loanRegisterService.registerLoan(loanRequest);
 
         Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);

@@ -46,7 +46,7 @@ class LoanCoordinatorTest {
     //@Test
     void 貸出中の蔵書は貸し出すことができない() {
         LoanRequest loanRequest =
-                generate(2, "2-B", new LoanDate(Date.now()).toString());
+                generate(2, "2-B", LoanDate.now().toString());
         RestrictionResult restrictionResult = loanCoordinator.shouldRestrict(loanRequest);
         assertTrue(restrictionResult != RestrictionResult.貸出可能);
     }
@@ -71,6 +71,6 @@ class LoanCoordinatorTest {
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
         Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
         Item itemInStock = itemQueryService.findItemInStock(new ItemNumber(itemNumber));
-        return new LoanRequest(member, itemInStock, new LoanDate(Date.from(loanDate)));
+        return new LoanRequest(member, itemInStock, LoanDate.parse(loanDate));
     }
 }

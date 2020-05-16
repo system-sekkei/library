@@ -16,5 +16,5 @@ public class LoaningOfBookForm {
     ItemNumber itemNumber = null;
 
     @Valid
-    LoanDate loanDate = new LoanDate(Date.now());
+    LoanDate loanDate = LoanDate.now();
 }
