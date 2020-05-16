@@ -7,7 +7,6 @@ import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
-import library.domain.type.date.Date;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -56,7 +55,7 @@ class LoanDataSourceTest {
                         .param("loanDate.value", "2020-02-14"));
 
         ItemNumber itemNumber = new ItemNumber("2-D");
-        ReturnDate returnDate = new ReturnDate(Date.from("2019-01-01"));
+        ReturnDate returnDate = ReturnDate.parse("2019-01-01");
         returnBookRecordService.registerReturnBook(new Returned(itemNumber, returnDate));
 
 

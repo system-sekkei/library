@@ -34,7 +34,7 @@
 
     <insert id="insertReturnBook">
         INSERT INTO 返却(貸出ID, 返却日)
-        VALUES (#{loanNumber.value}, #{returned.returnDate.value.value})
+        VALUES (#{loanNumber.value}, #{returned.returnDate.value})
     </insert>
 
     <select id="selectByItemNumber" resultMap="loan">
@@ -76,7 +76,7 @@
 
     <select id="selectReturnedByItemNumbers" resultMap="returned">
         SELECT 貸出.貸出ID as "loanNumber.value",
-               返却.返却日   as "returnDate.value.value"
+               返却.返却日   as "returnDate.value"
         FROM 返却
         INNER JOIN 貸出 ON 返却.貸出ID = 貸出.貸出ID
         WHERE 貸出.蔵書コード IN

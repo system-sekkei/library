@@ -6,7 +6,6 @@ import library.application.service.returns.ReturnBookRecordService;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
-import library.domain.type.date.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,7 +29,7 @@ public class ReturnBookRegisterController {
 
     @GetMapping
     String init(Model model) {
-        Returned returned = new Returned(new ItemNumber(""), new ReturnDate(Date.now()));
+        Returned returned = new Returned(new ItemNumber(""), ReturnDate.now());
         model.addAttribute("returned", returned );
         return "returnbook/register/form";
     }
