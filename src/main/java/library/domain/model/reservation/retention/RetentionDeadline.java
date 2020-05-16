@@ -1,6 +1,7 @@
 package library.domain.model.reservation.retention;
 
 import library.domain.type.date.Date;
+import library.domain.type.date.Days;
 
 /**
  * 取置期限
@@ -13,6 +14,6 @@ public class RetentionDeadline {
     }
 
     public static RetentionDeadline deadline(RetainedDate date) {
-        return new RetentionDeadline(date.value().plusDays(7));
+        return new RetentionDeadline(date.value().plusDays(new Days(7)));
     }
 }

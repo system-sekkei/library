@@ -35,8 +35,8 @@ public class Date {
         return value.format(DateTimeFormatter.ISO_DATE);
     }
 
-    public Date plusDays(int days) {
-        return new Date(value.plusDays(days));
+    public Date plusDays(Days days) {
+        return new Date(value.plusDays(days.value()));
     }
 
     public Date plus(Period period) {

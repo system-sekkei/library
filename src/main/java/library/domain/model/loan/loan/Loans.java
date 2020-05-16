@@ -17,11 +17,16 @@ public class Loans {
         this.list = list;
     }
 
-    public DelayPeriod worstDelayPeriod(Date date) {
+    public DelayStatus worst(Date date) {
+        DaysLate worstDays = worstDays(date);
+        return worstDays.delayStatus();
+    }
+
+    DaysLate worstDays(Date date) {
         return list.stream()
-                .map(loan -> loan.delayPeriod(date))
-                .max(Comparator.comparingInt(period -> period.value.value()))
-                .orElse(new DelayPeriod(new Days(0)));
+                .map(loan -> loan.daysLate(date))
+                .max(Comparator.comparingInt(period -> period.intValue()))
+                .orElse(new DaysLate(new Days(0)));
     }
 
     public int count() {

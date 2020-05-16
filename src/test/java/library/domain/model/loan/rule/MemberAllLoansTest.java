@@ -30,7 +30,7 @@ class MemberAllLoansTest {
             "子供, 2020-01-04, 2019-12-30, 貸出不可"
     })
     void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, LoanRestrictions expected) {
-        Date today = Date.from("2020-01-20");
+        Date dateOfJudgment = Date.from("2020-01-20");
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = new Member(memberNumber, new Name(""), memberType);
         List<Loan> loans = new ArrayList<>();
@@ -42,6 +42,6 @@ class MemberAllLoansTest {
 
         MemberAllBookOnLoans memberAllBookOnLoans = new MemberAllBookOnLoans(member, new Loans(loans));
 
-        assertEquals(expected, memberAllBookOnLoans.loanRestrictions(today));
+        assertEquals(expected, memberAllBookOnLoans.loanRestrictions(dateOfJudgment));
     }
 }

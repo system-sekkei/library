@@ -1,5 +1,7 @@
 package library.domain.model.loan.loan;
 
+import library.domain.type.date.Days;
+
 import java.time.Period;
 
 /**
@@ -7,17 +9,17 @@ import java.time.Period;
  */
 public class LoanPeriod {
 
-    Period value;
+    Days value;
 
-    public LoanPeriod(Period value) {
+    public LoanPeriod(Days value) {
         this.value = value;
     }
 
-    static LoanPeriod standard() {
-        return new LoanPeriod(Period.ofDays(14));
+    static Days standard() {
+        return new Days(14);
     }
 
-    public Period value() {
+    public Days value() {
         return value;
     }
 }

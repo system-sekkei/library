@@ -13,4 +13,8 @@ public class Days {
     public int value() {
         return value;
     }
+
+    public boolean lessThan(int other) {
+        return value < other;
+    }
 }
