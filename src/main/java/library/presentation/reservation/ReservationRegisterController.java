@@ -43,6 +43,7 @@ public class ReservationRegisterController {
 
         Member member = memberQueryService.findMember(reservationForm.memberNumber);
         Book book = bookQueryService.findBook(reservationForm.bookNumber);
+        System.out.println(book);
         Reservation tryingToReserveBook = new Reservation(member, new ReservedBook(book));
 
         reservationRecordService.registerReservation(tryingToReserveBook);
@@ -60,7 +61,7 @@ public class ReservationRegisterController {
     public void initBinder(WebDataBinder binder) {
         binder.setAllowedFields(
                 "memberNumber.value",
-                "bookId.value"
+                "bookNumber.value"
         );
     }
 }

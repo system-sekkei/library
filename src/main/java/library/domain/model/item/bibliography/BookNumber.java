@@ -24,4 +24,9 @@ public class BookNumber {
     public boolean sameValue(BookNumber other) {
         return this.value == other.value;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(value);
+    }
 }

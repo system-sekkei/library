@@ -41,7 +41,7 @@
                 <td th:text="${book.title()}"></td>
                 <td th:text="${book.author()}"></td>
                 <td th:text="${book.bookType()}"></td>
-                <td><button>予約する</button></td>
+                <td><a class="button is-primary" th:href="@{/reservation/register(book=${book.bookNumber()})}">予約する</a></td>
             </tr>
             </tbody>
         </table>

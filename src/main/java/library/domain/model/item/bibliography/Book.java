@@ -39,4 +39,14 @@ public class Book {
     public boolean sameBook(Book other) {
         return bookNumber().sameValue(other.bookNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookNumber=" + bookNumber +
+                ", title=" + title +
+                ", author=" + author +
+                ", bookType=" + bookType +
+                '}';
+    }
 }

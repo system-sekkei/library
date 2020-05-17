@@ -26,4 +26,5 @@ public class ReservationListController {
         model.addAttribute("reservations", reservations);
         return "reservation/list";
     }
+
 }

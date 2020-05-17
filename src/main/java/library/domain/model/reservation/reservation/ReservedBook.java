@@ -24,4 +24,11 @@ public class ReservedBook {
     public boolean isA(BookNumber bookNumber) {
         return book.bookNumber().sameValue(bookNumber);
     }
+
+    @Override
+    public String toString() {
+        return "ReservedBook{" +
+                "book=" + book +
+                '}';
+    }
 }

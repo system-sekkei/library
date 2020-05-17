@@ -35,4 +35,13 @@ public class Reservation {
     public ReservationId reservationId() {
         return reservationId;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "reservationId=" + reservationId +
+                ", member=" + member +
+                ", reservedBook=" + reservedBook +
+                '}';
+    }
 }
