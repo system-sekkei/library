@@ -20,23 +20,11 @@ class Restriction {
         this.date = date;
     }
 
+    static final RestrictionTable table = new RestrictionTable();
+
     RestrictionOfQuantity ofQuantity() {
         DelayStatus delayStatus = loans.worst(date);
         MemberType memberType = member.type();
-
-        if (memberType == MemberType.大人 && delayStatus == DelayStatus.遅延日数３日未満) {
-            return RestrictionOfQuantity.貸出５冊まで;
-        }
-
-        if (memberType == MemberType.子供) {
-            if (delayStatus == DelayStatus.遅延日数３日未満) {
-                return RestrictionOfQuantity.貸出７冊まで;
-            }
-
-            if (delayStatus == DelayStatus.遅延日数７日未満) {
-                return RestrictionOfQuantity.貸出４冊まで;
-            }
-        }
-        return RestrictionOfQuantity.貸出不可;
+        return table.lookup(delayStatus, memberType);
     }
 }
