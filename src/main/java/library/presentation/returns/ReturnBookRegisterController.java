@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * 返却の登録画面
  */
 @Controller
-@RequestMapping("returnbook/register")
+@RequestMapping("returns/register")
 public class ReturnBookRegisterController {
     ReturnBookRecordService returnBookRecordService;
     MemberQueryService memberQueryService;
@@ -31,22 +31,22 @@ public class ReturnBookRegisterController {
     String init(Model model) {
         Returned returned = new Returned(new ItemNumber(""), ReturnDate.now());
         model.addAttribute("returned", returned );
-        return "returnbook/register/form";
+        return "returns/register/form";
     }
 
     @PostMapping
     String register(@Validated @ModelAttribute("returned") Returned returned,
                     BindingResult result) {
-        if (result.hasErrors()) return "returnbook/register/form";
+        if (result.hasErrors()) return "returns/register/form";
 
         returnBookRecordService.registerReturnBook(returned);
 
-        return "redirect:/returnbook/register/completed";
+        return "redirect:/returns/register/completed";
     }
 
     @GetMapping("completed")
     String completed(Model model) {
-        return "returnbook/register/completed";
+        return "returns/register/completed";
     }
 
     @InitBinder

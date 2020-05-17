@@ -24,18 +24,18 @@ class ItemDataSourceTest {
     @Test
     void 貸出履歴が複数ある貸出中の蔵書を取得できる() throws Exception {
         mockMvc.perform(
-                post("/bookonloan/register")
+                post("/loan/register")
                         .param("memberNumber.value", "1")
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
         mockMvc.perform(
-                post("/returnbook/register")
+                post("/returns/register")
                         .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 
         mockMvc.perform(
-                post("/bookonloan/register")
+                post("/loan/register")
                         .param("memberNumber.value", "1")
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
@@ -48,13 +48,13 @@ class ItemDataSourceTest {
     @Test
     void 貸出履歴が複数ある在庫中の蔵書を取得できる() throws Exception {
         mockMvc.perform(
-                post("/bookonloan/register")
+                post("/loan/register")
                         .param("memberNumber.value", "1")
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2020-02-14"));
 
         mockMvc.perform(
-                post("/returnbook/register")
+                post("/returns/register")
                         .param("itemNumber.value", "2-A")
                         .param("returnDate.value", "2020-02-14"));
 

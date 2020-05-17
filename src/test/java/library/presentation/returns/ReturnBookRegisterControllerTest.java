@@ -19,7 +19,7 @@ class ReturnBookRegisterControllerTest {
     @Test
     void 返却画面が表示できる() throws Exception {
         mockMvc.perform(
-                get("/returnbook/register"))
+                get("/returns/register"))
                 .andExpect(status().isOk());
     }
 }

@@ -35,7 +35,7 @@ class LoanDataSourceTest {
     @Test
     void 蔵書コードで貸出図書を取得できる() throws Exception {
         mockMvc.perform(
-                post("/bookonloan/register")
+                post("/loan/register")
                         .param("memberNumber.value", "1")
                         .param("itemNumber.value", "2-C")
                         .param("loanDate.value", "2020-02-14"));
@@ -49,7 +49,7 @@ class LoanDataSourceTest {
     @Test
     void 返却した蔵書は取得できない() throws Exception {
         mockMvc.perform(
-                post("/bookonloan/register")
+                post("/loan/register")
                         .param("memberNumber.value", "1")
                         .param("itemNumber.value", "2-D")
                         .param("loanDate.value", "2020-02-14"));

@@ -23,7 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * 貸出の登録画面
  */
 @Controller
-@RequestMapping("bookonloan/register")
+@RequestMapping("loan/register")
 public class LoanRegisterController {
     LoanRegisterService loanRegisterService;
     LoanCoordinator loanCoordinator;
@@ -42,12 +42,12 @@ public class LoanRegisterController {
     @GetMapping
     String init(Model model) {
         model.addAttribute("loaningOfBookForm", new LoaningOfBookForm());
-        return "bookonloan/register/form";
+        return "loan/register/form";
     }
 
     @PostMapping
     String register(@Validated @ModelAttribute("loaningOfBookForm") LoaningOfBookForm loaningOfBookForm, BindingResult result, RedirectAttributes attributes) {
-        if (result.hasErrors()) return "bookonloan/register/form";
+        if (result.hasErrors()) return "loan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
         Item itemInStock = itemQueryService.findItemInStock(loaningOfBookForm.itemNumber);
@@ -57,12 +57,12 @@ public class LoanRegisterController {
 
         if (restrictionResult != RestrictionResult.貸出可能) {
             result.addError(new ObjectError("error", restrictionResult.message()));
-            return "bookonloan/register/form";
+            return "loan/register/form";
         }
 
         loanCoordinator.loan(loanRequest);
         attributes.addAttribute("memberNumber", loanRequest.member().number());
-        return "redirect:/bookonloan/register/completed";
+        return "redirect:/loan/register/completed";
     }
 
     @GetMapping("completed")
@@ -70,7 +70,7 @@ public class LoanRegisterController {
         Member member = memberQueryService.findMember(memberNumber);
         LoanStatus loanStatus = loanQueryService.findMemberAllBookOnLoans(member);
         model.addAttribute("memberAllBookOnLoans", loanStatus);
-        return "bookonloan/register/completed";
+        return "loan/register/completed";
     }
 
     @InitBinder

@@ -23,7 +23,7 @@ class BookQueryServiceTest {
         Books books = bookQueryService.search(keyword);
 
         assertAll(
-                () -> assertEquals(1, books.size().value()),
+                () -> assertEquals(1, books.size()),
                 () -> assertEquals(
                         "RDRA2.0 ハンドブック: 軽く柔軟で精度の高い要件定義のモデリング手法",
                         books.asList().get(0).title().toString()));

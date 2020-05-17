@@ -16,7 +16,9 @@ public class Books {
     public String count() {
         return new NumberOfBook(list.size()).show();
     }
-
+    public int size() {
+        return list.size();
+    }
     public List<Book> asList() {
         return Collections.unmodifiableList(list);
     }
