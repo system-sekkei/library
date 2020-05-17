@@ -1,10 +1,7 @@
 package library.infrastructure.datasource.book;
 
 import library.application.repository.BookRepository;
-import library.domain.model.item.bibliography.Book;
-import library.domain.model.item.bibliography.BookNumber;
-import library.domain.model.item.bibliography.Keyword;
-import library.domain.model.item.bibliography.Books;
+import library.domain.model.item.bibliography.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,13 +10,15 @@ import java.util.List;
 public class BookDataSource implements BookRepository {
     BookMapper bookMapper;
 
+
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     public BookDataSource(BookMapper bookMapper) {
         this.bookMapper = bookMapper;
     }
 
     @Override
     public Books search(Keyword keyword) {
-        List<Book> books = bookMapper.searchBooks(keyword);
+        List<Book> books = bookMapper.searchBooks(keyword, NumberOfBook.MAX_TO_SHOW + 1);
         return new Books(books);
     }
 

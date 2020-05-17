@@ -28,18 +28,20 @@
     </section>
 
     <th:block th:if="${books}">
-        <span th:text="${books.size()}"></span><span>件</span>
+        <p th:text="${books.count()}"></p>
         <table class="table">
             <thead>
-            <th>種別</th>
             <th>タイトル</th>
             <th>著者</th>
+            <th>種別</th>
+            <th></th>
             </thead>
             <tbody>
             <tr th:each="book : ${books.asList()}">
-                <td th:text="${book.bookType()}"></td>
                 <td th:text="${book.title()}"></td>
                 <td th:text="${book.author()}"></td>
+                <td th:text="${book.bookType()}"></td>
+                <td><button>予約する</button></td>
             </tr>
             </tbody>
         </table>

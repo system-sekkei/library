@@ -13,8 +13,8 @@ public class Books {
         this.list = list;
     }
 
-    public NumberOfBook size() {
-        return new NumberOfBook(list.size());
+    public String count() {
+        return new NumberOfBook(list.size()).show();
     }
 
     public List<Book> asList() {

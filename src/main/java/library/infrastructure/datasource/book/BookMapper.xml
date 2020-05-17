@@ -11,6 +11,8 @@
             本.本種別 as "bookType"
         FROM 本
         WHERE 本.タイトル || 本.著者 LIKE '%' || #{keyword.value} || '%'
+        ORDER BY 本.タイトル
+        LIMIT #{limit}
     </select>
 
     <select id="findBook" resultType="library.domain.model.item.bibliography.Book">

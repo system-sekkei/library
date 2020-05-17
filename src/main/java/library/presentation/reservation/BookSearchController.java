@@ -26,8 +26,6 @@ public class BookSearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        if (searchKeyword.isNull() || searchKeyword.isBlank()) return "reservation/books/search";
-
         Books books = bookQueryService.search(searchKeyword);
 
         model.addAttribute("books", books);

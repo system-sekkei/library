@@ -7,12 +7,14 @@ package library.domain.model.item.bibliography;
 public class NumberOfBook {
     int value;
 
-    public NumberOfBook(int value) {
+    NumberOfBook(int value) {
         this.value = value;
     }
 
-    public int value() {
-        return value;
+    public static int MAX_TO_SHOW = 1;
+    String show() {
+        String over = value > MAX_TO_SHOW ? "以上" : "";
+        return value + "件" + over;
     }
 
     @Override

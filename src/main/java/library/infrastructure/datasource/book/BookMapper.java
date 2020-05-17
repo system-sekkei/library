@@ -10,7 +10,10 @@ import java.util.List;
 
 @Mapper
 public interface BookMapper {
-    List<Book> searchBooks(@Param("keyword") Keyword keyword);
+    List<Book> searchBooks(
+            @Param("keyword") Keyword keyword,
+            @Param("limit") int limit
+    );
 
     Book findBook(@Param("bookNumber") BookNumber bookNumber);
 }
