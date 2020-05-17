@@ -1,4 +1,4 @@
-package library.presentation.controller;
+package library.presentation;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

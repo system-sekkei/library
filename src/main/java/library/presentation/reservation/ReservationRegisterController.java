@@ -1,4 +1,4 @@
-package library.presentation.controller.reservation;
+package library.presentation.reservation;
 
 import library.application.service.member.MemberQueryService;
 import library.application.service.book.BookQueryService;

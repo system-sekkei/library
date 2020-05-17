@@ -1,4 +1,4 @@
 /**
- * 技術基盤
+ * データソース層
  */
 package library.infrastructure;

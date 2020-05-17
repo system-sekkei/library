@@ -1,4 +1,4 @@
-package library.presentation.controller.reservation;
+package library.presentation.reservation;
 
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;

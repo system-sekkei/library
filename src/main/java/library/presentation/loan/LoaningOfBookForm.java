@@ -1,9 +1,8 @@
-package library.presentation.controller.bookonloan;
+package library.presentation.loan;
 
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.type.date.Date;
 
 import javax.validation.Valid;
 

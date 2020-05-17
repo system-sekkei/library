@@ -1,4 +1,4 @@
-package library.presentation.controller.bookonloan;
+package library.presentation.loan;
 
 import library.LibraryDBTest;
 import org.junit.jupiter.api.Test;

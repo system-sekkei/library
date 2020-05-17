@@ -1,4 +1,4 @@
-package library.presentation.controller.bookonloan;
+package library.presentation.loan;
 
 import library.application.coordinator.bookonloan.LoanCoordinator;
 import library.application.service.loan.LoanQueryService;
