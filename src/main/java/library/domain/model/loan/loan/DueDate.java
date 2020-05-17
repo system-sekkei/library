@@ -2,6 +2,9 @@ package library.domain.model.loan.loan;
 
 import java.time.LocalDate;
 
+/**
+ * 貸出期限
+ */
 class DueDate {
     LocalDate value;
 
