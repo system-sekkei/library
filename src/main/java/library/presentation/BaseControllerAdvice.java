@@ -12,7 +12,6 @@ public class BaseControllerAdvice {
     public void initBinder(WebDataBinder binder) {
         binder.initDirectFieldAccess();
         binder.setAllowedFields("");
-//        binder.setDisallowedFields("*");
 
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(false));
     }

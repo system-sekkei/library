@@ -16,4 +16,16 @@ public class LoaningOfBookForm {
 
     @Valid
     LoanDate loanDate = LoanDate.now();
+
+    public String memberNumber() {
+        return memberNumber.toString();
+    }
+    @Override
+    public String toString() {
+        return "LoaningOfBookForm{" +
+                "memberNumber=" + memberNumber +
+                ", itemNumber=" + itemNumber +
+                ", loanDate=" + loanDate +
+                '}';
+    }
 }

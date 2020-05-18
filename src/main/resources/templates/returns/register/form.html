@@ -20,11 +20,11 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="_fragments/member/field::macro('蔵書コード', ~{::div#holdingCodeField})">
+      <div th:replace="_fragments/member/field::macro('蔵書番号', ~{::div#holdingCodeField})">
         <div id="holdingCodeField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="text" placeholder="1-A"
+              <input class="input" type="text" placeholder="蔵書番号"
                      th:field="*{itemNumber.value}"/>
             </p>
             <p class="help is-danger has-text-left"
@@ -39,7 +39,7 @@
         <div id="returnDateField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="date" placeholder="2020-01-01"
+              <input class="input" type="date"
                      th:field="*{returnDate.value}"/>
             </p>
             <p class="help is-danger has-text-left"

@@ -36,7 +36,7 @@ public class ReservationController {
     String init(@RequestParam("book") BookNumber bookNumber, Model model) {
         Book book = bookQueryService.findBook(bookNumber);
         model.addAttribute("book", book);
-        model.addAttribute("member", new MemberNumber(0));
+        model.addAttribute("member", MemberNumber.empty());
         return "reservation/register/form";
     }
 
