@@ -5,11 +5,11 @@
 <body>
 <h2>業務</h2>
 <ul>
-    <li><a th:href="@{/loan/register}">貸出・返却(窓口)</a></li>
+    <li><a target="counter" th:href="@{/loan/register}">貸出・返却(窓口)</a></li>
 </ul>
 <ul>
-    <li><a th:href="@{/reservation/books/search}">Web予約(会員) [取置の依頼]</取置の依頼></a></li>
-    <li><a th:href="@{/reservation/list}">取置(図書館員）</a></li>
+    <li><a target="member" th:href="@{/reservation/books/search}">Web予約(会員) [取置の依頼]</取置の依頼></a></li>
+    <li><a target="librarian" th:href="@{/reservation/list}">取置(図書館員）</a></li>
 </ul>
 <ul>
     <li><a th:href="@{/}">会員管理（図書館員）</a></li>
