@@ -39,9 +39,9 @@ public class LoanDataSource implements LoanRepository {
             throw new RegisterLoanException(loanRequest);
         }
 
-        Integer bookOnLoanId = loanMapper.newLoanNumber();
+        Integer loanNumber = loanMapper.newLoanNumber();
         loanMapper.insertLoan(
-                bookOnLoanId,
+                loanNumber,
                 loanRequest.member().number(),
                 itemNumber,
                 loanRequest.loanDate());

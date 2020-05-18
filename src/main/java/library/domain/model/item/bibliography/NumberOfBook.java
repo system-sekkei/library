@@ -11,7 +11,7 @@ public class NumberOfBook {
         this.value = value;
     }
 
-    public static int MAX_TO_SHOW = 1;
+    public static int MAX_TO_SHOW = 20;
     String show() {
         String over = value > MAX_TO_SHOW ? "以上" : "";
         return value + "件" + over;

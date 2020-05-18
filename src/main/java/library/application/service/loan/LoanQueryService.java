@@ -21,7 +21,7 @@ public class LoanQueryService {
     /**
      * 会員の全貸出図書を一覧する
      */
-    public LoanStatus findMemberAllBookOnLoans(Member member) {
+    public LoanStatus loanStatusOf(Member member) {
         return loanRepository.loanStatus(member);
     }
 

@@ -1,4 +1,4 @@
-package library.application.coordinator.bookonloan;
+package library.application.coordinator.loan;
 
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRegisterService;
@@ -33,7 +33,7 @@ public class LoanCoordinator {
      * 貸出制限を判断する
      */
     public RestrictionResult shouldRestrict(LoanRequest loanRequest) {
-        LoanStatus loanStatus = loanQueryService.findMemberAllBookOnLoans(loanRequest.member());
+        LoanStatus loanStatus = loanQueryService.loanStatusOf(loanRequest.member());
         return loanStatus.shouldRestrict();
     }
     /**
