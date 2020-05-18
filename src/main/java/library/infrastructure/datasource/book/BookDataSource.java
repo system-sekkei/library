@@ -21,7 +21,6 @@ public class BookDataSource implements BookRepository {
     @Override
     public BookAvailabilities search(Keyword keyword) {
         List<BookAvailability> books = bookMapper.searchBooks(keyword, NumberOfBook.MAX_TO_SHOW + 1);
-        System.out.println(books);
         return new BookAvailabilities(books);
     }
 

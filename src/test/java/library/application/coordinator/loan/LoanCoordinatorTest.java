@@ -4,13 +4,11 @@ import library.LibraryDBTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.LoanDate;
-import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.loan.rule.RestrictionResult;
-import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.loan.loan.LoanRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -68,8 +66,8 @@ class LoanCoordinatorTest {
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
-        Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        Item itemInStock = itemQueryService.findItemInStock(new ItemNumber(itemNumber));
-        return new LoanRequest(member, itemInStock, LoanDate.parse(loanDate));
+        MemberNumber member = new MemberNumber(memberNumber);
+        ItemNumber item = new ItemNumber(itemNumber);
+        return new LoanRequest(member, item, LoanDate.parse(loanDate));
     }
 }

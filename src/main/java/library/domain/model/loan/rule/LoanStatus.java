@@ -36,4 +36,13 @@ public class LoanStatus {
     public Loans loans() {
         return loans;
     }
+
+    @Override
+    public String toString() {
+        return "LoanStatus{" +
+                "member=" + member +
+                ", loans=" + loans +
+                ", date=" + date +
+                '}';
+    }
 }

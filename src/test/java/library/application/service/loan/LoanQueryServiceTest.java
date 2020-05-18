@@ -4,16 +4,14 @@ import library.LibraryDBTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnBookRecordService;
-import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
 import library.domain.model.loan.rule.LoanStatus;
-import library.domain.model.loan.loan.LoanRequest;
-import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.loan.loan.LoanRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -62,17 +60,14 @@ class LoanQueryServiceTest {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerLoan(itemNumber, 2);
         returnBookRecordService.registerReturnBook(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
-
-        Member member = memberQueryService.findMember(new MemberNumber(2));
-        LoanStatus loanStatus = loanQueryService.loanStatusOf(member);
+        LoanStatus loanStatus = loanQueryService.loanStatusOf(new MemberNumber(2));
 
         assertEquals(loanStatus.count(), 0);
     }
 
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {
-        Member member = memberQueryService.findMember(new MemberNumber(memberNumber));
-        Item itemInStock = itemQueryService.findItemInStock(itemNumber);
-        LoanRequest loanRequest = new LoanRequest(member, itemInStock, LoanDate.parse("2020-02-20"));
+        MemberNumber member = new MemberNumber(memberNumber);
+        LoanRequest loanRequest = new LoanRequest(member, itemNumber, LoanDate.parse("2020-02-20"));
         loanRegisterService.registerLoan(loanRequest);
     }
 }

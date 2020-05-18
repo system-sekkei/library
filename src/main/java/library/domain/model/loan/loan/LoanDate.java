@@ -19,7 +19,7 @@ public class LoanDate {
     LocalDate value;
 
     @Deprecated
-    private LoanDate() {
+    LoanDate() {
     }
 
     private LoanDate(LocalDate value) {

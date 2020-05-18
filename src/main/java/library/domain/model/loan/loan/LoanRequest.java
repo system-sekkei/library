@@ -1,42 +1,51 @@
 package library.domain.model.loan.loan;
 
-import library.domain.model.item.Item;
-import library.domain.model.member.Member;
+import library.domain.model.item.ItemNumber;
+import library.domain.model.member.MemberNumber;
 
 import javax.validation.Valid;
 
 /**
- * 貸出申請
+ * 貸出依頼
  */
 public class LoanRequest {
-    @Valid
-    Member member;
 
     @Valid
-    Item item;
+    MemberNumber memberNumber;
 
     @Valid
-    LoanDate loanDate;
+    ItemNumber itemNumber;
 
-    @Deprecated
-    LoanRequest() {
-    }
+    @Valid
+    LoanDate loanDate = LoanDate.now();
 
-    public LoanRequest(Member member, Item item, LoanDate loanDate) {
-        this.member = member;
-        this.item = item;
+    public LoanRequest(@Valid MemberNumber memberNumber, @Valid ItemNumber itemNumber, @Valid LoanDate loanDate) {
+        this.memberNumber = memberNumber;
+        this.itemNumber = itemNumber;
         this.loanDate = loanDate;
     }
 
-    public Member member() {
-        return member;
+    @Deprecated
+    public LoanRequest() {
+    }
+    public MemberNumber memberNumber() {
+        return memberNumber;
     }
 
-    public Item item() {
-        return item;
+    public ItemNumber itemNumber() {
+        return itemNumber;
     }
 
     public LoanDate loanDate() {
         return loanDate;
+    }
+
+    @Override
+    public String toString() {
+        return "LoanRequestForm{" +
+                "memberNumber=" + memberNumber +
+                ", itemNumber=" + itemNumber +
+                ", loanDate=" + loanDate +
+                '}';
     }
 }
