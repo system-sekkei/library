@@ -4,7 +4,7 @@ import library.application.repository.BookRepository;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.item.bibliography.Keyword;
-import library.domain.model.item.bibliography.Books;
+import library.domain.model.reservation.availability.BookAvailabilities;
 import org.springframework.stereotype.Service;
 
 /**
@@ -28,7 +28,7 @@ public class BookQueryService {
     /**
      * キーワードで本を探す
      */
-    public Books search(Keyword keyword) {
+    public BookAvailabilities search(Keyword keyword) {
         return bookRepository.search(keyword);
     }
 }

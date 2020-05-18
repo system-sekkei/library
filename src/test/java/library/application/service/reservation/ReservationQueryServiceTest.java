@@ -7,6 +7,7 @@ import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.reservation.availability.BookAvailability;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.reservation.ReservedBook;
@@ -33,10 +34,10 @@ class ReservationQueryServiceTest {
     @Test
     void 予約図書一覧を取得することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        Book book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
+        BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
         Member member1 = member;
-        Book book1 = book;
-        Reservation tryingToReserveBook = new Reservation(member1, new ReservedBook(book1));
+        BookAvailability book1 = book;
+        Reservation tryingToReserveBook = new Reservation(member1, new ReservedBook(book1.book()));
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         Reservations reservations = reservationQueryService.findReservations();
@@ -48,9 +49,9 @@ class ReservationQueryServiceTest {
     @Test
     void 会員の現在の貸出予約一覧を取得することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        Book book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
+        BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
         Member member1 = member;
-        Book book1 = book;
+        Book book1 = book.book();
         Reservation tryingToReserveBook = new Reservation(member1, new ReservedBook(book1));
         reservationRecordService.registerReservation(tryingToReserveBook);
 

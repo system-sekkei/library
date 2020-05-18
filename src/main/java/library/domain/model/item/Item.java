@@ -29,8 +29,8 @@ public class Item {
     }
 
     public String show() {
-        return String.format("[%s] %s (%s)",
-                itemNumber.toString(), book.title(), book.author());
+        return String.format("[%s] %s",
+                itemNumber.toString(), book.show());
     }
     @Override
     public String toString() {
