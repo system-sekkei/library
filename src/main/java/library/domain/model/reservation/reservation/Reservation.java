@@ -1,5 +1,6 @@
 package library.domain.model.reservation.reservation;
 
+import library.domain.model.item.bibliography.Book;
 import library.domain.model.member.Member;
 
 /**
@@ -8,28 +9,27 @@ import library.domain.model.member.Member;
 public class Reservation {
     ReservationId reservationId;
     Member member;
-    ReservedBook reservedBook;
+    Book book;
 
     @Deprecated
     Reservation() {
     }
 
-    public Reservation(Member member, ReservedBook reservedBook) {
-        this(ReservationId.generate(), member, reservedBook);
-    }
-
-    public Reservation(ReservationId reservationId, Member member, ReservedBook reservedBook) {
+    private Reservation(ReservationId reservationId, Member member, Book book) {
         this.reservationId = reservationId;
         this.member = member;
-        this.reservedBook = reservedBook;
+        this.book = book;
     }
 
+    public static Reservation of(Member member, Book book) {
+        return new Reservation(ReservationId.generate(), member, book);
+    }
     public Member member() {
         return member;
     }
 
-    public ReservedBook reservedBook() {
-        return reservedBook;
+    public Book book() {
+        return book;
     }
 
     public ReservationId reservationId() {
@@ -41,7 +41,7 @@ public class Reservation {
         return "Reservation{" +
                 "reservationId=" + reservationId +
                 ", member=" + member +
-                ", reservedBook=" + reservedBook +
+                ", book=" + book +
                 '}';
     }
 }

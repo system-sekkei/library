@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
  */
 public class MemberNumber {
     @NotNull(message = "会員番号を入力してください。")
-    Integer value;
+    int value;
 
-    public MemberNumber(Integer value) {
+    public MemberNumber(int value) {
         this.value = value;
     }
 
@@ -17,16 +17,13 @@ public class MemberNumber {
     MemberNumber() {
     }
 
-    public static MemberNumber from(String value) {
-        return new MemberNumber(Integer.parseInt(value));
+    public Integer value() {
+        return value;
     }
 
     @Override
     public String toString() {
-        return value.toString();
-    }
-
-    public Integer value() {
-        return value;
+        if (value == 0) return "";
+        return Integer.toString(value);
     }
 }

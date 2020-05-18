@@ -35,7 +35,7 @@ class RetentionCoordinatorTest {
     void 取置可能な貸出予約図書一覧を出力できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Book book = bookQueryService.findBook(new BookNumber(2));
-        Reservation reservation = new Reservation(member, new ReservedBook(book));
+        Reservation reservation = Reservation.of(member, book);
         reservationRecordService.registerReservation(reservation);
 
         // TODO 仕様から再定義

@@ -16,6 +16,9 @@ public class BookNumber {
     public BookNumber(int value) {
         this.value = value;
     }
+    public BookNumber(String value) {
+        this.value = Integer.parseInt(value);
+    }
 
     public int value() {
         return value;

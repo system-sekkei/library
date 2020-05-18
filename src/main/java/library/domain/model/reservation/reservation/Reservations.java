@@ -22,10 +22,4 @@ public class Reservations {
     public List<Reservation> asList() {
         return list;
     }
-
-    public BookNumbers bookIds() {
-        return new BookNumbers(list.stream()
-            .map(reservedBook -> reservedBook.reservedBook().book().bookNumber())
-            .collect(Collectors.toList()));
-    }
 }

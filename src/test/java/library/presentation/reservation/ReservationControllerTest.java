@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-public class ReservationRegisterControllerTest {
+public class ReservationControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -19,7 +19,7 @@ public class ReservationRegisterControllerTest {
     @Test
     void 本の予約画面を表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/register"))
+                get("/reservation/register?book=1"))
                 .andExpect(status().isOk());
     }
 }
