@@ -13,6 +13,7 @@ import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
@@ -46,10 +47,19 @@ public class LoanRegisterController {
     }
 
     @PostMapping
-    String register(@Validated @ModelAttribute("loaningOfBookForm") LoaningOfBookForm loaningOfBookForm, BindingResult result, RedirectAttributes attributes) {
+    String register(@Validated @ModelAttribute("loaningOfBookForm") LoaningOfBookForm loaningOfBookForm,
+                    BindingResult result,
+                    Model model,
+                    RedirectAttributes attributes) {
         if (result.hasErrors()) return "loan/register/form";
 
         Member member = memberQueryService.findMember(loaningOfBookForm.memberNumber);
+
+        if (member == null) {
+            result.addError(new FieldError(result.getObjectName(), "memberNumber.value", "この番号の会員はいません"));
+            return "loan/register/form";
+        }
+
         Item itemInStock = itemQueryService.findItemInStock(loaningOfBookForm.itemNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemInStock, loaningOfBookForm.loanDate);
 
@@ -61,12 +71,13 @@ public class LoanRegisterController {
         }
 
         loanCoordinator.loan(loanRequest);
-        attributes.addAttribute("memberNumber", loanRequest.member().number());
+
+        attributes.addAttribute("memberNumber", loanRequest.member().number().toString());
         return "redirect:/loan/register/completed";
     }
 
     @GetMapping("completed")
-    String completed(Model model, @RequestParam("memberNumber") MemberNumber memberNumber) {
+    String completed(Model model, @ModelAttribute("memberNumber") MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
         LoanStatus loanStatus = loanQueryService.loanStatusOf(member);
         model.addAttribute("loanStatus", loanStatus);

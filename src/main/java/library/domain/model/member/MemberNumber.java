@@ -17,7 +17,7 @@ public class MemberNumber {
     MemberNumber() {
     }
 
-    public Integer value() {
+    public int value() {
         return value;
     }
 
