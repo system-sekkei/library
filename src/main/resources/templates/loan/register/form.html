@@ -14,7 +14,7 @@
     <form id="custom-form" class="form" name="body"
           method="post" action="#"
           th:object="${loaningOfBookForm}"
-          th:action="@{/bookonloan/register}">
+          th:action="@{/loan/register}">
 
       <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>

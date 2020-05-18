@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS 会員,本,蔵書,貸出,返却,予約,予約取消,取置;
+DROP TABLE IF EXISTS 会員,本,蔵書,貸出可能,貸出,返却,予約,予約取消,取置;
 DROP SEQUENCE IF EXISTS 貸出ID;
 DROP SEQUENCE IF EXISTS 予約ID;
 

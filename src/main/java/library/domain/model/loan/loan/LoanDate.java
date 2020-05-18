@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 /**
  * 貸出日
@@ -28,6 +29,10 @@ public class LoanDate {
     DueDate dueDate() {
         LocalDate dueDate = value.plusDays(LoanPeriod.standard().value());
         return new DueDate(dueDate);
+    }
+
+    public String show() {
+        return value.format(DateTimeFormatter.ofPattern("M月d日(E)"));
     }
     @Override
     public String toString() {

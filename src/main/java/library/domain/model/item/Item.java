@@ -28,4 +28,16 @@ public class Item {
         return this.book.sameBook(other);
     }
 
+    public String show() {
+        return String.format("[%s] %s (%s)",
+                itemNumber.toString(), book.title(), book.author());
+    }
+    @Override
+    public String toString() {
+        return "Item{" +
+                "itemNumber=" + itemNumber +
+                ", book=" + book +
+                ", status=" + status +
+                '}';
+    }
 }

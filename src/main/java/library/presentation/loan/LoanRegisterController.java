@@ -69,7 +69,7 @@ public class LoanRegisterController {
     String completed(Model model, @RequestParam("memberNumber") MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
         LoanStatus loanStatus = loanQueryService.findMemberAllBookOnLoans(member);
-        model.addAttribute("memberAllBookOnLoans", loanStatus);
+        model.addAttribute("loanStatus", loanStatus);
         return "loan/register/completed";
     }
 

@@ -42,7 +42,7 @@ public class Loan {
         return member;
     }
 
-    public LoanDate loanDate() {
+    public LoanDate date() {
         return loanDate;
     }
 
@@ -50,11 +50,9 @@ public class Loan {
         return loanNumber;
     }
 
-    // TODO 削除：LoanData互換の暫定対応
-    public ItemNumber itemNumber() {
-        return item.itemNumber();
+    public Item item() {
+        return item;
     }
-
     public MemberNumber memberNumber() {
         return member.number();
     }

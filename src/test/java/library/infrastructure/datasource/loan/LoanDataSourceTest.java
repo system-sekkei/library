@@ -43,7 +43,7 @@ class LoanDataSourceTest {
         ItemNumber itemNumber = new ItemNumber("2-C");
         Loan loan = loanDataSource.findLoanByItemNumber(itemNumber);
 
-        assertEquals("2020-02-14", loan.loanDate().toString());
+        assertEquals("2020-02-14", loan.date().toString());
     }
 
     @Test
