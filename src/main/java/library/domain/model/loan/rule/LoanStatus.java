@@ -19,7 +19,7 @@ public class LoanStatus {
         this.date = date;
     }
 
-    public RestrictionResult shouldRestrict() {
+    public Loanability shouldRestrict() {
         Restriction restriction = new Restriction(member, loans, date);
         RestrictionOfQuantity restrictionOfQuantity = restriction.ofQuantity();
         return restrictionOfQuantity.shouldRestrict(loans);

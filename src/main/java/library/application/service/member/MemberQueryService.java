@@ -22,4 +22,11 @@ public class MemberQueryService {
     public Member findMember(MemberNumber memberNumber) {
         return memberRepository.findMember(memberNumber);
     }
+
+    /**
+     * 会員の存在チェック
+     */
+    public boolean exists(MemberNumber memberNumber) {
+        return memberRepository.exists(memberNumber);
+    }
 }

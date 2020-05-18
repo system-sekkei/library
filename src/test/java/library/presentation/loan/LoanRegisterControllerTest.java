@@ -33,6 +33,6 @@ class LoanRegisterControllerTest {
                         .param("itemNumber.value", "2-A")
                         .param("loanDate.value", "2011-11-11"))
                 .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/loan/register/completed?memberNumber=1"));
+                .andExpect(redirectedUrl("/loan/register/completed"));
     }
 }

@@ -45,7 +45,7 @@ public class ReturnBookRegisterController {
     }
 
     @GetMapping("completed")
-    String completed(Model model) {
+    String completed() {
         return "returns/register/completed";
     }
 

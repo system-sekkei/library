@@ -10,7 +10,7 @@
             本.著者 as "book.author.value",
             本.本種別 as "book.bookType",
             (SELECT count(*) FROM 貸出可能 INNER JOIN 蔵書 on 貸出可能.蔵書コード = 蔵書.蔵書コード
-                WHERE 蔵書.本ID = 本.本ID) as "loanable"
+                WHERE 蔵書.本ID = 本.本ID) as "loanability"
         FROM 本
         WHERE 本.タイトル || 本.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 本.タイトル

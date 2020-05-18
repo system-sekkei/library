@@ -7,7 +7,9 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface MemberMapper {
-    Member selectMember(@Param("memberNumber") MemberNumber memberNumber);
+
+    boolean exists(MemberNumber memberNumber);
+    Member selectMember(MemberNumber memberNumber);
 
     void insertMember(Member member);
 }
