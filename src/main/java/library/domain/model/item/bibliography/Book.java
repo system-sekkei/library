@@ -28,14 +28,6 @@ public class Book {
         return title;
     }
 
-    public Author author() {
-        return author;
-    }
-
-    public BookType bookType() {
-        return bookType;
-    }
-
     public String show() {
         return String.format("%s (%s)", title, author);
     }

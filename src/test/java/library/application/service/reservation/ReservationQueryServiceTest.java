@@ -32,30 +32,13 @@ class ReservationQueryServiceTest {
     BookQueryService bookQueryService;
 
     @Test
-    void 予約図書一覧を取得することができる() {
+    void 予約を一覧できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
-        Member member1 = member;
-        BookAvailability book1 = book;
-        Reservation tryingToReserveBook = Reservation.of(member1, book1.book());
+        Reservation tryingToReserveBook = Reservation.of(member, book.book());
         reservationRecordService.registerReservation(tryingToReserveBook);
 
         Reservations reservations = reservationQueryService.findReservations();
-
-        assertAll(
-                () -> assertEquals(1, reservations.numberOfReservation().value()));
-    }
-
-    @Test
-    void 会員の現在の貸出予約一覧を取得することができる() {
-        Member member = memberQueryService.findMember(new MemberNumber(2));
-        BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
-        Member member1 = member;
-        Book book1 = book.book();
-        Reservation tryingToReserveBook = Reservation.of(member1, book1);
-        reservationRecordService.registerReservation(tryingToReserveBook);
-
-        Reservations reservations = reservationQueryService.findReservationsByMember(member);
 
         assertAll(
                 () -> assertEquals(1, reservations.numberOfReservation().value()));

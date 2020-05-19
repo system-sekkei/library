@@ -12,15 +12,19 @@
         VALUES (#{reservationId}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
-    <select id="selectAllReservation" resultType="library.domain.model.reservation.reservation.Reservation">
+    <resultMap id="reservation" type="library.domain.model.reservation.reservation.Reservation">
+        <association property="member"
+                     column="memberNumber.value"
+                     select="library.infrastructure.datasource.member.MemberMapper.selectMember" />
+        <association property="book"
+                     column="bookNumber.value"
+                     select="library.infrastructure.datasource.book.BookMapper.findBook" />
+    </resultMap>
+
+    <select id="selectAllReservation" resultMap="reservation">
         SELECT 予約.予約ID as "reservationId.value",
-               会員.会員番号 as "member.memberNumber.value",
-               会員.氏名   as "member.name.value",
-               会員.会員種別 as "member.memberType",
-               本.本ID as "reservedBook.book.bookNumber.value",
-               本.タイトル as "reservedBook.book.title.value",
-               本.著者 as "reservedBook.book.author.value",
-               本.本種別 as "reservedBook.book.bookType"
+               会員.会員番号 as "memberNumber.value",
+               本.本ID as "bookNumber.value"
         FROM 予約
         INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
         INNER JOIN 本 on 予約.本ID = 本.本ID
@@ -31,20 +35,4 @@
     <insert id="insertCancelReservation">
         INSERT INTO 予約取消(予約ID) VALUES (#{reservationId.value})
     </insert>
-
-    <select id="selectReservationsByMemberNumber" resultType="library.domain.model.reservation.reservation.Reservation">
-        SELECT 予約.予約ID as "reservationId.value",
-               会員.会員番号 as "member.memberNumber.value",
-               会員.氏名   as "member.name.value",
-               会員.会員種別 as "member.memberType",
-               本.本ID as "reservedBook.book.bookNumber.value",
-               本.タイトル as "reservedBook.book.title.value",
-               本.著者 as "reservedBook.book.author.value",
-               本.本種別 as "reservedBook.book.bookType"
-        FROM 予約
-        INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
-        INNER JOIN 本 on 予約.本ID = 本.本ID
-        LEFT OUTER JOIN 予約取消 on 予約.予約ID = 予約取消.予約ID
-        WHERE 会員.会員番号 = #{memberNumber.value} AND 予約取消.予約ID IS NULL
-    </select>
 </mapper>

@@ -10,6 +10,4 @@ public interface ReservationRepository {
     Reservations findReservations();
 
     void cancelReservation(Reservation reservation);
-
-    Reservations findReservationsByMember(Member member);
 }

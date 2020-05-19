@@ -11,14 +11,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class ReservationListControllerTest {
+class RetentionControllerTest {
     @Autowired
     MockMvc mockMvc;
 
+    // TODO 予約したその結果の取得をテストする
     @Test
     void 予約図書一覧画面を表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/list"))
+                get("/retentions/requests"))
                 .andExpect(status().isOk());
     }
 }

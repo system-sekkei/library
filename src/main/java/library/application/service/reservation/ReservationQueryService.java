@@ -17,16 +17,9 @@ public class ReservationQueryService {
     }
 
     /**
-     * 貸出予約を一覧する
+     * 予約(取置依頼)を一覧する
      */
     public Reservations findReservations() {
         return reservationRepository.findReservations();
-    }
-
-    /**
-     * 会員の貸出予約を一覧する
-     */
-    public Reservations findReservationsByMember(Member member) {
-        return reservationRepository.findReservationsByMember(member);
     }
 }

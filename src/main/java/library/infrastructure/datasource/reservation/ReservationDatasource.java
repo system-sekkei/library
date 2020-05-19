@@ -23,8 +23,8 @@ public class ReservationDatasource implements ReservationRepository {
 
         reservationMapper.insertReservation(
                 reservationId,
-                reservation.member().number(),
-                reservation.book().bookNumber());
+                reservation.memberNumber(),
+                reservation.bookNumber());
     }
 
     @Override
@@ -36,11 +36,5 @@ public class ReservationDatasource implements ReservationRepository {
     @Override
     public void cancelReservation(Reservation reservation) {
         reservationMapper.insertCancelReservation(reservation.reservationId());
-    }
-
-    @Override
-    public Reservations findReservationsByMember(Member member) {
-        List<Reservation> reservations = reservationMapper.selectReservationsByMemberNumber(member.number());
-        return new Reservations(reservations);
     }
 }

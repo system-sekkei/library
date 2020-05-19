@@ -22,4 +22,11 @@ public class Reservations {
     public List<Reservation> asList() {
         return list;
     }
+
+    @Override
+    public String toString() {
+        return "Reservations{" +
+                "list=" + list +
+                '}';
+    }
 }

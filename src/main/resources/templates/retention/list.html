@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head>
     <meta charset="utf-8"/>
     <title>予約図書一覧</title>
@@ -15,17 +15,19 @@
         <span th:text="${reservations.numberOfReservation().value()}"></span><span>件</span>
         <table class="table">
             <thead>
+            <tr>
             <th>会員番号</th>
-            <th>種別</th>
-            <th>タイトル</th>
-            <th>著者</th>
+            <th>本</th>
+            <th></th>
+            <th></th>
+            </tr>
             </thead>
             <tbody>
             <tr th:each="reservation : ${reservations.asList()}">
                 <td th:text="${reservation.member().name()}"></td>
-                <td th:text="${reservation.reservedBook().book().bookType()}"></td>
-                <td th:text="${reservation.reservedBook().book().title()}"></td>
-                <td th:text="${reservation.reservedBook().book().author()}"></td>
+                <td th:text="${reservation.showBook()}"></td>
+                <td>取り置いた</td>
+                <td>取置できなかった</td>
             </tr>
             </tbody>
         </table>
