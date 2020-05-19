@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head>
+    <title>業務体系</title>
 </head>
 <body>
 <h2>業務</h2>
 <ul>
-    <li><a target="counter" th:href="@{/loan/register}">貸出・返却(窓口)</a></li>
+    <li>窓口：<a target="counter" th:href="@{/loan/register}">貸出・返却</a></li>
+    <li>会員：<a target="member" th:href="@{/reservation/books/search}">Web予約</a>（取置の依頼）</li>
 </ul>
 <ul>
-    <li><a target="member" th:href="@{/reservation/books/search}">Web予約(会員) [取置の依頼]</取置の依頼></a></li>
-    <li><a target="librarian" th:href="@{/reservation/list}">取置(図書館員）</a></li>
-</ul>
-<ul>
-    <li><a th:href="@{/}">会員管理（図書館員）</a></li>
-    <li><a th:href="@{/}">蔵書管理（図書館員）</a></li>
+    <li>図書館員：<a target="librarian" th:href="@{/reservation/list}">取置</a></li>
+    <li>図書館員：<a th:href="@{/}">会員管理</a>　＜未実装＞</li>
+    <li>図書館員：<a th:href="@{/}">蔵書管理</a>　＜未実装＞</li>
 </ul>
 </body>
 </html>
