@@ -3,25 +3,25 @@ package library.domain.model.reservation.availability;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
 
-import static library.domain.model.reservation.availability.Availability.貸出できる;
+import static library.domain.model.reservation.availability.Availability.予約できる;
 
 /**
  * 本の貸出可否
  */
 public class BookAvailability {
     Book book;
-    int loanable;
+    int loanableItems;
 
     public String showAvailability() {
         return availability().show();
     }
 
     public boolean isAvailable() {
-        return 貸出できる == availability();
+        return 予約できる == availability();
     }
 
     private Availability availability() {
-        return Availability.availability(loanable);
+        return Availability.availability(loanableItems);
     }
 
     public String describeBook() {
@@ -41,7 +41,7 @@ public class BookAvailability {
     public String toString() {
         return "BookAvailability{" +
                 "book=" + book +
-                ", loanable=" + loanable +
+                ", loanable=" + loanableItems +
                 '}';
     }
 }

@@ -27,8 +27,8 @@
         </form>
     </section>
 
-    <th:block th:if="${books}">
-        <p th:text="${books.numberOfBook().show()}"></p>
+    <th:block th:if="${availabilities}">
+        <p th:text="${availabilities.numberOfBook().show()}"></p>
         <table class="table">
             <thead>
             <th>書籍</th>
@@ -36,10 +36,12 @@
             <th></th>
             </thead>
             <tbody>
-            <tr th:each="book : ${books.asList()}">
-                <td th:text="${book.describeBook()}"></td>
-                <td th:text="${book.showAvailability()}"></td>
-                <td><a th:if="${book.isAvailable()}" class="button is-primary" th:href="@{/reservation/register(book=${book.bookNumber()})}">予約する</a></td>
+            <tr th:each="availability : ${availabilities.asList()}">
+                <td th:text="${availability.describeBook()}"></td>
+                <td th:text="${availability.showAvailability()}"></td>
+                <td><a th:if="${availability.isAvailable()}"
+                       class="button is-primary"
+                       th:href="@{/reservation/register(book=${availability.bookNumber()})}">予約する</a></td>
             </tr>
             </tbody>
         </table>

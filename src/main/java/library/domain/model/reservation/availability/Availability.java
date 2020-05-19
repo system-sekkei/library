@@ -1,11 +1,11 @@
 package library.domain.model.reservation.availability;
 
 /**
- * 貸出可否
+ * 予約可否
  */
 public enum Availability {
-    貸出できる("〇"),
-    貸出できない("×");
+    予約できる("〇"),
+    予約できない("×");
 
     String label;
 
@@ -13,8 +13,8 @@ public enum Availability {
         this.label = label;
     }
     public static Availability availability(int loanable) {
-        if (loanable > 0) return 貸出できる;
-        return 貸出できない;
+        if (loanable > 0) return 予約できる;
+        return 予約できない;
     }
 
     public String show() {

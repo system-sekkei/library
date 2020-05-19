@@ -24,4 +24,11 @@ public class BookAvailabilities {
     public List<BookAvailability> asList() {
         return list;
     }
+
+    @Override
+    public String toString() {
+        return "BookAvailabilities{" +
+                "list=" + list +
+                '}';
+    }
 }
