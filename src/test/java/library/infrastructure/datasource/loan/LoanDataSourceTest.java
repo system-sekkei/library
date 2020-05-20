@@ -1,7 +1,6 @@
 package library.infrastructure.datasource.loan;
 
 import library.LibraryDBTest;
-import library.application.service.item.ItemQueryService;
 import library.application.service.returns.ReturnBookRecordService;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
@@ -28,9 +27,6 @@ class LoanDataSourceTest {
 
     @Autowired
     ReturnBookRecordService returnBookRecordService;
-
-    @Autowired
-    ItemQueryService itemQueryService;
 
     @Test
     void 蔵書コードで貸出図書を取得できる() throws Exception {
@@ -59,8 +55,6 @@ class LoanDataSourceTest {
         returnBookRecordService.registerReturnBook(new Returned(itemNumber, returnDate));
 
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            loanDataSource.findLoanByItemNumber(itemNumber);
-        });
+        assertThrows(IllegalArgumentException.class, () -> loanDataSource.findLoanByItemNumber(itemNumber));
     }
 }

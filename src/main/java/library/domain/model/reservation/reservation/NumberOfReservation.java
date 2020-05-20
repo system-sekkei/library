@@ -10,11 +10,6 @@ public class NumberOfReservation {
         this.value = value;
     }
 
-    @Deprecated
-    public int value() {
-        return value;
-    }
-
     @Override
     public String toString() {
         if (value == 0) return "取置依頼はありません";

@@ -1,7 +1,6 @@
 package library.application.service.loan;
 
 import library.LibraryDBTest;
-import library.application.service.item.ItemQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.Loan;
@@ -21,9 +20,6 @@ class LoanRegisterServiceTest {
 
     @Autowired
     MemberQueryService memberQueryService;
-
-    @Autowired
-    ItemQueryService itemQueryService;
 
     @Autowired
     LoanQueryService loanQueryService;

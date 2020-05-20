@@ -1,7 +1,6 @@
 package library.application.coordinator.loan;
 
 import library.LibraryDBTest;
-import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.item.ItemNumber;
@@ -14,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @LibraryDBTest
 class LoanCoordinatorTest {
@@ -25,9 +24,6 @@ class LoanCoordinatorTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    ItemQueryService itemQueryService;
-
-    @Autowired
     LoanQueryService loanQueryService;
 
     @Test
@@ -36,7 +32,7 @@ class LoanCoordinatorTest {
                 generate(1, "2-A", "2020-02-20");
         Loanability loanability = loanCoordinator.loanability(loanRequest);
 
-        assertTrue(loanability == Loanability.貸出可能);
+        assertSame(loanability , Loanability.貸出可能);
     }
 
     // FIXME 貸出可能になる
@@ -45,7 +41,7 @@ class LoanCoordinatorTest {
         LoanRequest loanRequest =
                 generate(2, "2-B", LoanDate.now().toString());
         Loanability loanability = loanCoordinator.loanability(loanRequest);
-        assertTrue(loanability != Loanability.貸出可能);
+        assertNotSame(loanability , Loanability.貸出可能);
     }
 
     @Test
@@ -62,7 +58,7 @@ class LoanCoordinatorTest {
 
         Loanability loanability = loanCoordinator.loanability(loanRequest);
 
-        assertTrue(loanability != Loanability.貸出可能);
+        assertNotSame(loanability, Loanability.貸出可能);
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {

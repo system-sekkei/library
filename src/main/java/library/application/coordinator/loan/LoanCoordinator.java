@@ -1,6 +1,5 @@
 package library.application.coordinator.loan;
 
-import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRegisterService;
 import library.application.service.member.MemberQueryService;
@@ -9,25 +8,20 @@ import library.domain.model.loan.rule.Loanability;
 import library.domain.model.loan.loan.LoanRequest;
 import org.springframework.stereotype.Service;
 
-import static library.domain.model.loan.rule.Loanability.貸出不可;
-
 /**
  * 貸出コーディネーター
  */
 @Service
 public class LoanCoordinator {
     MemberQueryService memberQueryService;
-    ItemQueryService itemQueryService;
     LoanQueryService loanQueryService;
     LoanRegisterService loanRegisterService;
 
     public LoanCoordinator(
             MemberQueryService memberQueryService,
-            ItemQueryService itemQueryService,
             LoanQueryService loanQueryService,
             LoanRegisterService loanRegisterService) {
         this.memberQueryService = memberQueryService;
-        this.itemQueryService = itemQueryService;
         this.loanQueryService = loanQueryService;
         this.loanRegisterService = loanRegisterService;
     }

@@ -1,7 +1,6 @@
 package library.application.service.returns;
 
 import library.LibraryDBTest;
-import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRegisterService;
 import library.application.service.member.MemberQueryService;
@@ -27,9 +26,6 @@ class ReturnBookRecordServiceTest {
     @Autowired
     MemberQueryService memberQueryService;
 
-    @Autowired
-    ItemQueryService itemQueryService;
-
     @Test
     void 返却を登録できる() {
         ItemNumber itemNumber = new ItemNumber("1-A");
@@ -38,8 +34,6 @@ class ReturnBookRecordServiceTest {
         Returned returned = new Returned(itemNumber, returnDate);
         returnBookRecordService.registerReturnBook(returned);
 
-        assertThrows(IllegalArgumentException.class, () -> {
-            loanQueryService.findLoanByItemNumber(new ItemNumber("1-A"));
-        });
+        assertThrows(IllegalArgumentException.class, () -> loanQueryService.findLoanByItemNumber(new ItemNumber("1-A")));
     }
 }
