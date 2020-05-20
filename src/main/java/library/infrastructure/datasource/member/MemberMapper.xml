@@ -6,7 +6,7 @@
 
     <select id="exists" resultType="boolean">
     SELECT EXISTS (
-           SELECT 会員番号 FROM 会員 WHERE 会員番号 = #{value}
+           SELECT 会員番号 FROM 会員.登録 WHERE 会員番号 = #{value}
        )
     </select>
 
@@ -14,12 +14,12 @@
         SELECT 会員番号 as "memberNumber.value",
                氏名   as "name.value",
                会員種別 as "memberType"
-        FROM 会員
+        FROM 会員.登録
         WHERE 会員番号 = #{value}
     </select>
 
     <insert id="insertMember">
-        INSERT INTO 会員(会員番号, 氏名, 会員種別)
+        INSERT INTO 会員.登録(会員番号, 氏名, 会員種別)
         VALUES (#{memberNumber.value}, #{name.value}, #{memberType})
     </insert>
 </mapper>

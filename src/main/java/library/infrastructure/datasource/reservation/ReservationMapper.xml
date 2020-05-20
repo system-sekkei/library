@@ -4,11 +4,11 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.reservation.ReservationMapper">
     <select id="newReservationIdentifier" resultType="Integer">
-        SELECT NEXTVAL('予約ID')
+        SELECT NEXTVAL('予約.予約番号')
     </select>
 
     <insert id="insertReservation">
-        INSERT INTO 予約(予約ID, 会員番号, 本ID)
+        INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
         VALUES (#{reservationId}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
@@ -21,18 +21,19 @@
                      select="library.infrastructure.datasource.book.BookMapper.findBook" />
     </resultMap>
 
+<!--  TODO 取置依頼中を導入して、JOIN/WHEREなしに一覧可能にする  -->
     <select id="selectAllReservation" resultMap="reservation">
-        SELECT 予約.予約ID as "reservationId.value",
-               会員.会員番号 as "memberNumber.value",
-               本.本ID as "bookNumber.value"
-        FROM 予約
-        INNER JOIN 会員 on 予約.会員番号 = 会員.会員番号
-        INNER JOIN 本 on 予約.本ID = 本.本ID
-        LEFT OUTER JOIN 予約取消 on 予約.予約ID = 予約取消.予約ID
-        WHERE 予約取消.予約ID IS NULL
+        SELECT 予約履歴.予約番号 as "reservationId.value",
+               登録.会員番号 as "memberNumber.value",
+               本.本番号 as "bookNumber.value"
+        FROM 予約.予約履歴
+        INNER JOIN 会員.登録 on 予約履歴.会員番号 = 登録.会員番号
+        INNER JOIN 蔵書.本 on 予約履歴.本番号 = 本.本番号
+        LEFT OUTER JOIN 予約.取消履歴 on 予約履歴.予約番号 = 取消履歴.予約番号
+        WHERE 取消履歴.予約番号 IS NULL
     </select>
 
     <insert id="insertCancelReservation">
-        INSERT INTO 予約取消(予約ID) VALUES (#{reservationId.value})
+        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{reservationId.value})
     </insert>
 </mapper>

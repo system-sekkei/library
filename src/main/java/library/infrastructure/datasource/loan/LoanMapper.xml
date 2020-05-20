@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.loan.LoanMapper">
     <select id="newLoanNumber" resultType="int">
-        SELECT NEXTVAL('貸出ID')
+        SELECT NEXTVAL('貸出.貸出番号')
     </select>
 
     <resultMap id="loan" type="library.domain.model.loan.loan.Loan">
@@ -18,42 +18,42 @@
 
 
     <insert id="insertLoan">
-        INSERT INTO 貸出(貸出ID, 会員番号, 蔵書コード, 貸出日)
+        INSERT INTO 貸出.貸出履歴(貸出番号, 会員番号, 蔵書番号, 貸出日)
         VALUES (#{loanNumber}, #{memberNumber.value}, #{itemNumber.value}, #{loanDate.value})
     </insert>
 
     <select id="selectByMemberNumber" resultMap="loan">
-        SELECT 貸出.貸出ID as "loanNumber.value",
-               貸出.蔵書コード as "itemNumber.value",
-               貸出.会員番号 as "memberNumber.value",
-               貸出.貸出日   as "loanDate.value"
-        FROM 貸出
-        LEFT OUTER JOIN 返却 ON 貸出.貸出ID = 返却.貸出ID
-        WHERE 貸出.会員番号 = #{memberNumber.value} AND 返却.貸出ID IS NULL
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               貸出履歴.蔵書番号 as "itemNumber.value",
+               貸出履歴.会員番号 as "memberNumber.value",
+               貸出履歴.貸出日   as "loanDate.value"
+        FROM 貸出.貸出履歴
+        LEFT OUTER JOIN 貸出.返却履歴 ON 貸出履歴.貸出番号 = 返却履歴.貸出番号
+        WHERE 貸出履歴.会員番号 = #{memberNumber.value} AND 返却履歴.貸出番号 IS NULL
     </select>
 
     <insert id="insertReturnBook">
-        INSERT INTO 返却(貸出ID, 返却日)
+        INSERT INTO 貸出.返却履歴(貸出番号, 返却日)
         VALUES (#{loanNumber.value}, #{returned.returnDate.value})
     </insert>
 
     <select id="selectByItemNumber" resultMap="loan">
-        SELECT 貸出.貸出ID as "loanNumber.value",
-               貸出.蔵書コード as "itemNumber.value",
-               貸出.会員番号 as "memberNumber.value",
-               貸出.貸出日   as "loanDate.value"
-        FROM 貸出
-        LEFT OUTER JOIN 返却 ON 貸出.貸出ID = 返却.貸出ID
-        WHERE 貸出.蔵書コード = #{itemNumber.value} AND 返却.貸出ID IS NULL
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               貸出履歴.蔵書番号 as "itemNumber.value",
+               貸出履歴.会員番号 as "memberNumber.value",
+               貸出履歴.貸出日   as "loanDate.value"
+        FROM 貸出.貸出履歴
+        LEFT OUTER JOIN 貸出.返却履歴 ON 貸出履歴.貸出番号 = 返却履歴.貸出番号
+        WHERE 貸出履歴.蔵書番号 = #{itemNumber.value} AND 返却履歴.貸出番号 IS NULL
     </select>
 
     <select id="selectByItemNumbers" resultMap="loan">
-        SELECT 貸出.貸出ID as "loanNumber.value",
-               貸出.蔵書コード as "itemNumber.value",
-               貸出.会員番号 as "memberNumber.value",
-               貸出.貸出日   as "loanDate.value"
-        FROM 貸出
-        WHERE 貸出.蔵書コード IN
+        SELECT 貸出番号 as "loanNumber.value",
+               蔵書番号 as "itemNumber.value",
+               会員番号 as "memberNumber.value",
+               貸出日   as "loanDate.value"
+        FROM 貸出.貸出履歴
+        WHERE 蔵書番号 IN
         <foreach item="itemNumber" collection="itemNumbers" open="(" separator="," close=")">
             #{itemNumber.value}
         </foreach>
@@ -66,20 +66,20 @@
     </resultMap>
 
     <select id="selectByLoanNumber" resultMap="loan">
-        SELECT 貸出.貸出ID as "loanNumber.value",
-               貸出.蔵書コード as "itemNumber.value",
-               貸出.会員番号 as "memberNumber.value",
-               貸出.貸出日   as "loanDate.value"
-        FROM 貸出
-        WHERE 貸出.貸出ID = #{loanNumber.value}
+        SELECT 貸出番号 as "loanNumber.value",
+               蔵書番号 as "itemNumber.value",
+               会員番号 as "memberNumber.value",
+               貸出日   as "loanDate.value"
+        FROM 貸出.貸出履歴
+        WHERE 貸出番号 = #{loanNumber.value}
     </select>
 
     <select id="selectReturnedByItemNumbers" resultMap="returned">
-        SELECT 貸出.貸出ID as "loanNumber.value",
-               返却.返却日   as "returnDate.value"
-        FROM 返却
-        INNER JOIN 貸出 ON 返却.貸出ID = 貸出.貸出ID
-        WHERE 貸出.蔵書コード IN
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               返却履歴.返却日   as "returnDate.value"
+        FROM 貸出.返却履歴
+        INNER JOIN 貸出.貸出履歴 ON 返却履歴.貸出番号 = 貸出履歴.貸出番号
+        WHERE 貸出履歴.蔵書番号 IN
         <foreach item="itemNumber" collection="itemNumbers" open="(" separator="," close=")">
             #{itemNumber.value}
         </foreach>
