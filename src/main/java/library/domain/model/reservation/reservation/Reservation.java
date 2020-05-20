@@ -9,7 +9,7 @@ import library.domain.model.member.MemberNumber;
  * 貸出予約
  */
 public class Reservation {
-    ReservationId reservationId;
+    ReservationNumber reservationNumber;
     Member member;
     Book book;
 
@@ -17,14 +17,14 @@ public class Reservation {
     Reservation() {
     }
 
-    private Reservation(ReservationId reservationId, Member member, Book book) {
-        this.reservationId = reservationId;
+    private Reservation(ReservationNumber reservationNumber, Member member, Book book) {
+        this.reservationNumber = reservationNumber;
         this.member = member;
         this.book = book;
     }
 
     public static Reservation of(Member member, Book book) {
-        return new Reservation(ReservationId.generate(), member, book);
+        return new Reservation(ReservationNumber.generate(), member, book);
     }
     public Member member() {
         return member;
@@ -40,14 +40,14 @@ public class Reservation {
         return book.show();
     }
 
-    public ReservationId reservationId() {
-        return reservationId;
+    public ReservationNumber reservationNumber() {
+        return reservationNumber;
     }
 
     @Override
     public String toString() {
         return "Reservation{" +
-                "reservationId=" + reservationId +
+                "reservationNumber=" + reservationNumber +
                 ", member=" + member +
                 ", book=" + book +
                 '}';

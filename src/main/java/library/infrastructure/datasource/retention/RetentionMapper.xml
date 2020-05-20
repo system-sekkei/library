@@ -3,8 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
+
+    <insert id="insertRequest">
+        INSERT INTO 予約.取置依頼中(予約番号)
+        VALUES (#{value})
+    </insert>
+
     <insert id="insertRetention">
         INSERT INTO 予約.取置履歴(予約番号, 蔵書コード, 取置日)
-        VALUES (#{reservationId.value}, #{memberNumber.value}, #{retainedDate.value.value})
+        VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{retainedDate.value.value})
     </insert>
 </mapper>

@@ -3,13 +3,11 @@ package library.application.service.reservation;
 import library.LibraryDBTest;
 import library.application.service.book.BookQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.BookAvailability;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservedBook;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @LibraryDBTest
 class ReservationRecordServiceTest {
     @Autowired
@@ -63,6 +62,6 @@ class ReservationRecordServiceTest {
 
         List<Reservation> reservations = reservationMapper.selectAllReservation();
 
-        assertTrue(reservations.stream().noneMatch(r -> r.reservationId().value() == reservation.reservationId().value()));
+        assertTrue(reservations.stream().noneMatch(r -> r.reservationNumber().value() == reservation.reservationNumber().value()));
     }
 }

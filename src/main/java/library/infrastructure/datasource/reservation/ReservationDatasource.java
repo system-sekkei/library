@@ -1,30 +1,36 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
+import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
 public class ReservationDatasource implements ReservationRepository {
     ReservationMapper reservationMapper;
+    RetentionMapper retentionMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public ReservationDatasource(ReservationMapper reservationMapper) {
+    public ReservationDatasource(ReservationMapper reservationMapper, RetentionMapper retentionMapper) {
         this.reservationMapper = reservationMapper;
+        this.retentionMapper = retentionMapper;
     }
 
     @Override
+    @Transactional
     public void registerReservation(Reservation reservation) {
-        Integer reservationId = reservationMapper.newReservationIdentifier();
-
+        ReservationNumber reservationNumber = reservationMapper.nextNumber();
         reservationMapper.insertReservation(
-                reservationId,
+                reservationNumber,
                 reservation.memberNumber(),
                 reservation.bookNumber());
+
+        retentionMapper.insertRequest(reservationNumber);
     }
 
     @Override
@@ -35,6 +41,6 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     public void cancelReservation(Reservation reservation) {
-        reservationMapper.insertCancelReservation(reservation.reservationId());
+        reservationMapper.insertCancelReservation(reservation.reservationNumber());
     }
 }

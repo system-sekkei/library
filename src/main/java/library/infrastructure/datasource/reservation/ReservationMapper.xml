@@ -3,13 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.reservation.ReservationMapper">
-    <select id="newReservationIdentifier" resultType="Integer">
-        SELECT NEXTVAL('予約.予約番号')
+    <select id="nextNumber" resultType="library.domain.model.reservation.reservation.ReservationNumber">
+        SELECT NEXTVAL('予約.予約番号') AS "value"
     </select>
 
     <insert id="insertReservation">
         INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
-        VALUES (#{reservationId}, #{memberNumber.value}, #{bookNumber.value})
+        VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
     <resultMap id="reservation" type="library.domain.model.reservation.reservation.Reservation">
@@ -23,7 +23,7 @@
 
 <!--  TODO 取置依頼中を導入して、JOIN/WHEREなしに一覧可能にする  -->
     <select id="selectAllReservation" resultMap="reservation">
-        SELECT 予約履歴.予約番号 as "reservationId.value",
+        SELECT 予約履歴.予約番号 as "reservationNumber.value",
                登録.会員番号 as "memberNumber.value",
                本.本番号 as "bookNumber.value"
         FROM 予約.予約履歴
@@ -34,6 +34,6 @@
     </select>
 
     <insert id="insertCancelReservation">
-        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{reservationId.value})
+        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{reservationNumber.value})
     </insert>
 </mapper>
