@@ -1,14 +1,14 @@
 package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
+import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 予約(取置依頼)の一覧画面
@@ -36,12 +36,20 @@ public class RetentionController {
         return "retention/retentions";
     }
 
-    // TODO 実装
-    @PostMapping
-    String retain() {
-        ReservationNumber reservationNumber = ReservationNumber.generate();
-        retentionCoordinator.retain(reservationNumber);
+    @GetMapping("requests/{reservationNumber}")
+    String retentionForm(
+            @PathVariable("reservationNumber") ReservationNumber reservationNumber,
+            Model model) {
+        Reservation reservation = retentionCoordinator.reservationOf(reservationNumber);
+        model.addAttribute("reservation", reservation);
+        return "retention/form";
+    }
 
-        return "";
+    @PostMapping
+    String retain(Retained retained, @RequestBody String body) {
+        System.out.println(body);
+        System.out.println(retained);
+
+        return "redirect:/retentions/requests";
     }
 }

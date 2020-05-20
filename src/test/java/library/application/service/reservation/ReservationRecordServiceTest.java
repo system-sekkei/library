@@ -9,7 +9,6 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.BookAvailability;
 import library.domain.model.reservation.reservation.Reservation;
 import library.infrastructure.datasource.reservation.ReservationMapper;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -63,6 +62,6 @@ class ReservationRecordServiceTest {
 
         List<Reservation> reservations = reservationMapper.selectAllReservation();
 
-        assertTrue(reservations.stream().noneMatch(r -> r.reservationNumber().value() == reservation.reservationNumber().value()));
+        assertTrue(reservations.stream().noneMatch(r -> r.number().value() == reservation.number().value()));
     }
 }

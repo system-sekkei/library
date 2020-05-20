@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
+<head>
+  <meta charset="utf-8"/>
+  <title>取置登録</title>
+  <link th:replace="_fragments/counter/head :: css-dark">
+</head>
+<body>
+<nav>
+  <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
+  | <a th:href="@{/retentions}">取置中の一覧</a>
+</nav>
+<h1>取置の登録</h1>
+  <form th:action="@{/retentions}" method="post">
+    <p th:text="${reservation.showBook()}"></p>
+    <label for="item">取り置く蔵書番号</label>
+    <input id="item" type="text" name="itemNumber">
+    <input type="hidden" name="reservationNumber" th:value="${reservation.number()}">
+    <input type="submit" value="取置">
+  </form>
+</body>
+</html>

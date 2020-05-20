@@ -27,7 +27,15 @@
                予約履歴.本番号 as "bookNumber.value"
         FROM 予約.取置依頼中
         INNER JOIN 予約.予約履歴 USING (予約番号)
-        ORDER BY 取置依頼中.予約番号;
+        ORDER BY 取置依頼中.予約番号
+    </select>
+
+    <select id="selectReservation" resultMap="reservation">
+        SELECT 予約番号 as "reservationNumber.value",
+               会員番号 as "memberNumber.value",
+               本番号 as "bookNumber.value"
+        FROM 予約.予約履歴
+        WHERE 予約番号 = #{value}
     </select>
 
     <insert id="cancelReservation">

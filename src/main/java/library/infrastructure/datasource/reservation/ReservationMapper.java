@@ -20,5 +20,7 @@ public interface ReservationMapper {
 
     List<Reservation> selectAllReservation();
 
+    Reservation selectReservation(ReservationNumber reservationNumber);
+
     void cancelReservation(ReservationNumber reservationNumber);
 }

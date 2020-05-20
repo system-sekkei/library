@@ -11,13 +11,13 @@ public class ReservationNumber {
     ReservationNumber() {
     }
 
-    public ReservationNumber(int value) {
-        this.value = value;
+    public ReservationNumber(String textValue) {
+        this.value = Integer.parseInt(textValue);
     }
 
     public static ReservationNumber generate() {
         // TODO: UUID生成処理
-        return new ReservationNumber(0);
+        return new ReservationNumber("0");
     }
 
     public int value() {
@@ -26,8 +26,6 @@ public class ReservationNumber {
 
     @Override
     public String toString() {
-        return "ReservationNumber{" +
-                "value=" + value +
-                '}';
+        return Integer.toString(value);
     }
 }
