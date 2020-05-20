@@ -1,8 +1,13 @@
 package library.infrastructure.datasource.retention;
 
 import library.application.repository.RetentionRepository;
-import library.domain.model.reservation.retention.RetainedHolding;
+import library.domain.model.reservation.retention.Retained;
+import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Repository;
+
+import java.lang.annotation.Retention;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
 public class RetentionDatasource implements RetentionRepository {
@@ -14,10 +19,17 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
-    public void registerRetention(RetainedHolding retainedHolding) {
+    public void registerRetention(Retained retained) {
         retentionMapper.insertRetainedHolding(
-            retainedHolding.reservedBook().reservationNumber(),
-            retainedHolding.holding().itemNumber(),
-            retainedHolding.retainedDate());
+            retained.reservedBook().reservationNumber(),
+            retained.holding().itemNumber(),
+            retained.retainedDate());
+    }
+
+    // TODO 実装
+    @Override
+    public Retentions retentions() {
+        List<Retained> list = new ArrayList<>();
+        return new Retentions(list);
     }
 }

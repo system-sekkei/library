@@ -2,6 +2,7 @@ package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
 import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,8 +29,8 @@ public class RetentionController {
 
     @GetMapping
     String retentions(Model model) {
-        Reservations reservations = retentionCoordinator.reservations();
-        model.addAttribute("reservations", reservations);
+        Retentions retentions = retentionCoordinator.retentions();
+        model.addAttribute("retentions", retentions);
         return "retention/retentions";
     }
 }

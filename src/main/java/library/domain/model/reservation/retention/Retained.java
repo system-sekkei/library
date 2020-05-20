@@ -5,9 +5,9 @@ import library.domain.model.reservation.reservation.Reservation;
 import library.domain.type.date.Date;
 
 /**
- * 取置済み蔵書
+ * 取置
  */
-public class RetainedHolding {
+public class Retained {
     Reservation reservation;
     RetainedDate retainedDate;
     Item item;

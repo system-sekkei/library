@@ -11,7 +11,7 @@
   | <a th:href="@{/retentions}">取置中の一覧</a>
 </nav>
 <h1>取置一覧</h1>
-  <p th:text="${reservations.numberOfReservation()}">件</p>
+  <p th:text="${retentions.showCount()}">件</p>
   <form>
   <table class="table">
     <thead>
@@ -23,9 +23,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="reservation : ${reservations.asList()}">
-      <td th:text="${reservation.member().number()}"></td>
-      <td th:text="${reservation.showBook()}"></td>
+    <tr th:each="retention : ${retentions.asList()}">
+      <td th:text="${retention.reservedBook().showBook()}"></td>
+      <td th:text="${retention.retainedDate()}"></td>
       <td>
         <button type="submit" name="retention" value="${reservation.number()}">取置</button>
       </td>

@@ -1,7 +1,7 @@
 package library.application.service.retention;
 
 import library.application.repository.RetentionRepository;
-import library.domain.model.reservation.retention.RetainedHolding;
+import library.domain.model.reservation.retention.Retained;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +19,7 @@ public class RetentionRecordService {
     /**
      * 予約図書を取り置く
      */
-    public void registerRetention(RetainedHolding retainedHolding) {
-        retentionRepository.registerRetention(retainedHolding);
+    public void registerRetention(Retained retained) {
+        retentionRepository.registerRetention(retained);
     }
 }

@@ -7,6 +7,7 @@ import library.domain.type.date.Date;
  * TODO: バリエーション図では貸出準備完了日。
  */
 public class RetainedDate {
+    // TODO LocalDateを検討する
     Date value;
 
     public RetainedDate(Date value) {
@@ -15,5 +16,10 @@ public class RetainedDate {
 
     public Date value() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return value.toString();
     }
 }
