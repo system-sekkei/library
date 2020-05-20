@@ -1,11 +1,13 @@
 package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
+import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -32,5 +34,14 @@ public class RetentionController {
         Retentions retentions = retentionCoordinator.retentions();
         model.addAttribute("retentions", retentions);
         return "retention/retentions";
+    }
+
+    // TODO 実装
+    @PostMapping
+    String retain() {
+        ReservationNumber reservationNumber = ReservationNumber.generate();
+        retentionCoordinator.retain(reservationNumber);
+
+        return "";
     }
 }
