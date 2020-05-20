@@ -9,6 +9,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.BookAvailability;
 import library.domain.model.reservation.reservation.Reservation;
 import library.infrastructure.datasource.reservation.ReservationMapper;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -49,7 +50,7 @@ class ReservationRecordServiceTest {
     }
 
     @Test
-    void 貸出予約を取り消すことができる() {
+    void 予約を取り消すことができる() {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 

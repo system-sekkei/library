@@ -11,6 +11,8 @@ public interface RetentionMapper {
 
     void insertRequest(ReservationNumber reservationNumber);
 
+    void deleteRequest(ReservationNumber reservationNumber);
+
     void insertRetainedHolding(
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("itemNumber") ItemNumber itemNumber,

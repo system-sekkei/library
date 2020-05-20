@@ -21,19 +21,16 @@
                      select="library.infrastructure.datasource.book.BookMapper.findBook" />
     </resultMap>
 
-<!--  TODO 取置依頼中を導入して、JOIN/WHEREなしに一覧可能にする  -->
     <select id="selectAllReservation" resultMap="reservation">
-        SELECT 予約履歴.予約番号 as "reservationNumber.value",
-               登録.会員番号 as "memberNumber.value",
-               本.本番号 as "bookNumber.value"
-        FROM 予約.予約履歴
-        INNER JOIN 会員.登録 on 予約履歴.会員番号 = 登録.会員番号
-        INNER JOIN 蔵書.本 on 予約履歴.本番号 = 本.本番号
-        LEFT OUTER JOIN 予約.取消履歴 on 予約履歴.予約番号 = 取消履歴.予約番号
-        WHERE 取消履歴.予約番号 IS NULL
+        SELECT 取置依頼中.予約番号 as "reservationNumber.value",
+               予約履歴.会員番号 as "memberNumber.value",
+               予約履歴.本番号 as "bookNumber.value"
+        FROM 予約.取置依頼中
+        INNER JOIN 予約.予約履歴 USING (予約番号)
+        ORDER BY 取置依頼中.予約番号;
     </select>
 
-    <insert id="insertCancelReservation">
-        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{reservationNumber.value})
+    <insert id="cancelReservation">
+        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{value})
     </insert>
 </mapper>

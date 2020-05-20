@@ -40,7 +40,10 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
+    @Transactional
     public void cancelReservation(Reservation reservation) {
-        reservationMapper.insertCancelReservation(reservation.reservationNumber());
+        ReservationNumber reservationNumber = reservation.reservationNumber();
+        reservationMapper.cancelReservation(reservationNumber);
+        retentionMapper.deleteRequest(reservationNumber);
     }
 }
