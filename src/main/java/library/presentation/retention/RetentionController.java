@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 予約(取置依頼)の一覧画面
  */
 @Controller
-@RequestMapping("retentions/requests")
+@RequestMapping("retentions")
 public class RetentionController {
     RetentionCoordinator retentionCoordinator;
 
@@ -19,13 +19,17 @@ public class RetentionController {
         this.retentionCoordinator = retentionCoordinator;
     }
 
-    @GetMapping
-    String init(Model model) {
-        // TODO: 在庫ありの本のみにするかどうかは画面側で切り替えられるようにしたい
+    @GetMapping("requests")
+    String requests(Model model) {
         Reservations reservations = retentionCoordinator.reservations();
-        System.out.println(reservations);
         model.addAttribute("reservations", reservations);
-        return "retention/list";
+        return "retention/requests";
     }
 
+    @GetMapping
+    String retentions(Model model) {
+        Reservations reservations = retentionCoordinator.reservations();
+        model.addAttribute("reservations", reservations);
+        return "retention/retentions";
+    }
 }

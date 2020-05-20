@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
+<head>
+  <meta charset="utf-8"/>
+  <title>予約(取置依頼)一覧</title>
+  <link th:replace="_fragments/counter/head :: css-dark">
+</head>
+<body>
+<nav>
+  <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
+  | <a th:href="@{/retentions}">取置中の一覧</a>
+</nav>
+<h1>予約(取置依頼)一覧</h1>
+  <p th:text="${reservations.numberOfReservation()}">件</p>
+  <form>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>会員</th>
+      <th>本</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations.asList()}">
+      <td th:text="${reservation.member().number()}"></td>
+      <td th:text="${reservation.showBook()}"></td>
+      <td>
+        <button type="submit" name="retention" value="${reservation.number()}">取置</button>
+      </td>
+      <td>
+        <button type="submit" name="notAvailable" value="${reservation.number()}">在庫なし</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </form>
+</body>
+</html>
