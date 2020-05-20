@@ -1,38 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="utf-8">
 <head>
-    <meta charset="utf-8"/>
-    <title>予約図書一覧</title>
-    <link th:replace="_fragments/counter/head :: css-dark">
+  <meta charset="utf-8"/>
+  <title>予約(取置依頼)一覧</title>
+  <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
-<header th:replace="_fragments/counter/navigation::navigation('予約図書一覧')"></header>
-
-<main class="container">
-    <header th:replace="_fragments/member/header::header('予約図書一覧')"></header>
-
-    <th:block th:if="${reservations}">
-        <span th:text="${reservations.numberOfReservation().value()}"></span><span>件</span>
-        <table class="table">
-            <thead>
-            <tr>
-            <th>会員番号</th>
-            <th>本</th>
-            <th></th>
-            <th></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="reservation : ${reservations.asList()}">
-                <td th:text="${reservation.member().name()}"></td>
-                <td th:text="${reservation.showBook()}"></td>
-                <td>取り置いた</td>
-                <td>取置できなかった</td>
-            </tr>
-            </tbody>
-        </table>
-    </th:block>
-
-</main>
+<h1>予約(取置依頼)一覧</h1>
+  <p th:text="${reservations.numberOfReservation()}">件</p>
+  <form>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>会員</th>
+      <th>本</th>
+      <th></th>
+      <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="reservation : ${reservations.asList()}">
+      <td th:text="${reservation.member().number()}"></td>
+      <td th:text="${reservation.showBook()}"></td>
+      <td>
+        <button type="submit" name="retention" value="${reservation.number()}">取置</button>
+      </td>
+      <td>
+        <button type="submit" name="notAvailable" value="${reservation.number()}">在庫なし</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </form>
 </body>
 </html>

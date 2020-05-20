@@ -1,8 +1,8 @@
+@charset "UTF-8";
 /*
 original source
 https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/dark.css
 */
-@charset "UTF-8";
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     line-height: 1.4;
@@ -56,7 +56,7 @@ th {
 
 blockquote {
     border-left: 4px solid #0096bfab;
-    margin: 1.5em 0em;
+    margin: 1.5em 0;
     padding: 0.5em 1em;
     font-style: italic;
 }
@@ -124,8 +124,8 @@ textarea {
 }
 
 button, input[type='submit'], input[type='button'] {
-    padding-right: 30px;
-    padding-left: 30px;
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 button:hover,
