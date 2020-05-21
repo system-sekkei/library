@@ -56,7 +56,7 @@ public class RetentionController {
     }
 
     @PostMapping
-    String retain(@Validated Retention retention, BindingResult bindingResult,
+    String retain(@Validated @ModelAttribute("retention") Retention retention, BindingResult bindingResult,
                   Model model) {
 
         Reservation reservation = retentionCoordinator.reservationOf(retention.reservationNumber());

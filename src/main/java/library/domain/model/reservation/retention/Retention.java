@@ -8,7 +8,7 @@ import javax.validation.Valid;
 public class Retention {
     ReservationNumber reservationNumber;
     @Valid
-    ItemNumber itemNumber;
+    ItemNumber itemNumber = ItemNumber.empty();
 
     public ReservationNumber reservationNumber() {
         return reservationNumber;
