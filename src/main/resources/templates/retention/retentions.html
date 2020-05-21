@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
   <meta charset="utf-8"/>
-  <title>取置一覧</title>
+  <title>取置済一覧</title>
   <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
@@ -10,7 +10,7 @@
   <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
   | <a th:href="@{/retentions}">取置中の一覧</a>
 </nav>
-<h1>取置一覧</h1>
+<h1>取置済一覧</h1>
   <p th:text="${retainedList.showCount()}">件</p>
   <form>
   <table class="table">
@@ -18,14 +18,16 @@
     <tr>
       <th>会員</th>
       <th>本</th>
+      <th>取置日</th>
       <th></th>
       <th></th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="retention : ${retainedList.asList()}">
-      <td th:text="${retention.reservedBook().showBook()}"></td>
-      <td th:text="${retention.retainedDate()}"></td>
+    <tr th:each="retained : ${retainedList.asList()}">
+      <td th:text="${retained.memberNumber()}"></td>
+      <td th:text="${retained.showBook()}"></td>
+      <td th:text="${retained.retainedDate()}"></td>
       <td>
         <button type="submit" name="retention" value="${reservation.number()}">貸出</button>
       </td>

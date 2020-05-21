@@ -15,7 +15,7 @@
     <p th:text="${reservation.showBook()}"></p>
     <label for="item">取り置く蔵書番号</label>
     <input id="item" type="text" name="itemNumber.value"
-    th:value="*{itemNumber()}">
+    th:value="*{itemNumber()}" placeholder="1-A,2-Aなど">
     <p th:if="${#fields.hasErrors('itemNumber.value')}">
       <mark>
         <!--/*@thymesVar id="itemNumber" type="library.domain.model.item.ItemNumber"*/-->

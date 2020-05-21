@@ -1,6 +1,7 @@
 package library.domain.model.reservation.retention;
 
 import library.domain.model.item.Item;
+import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
 
 import java.time.LocalDate;
@@ -26,8 +27,12 @@ public class Retained {
         return item.itemNumber().sameValue(this.item.itemNumber());
     }
 
-    public Reservation reservedBook() {
-        return reservation;
+    public String showBook() {
+        return reservation.showBook();
+    }
+
+    public MemberNumber memberNumber() {
+        return reservation.memberNumber();
     }
 
     public RetainedDate retainedDate() {

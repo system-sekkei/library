@@ -29,7 +29,7 @@ class LoanDataSourceTest {
     ReturnBookRecordService returnBookRecordService;
 
     @Test
-    void 蔵書コードで貸出図書を取得できる() throws Exception {
+    void 蔵書番号で貸出図書を取得できる() throws Exception {
         mockMvc.perform(
                 post("/loan/register")
                         .param("memberNumber.value", "1")
