@@ -1,10 +1,7 @@
 package library.domain.model.reservation.retention;
 
 import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
-import library.domain.type.date.Date;
 
 import java.time.LocalDate;
 

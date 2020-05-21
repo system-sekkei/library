@@ -1,13 +1,9 @@
 package library.domain.model.loan.loan;
 
-import library.domain.type.date.Date;
-import library.domain.type.date.Days;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 /**
