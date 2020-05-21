@@ -3,6 +3,22 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.item.ItemMapper">
+   <select id="exists" resultType="boolean">
+       SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.登録 WHERE 蔵書番号 = #{value})
+   </select>
+
+    <select id="loanable" resultType="boolean">
+        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.貸出可能 WHERE 蔵書番号 = #{value})
+    </select>
+
+    <select id="loaned" resultType="boolean">
+        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.貸出中 WHERE 蔵書番号 = #{value})
+    </select>
+
+    <select id="retained" resultType="boolean">
+        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.取置中 WHERE 蔵書番号 = #{value})
+    </select>
+
     <select id="selectItem" resultType="library.domain.model.item.Item">
         SELECT
             登録.蔵書番号 as "itemNumber.value",
@@ -24,4 +40,15 @@
         DELETE FROM 蔵書.貸出可能
         WHERE 蔵書番号 = #{value}
     </delete>
+
+    <insert id="insert貸出中">
+        INSERT INTO 蔵書.貸出中(蔵書番号)
+        VALUES (#{value})
+    </insert>
+
+    <delete id="delete貸出中">
+        DELETE FROM 蔵書.貸出中
+        WHERE 蔵書番号 = #{value}
+    </delete>
+
 </mapper>

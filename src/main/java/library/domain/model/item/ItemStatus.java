@@ -4,16 +4,16 @@ package library.domain.model.item;
  * 蔵書の状態
  */
 public enum ItemStatus {
-    在庫中,
-    // TODO: 状態モデルに存在しないが追加。(取置棚にある状態はは在庫中でも貸出中でもない)
-    取置中,
-    貸出中;
+    未登録("登録されていない"),
+    貸出可能("在庫あり(館内閲覧中の可能性あり)"),
+    取置中("貸出予約により取り置いている"),
+    貸出中("貸し出している"),
+    貸出不可("図書館都合により貸出を停止中")
+    ;
 
-    public boolean outOnLoan() {
-        return this == 貸出中;
-    }
+    String description;
 
-    public boolean loanable() {
-        return this == 在庫中;
+    ItemStatus(String description) {
+        this.description = description;
     }
 }

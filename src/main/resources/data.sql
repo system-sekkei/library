@@ -52,4 +52,8 @@ VALUES
 ((SELECT NEXTVAL('貸出.貸出番号')), 1, '1-A', CURRENT_DATE);
 
 -- 貸出したので貸出可能から除外
-DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '1-A'
+DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '1-A';
+
+-- 貸出したので、貸出中の登録
+INSERT INTO 蔵書.貸出中(蔵書番号)
+VALUES ('1-A');

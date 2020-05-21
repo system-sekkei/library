@@ -1,4 +1,4 @@
 /**
- * 貸出図書サービス
+ * 貸出サービス
  */
 package library.application.service.loan;

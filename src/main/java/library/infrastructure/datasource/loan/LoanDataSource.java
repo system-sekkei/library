@@ -40,7 +40,7 @@ public class LoanDataSource implements LoanRepository {
             throw new RegisterLoanException(loanRequest);
         }
 
-        Integer loanNumber = loanMapper.newLoanNumber();
+        int loanNumber = loanMapper.newLoanNumber();
         loanMapper.insertLoan(
                 loanNumber,
                 loanRequest.memberNumber(),
@@ -48,6 +48,7 @@ public class LoanDataSource implements LoanRepository {
                 loanRequest.loanDate());
 
         itemMapper.delete貸出可能(itemNumber);
+        itemMapper.insert貸出中(itemNumber);
     }
 
     @Override
@@ -59,6 +60,7 @@ public class LoanDataSource implements LoanRepository {
         loanMapper.insertReturnBook(loan.loanNumber(), returned);
 
         itemMapper.insert貸出可能(itemNumber);
+        itemMapper.delete貸出中(itemNumber);
     }
 
 
