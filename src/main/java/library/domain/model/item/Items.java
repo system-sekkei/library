@@ -24,7 +24,7 @@ public class Items {
     }
 
     public Items findItemsByBook(Book book) {
-        List<Item> result = list.stream().filter(item -> item.book.sameBook(book)).collect(Collectors.toList());
+        List<Item> result = list.stream().filter(item -> item.book.isSameBook(book)).collect(Collectors.toList());
         return new Items(result);
     }
 

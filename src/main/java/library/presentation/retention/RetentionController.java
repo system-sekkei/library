@@ -1,6 +1,8 @@
 package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
+import library.domain.model.item.Item;
+import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
@@ -10,9 +12,12 @@ import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
+
+import static library.domain.model.item.ItemStatus.貸出可能;
 
 /**
  * 予約(取置依頼)の一覧画面
@@ -54,11 +59,26 @@ public class RetentionController {
     String retain(@Validated Retention retention, BindingResult bindingResult,
                   Model model) {
 
+        Reservation reservation = retentionCoordinator.reservationOf(retention.reservationNumber());
+        model.addAttribute("reservation", reservation);
+
         if (bindingResult.hasErrors()) {
-            Reservation reservation = retentionCoordinator.reservationOf(retention.reservationNumber());
-            model.addAttribute("reservation", reservation);
             return "retention/form";
         }
+
+        if (!retentionCoordinator.isSameBook(reservation, retention)) {
+            bindingResult.addError(new FieldError(bindingResult.getObjectName(),
+                    "itemNumber.value", "予約された本の蔵書ではありません"));
+            return "retention/form";
+        }
+
+        ItemStatus itemStatus = retentionCoordinator.itemStatus(retention.itemNumber());
+        if (itemStatus != 貸出可能) {
+            bindingResult.addError(new FieldError(bindingResult.getObjectName(),
+                    "itemNumber.value", itemStatus.description()));
+            return "retention/form";
+        }
+
         System.out.println(retention);
 
         return "redirect:/retentions/requests";

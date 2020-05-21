@@ -14,6 +14,10 @@ public class Retention {
         return reservationNumber;
     }
 
+    public ItemNumber itemNumber() {
+        return itemNumber;
+    }
+
     @Override
     public String toString() {
         return "Retention{" +

@@ -40,7 +40,9 @@ public class LoanRegisterController {
         if (bindingResult.hasErrors()) return "loan/register/form";
 
         if (coordinator.invalidMember(loanRequest)) {
-            bindingResult.addError(new FieldError(bindingResult.getObjectName(), "memberNumber.value", "この番号の会員はいません"));
+            bindingResult.addError(
+                    new FieldError(bindingResult.getObjectName(),
+                    "memberNumber.value", "この番号の会員はいません"));
             return "loan/register/form";
         }
 

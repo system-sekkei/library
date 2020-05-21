@@ -23,9 +23,8 @@ public class Item {
         return itemNumber;
     }
 
-    // TODO: 予約本を探すメソッドにしたい (ReservedBookを受けるようにしたい)
-    public boolean sameBook(Book other) {
-        return this.book.sameBook(other);
+    public boolean isSameBook(Book other) {
+        return this.book.isSameBook(other);
     }
 
     public String show() {

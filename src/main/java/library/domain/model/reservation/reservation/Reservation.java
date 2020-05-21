@@ -26,6 +26,11 @@ public class Reservation {
     public static Reservation of(Member member, Book book) {
         return new Reservation(ReservationNumber.generate(), member, book);
     }
+
+    public Book book() {
+        return book;
+    }
+
     public Member member() {
         return member;
     }
