@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
     <meta charset="utf-8"/>
     <title>本の検索</title>
@@ -16,7 +16,7 @@
               th:action="@{/reservation/books/search}">
             <div class="field is-grouped">
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="検索キーワード" th:field="${searchKeyword.value}">
+                    <input class="input" type="text" placeholder="検索キーワード　空白で全件" th:field="${searchKeyword.value}">
                 </p>
                 <p class="control">
                     <button class="button is-info">
@@ -31,16 +31,18 @@
         <p th:text="${availabilities.numberOfBook().show()}"></p>
         <table class="table">
             <thead>
+            <tr>
             <th>書籍</th>
             <th>貸出</th>
             <th></th>
+            </tr>
             </thead>
             <tbody>
             <tr th:each="availability : ${availabilities.asList()}">
                 <td th:text="${availability.describeBook()}"></td>
                 <td th:text="${availability.showAvailability()}"></td>
                 <td><a th:if="${availability.isAvailable()}"
-                       class="button is-primary is-small"　
+                       class="button is-primary is-small"
                        th:href="@{/reservation/register(book=${availability.bookNumber()})}">予約する</a></td>
             </tr>
             </tbody>

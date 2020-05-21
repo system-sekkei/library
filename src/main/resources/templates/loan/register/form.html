@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
   <meta charset="utf-8"/>
   <title>貸出図書の登録</title>
@@ -24,8 +24,8 @@
         <div id="memberNumberField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="text" placeholder="会員番号"
-                     th:field="*{memberNumber.value}"/>
+              <input class="input" type="text" placeholder="会員番号　1,2など"
+                     th:field="*{memberNumber.value}">
             </p>
             <p class="help is-danger has-text-left"
                th:if="${#fields.hasErrors('memberNumber.value')}">
@@ -39,8 +39,8 @@
         <div id="holdingCodeField" class="field-body">
           <div class="field">
             <p class="control">
-              <input class="input" type="text" placeholder="蔵書番号"
-                     th:field="*{itemNumber.value}"/>
+              <input class="input" type="text" placeholder="蔵書番号　1-A, 2-Aなど"
+                     th:field="*{itemNumber.value}">
             </p>
             <p class="help is-danger has-text-left"
                th:if="${#fields.hasErrors('itemNumber.value')}">
@@ -55,7 +55,7 @@
           <div class="field">
             <p class="control">
               <input class="input" type="date"
-                     th:field="*{loanDate.value}"/>
+                     th:field="*{loanDate.value}">
             </p>
             <p class="help is-danger has-text-left"
                th:if="${#fields.hasErrors('loanDate.value')}">
