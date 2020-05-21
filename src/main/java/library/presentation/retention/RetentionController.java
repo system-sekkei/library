@@ -5,9 +5,13 @@ import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
 import library.domain.model.reservation.retention.Retained;
+import library.domain.model.reservation.retention.Retention;
 import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -42,14 +46,29 @@ public class RetentionController {
             Model model) {
         Reservation reservation = retentionCoordinator.reservationOf(reservationNumber);
         model.addAttribute("reservation", reservation);
+        model.addAttribute("retention", new Retention());
         return "retention/form";
     }
 
     @PostMapping
-    String retain(Retained retained, @RequestBody String body) {
-        System.out.println(body);
-        System.out.println(retained);
+    String retain(@Validated Retention retention, BindingResult bindingResult,
+                  Model model) {
+
+        if (bindingResult.hasErrors()) {
+            Reservation reservation = retentionCoordinator.reservationOf(retention.reservationNumber());
+            model.addAttribute("reservation", reservation);
+            return "retention/form";
+        }
+        System.out.println(retention);
 
         return "redirect:/retentions/requests";
+    }
+
+    @InitBinder
+    void initBinder(WebDataBinder binder) {
+        binder.setAllowedFields(
+                "itemNumber.value",
+                "reservationNumber.value"
+        );
     }
 }

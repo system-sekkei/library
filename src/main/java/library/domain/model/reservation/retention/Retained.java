@@ -10,8 +10,6 @@ import library.domain.type.date.Date;
  * 取置
  */
 public class Retained {
-    ReservationNumber reservationNumber;
-    ItemNumber itemNumber;
     Reservation reservation;
     RetainedDate retainedDate;
     Item item;
@@ -44,8 +42,6 @@ public class Retained {
     @Override
     public String toString() {
         return "Retained{" +
-                "reservationNumber=" + reservationNumber +
-                ", itemNumber=" + itemNumber +
                 ", reservation=" + reservation +
                 ", retainedDate=" + retainedDate +
                 ", item=" + item +
