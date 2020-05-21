@@ -92,15 +92,15 @@ CREATE TABLE 予約.取消履歴 (
 
 CREATE TABLE 予約.取置履歴 (
     予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約履歴,
-    蔵書番号 VARCHAR(40) NOT NULL,
+    蔵書番号 VARCHAR(40) NOT NULL REFERENCES 蔵書.登録,
     取置日 DATE NOT NULL,
     登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 準備完了
+-- 準備完了 蔵書でユニーク（同じ蔵書を同時に取置はできない）
 CREATE TABLE 予約.取置済 (
-     予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約履歴,
-     蔵書番号 VARCHAR(40) NOT NULL,
+     蔵書番号 VARCHAR(40) PRIMARY KEY REFERENCES 蔵書.登録,
+     予約番号 INTEGER NOT NULL REFERENCES 予約.予約履歴,
      取置日 DATE NOT NULL,
      登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

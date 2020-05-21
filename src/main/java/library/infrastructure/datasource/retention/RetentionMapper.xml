@@ -36,9 +36,9 @@
 
     <select id="select取置済" resultMap="取置済">
         SELECT
-         予約番号 AS "reservation",
-               蔵書番号 AS "itemNumber",
-               取置日 AS "retainedDate.value"
+            予約番号 AS "reservation",
+            蔵書番号 AS "itemNumber.value",
+            取置日 AS "retainedDate.value"
         FROM 予約.取置済
     </select>
 </mapper>

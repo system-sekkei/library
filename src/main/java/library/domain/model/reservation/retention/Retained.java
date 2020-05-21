@@ -1,6 +1,6 @@
 package library.domain.model.reservation.retention;
 
-import library.domain.model.item.Item;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
 
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Retained {
     Reservation reservation;
     RetainedDate retainedDate;
-    Item item;
+    ItemNumber itemNumber;
 
     public RetentionDeadline retentionDeadline() {
         return RetentionDeadline.deadline(retainedDate);
@@ -21,10 +21,6 @@ public class Retained {
     public boolean isExpired() {
         LocalDate today = LocalDate.now();
         return retainedDate.value.isBefore(today);
-    }
-
-    public boolean isA(Item item) {
-        return item.itemNumber().sameValue(this.item.itemNumber());
     }
 
     public String showBook() {
@@ -39,8 +35,8 @@ public class Retained {
         return retainedDate;
     }
 
-    public Item holding() {
-        return item;
+    public ItemNumber itemNumber() {
+        return itemNumber;
     }
 
     @Override
@@ -48,7 +44,7 @@ public class Retained {
         return "Retained{" +
                 ", reservation=" + reservation +
                 ", retainedDate=" + retainedDate +
-                ", item=" + item +
+                ", itemNumber=" + itemNumber +
                 '}';
     }
 }

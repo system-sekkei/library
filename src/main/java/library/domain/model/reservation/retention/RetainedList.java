@@ -18,10 +18,6 @@ public class RetainedList {
         return new RetainedList(List.of());
     }
 
-    public boolean notContains(Item item) {
-        return list.stream().noneMatch(retained -> retained.isA(item));
-    }
-
     public List<Retained> asList() {
         return list;
     }
