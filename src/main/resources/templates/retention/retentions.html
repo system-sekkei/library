@@ -11,7 +11,7 @@
   | <a th:href="@{/retentions}">取置中の一覧</a>
 </nav>
 <h1>取置一覧</h1>
-  <p th:text="${retentions.showCount()}">件</p>
+  <p th:text="${retainedList.showCount()}">件</p>
   <form>
   <table class="table">
     <thead>
@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="retention : ${retentions.asList()}">
+    <tr th:each="retention : ${retainedList.asList()}">
       <td th:text="${retention.reservedBook().showBook()}"></td>
       <td th:text="${retention.retainedDate()}"></td>
       <td>

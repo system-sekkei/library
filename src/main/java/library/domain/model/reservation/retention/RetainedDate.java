@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 /**
  * 取置日
- * TODO: バリエーション図では貸出準備完了日。
+ * RDRAのバリエーション図では貸出準備完了日
  */
 public class RetainedDate {
     LocalDate value;

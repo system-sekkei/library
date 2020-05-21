@@ -10,8 +10,8 @@ import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
-import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Service;
 
 /**
@@ -68,7 +68,7 @@ public class RetentionCoordinator {
     /**
      * 取置を一覧する
      */
-    public Retentions retentions() {
+    public RetainedList retentions() {
         return retentionQueryService.retentions();
     }
 }

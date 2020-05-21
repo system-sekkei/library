@@ -1,14 +1,12 @@
 package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
-import library.domain.model.item.Item;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
-import library.domain.model.reservation.retention.Retentions;
+import library.domain.model.reservation.retention.RetainedList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -82,9 +80,9 @@ public class RetentionController {
      */
     @GetMapping
     String retentions(Model model) {
-        Retentions retentions = retentionCoordinator.retentions();
-        System.out.println(retentions);
-        model.addAttribute("retentions", retentions);
+        RetainedList retainedList = retentionCoordinator.retentions();
+        System.out.println(retainedList);
+        model.addAttribute("retainedList", retainedList);
         return "retention/retentions";
     }
 

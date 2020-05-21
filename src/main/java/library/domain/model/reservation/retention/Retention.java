@@ -5,6 +5,9 @@ import library.domain.model.reservation.reservation.ReservationNumber;
 
 import javax.validation.Valid;
 
+/**
+ * 取置依頼
+ */
 public class Retention {
     ReservationNumber reservationNumber;
     @Valid

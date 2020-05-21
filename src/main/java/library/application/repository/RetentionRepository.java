@@ -1,7 +1,7 @@
 package library.application.repository;
 
 import library.domain.model.reservation.retention.Retention;
-import library.domain.model.reservation.retention.Retentions;
+import library.domain.model.reservation.retention.RetainedList;
 
 /**
  * 取置リポジトリ
@@ -9,5 +9,5 @@ import library.domain.model.reservation.retention.Retentions;
 public interface RetentionRepository {
 
     void registerRetention(Retention retention);
-    Retentions retentions();
+    RetainedList retentions();
 }

@@ -6,7 +6,7 @@ import library.domain.model.reservation.reservation.Reservation;
 import java.time.LocalDate;
 
 /**
- * 取置
+ * 取置済
  */
 public class Retained {
     Reservation reservation;
