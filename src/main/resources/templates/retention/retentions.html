@@ -27,10 +27,10 @@
       <td th:text="${retention.reservedBook().showBook()}"></td>
       <td th:text="${retention.retainedDate()}"></td>
       <td>
-        <button type="submit" name="retention" value="${reservation.number()}">取置</button>
+        <button type="submit" name="retention" value="${reservation.number()}">貸出</button>
       </td>
       <td>
-        <button type="submit" name="notAvailable" value="${reservation.number()}">在庫なし</button>
+        <button type="submit" name="notAvailable" value="${reservation.number()}">期限切れ</button>
       </td>
     </tr>
     </tbody>

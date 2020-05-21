@@ -30,4 +30,11 @@ public class Retentions {
         if (list.size() == 0) return "取置中の蔵書はありません";
         return list.size() + "件を取り置いています";
     }
+
+    @Override
+    public String toString() {
+        return "Retentions{" +
+                "list=" + list +
+                '}';
+    }
 }

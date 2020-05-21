@@ -38,13 +38,6 @@ public class RetentionController {
         return "retention/requests";
     }
 
-    @GetMapping
-    String retentions(Model model) {
-        Retentions retentions = retentionCoordinator.retentions();
-        model.addAttribute("retentions", retentions);
-        return "retention/retentions";
-    }
-
     @GetMapping("requests/{reservationNumber}")
     String retentionForm(
             @PathVariable("reservationNumber") ReservationNumber reservationNumber,
@@ -82,6 +75,17 @@ public class RetentionController {
         retentionCoordinator.retain(retention);
 
         return "redirect:/retentions/requests";
+    }
+
+    /**
+     * 取置の一覧
+     */
+    @GetMapping
+    String retentions(Model model) {
+        Retentions retentions = retentionCoordinator.retentions();
+        System.out.println(retentions);
+        model.addAttribute("retentions", retentions);
+        return "retention/retentions";
     }
 
     @InitBinder
