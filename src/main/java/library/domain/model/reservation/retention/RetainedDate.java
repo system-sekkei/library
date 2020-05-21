@@ -22,4 +22,8 @@ public class RetainedDate {
     public String toString() {
         return value.toString();
     }
+
+    public static RetainedDate now() {
+        return new RetainedDate(Date.now());
+    }
 }

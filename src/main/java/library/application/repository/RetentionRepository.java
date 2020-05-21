@@ -1,6 +1,6 @@
 package library.application.repository;
 
-import library.domain.model.reservation.retention.Retained;
+import library.domain.model.reservation.retention.Retention;
 import library.domain.model.reservation.retention.Retentions;
 
 /**
@@ -8,6 +8,6 @@ import library.domain.model.reservation.retention.Retentions;
  */
 public interface RetentionRepository {
 
-    void registerRetention(Retained retained);
+    void registerRetention(Retention retention);
     Retentions retentions();
 }

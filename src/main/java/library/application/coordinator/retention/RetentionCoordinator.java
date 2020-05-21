@@ -10,7 +10,6 @@ import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import library.domain.model.reservation.retention.Retentions;
 import org.springframework.stereotype.Service;
@@ -62,9 +61,8 @@ public class RetentionCoordinator {
     /**
      * 取り置く
      */
-    public void retain(ReservationNumber reservationNumber) {
-        Retained retained = new Retained();
-        retentionRecordService.registerRetention(retained);
+    public void retain(Retention retention) {
+        retentionRecordService.registerRetention(retention);
     }
 
     /**

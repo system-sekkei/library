@@ -79,7 +79,7 @@ public class RetentionController {
             return "retention/form";
         }
 
-        System.out.println(retention);
+        retentionCoordinator.retain(retention);
 
         return "redirect:/retentions/requests";
     }

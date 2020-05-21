@@ -30,7 +30,7 @@ public class ReservationDatasource implements ReservationRepository {
                 reservation.memberNumber(),
                 reservation.bookNumber());
 
-        retentionMapper.insertRequest(reservationNumber);
+        retentionMapper.insert取置依頼中(reservationNumber);
     }
 
     @Override
@@ -49,6 +49,6 @@ public class ReservationDatasource implements ReservationRepository {
     public void cancelReservation(Reservation reservation) {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
-        retentionMapper.deleteRequest(reservationNumber);
+        retentionMapper.delete取置依頼中(reservationNumber);
     }
 }

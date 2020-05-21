@@ -51,4 +51,13 @@
         WHERE 蔵書番号 = #{value}
     </delete>
 
+    <insert id="insert取置中">
+        INSERT INTO 蔵書.取置中(蔵書番号)
+        VALUES (#{value})
+    </insert>
+
+    <delete id="delete取置中">
+        DELETE FROM 蔵書.取置中
+        WHERE 蔵書番号 = #{value}
+    </delete>
 </mapper>

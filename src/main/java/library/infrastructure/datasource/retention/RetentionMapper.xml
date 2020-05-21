@@ -4,18 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
 
-    <insert id="insertRequest">
+    <insert id="insert取置依頼中">
         INSERT INTO 予約.取置依頼中(予約番号)
         VALUES (#{value})
     </insert>
 
-    <delete id="deleteRequest">
+    <delete id="delete取置依頼中">
         DELETE FROM 予約.取置依頼中
         WHERE 予約番号 = #{value}
     </delete>
 
-    <insert id="insertRetention">
+    <insert id="insert取置履歴">
         INSERT INTO 予約.取置履歴(予約番号, 蔵書コード, 取置日)
-        VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{retainedDate.value.value})
+        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value.value})
     </insert>
 </mapper>

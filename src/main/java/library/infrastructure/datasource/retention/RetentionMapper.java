@@ -9,11 +9,11 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface RetentionMapper {
 
-    void insertRequest(ReservationNumber reservationNumber);
+    void insert取置依頼中(ReservationNumber reservationNumber);
 
-    void deleteRequest(ReservationNumber reservationNumber);
+    void delete取置依頼中(ReservationNumber reservationNumber);
 
-    void insertRetainedHolding(
+    void insert取置履歴(
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
