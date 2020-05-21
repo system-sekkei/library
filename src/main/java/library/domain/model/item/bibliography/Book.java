@@ -7,17 +7,15 @@ public class Book {
     BookNumber bookNumber;
     Title title;
     Author author;
-    BookType bookType;
 
     @Deprecated
     Book() {
     }
 
-    public Book(BookNumber bookNumber, Title title, Author author, BookType bookType) {
+    public Book(BookNumber bookNumber, Title title, Author author) {
         this.bookNumber = bookNumber;
         this.title = title;
         this.author = author;
-        this.bookType = bookType;
     }
 
     public BookNumber bookNumber() {
@@ -41,7 +39,6 @@ public class Book {
                 "bookNumber=" + bookNumber +
                 ", title=" + title +
                 ", author=" + author +
-                ", bookType=" + bookType +
                 '}';
     }
 }

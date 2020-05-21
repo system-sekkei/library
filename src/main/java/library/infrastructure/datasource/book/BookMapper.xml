@@ -3,12 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.book.BookMapper">
+
     <select id="searchBooks" resultType="library.domain.model.reservation.availability.BookAvailability">
         SELECT
             本.本番号 as "book.bookNumber.value",
             本.タイトル as "book.title.value",
             本.著者 as "book.author.value",
-            本.本種別 as "book.bookType",
             (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.登録 on 貸出可能.蔵書番号 = 登録.蔵書番号
                 WHERE 登録.本番号 = 本.本番号) as "loanableItems"
         FROM 蔵書.本
@@ -21,8 +21,7 @@
         SELECT
             本.本番号 as "bookNumber.value",
             本.タイトル as "title.value",
-            本.著者 as "author.value",
-            本.本種別 as "bookType"
+            本.著者 as "author.value"
         FROM 蔵書.本
         WHERE 本.本番号 = #{bookNumber.value}
     </select>
