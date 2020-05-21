@@ -6,6 +6,8 @@ import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.type.date.Date;
 
+import java.time.LocalDate;
+
 /**
  * 取置
  */
@@ -19,7 +21,7 @@ public class Retained {
     }
 
     public boolean isExpired() {
-        Date today = Date.now();
+        LocalDate today = LocalDate.now();
         return retainedDate.value.isBefore(today);
     }
 

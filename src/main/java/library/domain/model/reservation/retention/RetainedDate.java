@@ -1,21 +1,19 @@
 package library.domain.model.reservation.retention;
 
 import library.domain.type.date.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 /**
  * 取置日
  * TODO: バリエーション図では貸出準備完了日。
  */
 public class RetainedDate {
-    // TODO LocalDateを検討する
-    Date value;
+    LocalDate value;
 
-    public RetainedDate(Date value) {
+    public RetainedDate(LocalDate value) {
         this.value = value;
-    }
-
-    public Date value() {
-        return value;
     }
 
     @Override
@@ -24,6 +22,6 @@ public class RetainedDate {
     }
 
     public static RetainedDate now() {
-        return new RetainedDate(Date.now());
+        return new RetainedDate(LocalDate.now());
     }
 }

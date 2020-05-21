@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 /**
  * 日付
  */
+// TODO 削除を検討
 public class Date {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)

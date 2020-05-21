@@ -16,12 +16,12 @@
 
     <insert id="insert取置履歴">
         INSERT INTO 予約.取置履歴(予約番号, 蔵書コード, 取置日)
-        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value.value})
+        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <insert id="insert取置済">
         INSERT INTO 予約.取置済(予約番号, 蔵書コード, 取置日)
-        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value.value})
+        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <delete id="delete取置済">
