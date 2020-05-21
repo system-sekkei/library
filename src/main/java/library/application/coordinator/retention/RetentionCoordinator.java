@@ -66,9 +66,9 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 取置を一覧する
+     * 取置済を一覧する
      */
-    public RetainedList retentions() {
+    public RetainedList retainedList() {
         return retentionQueryService.retentions();
     }
 }

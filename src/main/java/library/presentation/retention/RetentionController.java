@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import static library.domain.model.item.ItemStatus.貸出可能;
 
 /**
- * 予約(取置依頼)の一覧画面
+ * 予約と取置の管理画面
  */
 @Controller
 @RequestMapping("retentions")
@@ -80,7 +80,7 @@ public class RetentionController {
      */
     @GetMapping
     String retentions(Model model) {
-        RetainedList retainedList = retentionCoordinator.retentions();
+        RetainedList retainedList = retentionCoordinator.retainedList();
         System.out.println(retainedList);
         model.addAttribute("retainedList", retainedList);
         return "retention/retentions";
