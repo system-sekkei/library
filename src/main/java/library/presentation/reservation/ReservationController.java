@@ -1,18 +1,13 @@
 package library.presentation.reservation;
 
-import library.application.service.book.BookQueryService;
-import library.application.service.member.MemberQueryService;
-import library.application.service.reservation.ReservationRecordService;
+import library.application.coordinator.reservation.ReservationCoordinator;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
-import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.reservation.Reservation;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,14 +17,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("reservation/register")
 public class ReservationController {
-    ReservationRecordService reservationRecordService;
-    MemberQueryService memberQueryService;
-    BookQueryService bookQueryService;
+    ReservationCoordinator reservationCoordinator;
 
-    public ReservationController(ReservationRecordService reservationRecordService, MemberQueryService memberQueryService, BookQueryService bookQueryService) {
-        this.reservationRecordService = reservationRecordService;
-        this.memberQueryService = memberQueryService;
-        this.bookQueryService = bookQueryService;
+    public ReservationController(ReservationCoordinator reservationCoordinator) {
+        this.reservationCoordinator = reservationCoordinator;
     }
 
     @GetMapping
@@ -39,7 +30,7 @@ public class ReservationController {
 
     @GetMapping(params = {"book"})
     String init(@RequestParam("book") BookNumber bookNumber, Model model) {
-        Book book = bookQueryService.findBook(bookNumber);
+        Book book = reservationCoordinator.findBook(bookNumber);
         model.addAttribute("book", book);
         model.addAttribute("member", MemberNumber.empty());
         return "reservation/register/form";
@@ -53,24 +44,20 @@ public class ReservationController {
             Model model
             ) {
 
-        Book book = bookQueryService.findBook(bookNumber);
+        Book book = reservationCoordinator.findBook(bookNumber);
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
             return "reservation/register/form";
         }
 
-        Member member = memberQueryService.findMember(memberNumber);
-
-        if (member == null) {
+        if (! reservationCoordinator.exists(memberNumber)) {
             model.addAttribute("member", memberNumber);
             model.addAttribute("book", book);
-            bindingResult.addError(new FieldError( bindingResult.getObjectName(),"value","その番号の会員はいません"));
+            bindingResult.addError(new FieldError(bindingResult.getObjectName(),"value","その番号の会員はいません"));
             return "reservation/register/form";
         }
 
-        Reservation tryingToReserveBook = Reservation.of(member, book);
-
-        reservationRecordService.registerReservation(tryingToReserveBook);
+        reservationCoordinator.reserve(book, memberNumber);
 
         return "redirect:/reservation/register/completed";
     }
