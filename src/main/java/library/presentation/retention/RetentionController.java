@@ -58,7 +58,7 @@ public class RetentionController {
     }
 
     /**
-     * 取置済の一覧
+     * 準備完了の一覧
      */
     @GetMapping
     String retainedList(Model model) {

@@ -4,13 +4,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
 
-    <insert id="insert取置依頼中">
-        INSERT INTO 予約.取置依頼中(予約番号)
+    <insert id="insert未準備">
+        INSERT INTO 予約.未準備(予約番号)
         VALUES (#{value})
     </insert>
 
-    <delete id="delete取置依頼中">
-        DELETE FROM 予約.取置依頼中
+    <delete id="delete未準備">
+        DELETE FROM 予約.未準備
         WHERE 予約番号 = #{value}
     </delete>
 
@@ -19,36 +19,36 @@
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
-    <insert id="insert取置済">
-        INSERT INTO 予約.取置済(予約番号, 蔵書番号, 取置日)
+    <insert id="insert準備完了">
+        INSERT INTO 予約.準備完了(予約番号, 蔵書番号, 取置日)
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
-    <delete id="delete取置済">
-        DELETE FROM 予約.取置済 WHERE 蔵書番号 = #{value}
+    <delete id="delete準備完了">
+        DELETE FROM 予約.準備完了 WHERE 蔵書番号 = #{value}
     </delete>
 
-    <resultMap id="取置済" type="library.domain.model.reservation.retention.Retained">
+    <resultMap id="準備完了" type="library.domain.model.reservation.retention.Retained">
         <association property="reservation"
                      column="reservation"
                      select="library.infrastructure.datasource.reservation.ReservationMapper.selectReservation" />
     </resultMap>
 
-    <select id="selectAll取置済" resultMap="取置済">
+    <select id="selectAll準備完了" resultMap="準備完了">
         SELECT
             蔵書番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
-        FROM 予約.取置済
+        FROM 予約.準備完了
         ORDER BY 取置日
     </select>
 
-    <select id="select取置済" resultMap="取置済">
+    <select id="select準備完了" resultMap="準備完了">
         SELECT
             蔵書番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
-        FROM 予約.取置済
+        FROM 予約.準備完了
         WHERE 蔵書番号 = #{value}
     </select>
 </mapper>

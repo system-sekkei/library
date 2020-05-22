@@ -62,7 +62,7 @@ INSERT INTO 蔵書.貸出中(蔵書番号)
 VALUES ('1-A');
 
 -- Webで予約した
-INSERT INTO 予約.取置依頼履歴(予約番号, 会員番号, 本番号)
+INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
 VALUES
 ((SELECT NEXTVAL('予約.予約番号')),1, 4);
 
@@ -71,7 +71,7 @@ INSERT INTO 予約.取置履歴(予約番号, 蔵書番号, 取置日)
 VALUES
 ((SELECT CURRVAL('予約.予約番号')), '4-A', CURRENT_DATE - 8);
 
-INSERT INTO 予約.取置済(蔵書番号, 予約番号, 取置日)
+INSERT INTO 予約.準備完了(蔵書番号, 予約番号, 取置日)
 VALUES
 ('4-A', (SELECT CURRVAL('予約.予約番号')), CURRENT_DATE - 8);
 

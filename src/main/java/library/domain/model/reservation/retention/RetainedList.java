@@ -5,7 +5,7 @@ import library.domain.model.item.Item;
 import java.util.List;
 
 /**
- * 取置済の一覧
+ * 準備完了の一覧
  */
 public class RetainedList {
     List<Retained> list;

@@ -7,7 +7,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
 
 /**
- * 取置済
+ * 準備完了
  */
 public class Retained {
     Reservation reservation;

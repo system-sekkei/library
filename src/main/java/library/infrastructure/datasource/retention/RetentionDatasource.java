@@ -35,8 +35,8 @@ public class RetentionDatasource implements RetentionRepository {
         retentionMapper.insert取置履歴(reservationNumber, itemNumber, retainedDate);
 
         // 予約の状態
-        retentionMapper.insert取置済(reservationNumber, itemNumber, retainedDate);
-        retentionMapper.delete取置依頼中(reservationNumber);
+        retentionMapper.insert準備完了(reservationNumber, itemNumber, retainedDate);
+        retentionMapper.delete未準備(reservationNumber);
 
         // 蔵書の状態
         itemMapper.delete貸出可能(itemNumber);
@@ -45,18 +45,18 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     public Retained findBy(ItemNumber itemNumber) {
-        return retentionMapper.select取置済(itemNumber);
+        return retentionMapper.select準備完了(itemNumber);
     }
 
     @Override
     public void loaned(ItemNumber itemNumber) {
         itemMapper.delete取置中(itemNumber);
-        retentionMapper.delete取置済(itemNumber);
+        retentionMapper.delete準備完了(itemNumber);
     }
 
     @Override
     public RetainedList retentions() {
-        List<Retained> list = retentionMapper.selectAll取置済();
+        List<Retained> list = retentionMapper.selectAll準備完了();
         return new RetainedList(list);
     }
 

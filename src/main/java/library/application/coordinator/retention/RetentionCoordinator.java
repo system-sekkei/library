@@ -71,14 +71,14 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 取置済を一覧する
+     * 準備完了を一覧する
      */
     public RetainedList retainedList() {
         return retentionQueryService.retentions();
     }
 
     /**
-     * 取置済を貸し出す
+     * 準備完了を貸し出す
      */
     public void loan(ItemNumber itemNumber) {
         Retained retained = retentionQueryService.findBy(itemNumber);
