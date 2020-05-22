@@ -2,17 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
     <title>業務体系</title>
+    <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
-<h2>業務</h2>
-<ul>
-    <li>窓口：<a target="counter" th:href="@{/loan/register}">貸出・返却</a></li>
-    <li>会員：<a target="member" th:href="@{/reservation/books/search}">Web予約</a>（取置の依頼）</li>
-</ul>
-<ul>
-    <li>図書館員：<a target="librarian" th:href="@{/retentions/requests}">取置</a></li>
-    <li>図書館員：<a th:href="@{/}">会員管理</a>　＜未実装＞</li>
-    <li>図書館員：<a th:href="@{/}">蔵書管理</a>　＜未実装＞</li>
-</ul>
+<h1>業務</h1>
+    <h3>窓口：<a target="counter" th:href="@{/loan/register}">貸出・返却</a></h3>
+    <h3>会員：<a target="member" th:href="@{/reservation/books/search}">Web予約</a>（取置の依頼）</h3>
+
+    <h3>図書館員：<a target="librarian" th:href="@{/retentions/requests}">取置</a></h3>
+    <h3>図書館員：<a th:href="@{/}">会員管理</a>　＜未実装＞</h3>
+    <h3>図書館員：<a th:href="@{/}">蔵書管理</a>　＜未実装＞</h3>
 </body>
 </html>
