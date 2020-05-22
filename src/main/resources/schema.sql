@@ -103,7 +103,14 @@ CREATE TABLE 予約.取置済 (
      FOREIGN KEY (予約番号, 蔵書番号) REFERENCES 予約.取置履歴(予約番号, 蔵書番号)
 );
 
+-- 蔵書スキーマでも取置状態を管理する(貸出可否の判断用）
 CREATE TABLE 蔵書.取置中 (
     蔵書番号 VARCHAR(40) PRIMARY KEY REFERENCES 予約.取置済,
     登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- 取置の期限切れ
+CREATE TABLE 予約.取置期限切れ履歴 (
+   予約番号 INTEGER PRIMARY KEY REFERENCES 予約.取置履歴,
+   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+)
