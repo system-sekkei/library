@@ -25,7 +25,7 @@
     </insert>
 
     <delete id="delete取置済">
-        DELETE FROM 予約.取置済 WHERE 予約番号 = #{value}
+        DELETE FROM 予約.取置済 WHERE 蔵書番号 = #{value}
     </delete>
 
     <resultMap id="取置済" type="library.domain.model.reservation.retention.Retained">
@@ -34,11 +34,21 @@
                      select="library.infrastructure.datasource.reservation.ReservationMapper.selectReservation" />
     </resultMap>
 
-    <select id="select取置済" resultMap="取置済">
+    <select id="selectAll取置済" resultMap="取置済">
         SELECT
-            予約番号 AS "reservation",
             蔵書番号 AS "itemNumber.value",
+            予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
         FROM 予約.取置済
+        ORDER BY 取置日
+    </select>
+
+    <select id="select取置済" resultMap="取置済">
+        SELECT
+            蔵書番号 AS "itemNumber.value",
+            予約番号 AS "reservation",
+            取置日 AS "retainedDate.value"
+        FROM 予約.取置済
+        WHERE 蔵書番号 = #{value}
     </select>
 </mapper>

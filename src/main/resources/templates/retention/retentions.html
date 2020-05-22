@@ -12,7 +12,7 @@
 </nav>
 <h1>取置済一覧</h1>
   <p th:text="${retainedList.showCount()}">件</p>
-  <form>
+  <form action="/retentions/loans" method="post">
   <table class="table">
     <thead>
     <tr>
@@ -29,7 +29,7 @@
       <td th:text="${retained.showBook()}"></td>
       <td th:text="${retained.retainedDate()}"></td>
       <td>
-        <button type="submit" name="loan" th:value="${retained.itemNumber()}">貸出</button>
+        <button type="submit" name="loaned" th:value="${retained.itemNumber()}">貸出</button>
       </td>
       <td>
         <button type="submit" name="expired" th:value="${retained.itemNumber()}">期限切れ</button>

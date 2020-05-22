@@ -1,6 +1,7 @@
 package library.application.service.retention;
 
 import library.application.repository.RetentionRepository;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,12 @@ public class RetentionRecordService {
      */
     public void registerRetention(Retention retention) {
         retentionRepository.registerRetention(retention);
+    }
+
+    /**
+     * 取置を消込 (貸し出した）
+     */
+    public void loaned(ItemNumber itemNumber) {
+        retentionRepository.loaned(itemNumber);
     }
 }

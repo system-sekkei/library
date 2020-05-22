@@ -11,6 +11,8 @@ import library.domain.model.reservation.retention.RetainedList;
 public interface RetentionRepository {
 
     void registerRetention(Retention retention);
+    void loaned(ItemNumber itemNumber);
+
     RetainedList retentions();
 
     Retained findBy(ItemNumber itemNumber);

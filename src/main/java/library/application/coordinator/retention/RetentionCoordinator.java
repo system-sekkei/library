@@ -12,6 +12,7 @@ import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
@@ -80,11 +81,11 @@ public class RetentionCoordinator {
      * 取置済を貸し出す
      */
     public void loan(ItemNumber itemNumber) {
-        // 予約状態の管理　取置済の消込
-        // 蔵書状態の管理　取置中の消込
+        Retained retained = retentionQueryService.findBy(itemNumber);
+        retentionRecordService.loaned(itemNumber);
 
         // 貸出の実行
-        LoanRequest loanRequest = null;
+        LoanRequest loanRequest = retained.toLoanRequest();
         loanRegisterService.registerLoan(loanRequest);
     }
 }

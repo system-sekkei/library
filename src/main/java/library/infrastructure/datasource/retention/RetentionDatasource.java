@@ -44,13 +44,20 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
-    public RetainedList retentions() {
-        List<Retained> list = retentionMapper.select取置済();
-        return new RetainedList(list);
+    public Retained findBy(ItemNumber itemNumber) {
+        return retentionMapper.select取置済(itemNumber);
     }
 
     @Override
-    public Retained findBy(ItemNumber itemNumber) {
-        return null;
+    public void loaned(ItemNumber itemNumber) {
+        retentionMapper.delete取置済(itemNumber);
+        itemMapper.delete取置中(itemNumber);
     }
+
+    @Override
+    public RetainedList retentions() {
+        List<Retained> list = retentionMapper.selectAll取置済();
+        return new RetainedList(list);
+    }
+
 }

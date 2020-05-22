@@ -39,6 +39,9 @@ public class LoanDate {
         return new LoanDate(LocalDate.now());
     }
 
+    public static LoanDate from(LocalDate localDate) {
+        return new LoanDate(localDate);
+    }
     public static LoanDate parse(String dateText) {
         return new LoanDate(LocalDate.parse(dateText));
     }

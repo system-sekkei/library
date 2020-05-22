@@ -88,7 +88,7 @@ public class RetentionController {
     }
 
     @PostMapping("loans")
-    String loan(ItemNumber itemNumber, Model model) {
+    String loan(@RequestParam("loaned") ItemNumber itemNumber) {
         retentionCoordinator.loan(itemNumber);
         return "redirect:/retentions";
     }

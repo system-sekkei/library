@@ -26,7 +26,8 @@ public interface RetentionMapper {
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
 
-    void delete取置済(ReservationNumber reservationNumber);
+    List<Retained> selectAll取置済();
 
-    List<Retained> select取置済();
+    Retained select取置済(ItemNumber itemNumber);
+    void delete取置済(ItemNumber itemNumber);
 }
