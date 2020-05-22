@@ -34,8 +34,8 @@ public class ReservationCoordinator {
 
     /**
      * 会員の存在を確認する
+     * TODO booleanではなく、会員状態型を返す
      */
-    // TODO 会員状態型を返す
     public boolean exists(MemberNumber memberNumber) {
         return memberQueryService.exists(memberNumber);
     }
