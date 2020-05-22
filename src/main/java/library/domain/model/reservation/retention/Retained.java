@@ -6,8 +6,6 @@ import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
 
-import java.time.LocalDate;
-
 /**
  * 取置済
  */
@@ -16,13 +14,9 @@ public class Retained {
     RetainedDate retainedDate;
     ItemNumber itemNumber;
 
-    public RetentionDeadline retentionDeadline() {
-        return RetentionDeadline.deadline(retainedDate);
-    }
-
     public boolean isExpired() {
-        LocalDate today = LocalDate.now();
-        return retainedDate.value.isBefore(today);
+        ExpireDate expireDate = ExpireDate.of(retainedDate);
+        return expireDate.isExpired();
     }
 
     public String showBook() {
@@ -33,8 +27,8 @@ public class Retained {
         return reservation.memberNumber();
     }
 
-    public RetainedDate retainedDate() {
-        return retainedDate;
+    public String showExpireDate() {
+        return ExpireDate.of(retainedDate).show();
     }
 
     public ItemNumber itemNumber() {
@@ -44,6 +38,7 @@ public class Retained {
     public LoanRequest toLoanRequest() {
         return new LoanRequest(reservation.memberNumber(), itemNumber, LoanDate.from(retainedDate.value));
     }
+
     @Override
     public String toString() {
         return "Retained{" +

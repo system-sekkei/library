@@ -69,11 +69,11 @@ VALUES
 -- 取り置いた
 INSERT INTO 予約.取置履歴(予約番号, 蔵書番号, 取置日)
 VALUES
-((SELECT CURRVAL('予約.予約番号')), '4-A', CURRENT_DATE - 20);
+((SELECT CURRVAL('予約.予約番号')), '4-A', CURRENT_DATE - 8);
 
 INSERT INTO 予約.取置済(蔵書番号, 予約番号, 取置日)
 VALUES
-('4-A', (SELECT CURRVAL('予約.予約番号')), CURRENT_DATE - 20);
+('4-A', (SELECT CURRVAL('予約.予約番号')), CURRENT_DATE - 8);
 
 DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '4-A';
 INSERT INTO 蔵書.取置中 (蔵書番号) VALUES ('4-A');

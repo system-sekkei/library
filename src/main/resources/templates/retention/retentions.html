@@ -2,38 +2,40 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
   <meta charset="utf-8"/>
-  <title>取置済一覧</title>
+  <title>取置済の一覧</title>
   <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
 <nav>
   <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
-  | <a th:href="@{/retentions}">取置中の一覧</a>
+  | <a th:href="@{/retentions}">取置済の一覧</a>
 </nav>
-<h1>取置済一覧</h1>
+<h1>取置済の一覧</h1>
   <p th:text="${retainedList.showCount()}">件</p>
-  <form action="/retentions/loans" method="post">
+  <form th:action="@{/retentions/loans}" method="post">
   <table class="table">
     <thead>
     <tr>
       <th>会員</th>
       <th>本</th>
-      <th>取置日</th>
-      <th></th>
-      <th></th>
+      <th>取置期限</th>
+      <th>アクション</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="retained : ${retainedList.asList()}">
       <td th:text="${retained.memberNumber()}"></td>
       <td th:text="${retained.showBook()}"></td>
-      <td th:text="${retained.retainedDate()}"></td>
-      <td>
-        <button type="submit" name="loaned" th:value="${retained.itemNumber()}">貸出</button>
-      </td>
-      <td>
-        <button type="submit" name="expired" th:value="${retained.itemNumber()}">期限切れ</button>
-      </td>
+      <th:block th:switch="${retained.isExpired()}">
+        <th:block th:case="false">
+          <td th:text="${retained.showExpireDate()}"></td>
+          <td><button type="submit" name="loaned" th:value="${retained.itemNumber()}">貸出</button></td>
+        </th:block>
+        <th:block th:case="true" >
+          <td><mark><span th:text="${retained.showExpireDate()}"></span></mark></td>
+          <td><button type="submit" name="expired" th:value="${retained.itemNumber()}">期限切れ処理</button></td>
+        </th:block>
+      </th:block>
     </tr>
     </tbody>
   </table>

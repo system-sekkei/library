@@ -8,7 +8,7 @@
 <body>
 <nav>
   <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
-  | <a th:href="@{/retentions}">取置中の一覧</a>
+  | <a th:href="@{/retentions}">取置済の一覧</a>
 </nav>
 <h1>予約(取置依頼)一覧</h1>
   <p th:text="${reservations.numberOfReservation()}">件</p>
@@ -29,7 +29,8 @@
       <td>
         <button type="submit" th:formaction="'/retentions/requests/' + ${reservation.number()}">取置
         </button>
-
+      </td>
+      <td>
         <button type="submit" name="notAvailable" th:value="${reservation.number()}">在庫なし</button>
       </td>
     </tr>
