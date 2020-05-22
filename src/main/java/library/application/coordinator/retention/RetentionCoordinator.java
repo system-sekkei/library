@@ -1,12 +1,14 @@
 package library.application.coordinator.retention;
 
 import library.application.service.item.ItemQueryService;
+import library.application.service.loan.LoanRegisterService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.retention.RetentionQueryService;
 import library.application.service.retention.RetentionRecordService;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
+import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
@@ -23,12 +25,14 @@ public class RetentionCoordinator {
     RetentionQueryService retentionQueryService;
     RetentionRecordService retentionRecordService;
     ItemQueryService itemQueryService;
+    LoanRegisterService loanRegisterService;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRegisterService loanRegisterService) {
         this.reservationQueryService = reservationQueryService;
         this.retentionQueryService = retentionQueryService;
         this.retentionRecordService = retentionRecordService;
         this.itemQueryService = itemQueryService;
+        this.loanRegisterService = loanRegisterService;
     }
 
     /**
@@ -70,5 +74,17 @@ public class RetentionCoordinator {
      */
     public RetainedList retainedList() {
         return retentionQueryService.retentions();
+    }
+
+    /**
+     * 取置済を貸し出す
+     */
+    public void loan(ItemNumber itemNumber) {
+        // 予約状態の管理　取置済の消込
+        // 蔵書状態の管理　取置中の消込
+
+        // 貸出の実行
+        LoanRequest loanRequest = null;
+        loanRegisterService.registerLoan(loanRequest);
     }
 }

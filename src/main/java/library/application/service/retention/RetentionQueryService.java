@@ -1,6 +1,8 @@
 package library.application.service.retention;
 
 import library.application.repository.RetentionRepository;
+import library.domain.model.item.ItemNumber;
+import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.RetainedList;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +18,16 @@ public class RetentionQueryService {
     }
 
     /**
-     * 取置を一覧する
+     * 取置済を一覧する
      */
     public RetainedList retentions() {
         return retentionRepository.retentions();
+    }
+
+    /**
+     * 取置済を見つける
+     */
+    public Retained findBy(ItemNumber itemNumber) {
+        return retentionRepository.findBy(itemNumber);
     }
 }

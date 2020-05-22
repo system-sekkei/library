@@ -1,6 +1,7 @@
 package library.presentation.retention;
 
 import library.application.coordinator.retention.RetentionCoordinator;
+import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
@@ -76,14 +77,20 @@ public class RetentionController {
     }
 
     /**
-     * 取置の一覧
+     * 取置済の一覧
      */
     @GetMapping
-    String retentions(Model model) {
+    String retainedList(Model model) {
         RetainedList retainedList = retentionCoordinator.retainedList();
         System.out.println(retainedList);
         model.addAttribute("retainedList", retainedList);
         return "retention/retentions";
+    }
+
+    @PostMapping("loans")
+    String loan(ItemNumber itemNumber, Model model) {
+        retentionCoordinator.loan(itemNumber);
+        return "redirect:/retentions";
     }
 
     @InitBinder
