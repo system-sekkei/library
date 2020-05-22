@@ -8,7 +8,7 @@
     </select>
 
     <insert id="insertReservation">
-        INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
+        INSERT INTO 予約.取置依頼履歴(予約番号, 会員番号, 本番号)
         VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
@@ -23,10 +23,10 @@
 
     <select id="selectAllReservation" resultMap="reservation">
         SELECT 取置依頼中.予約番号 as "reservationNumber.value",
-               予約履歴.会員番号 as "memberNumber.value",
-               予約履歴.本番号 as "bookNumber.value"
+               取置依頼履歴.会員番号 as "memberNumber.value",
+               取置依頼履歴.本番号 as "bookNumber.value"
         FROM 予約.取置依頼中
-        INNER JOIN 予約.予約履歴 USING (予約番号)
+        INNER JOIN 予約.取置依頼履歴 USING (予約番号)
         ORDER BY 取置依頼中.予約番号
     </select>
 
@@ -34,11 +34,11 @@
         SELECT 予約番号 as "reservationNumber.value",
                会員番号 as "memberNumber.value",
                本番号 as "bookNumber.value"
-        FROM 予約.予約履歴
+        FROM 予約.取置依頼履歴
         WHERE 予約番号 = #{value}
     </select>
 
     <insert id="cancelReservation">
-        INSERT INTO 予約.取消履歴(予約番号) VALUES (#{value})
+        INSERT INTO 予約.取置依頼の取消履歴(予約番号) VALUES (#{value})
     </insert>
 </mapper>

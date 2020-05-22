@@ -62,7 +62,7 @@ INSERT INTO 蔵書.貸出中(蔵書番号)
 VALUES ('1-A');
 
 -- Webで予約した
-INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
+INSERT INTO 予約.取置依頼履歴(予約番号, 会員番号, 本番号)
 VALUES
 ((SELECT NEXTVAL('予約.予約番号')),1, 4);
 
