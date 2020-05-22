@@ -11,6 +11,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import static library.domain.model.member.MemberStatus.未登録;
+
 /**
  * 貸出予約の登録画面
  */
@@ -50,7 +52,7 @@ public class ReservationController {
             return "reservation/register/form";
         }
 
-        if (! reservationCoordinator.exists(memberNumber)) {
+        if (reservationCoordinator.memberStatus(memberNumber) == 未登録) {
             model.addAttribute("member", memberNumber);
             model.addAttribute("book", book);
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),"value","その番号の会員はいません"));

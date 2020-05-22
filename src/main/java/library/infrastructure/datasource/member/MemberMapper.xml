@@ -17,9 +17,4 @@
         FROM 会員.登録
         WHERE 会員番号 = #{value}
     </select>
-
-    <insert id="insertMember">
-        INSERT INTO 会員.登録(会員番号, 氏名, 会員種別)
-        VALUES (#{memberNumber.value}, #{name.value}, #{memberType})
-    </insert>
 </mapper>

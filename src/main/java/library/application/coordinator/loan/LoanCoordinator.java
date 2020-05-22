@@ -6,6 +6,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -29,8 +30,8 @@ public class LoanCoordinator {
     /**
      * 会員番号の有効性を確認する
      */
-    public boolean invalidMember(LoanRequest loanRequest) {
-        return ! memberQueryService.exists(loanRequest.memberNumber());
+    public MemberStatus memberStatus(LoanRequest loanRequest) {
+        return memberQueryService.status(loanRequest.memberNumber());
     }
 
     /**

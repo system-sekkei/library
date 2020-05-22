@@ -7,6 +7,7 @@ import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.reservation.Reservation;
 import org.springframework.stereotype.Service;
 
@@ -33,11 +34,10 @@ public class ReservationCoordinator {
     }
 
     /**
-     * 会員の存在を確認する
-     * TODO booleanではなく、会員状態型を返す
+     * 会員番号の有効性を確認する
      */
-    public boolean exists(MemberNumber memberNumber) {
-        return memberQueryService.exists(memberNumber);
+    public MemberStatus memberStatus(MemberNumber memberNumber) {
+        return memberQueryService.status(memberNumber);
     }
 
     /**

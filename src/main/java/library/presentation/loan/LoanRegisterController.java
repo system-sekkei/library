@@ -4,6 +4,7 @@ import library.application.coordinator.loan.LoanCoordinator;
 import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
+import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import static library.domain.model.loan.rule.Loanability.貸出不可;
+import static library.domain.model.member.MemberStatus.未登録;
 
 /**
  * 貸出の登録画面
@@ -39,7 +41,8 @@ public class LoanRegisterController {
                     RedirectAttributes attributes) {
         if (bindingResult.hasErrors()) return "loan/register/form";
 
-        if (coordinator.invalidMember(loanRequest)) {
+        MemberStatus memberStatus = coordinator.memberStatus(loanRequest);
+        if ( memberStatus == 未登録) {
             bindingResult.addError(
                     new FieldError(bindingResult.getObjectName(),
                     "memberNumber.value", "この番号の会員はいません"));

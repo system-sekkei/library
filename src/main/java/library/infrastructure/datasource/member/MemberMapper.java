@@ -10,6 +10,4 @@ public interface MemberMapper {
 
     boolean exists(MemberNumber memberNumber);
     Member selectMember(MemberNumber memberNumber);
-
-    void insertMember(Member member);
 }

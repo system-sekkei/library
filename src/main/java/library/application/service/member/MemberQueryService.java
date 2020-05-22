@@ -3,6 +3,7 @@ package library.application.service.member;
 import library.application.repository.MemberRepository;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,9 +25,9 @@ public class MemberQueryService {
     }
 
     /**
-     * 会員の存在チェック
+     * 会員登録の状態を確認する
      */
-    public boolean exists(MemberNumber memberNumber) {
-        return memberRepository.exists(memberNumber);
+    public MemberStatus status(MemberNumber memberNumber) {
+        return memberRepository.status(memberNumber);
     }
 }
