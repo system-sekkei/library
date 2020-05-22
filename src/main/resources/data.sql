@@ -60,3 +60,20 @@ DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '1-A';
 -- 貸出したので、貸出中に追加
 INSERT INTO 蔵書.貸出中(蔵書番号)
 VALUES ('1-A');
+
+-- Webで予約した
+INSERT INTO 予約.予約履歴(予約番号, 会員番号, 本番号)
+VALUES
+((SELECT NEXTVAL('予約.予約番号')),1, 4);
+
+-- 取り置いた
+INSERT INTO 予約.取置履歴(予約番号, 蔵書番号, 取置日)
+VALUES
+((SELECT CURRVAL('予約.予約番号')), '4-A', CURRENT_DATE - 20);
+
+INSERT INTO 予約.取置済(蔵書番号, 予約番号, 取置日)
+VALUES
+('4-A', (SELECT CURRVAL('予約.予約番号')), CURRENT_DATE - 20);
+
+DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '4-A';
+INSERT INTO 蔵書.取置中 (蔵書番号) VALUES ('4-A');
