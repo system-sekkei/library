@@ -2,15 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
   <meta charset="utf-8"/>
-  <title>取置済の一覧</title>
+  <title>取置の管理</title>
   <link th:replace="_fragments/counter/head :: css-dark">
 </head>
 <body>
 <nav>
-  <a th:href="@{/retentions/requests}">予約(取置依頼)の一覧</a>
-  | <a th:href="@{/retentions}">取置済の一覧</a>
+  <a th:href="@{/retentions/requests}">予約の管理</a>
+  | <a th:href="@{/retentions}">取置の管理</a>
 </nav>
-<h1>取置済の一覧</h1>
+<h1>取置の管理</h1>
   <p th:text="${retainedList.showCount()}">件</p>
   <form th:action="@{/retentions/loans}" method="post">
   <table class="table">
