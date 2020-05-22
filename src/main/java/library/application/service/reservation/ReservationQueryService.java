@@ -19,7 +19,7 @@ public class ReservationQueryService {
     }
 
     /**
-     * 予約(取置依頼)を一覧する
+     * 未準備の予約を一覧する
      */
     public Reservations reservations() {
         return reservationRepository.findReservations();

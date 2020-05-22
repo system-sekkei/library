@@ -37,21 +37,21 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 予約(取置依頼)を一覧する
+     * 未準備の予約を一覧する
      */
     public Reservations reservations() {
         return reservationQueryService.reservations();
     }
 
     /**
-     * 予約(取置依頼)を取得する
+     * 予約を見つける
      */
     public Reservation reservationOf(ReservationNumber reservationNumber) {
         return reservationQueryService.reservationOf(reservationNumber);
     }
 
     /**
-     * 予約(取置依頼)された本であることを確認する
+     * 予約された本であることを確認する
      */
     public boolean isSameBook(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());
@@ -78,7 +78,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 準備完了を貸し出す
+     * 貸し出す
      */
     public void loan(ItemNumber itemNumber) {
         Retained retained = retentionQueryService.findBy(itemNumber);

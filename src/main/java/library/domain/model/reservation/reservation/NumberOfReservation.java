@@ -12,7 +12,7 @@ public class NumberOfReservation {
 
     @Override
     public String toString() {
-        if (value == 0) return "取置依頼はありません";
+        if (value == 0) return "未準備の予約はありません";
         return value + "件";
     }
 }

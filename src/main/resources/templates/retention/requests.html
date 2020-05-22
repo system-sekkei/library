@@ -7,10 +7,10 @@
 </head>
 <body>
 <nav>
-  <a th:href="@{/retentions/requests}">予約の管理</a>
-  | <a th:href="@{/retentions}">取置の管理</a>
+  <a th:href="@{/retentions/requests}">未準備の予約</a>
+  | <a th:href="@{/retentions}">準備完了・貸出待ち</a>
 </nav>
-<h1>予約(取置依頼)の管理</h1>
+<h1>未準備の予約</h1>
   <p th:text="${reservations.numberOfReservation()}">件</p>
   <form method="get">
   <table class="table">
