@@ -5,9 +5,11 @@ import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
+import library.domain.model.item.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
+import library.domain.model.reservation.availability.BookAvailabilities;
 import library.domain.model.reservation.reservation.Reservation;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +27,14 @@ public class ReservationCoordinator {
         this.memberQueryService = memberQueryService;
         this.bookQueryService = bookQueryService;
     }
+
+    /**
+     * 本を探す
+     */
+    public BookAvailabilities search(Keyword keyword) {
+        return bookQueryService.search(keyword);
+    }
+
 
     /**
      * 本を見つける

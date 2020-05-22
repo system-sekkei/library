@@ -1,8 +1,6 @@
 package library.presentation.returns;
 
-import library.application.service.loan.LoanQueryService;
-import library.application.service.member.MemberQueryService;
-import library.application.service.returns.ReturnBookRecordService;
+import library.application.coordinator.loan.LoanCoordinator;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.returned.ReturnDate;
 import library.domain.model.loan.returned.Returned;
@@ -19,12 +17,10 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("returns/register")
 public class ReturnBookRegisterController {
-    ReturnBookRecordService returnBookRecordService;
-    MemberQueryService memberQueryService;
+    LoanCoordinator loanCoordinator;
 
-    public ReturnBookRegisterController(ReturnBookRecordService returnBookRecordService, LoanQueryService loanQueryService, MemberQueryService memberQueryService) {
-        this.returnBookRecordService = returnBookRecordService;
-        this.memberQueryService = memberQueryService;
+    public ReturnBookRegisterController(LoanCoordinator loanCoordinator) {
+        this.loanCoordinator = loanCoordinator;
     }
 
     @GetMapping
@@ -39,7 +35,7 @@ public class ReturnBookRegisterController {
                     BindingResult result) {
         if (result.hasErrors()) return "returns/register/form";
 
-        returnBookRecordService.registerReturnBook(returned);
+        loanCoordinator.returend(returned);
 
         return "redirect:/returns/register/completed";
     }

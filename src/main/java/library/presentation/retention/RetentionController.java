@@ -4,10 +4,8 @@ import library.application.coordinator.retention.RetentionCoordinator;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
-import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.retention.Retention;
 import library.domain.model.reservation.retention.RetainedList;
+import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,32 +17,15 @@ import org.springframework.web.bind.annotation.*;
 import static library.domain.model.item.ItemStatus.貸出可能;
 
 /**
- * 予約と取置の管理画面
+ * 取置の管理画面
  */
-@Controller
+@Controller("取置の管理")
 @RequestMapping("retentions")
 public class RetentionController {
     RetentionCoordinator retentionCoordinator;
 
     public RetentionController(RetentionCoordinator retentionCoordinator) {
         this.retentionCoordinator = retentionCoordinator;
-    }
-
-    @GetMapping("requests")
-    String requests(Model model) {
-        Reservations reservations = retentionCoordinator.reservations();
-        model.addAttribute("reservations", reservations);
-        return "retention/requests";
-    }
-
-    @GetMapping("requests/{reservationNumber}")
-    String retentionForm(
-            @PathVariable("reservationNumber") ReservationNumber reservationNumber,
-            Model model) {
-        Reservation reservation = retentionCoordinator.reservationOf(reservationNumber);
-        model.addAttribute("reservation", reservation);
-        model.addAttribute("retention", new Retention());
-        return "retention/form";
     }
 
     @PostMapping
@@ -88,7 +69,7 @@ public class RetentionController {
     }
 
     @PostMapping("loans")
-    String loan(@RequestParam("loaned") ItemNumber itemNumber) {
+    String loan(@RequestParam("expired") ItemNumber itemNumber) {
         retentionCoordinator.loan(itemNumber);
         return "redirect:/retentions";
     }

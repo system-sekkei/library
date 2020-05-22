@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import static library.domain.model.member.MemberStatus.未登録;
 
 /**
- * 貸出予約の登録画面
+ * 予約の登録画面
  */
 @Controller
 @RequestMapping("reservation/register")
@@ -31,7 +31,7 @@ public class ReservationController {
     }
 
     @GetMapping(params = {"book"})
-    String init(@RequestParam("book") BookNumber bookNumber, Model model) {
+    String reservationForm(@RequestParam("book") BookNumber bookNumber, Model model) {
         Book book = reservationCoordinator.findBook(bookNumber);
         model.addAttribute("book", book);
         model.addAttribute("member", MemberNumber.empty());

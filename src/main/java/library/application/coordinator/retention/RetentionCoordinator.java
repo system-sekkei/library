@@ -18,7 +18,7 @@ import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
 /**
- * 取置業務
+ * 取置コーディネータ
  */
 @Service
 public class RetentionCoordinator {
@@ -51,7 +51,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 予約(取置依頼)と対応する蔵書であることを確認する
+     * 予約(取置依頼)された本であることを確認する
      */
     public boolean isSameBook(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());

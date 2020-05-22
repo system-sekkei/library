@@ -18,14 +18,14 @@ public class RetentionRecordService {
     }
 
     /**
-     * 予約図書を取り置く
+     * 予約された本を取り置く
      */
     public void registerRetention(Retention retention) {
         retentionRepository.registerRetention(retention);
     }
 
     /**
-     * 取置を消込 (貸し出した）
+     * 取り置いた蔵書を貸し出す(取置を消しこむ)
      */
     public void loaned(ItemNumber itemNumber) {
         retentionRepository.loaned(itemNumber);

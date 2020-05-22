@@ -1,8 +1,7 @@
 package library.presentation.reservation;
 
-import library.application.service.book.BookQueryService;
+import library.application.coordinator.reservation.ReservationCoordinator;
 import library.domain.model.item.bibliography.Keyword;
-import library.domain.model.item.bibliography.Books;
 import library.domain.model.reservation.availability.BookAvailabilities;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("reservation/books")
 public class BookSearchController {
-    BookQueryService bookQueryService;
+    ReservationCoordinator reservationCoordinator;
 
-    public BookSearchController(BookQueryService bookQueryService) {
-        this.bookQueryService = bookQueryService;
+    public BookSearchController(ReservationCoordinator reservationCoordinator) {
+        this.reservationCoordinator = reservationCoordinator;
     }
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        BookAvailabilities availabilities = bookQueryService.search(searchKeyword);
+        BookAvailabilities availabilities = reservationCoordinator.search(searchKeyword);
         model.addAttribute("availabilities", availabilities);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/books/search";

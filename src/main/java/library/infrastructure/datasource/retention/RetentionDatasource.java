@@ -50,8 +50,8 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     public void loaned(ItemNumber itemNumber) {
-        retentionMapper.delete取置済(itemNumber);
         itemMapper.delete取置中(itemNumber);
+        retentionMapper.delete取置済(itemNumber);
     }
 
     @Override
