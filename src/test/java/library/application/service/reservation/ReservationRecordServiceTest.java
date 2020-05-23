@@ -41,7 +41,7 @@ class ReservationRecordServiceTest {
         BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
         Reservation tryingToReserveBook = Reservation.of(member, book.book());
-        reservationRecordService.registerReservation(tryingToReserveBook);
+        reservationRecordService.reserve(tryingToReserveBook);
 
         List<Reservation> result = reservationMapper.selectAllReservation();
 
@@ -54,11 +54,11 @@ class ReservationRecordServiceTest {
         BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
         Reservation tryingToReserveBook = Reservation.of(member, book.book());
-        reservationRecordService.registerReservation(tryingToReserveBook);
+        reservationRecordService.reserve(tryingToReserveBook);
 
         Reservation reservation = reservationMapper.selectAllReservation().get(0);
 
-        reservationRecordService.cancelReservation(reservation);
+        reservationRecordService.cancel(reservation);
 
         List<Reservation> reservations = reservationMapper.selectAllReservation();
 

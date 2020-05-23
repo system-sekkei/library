@@ -1,8 +1,10 @@
 package library.application.service.retention;
 
+import library.application.repository.RetentionNotification;
 import library.application.repository.RetentionRepository;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.reservation.ReservationNumber;
+import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import org.springframework.stereotype.Service;
 public class RetentionRecordService {
 
     RetentionRepository retentionRepository;
+    RetentionNotification retentionNotification;
 
-    public RetentionRecordService(RetentionRepository retentionRepository) {
+    public RetentionRecordService(RetentionRepository retentionRepository, RetentionNotification retentionNotification) {
         this.retentionRepository = retentionRepository;
+        this.retentionNotification = retentionNotification;
     }
 
     /**
@@ -23,6 +27,9 @@ public class RetentionRecordService {
      */
     public void retain(Retention retention) {
         retentionRepository.retained(retention);
+
+        Retained retained = retentionRepository.findBy(retention.itemNumber());
+        retentionNotification.retained(retained);
     }
 
     /**
@@ -39,7 +46,4 @@ public class RetentionRecordService {
         retentionRepository.expire(itemNumber);
     }
 
-    public void cancel(ReservationNumber reservationNumber) {
-        retentionRepository.cancel(reservationNumber);
-    }
 }

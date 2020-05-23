@@ -3,6 +3,7 @@ package library.application.coordinator.retention;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanRegisterService;
 import library.application.service.reservation.ReservationQueryService;
+import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
 import library.application.service.retention.RetentionRecordService;
 import library.domain.model.item.Item;
@@ -23,13 +24,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class RetentionCoordinator {
     ReservationQueryService reservationQueryService;
+    ReservationRecordService reservationRecordService;
     RetentionQueryService retentionQueryService;
     RetentionRecordService retentionRecordService;
     ItemQueryService itemQueryService;
     LoanRegisterService loanRegisterService;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRegisterService loanRegisterService) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRegisterService loanRegisterService) {
         this.reservationQueryService = reservationQueryService;
+        this.reservationRecordService = reservationRecordService;
         this.retentionQueryService = retentionQueryService;
         this.retentionRecordService = retentionRecordService;
         this.itemQueryService = itemQueryService;
@@ -100,6 +103,7 @@ public class RetentionCoordinator {
      * 予約の取り消し
      */
     public void cancel(ReservationNumber reservationNumber) {
-        retentionRecordService.cancel(reservationNumber);
+        Reservation reservation = reservationQueryService.reservationOf(reservationNumber);
+        reservationRecordService.cancel(reservation);
     }
 }

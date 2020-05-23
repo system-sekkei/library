@@ -34,7 +34,7 @@ class ReservationQueryServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
         Reservation tryingToReserveBook = Reservation.of(member, book.book());
-        reservationRecordService.registerReservation(tryingToReserveBook);
+        reservationRecordService.reserve(tryingToReserveBook);
 
         Reservations reservations = reservationQueryService.reservations();
 

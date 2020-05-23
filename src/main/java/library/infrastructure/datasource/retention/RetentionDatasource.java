@@ -61,13 +61,6 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     @Transactional
-    public void cancel(ReservationNumber reservationNumber) {
-        reservationMapper.cancelReservation(reservationNumber);
-        retentionMapper.delete未準備(reservationNumber);
-    }
-
-    @Override
-    @Transactional
     public void expire(ItemNumber itemNumber) {
         Retained retained = retentionMapper.select準備完了(itemNumber);
 

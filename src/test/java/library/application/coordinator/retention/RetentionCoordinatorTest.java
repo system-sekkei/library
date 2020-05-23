@@ -10,7 +10,6 @@ import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservedBook;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -36,7 +35,7 @@ class RetentionCoordinatorTest {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Book book = bookQueryService.findBook(new BookNumber(2));
         Reservation reservation = Reservation.of(member, book);
-        reservationRecordService.registerReservation(reservation);
+        reservationRecordService.reserve(reservation);
 
         // TODO 仕様から再定義
 //        Reservations reservations = retentionCoordinator.retention();

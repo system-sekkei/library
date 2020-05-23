@@ -56,6 +56,6 @@ public class ReservationCoordinator {
     public void reserve(Book book, MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
         Reservation reservation = Reservation.of(member, book);
-        reservationRecordService.registerReservation(reservation);
+        reservationRecordService.reserve(reservation);
     }
 }
