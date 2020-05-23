@@ -5,6 +5,7 @@ import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.ReservationNumber;
 
 /**
  * 準備完了
@@ -19,20 +20,23 @@ public class Retained {
         return expireDate.isExpired();
     }
 
-    public String showBook() {
-        return reservation.showBook();
+    public ReservationNumber reservationNumber() {
+        return reservation.number();
     }
-
-    public MemberNumber memberNumber() {
-        return reservation.memberNumber();
-    }
-
     public String showExpireDate() {
         return ExpireDate.of(retainedDate).show();
     }
 
+    public String showBook() {
+        return reservation.showBook();
+    }
+
     public ItemNumber itemNumber() {
         return itemNumber;
+    }
+
+    public MemberNumber memberNumber() {
+        return reservation.memberNumber();
     }
 
     public LoanRequest toLoanRequest() {

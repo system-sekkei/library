@@ -67,7 +67,7 @@ public class RetentionCoordinator {
      * 取り置く
      */
     public void retain(Retention retention) {
-        retentionRecordService.registerRetention(retention);
+        retentionRecordService.retain(retention);
     }
 
     /**
@@ -82,10 +82,14 @@ public class RetentionCoordinator {
      */
     public void loan(ItemNumber itemNumber) {
         Retained retained = retentionQueryService.findBy(itemNumber);
-        retentionRecordService.loaned(itemNumber);
+        retentionRecordService.loan(itemNumber);
 
         // 貸出の実行
         LoanRequest loanRequest = retained.toLoanRequest();
         loanRegisterService.registerLoan(loanRequest);
+    }
+
+    public void expire(ItemNumber itemNumber) {
+        retentionRecordService.expire(itemNumber);
     }
 }

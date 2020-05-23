@@ -4,6 +4,7 @@ import library.application.coordinator.retention.RetentionCoordinator;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,14 @@ public class RetentionController {
 
     public RetentionController(RetentionCoordinator retentionCoordinator) {
         this.retentionCoordinator = retentionCoordinator;
+    }
+
+    @GetMapping
+    String retainedList(Model model) {
+        RetainedList retainedList = retentionCoordinator.retainedList();
+        System.out.println(retainedList);
+        model.addAttribute("retainedList", retainedList);
+        return "retention/retentions";
     }
 
     @PostMapping
@@ -54,23 +63,18 @@ public class RetentionController {
 
         retentionCoordinator.retain(retention);
 
-        return "redirect:/retentions/requests";
+        return "redirect:/retentions";
     }
 
-    /**
-     * 準備完了の一覧
-     */
-    @GetMapping
-    String retainedList(Model model) {
-        RetainedList retainedList = retentionCoordinator.retainedList();
-        System.out.println(retainedList);
-        model.addAttribute("retainedList", retainedList);
-        return "retention/retentions";
-    }
-
-    @PostMapping("loans")
-    String loan(@RequestParam("expired") ItemNumber itemNumber) {
+    @PostMapping(value = "loans", params = {"loaned"})
+    String loan(@RequestParam("loaned") ItemNumber itemNumber) {
         retentionCoordinator.loan(itemNumber);
+        return "redirect:/retentions";
+    }
+
+    @PostMapping(value = "loans", params = {"expired"})
+    String expired(@RequestParam("expired")ItemNumber itemNumber) {
+        retentionCoordinator.expire(itemNumber);
         return "redirect:/retentions";
     }
 

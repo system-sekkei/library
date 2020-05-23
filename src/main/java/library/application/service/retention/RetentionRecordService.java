@@ -20,14 +20,21 @@ public class RetentionRecordService {
     /**
      * 予約された本を取り置く
      */
-    public void registerRetention(Retention retention) {
-        retentionRepository.registerRetention(retention);
+    public void retain(Retention retention) {
+        retentionRepository.retained(retention);
     }
 
     /**
-     * 取り置いた蔵書を貸し出す(取置を消しこむ)
+     * 取り置いた蔵書を貸し出す(準備完了を消しこむ)
      */
-    public void loaned(ItemNumber itemNumber) {
-        retentionRepository.loaned(itemNumber);
+    public void loan(ItemNumber itemNumber) {
+        retentionRepository.loan(itemNumber);
+    }
+
+    /**
+     * 期限切れにする
+     */
+    public void expire(ItemNumber itemNumber) {
+        retentionRepository.expire(itemNumber);
     }
 }

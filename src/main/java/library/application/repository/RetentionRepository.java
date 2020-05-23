@@ -1,6 +1,7 @@
 package library.application.repository;
 
 import library.domain.model.item.ItemNumber;
+import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import library.domain.model.reservation.retention.RetainedList;
@@ -10,8 +11,9 @@ import library.domain.model.reservation.retention.RetainedList;
  */
 public interface RetentionRepository {
 
-    void registerRetention(Retention retention);
-    void loaned(ItemNumber itemNumber);
+    void retained(Retention retention);
+    void loan(ItemNumber itemNumber);
+    void expire(ItemNumber itemNumber);
 
     RetainedList retentions();
 

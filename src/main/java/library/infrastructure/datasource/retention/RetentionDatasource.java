@@ -26,7 +26,7 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     @Transactional
-    public void registerRetention(Retention retention) {
+    public void retained(Retention retention) {
         ReservationNumber reservationNumber = retention.reservationNumber();
         ItemNumber itemNumber = retention.itemNumber();
         RetainedDate retainedDate = RetainedDate.now();
@@ -49,8 +49,22 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
-    public void loaned(ItemNumber itemNumber) {
+    @Transactional
+    public void loan(ItemNumber itemNumber) {
         itemMapper.delete取置中(itemNumber);
+        retentionMapper.delete準備完了(itemNumber);
+    }
+
+    @Override
+    @Transactional
+    public void expire(ItemNumber itemNumber) {
+        Retained retained = retentionMapper.select準備完了(itemNumber);
+
+        retentionMapper.insert取置期限切れ(retained.reservationNumber());
+
+        itemMapper.delete取置中(itemNumber);
+        itemMapper.insert貸出可能(itemNumber);
+
         retentionMapper.delete準備完了(itemNumber);
     }
 

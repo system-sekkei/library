@@ -30,4 +30,6 @@ public interface RetentionMapper {
 
     Retained select準備完了(ItemNumber itemNumber);
     void delete準備完了(ItemNumber itemNumber);
+
+    void insert取置期限切れ(ReservationNumber reservationNumber);
 }

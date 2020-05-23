@@ -51,4 +51,8 @@
         FROM 予約.準備完了
         WHERE 蔵書番号 = #{value}
     </select>
+
+    <insert id="insert取置期限切れ">
+        INSERT INTO 予約.取置期限切れ履歴(予約番号) VALUES (#{value})
+    </insert>
 </mapper>
