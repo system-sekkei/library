@@ -4,7 +4,6 @@ import library.application.coordinator.retention.RetentionCoordinator;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Controller;
