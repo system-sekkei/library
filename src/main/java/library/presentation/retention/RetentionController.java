@@ -15,6 +15,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
+import static library.domain.model.item.ItemStatus.未登録;
 import static library.domain.model.item.ItemStatus.貸出可能;
 
 /**
@@ -32,7 +33,6 @@ public class RetentionController {
     @GetMapping
     String retainedList(Model model) {
         RetainedList retainedList = retentionCoordinator.retainedList();
-        System.out.println(retainedList);
         model.addAttribute("retainedList", retainedList);
         return "retention/retentions";
     }
@@ -48,13 +48,20 @@ public class RetentionController {
             return "retention/form";
         }
 
-        if (!retentionCoordinator.isSameBook(reservation, retention)) {
+        ItemStatus itemStatus = retentionCoordinator.itemStatus(retention.itemNumber());
+
+        if (itemStatus == 未登録) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
-                    "itemNumber.value", "予約された本の蔵書ではありません"));
+                    "itemNumber.value", itemStatus.description()));
             return "retention/form";
         }
 
-        ItemStatus itemStatus = retentionCoordinator.itemStatus(retention.itemNumber());
+        if (!retentionCoordinator.isSameBook(reservation, retention)) {
+            bindingResult.addError(new FieldError(bindingResult.getObjectName(),
+                    "itemNumber.value", "予約された本ではありません"));
+            return "retention/form";
+        }
+
         if (itemStatus != 貸出可能) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
                     "itemNumber.value", itemStatus.description()));
