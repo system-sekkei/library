@@ -69,7 +69,7 @@ public class RetentionController {
 
         retentionCoordinator.retain(retention);
 
-        return "redirect:/retentions";
+        return "redirect:/retentions/requests";
     }
 
     @PostMapping(value = "loans", params = {"loaned"})

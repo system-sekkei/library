@@ -8,6 +8,7 @@ import library.domain.model.reservation.retention.RetainedDate;
 import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
 import library.infrastructure.datasource.item.ItemMapper;
+import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,11 +18,13 @@ import java.util.List;
 public class RetentionDatasource implements RetentionRepository {
     RetentionMapper retentionMapper;
     ItemMapper itemMapper;
+    ReservationMapper reservationMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public RetentionDatasource(RetentionMapper retentionMapper, ItemMapper itemMapper) {
+    public RetentionDatasource(RetentionMapper retentionMapper, ItemMapper itemMapper, ReservationMapper reservationMapper) {
         this.retentionMapper = retentionMapper;
         this.itemMapper = itemMapper;
+        this.reservationMapper = reservationMapper;
     }
 
     @Override
@@ -48,11 +51,19 @@ public class RetentionDatasource implements RetentionRepository {
         return retentionMapper.select準備完了(itemNumber);
     }
 
+
     @Override
     @Transactional
     public void loan(ItemNumber itemNumber) {
         itemMapper.delete取置中(itemNumber);
         retentionMapper.delete準備完了(itemNumber);
+    }
+
+    @Override
+    @Transactional
+    public void cancel(ReservationNumber reservationNumber) {
+        reservationMapper.cancelReservation(reservationNumber);
+        retentionMapper.delete未準備(reservationNumber);
     }
 
     @Override

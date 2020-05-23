@@ -12,7 +12,6 @@
 </nav>
 <h1>未準備の予約</h1>
   <p th:text="${reservations.numberOfReservation()}">件</p>
-  <form method="get">
   <table class="table">
     <thead>
     <tr>
@@ -27,15 +26,17 @@
       <td th:text="${reservation.member().number()}"></td>
       <td th:text="${reservation.showBook()}"></td>
       <td>
-        <button type="submit" th:formaction="'/retentions/requests/' + ${reservation.number()}">取置
-        </button>
+        <form th:action="@{/retentions/requests/{reservation}(reservation=${reservation.number()})}" method="get">
+        <button type="submit">取置</button>
+        </form>
       </td>
       <td>
+        <form th:action="@{/retentions/requests/canceled}" method="post">
         <button type="submit" name="notAvailable" th:value="${reservation.number()}">在庫なし</button>
+        </form>
       </td>
     </tr>
     </tbody>
   </table>
-  </form>
 </body>
 </html>

@@ -89,7 +89,17 @@ public class RetentionCoordinator {
         loanRegisterService.registerLoan(loanRequest);
     }
 
+    /**
+     * 取置の期限切れ
+     */
     public void expire(ItemNumber itemNumber) {
         retentionRecordService.expire(itemNumber);
+    }
+
+    /**
+     * 予約の取り消し
+     */
+    public void cancel(ReservationNumber reservationNumber) {
+        retentionRecordService.cancel(reservationNumber);
     }
 }

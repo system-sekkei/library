@@ -2,6 +2,7 @@ package library.application.service.retention;
 
 import library.application.repository.RetentionRepository;
 import library.domain.model.item.ItemNumber;
+import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +37,9 @@ public class RetentionRecordService {
      */
     public void expire(ItemNumber itemNumber) {
         retentionRepository.expire(itemNumber);
+    }
+
+    public void cancel(ReservationNumber reservationNumber) {
+        retentionRepository.cancel(reservationNumber);
     }
 }

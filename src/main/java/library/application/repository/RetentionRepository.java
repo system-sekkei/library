@@ -18,4 +18,6 @@ public interface RetentionRepository {
     RetainedList retentions();
 
     Retained findBy(ItemNumber itemNumber);
+
+    void cancel(ReservationNumber reservationNumber);
 }
