@@ -43,7 +43,7 @@ public class LoanCoordinator {
      * 貸出制限を判断する
      */
     public Loanability loanability(LoanRequest loanRequest) {
-        LoanStatus loanStatus = loanQueryService.loanStatusOf(loanRequest.memberNumber());
+        LoanStatus loanStatus = loanQueryService.status(loanRequest.memberNumber());
         return loanStatus.shouldRestrict();
     }
 
@@ -58,13 +58,13 @@ public class LoanCoordinator {
      * 貸出状況を提示する
      */
     public LoanStatus loanStatus(LoanRequest loanRequest) {
-        return loanQueryService.loanStatusOf(loanRequest.memberNumber());
+        return loanQueryService.status(loanRequest.memberNumber());
     }
 
     /**
      * 返却を受け付ける
      */
     public void returend(Returned returned) {
-        returnBookRecordService.registerReturnBook(returned);
+        returnBookRecordService.returned(returned);
     }
 }

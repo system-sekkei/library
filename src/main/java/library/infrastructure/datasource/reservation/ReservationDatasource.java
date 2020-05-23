@@ -23,7 +23,7 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     @Transactional
-    public void registerReservation(Reservation reservation) {
+    public void reserve(Reservation reservation) {
         ReservationNumber reservationNumber = reservationMapper.nextNumber();
         reservationMapper.insertReservation(
                 reservationNumber,
@@ -34,19 +34,19 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
-    public Reservations findReservations() {
+    public Reservations reservations() {
         List<Reservation> reservations = reservationMapper.selectAllReservation();
         return new Reservations(reservations);
     }
 
     @Override
-    public Reservation reservationOf(ReservationNumber reservationNumber) {
+    public Reservation findBy(ReservationNumber reservationNumber) {
         return reservationMapper.selectReservation(reservationNumber);
     }
 
     @Override
     @Transactional
-    public void cancelReservation(Reservation reservation) {
+    public void cancel(Reservation reservation) {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
         retentionMapper.delete未準備(reservationNumber);

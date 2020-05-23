@@ -18,7 +18,7 @@ public class ReturnBookRecordService {
     /**
      * 返却を登録する
      */
-    public void registerReturnBook(Returned returned) {
-        loanRepository.registerReturnBook(returned);
+    public void returned(Returned returned) {
+        loanRepository.returned(returned);
     }
 }

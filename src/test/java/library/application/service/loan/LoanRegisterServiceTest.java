@@ -30,7 +30,7 @@ class LoanRegisterServiceTest {
         LoanRequest loanRequest = new LoanRequest(new MemberNumber(1), itemNumber, LoanDate.parse("2020-02-20"));
         loanRegisterService.registerLoan(loanRequest);
 
-        Loan loan = loanQueryService.findLoanByItemNumber(itemNumber);
+        Loan loan = loanQueryService.findBy(itemNumber);
 
         assertAll(
                 () -> assertEquals(loan.member().number().value(), 1),

@@ -22,14 +22,14 @@ public class ReservationRecordService {
      * 貸出を予約する
      */
     public void reserve(Reservation tryingToReserveBook) {
-        reservationRepository.registerReservation(tryingToReserveBook);
+        reservationRepository.reserve(tryingToReserveBook);
     }
 
     /**
      * 貸出予約を取消す
      */
     public void cancel(Reservation reservation) {
-        reservationRepository.cancelReservation(reservation);
+        reservationRepository.cancel(reservation);
         retentionNotification.notAvailable(reservation);
     }
 }

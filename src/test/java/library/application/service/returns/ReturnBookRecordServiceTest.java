@@ -32,8 +32,8 @@ class ReturnBookRecordServiceTest {
         ReturnDate returnDate = ReturnDate.parse("2020-02-20");
 
         Returned returned = new Returned(itemNumber, returnDate);
-        returnBookRecordService.registerReturnBook(returned);
+        returnBookRecordService.returned(returned);
 
-        assertThrows(IllegalArgumentException.class, () -> loanQueryService.findLoanByItemNumber(new ItemNumber("1-A")));
+        assertThrows(IllegalArgumentException.class, () -> loanQueryService.findBy(new ItemNumber("1-A")));
     }
 }

@@ -37,7 +37,7 @@ class LoanDataSourceTest {
                         .param("loanDate.value", "2020-02-14"));
 
         ItemNumber itemNumber = new ItemNumber("2-C");
-        Loan loan = loanDataSource.findLoanByItemNumber(itemNumber);
+        Loan loan = loanDataSource.findBy(itemNumber);
 
         assertEquals("2020-02-14", loan.date().toString());
     }
@@ -52,9 +52,9 @@ class LoanDataSourceTest {
 
         ItemNumber itemNumber = new ItemNumber("2-D");
         ReturnDate returnDate = ReturnDate.parse("2019-01-01");
-        returnBookRecordService.registerReturnBook(new Returned(itemNumber, returnDate));
+        returnBookRecordService.returned(new Returned(itemNumber, returnDate));
 
 
-        assertThrows(IllegalArgumentException.class, () -> loanDataSource.findLoanByItemNumber(itemNumber));
+        assertThrows(IllegalArgumentException.class, () -> loanDataSource.findBy(itemNumber));
     }
 }

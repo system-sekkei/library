@@ -6,11 +6,11 @@ import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
 
 public interface ReservationRepository {
-    void registerReservation(Reservation tryingToReserveBook);
+    void reserve(Reservation tryingToReserveBook);
 
-    Reservations findReservations();
+    Reservations reservations();
 
-    Reservation reservationOf(ReservationNumber reservationNumber);
+    Reservation findBy(ReservationNumber reservationNumber);
 
-    void cancelReservation(Reservation reservation);
+    void cancel(Reservation reservation);
 }

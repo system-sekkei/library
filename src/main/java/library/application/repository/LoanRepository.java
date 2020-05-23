@@ -12,11 +12,11 @@ import library.domain.model.loan.loan.LoanRequest;
  */
 public interface LoanRepository {
 
-    void registerLoan(LoanRequest loanRequest);
+    void loan(LoanRequest loanRequest);
 
-    LoanStatus loanStatus(MemberNumber memberNumber);
+    LoanStatus status(MemberNumber memberNumber);
 
-    Loan findLoanByItemNumber(ItemNumber itemNumber);
+    Loan findBy(ItemNumber itemNumber);
 
-    void registerReturnBook(Returned returned);
+    void returned(Returned returned);
 }

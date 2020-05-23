@@ -33,7 +33,7 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     @Transactional
-    public void registerLoan(LoanRequest loanRequest) {
+    public void loan(LoanRequest loanRequest) {
         ItemNumber itemNumber = loanRequest.itemNumber();
 
         if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
@@ -53,7 +53,7 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     @Transactional
-    public void registerReturnBook(Returned returned) {
+    public void returned(Returned returned) {
         ItemNumber itemNumber = returned.itemNumber();
         Loan loan = loanMapper.selectByItemNumber(itemNumber)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書番号：%s", itemNumber)));
@@ -65,14 +65,14 @@ public class LoanDataSource implements LoanRepository {
 
 
     @Override
-    public LoanStatus loanStatus(MemberNumber memberNumber) {
+    public LoanStatus status(MemberNumber memberNumber) {
         List<Loan> loans = loanMapper.selectByMemberNumber(memberNumber);
         Member member = memberMapper.selectMember(memberNumber);
         return new LoanStatus(member, new Loans(loans), new CurrentDate(LocalDate.now()));
     }
 
     @Override
-    public Loan findLoanByItemNumber(ItemNumber itemNumber) {
+    public Loan findBy(ItemNumber itemNumber) {
         return loanMapper.selectByItemNumber(itemNumber).orElseThrow(() ->
                 new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書番号：%s", itemNumber)));
     }

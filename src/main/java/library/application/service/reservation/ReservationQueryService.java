@@ -1,7 +1,6 @@
 package library.application.service.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.member.Member;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
@@ -22,13 +21,13 @@ public class ReservationQueryService {
      * 未準備の予約を一覧する
      */
     public Reservations reservations() {
-        return reservationRepository.findReservations();
+        return reservationRepository.reservations();
     }
 
     /**
      * 予約を見つける
      */
     public Reservation reservationOf(ReservationNumber reservationNumber) {
-        return reservationRepository.reservationOf(reservationNumber);
+        return reservationRepository.findBy(reservationNumber);
     }
 }

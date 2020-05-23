@@ -21,15 +21,14 @@ public class LoanQueryService {
     /**
      * 会員の全貸出図書を一覧する
      */
-    public LoanStatus loanStatusOf(MemberNumber memberNumber) {
-        LoanStatus loanStatus = loanRepository.loanStatus(memberNumber);
-        return loanStatus;
+    public LoanStatus status(MemberNumber memberNumber) {
+        return loanRepository.status(memberNumber);
     }
 
     /**
      * 貸出を見つける
      */
-    public Loan findLoanByItemNumber(ItemNumber itemNumber) {
-        return loanRepository.findLoanByItemNumber(itemNumber);
+    public Loan findBy(ItemNumber itemNumber) {
+        return loanRepository.findBy(itemNumber);
     }
 }
