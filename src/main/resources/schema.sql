@@ -118,6 +118,6 @@ CREATE TABLE 予約.取置解放履歴 (
 );
 -- 取置の期限切れ
 CREATE TABLE 予約.取置期限切れ履歴 (
-   予約番号 INTEGER PRIMARY KEY REFERENCES 予約.取置履歴,
+   予約番号 INTEGER PRIMARY KEY REFERENCES 予約.取置解放履歴,
    登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 )
