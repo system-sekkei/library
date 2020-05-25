@@ -5,6 +5,9 @@ import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
 
+/**
+ * 予約リポジトリ
+ */
 public interface ReservationRepository {
     void reserve(Reservation tryingToReserveBook);
 
