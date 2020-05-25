@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.retention;
 
 import library.application.repository.RetentionRepository;
+import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;
@@ -54,22 +55,17 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     @Transactional
-    public void loan(ItemNumber itemNumber) {
-        itemMapper.delete取置中(itemNumber);
-        retentionMapper.delete準備完了(itemNumber);
+    public void recordLoan(ItemNumber itemNumber) {
+        // TODO 実装
+        // itemMapper.delete取置中(itemNumber);
+        // retentionMapper.delete準備完了(itemNumber);
     }
 
     @Override
     @Transactional
-    public void expire(ItemNumber itemNumber) {
-        Retained retained = retentionMapper.select準備完了(itemNumber);
-
+    public void recordExpire(Retained retained) {
         retentionMapper.insert取置期限切れ(retained.reservationNumber());
-
-        itemMapper.delete取置中(itemNumber);
-        itemMapper.insert貸出可能(itemNumber);
-
-        retentionMapper.delete準備完了(itemNumber);
+        itemMapper.insert貸出可能(retained.itemNumber());
     }
 
     @Override
@@ -78,4 +74,10 @@ public class RetentionDatasource implements RetentionRepository {
         return new RetainedList(list);
     }
 
+    @Override
+    @Transactional
+    public void release(ItemNumber itemNumber) {
+        itemMapper.delete取置中(itemNumber);
+        retentionMapper.delete準備完了(itemNumber);
+    }
 }

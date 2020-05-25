@@ -19,7 +19,7 @@ public class LoanQueryService {
     }
 
     /**
-     * 会員の全貸出図書を一覧する
+     * 会員の貸出を一覧する
      */
     public LoanStatus status(MemberNumber memberNumber) {
         return loanRepository.status(memberNumber);

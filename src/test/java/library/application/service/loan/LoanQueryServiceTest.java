@@ -32,7 +32,7 @@ class LoanQueryServiceTest {
     MemberQueryService memberQueryService;
 
     @Test
-    void 貸出図書を取得できる() {
+    void 貸出を取得できる() {
         registerLoan(new ItemNumber("2-A"), 1);
 
         Loan loan = loanQueryService.findBy(new ItemNumber("2-A"));
@@ -41,7 +41,7 @@ class LoanQueryServiceTest {
     }
 
     @Test
-    void 返却された貸出図書は取得できない() {
+    void 返却された貸出は取得できない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerLoan(itemNumber, 1);
         returnBookRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
@@ -50,7 +50,7 @@ class LoanQueryServiceTest {
     }
 
     @Test
-    void 会員が現在借りている全貸出図書取得時に返却した貸出図書が含まれない() {
+    void 会員が現在借りている全貸出取得時に返却した貸出が含まれない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerLoan(itemNumber, 2);
         returnBookRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));

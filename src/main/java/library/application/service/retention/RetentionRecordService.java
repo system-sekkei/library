@@ -3,7 +3,6 @@ package library.application.service.retention;
 import library.application.repository.RetentionNotification;
 import library.application.repository.RetentionRepository;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
@@ -36,14 +35,17 @@ public class RetentionRecordService {
      * 取り置いた蔵書を貸し出す(準備完了を消しこむ)
      */
     public void loan(ItemNumber itemNumber) {
-        retentionRepository.loan(itemNumber);
+        retentionRepository.release(itemNumber);
+        retentionRepository.recordLoan(itemNumber);
     }
 
     /**
      * 期限切れにする
      */
     public void expire(ItemNumber itemNumber) {
-        retentionRepository.expire(itemNumber);
+        Retained retained = retentionRepository.findBy(itemNumber);
+        retentionRepository.release(itemNumber);
+        retentionRepository.recordExpire(retained);
     }
 
 }

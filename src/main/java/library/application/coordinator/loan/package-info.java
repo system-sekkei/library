@@ -1,4 +1,4 @@
 /**
- * 貸出図書コーディネーター
+ * 貸出コーディネーター
  */
 package library.application.coordinator.loan;
