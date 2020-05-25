@@ -9,6 +9,7 @@ import library.application.service.retention.RetentionRecordService;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
+import library.domain.model.item.bibliography.BookMatching;
 import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
@@ -56,7 +57,7 @@ public class RetentionCoordinator {
     /**
      * 予約された本であることを確認する
      */
-    public boolean isSameBook(Reservation reservation, Retention retention) {
+    public BookMatching isSameBook(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());
         return item.isSameBook(reservation.book());
     }
