@@ -13,9 +13,10 @@ import library.domain.model.reservation.retention.RetainedList;
 public interface RetentionRepository {
 
     void retained(Retention retention);
+
     void release(ItemNumber itemNumber);
-    void recordLoan(ItemNumber itemNumber);
-    void recordExpire(Retained retained);
+    void loaned(Retained retained);
+    void expired(Retained retained);
 
 
     RetainedList retentions();

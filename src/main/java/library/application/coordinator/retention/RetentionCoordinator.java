@@ -84,19 +84,19 @@ public class RetentionCoordinator {
      * 貸し出す
      */
     public void loan(ItemNumber itemNumber) {
-        Retained retained = retentionQueryService.findBy(itemNumber);
-        retentionRecordService.loan(itemNumber);
+        retentionRecordService.releaseAndLoan(itemNumber);
 
         // 貸出の実行
+        Retained retained = retentionQueryService.findBy(itemNumber);
         LoanRequest loanRequest = retained.toLoanRequest();
-        loanRegisterService.registerLoan(loanRequest);
+        loanRegisterService.loaned(loanRequest);
     }
 
     /**
      * 取置の期限切れ
      */
     public void expire(ItemNumber itemNumber) {
-        retentionRecordService.expire(itemNumber);
+        retentionRecordService.releaseAndExpire(itemNumber);
     }
 
     /**

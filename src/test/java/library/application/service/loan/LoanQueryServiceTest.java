@@ -62,6 +62,6 @@ class LoanQueryServiceTest {
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {
         MemberNumber member = new MemberNumber(memberNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemNumber, LoanDate.parse("2020-02-20"));
-        loanRegisterService.registerLoan(loanRequest);
+        loanRegisterService.loaned(loanRequest);
     }
 }

@@ -16,9 +16,9 @@ public class LoanRegisterService {
     }
 
     /**
-     * 貸出を登録する
+     * 貸出を記録する
      */
-    public void registerLoan(LoanRequest loanRequest) {
+    public void loaned(LoanRequest loanRequest) {
         loanRepository.loan(loanRequest);
     }
 }

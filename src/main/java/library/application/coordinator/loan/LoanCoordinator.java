@@ -48,10 +48,10 @@ public class LoanCoordinator {
     }
 
     /**
-     * 貸出を受け付ける
+     * 貸し出す
      */
     public void loan(LoanRequest loanRequest) {
-        loanRegisterService.registerLoan(loanRequest);
+        loanRegisterService.loaned(loanRequest);
     }
 
     /**

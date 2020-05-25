@@ -52,19 +52,16 @@ public class RetentionDatasource implements RetentionRepository {
         return retentionMapper.select準備完了(itemNumber);
     }
 
-
     @Override
     @Transactional
-    public void recordLoan(ItemNumber itemNumber) {
-        // TODO 実装
-        // itemMapper.delete取置中(itemNumber);
-        // retentionMapper.delete準備完了(itemNumber);
+    public void loaned(Retained retained) {
+        retentionMapper.insert取置貸出履歴(retained.reservationNumber(), retained.itemNumber());
     }
 
     @Override
     @Transactional
-    public void recordExpire(Retained retained) {
-        retentionMapper.insert取置期限切れ(retained.reservationNumber());
+    public void expired(Retained retained) {
+        retentionMapper.insert取置期限切れ履歴(retained.reservationNumber());
         itemMapper.insert貸出可能(retained.itemNumber());
     }
 
