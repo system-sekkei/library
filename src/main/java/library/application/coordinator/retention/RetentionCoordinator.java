@@ -56,7 +56,7 @@ public class RetentionCoordinator {
      */
     public BookMatching isSameBook(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());
-        return new BookMatching(reservation.book(), item);
+        return retentionRecordService.bookMatching(reservation, item);
     }
     /**
      * 蔵書の状態を確認する

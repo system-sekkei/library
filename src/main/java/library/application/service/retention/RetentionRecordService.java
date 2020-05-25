@@ -2,7 +2,11 @@ package library.application.service.retention;
 
 import library.application.repository.RetentionNotification;
 import library.application.repository.RetentionRepository;
+import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
+import library.domain.model.item.bibliography.Book;
+import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.retention.BookMatching;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
@@ -21,6 +25,14 @@ public class RetentionRecordService {
         this.retentionNotification = retentionNotification;
     }
 
+    /**
+     * 予約された本であることを確認する
+     */
+    public BookMatching bookMatching(Reservation reservation, Item item) {
+        Book requested = reservation.book();
+        Book toRetain = item.book();
+        return BookMatching.isSame(requested, toRetain);
+    }
     /**
      * 予約された本を取り置く
      */
