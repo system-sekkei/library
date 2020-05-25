@@ -9,14 +9,11 @@ import library.application.service.retention.RetentionRecordService;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
-import library.domain.model.item.bibliography.BookMatching;
+import library.domain.model.reservation.retention.*;
 import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.reservation.reservation.Reservation;
 import library.domain.model.reservation.reservation.ReservationNumber;
 import library.domain.model.reservation.reservation.Reservations;
-import library.domain.model.reservation.retention.Retained;
-import library.domain.model.reservation.retention.RetainedList;
-import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
 /**
@@ -59,7 +56,7 @@ public class RetentionCoordinator {
      */
     public BookMatching isSameBook(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());
-        return item.isSameBook(reservation.book());
+        return new BookMatching(reservation.book(), item);
     }
     /**
      * 蔵書の状態を確認する

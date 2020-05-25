@@ -22,15 +22,15 @@ public class Book {
         return bookNumber;
     }
 
+    public boolean isSame(Book other) {
+        return bookNumber.sameValue(other.bookNumber);
+    }
     public Title title() {
         return title;
     }
 
     public String show() {
         return String.format("%s (%s)", title, author);
-    }
-    public boolean isSameBook(Book other) {
-        return bookNumber().sameValue(other.bookNumber);
     }
 
     @Override

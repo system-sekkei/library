@@ -3,8 +3,8 @@ package library.presentation.retention;
 import library.application.coordinator.retention.RetentionCoordinator;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
-import library.domain.model.item.bibliography.BookMatching;
 import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.retention.BookMatching;
 import library.domain.model.reservation.retention.RetainedList;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static library.domain.model.item.ItemStatus.未登録;
 import static library.domain.model.item.ItemStatus.貸出可能;
-import static library.domain.model.item.bibliography.BookMatching.不一致;
+import static library.domain.model.reservation.retention.BookMatchingType.不一致;
 
 /**
  * 取置の管理画面
@@ -58,7 +58,7 @@ public class RetentionController {
         }
 
         BookMatching bookMatching = retentionCoordinator.isSameBook(reservation, retention);
-        if (bookMatching == 不一致) {
+        if (bookMatching.result() == 不一致) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
                     "itemNumber.value", bookMatching.description()));
             return "retention/form";
