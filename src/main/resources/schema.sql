@@ -110,7 +110,7 @@ CREATE TABLE 蔵書.取置中 (
 );
 
 --　取置を貸し出した記録
-CREATE TABLE 予約.取置貸出履歴 (
+CREATE TABLE 予約.取置解放履歴 (
     予約番号 INTEGER PRIMARY KEY ,
     蔵書番号 VARCHAR(40) NOT NULL ,
     登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -52,8 +52,8 @@
         WHERE 蔵書番号 = #{value}
     </select>
 
-    <insert id="insert取置貸出履歴">
-        INSERT INTO 予約.取置貸出履歴(予約番号, 蔵書番号)
+    <insert id="insert取置解放履歴">
+        INSERT INTO 予約.取置解放履歴(予約番号, 蔵書番号)
         VALUES (#{reservationNumber.value}, #{itemNumber.value})
     </insert>
 

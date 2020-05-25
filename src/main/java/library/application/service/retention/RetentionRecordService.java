@@ -34,10 +34,9 @@ public class RetentionRecordService {
     /**
      * 取り置いた蔵書を貸し出す(準備完了を消しこむ)
      */
-    public void releaseAndLoan(ItemNumber itemNumber) {
+    public void releaseForLoan(ItemNumber itemNumber) {
         Retained retained = retentionRepository.findBy(itemNumber);
-        retentionRepository.release(itemNumber);
-        retentionRepository.loaned(retained);
+        retentionRepository.released(retained);
     }
 
     /**
@@ -45,7 +44,7 @@ public class RetentionRecordService {
      */
     public void releaseAndExpire(ItemNumber itemNumber) {
         Retained retained = retentionRepository.findBy(itemNumber);
-        retentionRepository.release(itemNumber);
+        retentionRepository.released(retained);
         retentionRepository.expired(retained);
     }
 

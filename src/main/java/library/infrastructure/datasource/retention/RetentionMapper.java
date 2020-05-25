@@ -31,7 +31,7 @@ public interface RetentionMapper {
     Retained select準備完了(ItemNumber itemNumber);
     void delete準備完了(ItemNumber itemNumber);
 
-    void insert取置貸出履歴(
+    void insert取置解放履歴(
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("itemNumber") ItemNumber itemNumber);
 

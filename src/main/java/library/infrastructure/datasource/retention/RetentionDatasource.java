@@ -29,6 +29,11 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
+    public Retained findBy(ItemNumber itemNumber) {
+        return retentionMapper.select準備完了(itemNumber);
+    }
+
+    @Override
     @Transactional
     public void retained(Retention retention) {
         ReservationNumber reservationNumber = retention.reservationNumber();
@@ -48,33 +53,29 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
-    public Retained findBy(ItemNumber itemNumber) {
-        return retentionMapper.select準備完了(itemNumber);
-    }
-
-    @Override
     @Transactional
-    public void loaned(Retained retained) {
-        retentionMapper.insert取置貸出履歴(retained.reservationNumber(), retained.itemNumber());
+    public void released(Retained retained) {
+        ItemNumber itemNumber = retained.itemNumber();
+        retentionMapper.insert取置解放履歴(retained.reservationNumber(), itemNumber);
+
+        // 蔵書の状態
+        itemMapper.delete取置中(itemNumber);
+        itemMapper.insert貸出可能(itemNumber);
+
+        //　予約の状態
+        retentionMapper.delete準備完了(itemNumber);
+
     }
 
     @Override
     @Transactional
     public void expired(Retained retained) {
         retentionMapper.insert取置期限切れ履歴(retained.reservationNumber());
-        itemMapper.insert貸出可能(retained.itemNumber());
     }
 
     @Override
     public RetainedList retentions() {
         List<Retained> list = retentionMapper.selectAll準備完了();
         return new RetainedList(list);
-    }
-
-    @Override
-    @Transactional
-    public void release(ItemNumber itemNumber) {
-        itemMapper.delete取置中(itemNumber);
-        retentionMapper.delete準備完了(itemNumber);
     }
 }

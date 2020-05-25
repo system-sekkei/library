@@ -14,8 +14,7 @@ public interface RetentionRepository {
 
     void retained(Retention retention);
 
-    void release(ItemNumber itemNumber);
-    void loaned(Retained retained);
+    void released(Retained retained);
     void expired(Retained retained);
 
 
