@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.repository.ReservationRepository;
-import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
-import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.request.Reservations;
 import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;

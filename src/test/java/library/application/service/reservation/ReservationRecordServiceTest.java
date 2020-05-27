@@ -7,7 +7,7 @@ import library.domain.model.item.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.BookAvailability;
-import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.request.Reservation;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

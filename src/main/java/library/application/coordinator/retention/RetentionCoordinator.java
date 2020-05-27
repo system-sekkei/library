@@ -11,9 +11,9 @@ import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.retention.*;
 import library.domain.model.loan.loan.LoanRequest;
-import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
-import library.domain.model.reservation.reservation.Reservations;
+import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.request.Reservations;
 import org.springframework.stereotype.Service;
 
 /**

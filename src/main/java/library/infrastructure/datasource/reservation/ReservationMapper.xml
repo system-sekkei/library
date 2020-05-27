@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.reservation.ReservationMapper">
-    <select id="nextNumber" resultType="library.domain.model.reservation.reservation.ReservationNumber">
+    <select id="nextNumber" resultType="library.domain.model.reservation.request.ReservationNumber">
         SELECT NEXTVAL('予約.予約番号') AS "value"
     </select>
 
@@ -12,7 +12,7 @@
         VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{bookNumber.value})
     </insert>
 
-    <resultMap id="reservation" type="library.domain.model.reservation.reservation.Reservation">
+    <resultMap id="reservation" type="library.domain.model.reservation.request.Reservation">
         <association property="member"
                      column="memberNumber.value"
                      select="library.infrastructure.datasource.member.MemberMapper.selectMember" />

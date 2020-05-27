@@ -2,8 +2,8 @@ package library.infrastructure.datasource.reservation;
 
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.reservation.ReservationNumber;
-import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.request.Reservation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

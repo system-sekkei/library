@@ -1,9 +1,6 @@
-package library.domain.model.reservation.reservation;
-
-import library.domain.model.item.bibliography.BookNumbers;
+package library.domain.model.reservation.request;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 貸出予約リスト

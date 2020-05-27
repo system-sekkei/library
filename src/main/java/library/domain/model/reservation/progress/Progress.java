@@ -1,4 +1,4 @@
-package library.domain.model.reservation;
+package library.domain.model.reservation.progress;
 
 /**
  * 予約の進捗

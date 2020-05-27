@@ -5,14 +5,14 @@ import library.application.repository.RetentionRepository;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.bibliography.Book;
-import library.domain.model.reservation.Progress;
-import library.domain.model.reservation.reservation.Reservation;
+import library.domain.model.reservation.progress.Progress;
+import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.retention.BookMatching;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.Retention;
 import org.springframework.stereotype.Service;
 
-import static library.domain.model.reservation.Progress.*;
+import static library.domain.model.reservation.progress.Progress.*;
 
 /**
  * 取置登録サービス

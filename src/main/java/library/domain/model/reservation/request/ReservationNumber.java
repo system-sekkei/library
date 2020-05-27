@@ -1,4 +1,4 @@
-package library.domain.model.reservation.reservation;
+package library.domain.model.reservation.request;
 
 /**
  * 予約番号

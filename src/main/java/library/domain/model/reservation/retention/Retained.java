@@ -4,8 +4,8 @@ import library.domain.model.item.ItemNumber;
 import library.domain.model.loan.loan.LoanDate;
 import library.domain.model.loan.loan.LoanRequest;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.reservation.Reservation;
-import library.domain.model.reservation.reservation.ReservationNumber;
+import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.ReservationNumber;
 
 /**
  * 準備完了
