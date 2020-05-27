@@ -11,22 +11,33 @@
 * Gradleタスク jigReportを実行(設計ドキュメントの出力)
 
 #### アプリケーションの内容
-図書館アプリケーションの要件は RDRA 2.0 ハンドブックを参照してください。
+RDRA 2.0 ハンドブックのサンプル「図書館システム」の以下の業務を実装しています。
+
+![business-usecase](https://user-images.githubusercontent.com/3654676/83082211-b4c08380-a0bd-11ea-8c31-a2b413c60c32.png)
 
 アプリケーションは、```http://localhost:8080```でトップ画面を表示できます。
 
 #### 設計ドキュメント
 JIGを使ってソースコードから設計ドキュメントを自動生成します。ドキュメントはbuild/jig に出力されます。  
-JIGドキュメントの生成には、[Graphviz](https://www.graphviz.org/)のインストールが必要です。
+JIGドキュメントの生成には、 [Graphviz](https://www.graphviz.org/) のインストールが必要です。
 
 #### 実装の範囲
 ビジネスルールを中心に実装しています。
 
 RDRA 2.0で可視化した以下のビジネスルールと関連するユースケース、画面、テーブルを実装しています。
 
-* バリエーション、計算式、表条件
-* 蔵書の状態遷移
+* 貸出制限ルール
 * 予約の状態遷移
+
+#### 貸出業務と貸出制限ルール
+
+![composit-usecase-loan](https://user-images.githubusercontent.com/3654676/83082272-e6394f00-a0bd-11ea-97c1-7e2e4cc3299c.png)
+
+![restriction](https://user-images.githubusercontent.com/3654676/83082253-da4d8d00-a0bd-11ea-9963-7f3259da6153.png)
+
+#### 予約の状態遷移
+
+![reservatoin-state](https://user-images.githubusercontent.com/3654676/83082235-cbff7100-a0bd-11ea-8ecb-25cf8eef6f9b.png)
 
 以下の業務は未実装です。
 
@@ -60,6 +71,12 @@ Spring MVCとMyBatisを使い、ドメインオブジェクトを中心に周辺
 この図書館サンプル実装は、CCSR手法の実践例として開発しています。
 
 ![ccsr](https://user-images.githubusercontent.com/3654676/82853451-cb8d9b80-9f40-11ea-8c8d-ec8a74f2194f.jpg)
+
+### RDRAアドイン 
+
+RDRA手法のモデリングツールとして、Enterprise ArchitectのRDRAアドインを使っています。
+
+* [Enterprise ArchitectでRDRA 2.0を利用する](https://www.sparxsystems.jp/products/EA/tech/RDRA.htm)
 
 ### JIG (設計可視化ツール)
 
