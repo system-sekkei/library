@@ -29,11 +29,9 @@ public class Loan {
     }
 
     public DaysLate daysLate(CurrentDate date) {
-        DueDate dueDate = loanDate.dueDate();
-        int delay = Period.between(dueDate.value(), date.value()).getDays();
-        return new DaysLate(new Days(delay));
+        DueDate dueDate = DueDate.from(loanDate);
+        return dueDate.daysLate(date.value());
     }
-
 
     public Member member() {
         return member;

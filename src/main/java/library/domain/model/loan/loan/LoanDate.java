@@ -1,9 +1,12 @@
 package library.domain.model.loan.loan;
 
+import library.domain.type.date.CurrentDate;
+import library.domain.type.date.Days;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -20,11 +23,6 @@ public class LoanDate {
 
     private LoanDate(LocalDate value) {
         this.value = value;
-    }
-
-    DueDate dueDate() {
-        LocalDate dueDate = value.plusDays(LoanPeriod.standard().value());
-        return new DueDate(dueDate);
     }
 
     public String show() {
