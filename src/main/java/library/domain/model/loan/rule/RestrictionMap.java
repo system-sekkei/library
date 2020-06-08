@@ -1,9 +1,11 @@
 package library.domain.model.loan.rule;
 
 import library.domain.model.loan.loan.DelayStatus;
+import library.domain.model.member.MemberStatus;
 import library.domain.model.member.MemberType;
 
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import static library.domain.model.loan.loan.DelayStatus.*;
@@ -13,9 +15,9 @@ import static library.domain.model.member.MemberType.*;
 /**
  * 貸出制限の表条件
  */
-class RestrictionTable {
+class RestrictionMap {
 
-    Map<DelayStatus, Map<MemberType, RestrictionOfQuantity>> table = new EnumMap<>(DelayStatus.class);
+    Map<DelayOfMember, RestrictionOfQuantity> map = new HashMap<>();
 
     {
         define(遅延日数３日未満, 大人, 貸出５冊まで);
@@ -29,15 +31,10 @@ class RestrictionTable {
     }
 
     void define(DelayStatus delayStatus, MemberType memberType, RestrictionOfQuantity restrictionOfQuantity) {
-        Map<MemberType, RestrictionOfQuantity> subMap = table.get(delayStatus);
-        if(subMap == null) {
-            subMap = new EnumMap<>(MemberType.class);
-        }
-        subMap.put(memberType, restrictionOfQuantity);
-        table.put(delayStatus, subMap);
+        map.put(new DelayOfMember(delayStatus,memberType), restrictionOfQuantity);
     }
 
-    RestrictionOfQuantity lookup(DelayStatus delayStatus, MemberType memberType) {
-        return table.get(delayStatus).get(memberType);
+    RestrictionOfQuantity of(DelayOfMember delayOfMember) {
+        return map.get(delayOfMember);
     }
 }

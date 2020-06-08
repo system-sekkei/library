@@ -3,7 +3,6 @@ package library.domain.model.loan.rule;
 import library.domain.model.loan.loan.DelayStatus;
 import library.domain.model.loan.loan.Loans;
 import library.domain.model.member.Member;
-import library.domain.model.member.MemberType;
 import library.domain.type.date.CurrentDate;
 
 /**
@@ -20,11 +19,11 @@ class Restriction {
         this.date = date;
     }
 
-    static final RestrictionTable table = new RestrictionTable();
+    static final RestrictionMap map = new RestrictionMap();
 
     RestrictionOfQuantity ofQuantity() {
         DelayStatus delayStatus = loans.worst(date);
-        MemberType memberType = member.type();
-        return table.lookup(delayStatus, memberType);
+        DelayOfMember delayOfMember = new DelayOfMember(delayStatus, member.type());
+        return map.of(delayOfMember);
     }
 }
