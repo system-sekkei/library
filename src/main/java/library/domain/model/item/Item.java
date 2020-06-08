@@ -3,7 +3,7 @@ package library.domain.model.item;
 import library.domain.model.item.bibliography.Book;
 
 /**
- * 蔵書
+ * *蔵書
  */
 public class Item {
     ItemNumber itemNumber;

@@ -1,7 +1,7 @@
 package library.domain.model.member;
 
 /**
- * 会員
+ * *会員
  */
 public class Member {
     MemberNumber memberNumber;

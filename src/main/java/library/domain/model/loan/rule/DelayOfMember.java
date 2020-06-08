@@ -5,6 +5,9 @@ import library.domain.model.member.MemberType;
 
 import java.util.Objects;
 
+/**
+ * *遅延状況と会員種別（判定条件）
+ */
 public class DelayOfMember {
     DelayStatus delayStatus;
     MemberType memberType;

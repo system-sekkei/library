@@ -3,7 +3,7 @@ package library.domain.model.loan.rule;
 import library.domain.model.loan.loan.Loans;
 
 /**
- * 冊数制限
+ * *冊数制限(判定結果)
  */
 enum RestrictionOfQuantity {
     貸出５冊まで(5),

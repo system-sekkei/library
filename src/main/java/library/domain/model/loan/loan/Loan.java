@@ -9,7 +9,7 @@ import library.domain.type.date.Days;
 import java.time.Period;
 
 /**
- * 貸出
+ * *貸出
  */
 public class Loan {
     LoanNumber loanNumber;

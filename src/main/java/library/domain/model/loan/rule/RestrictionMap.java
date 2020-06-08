@@ -13,7 +13,7 @@ import static library.domain.model.loan.rule.RestrictionOfQuantity.*;
 import static library.domain.model.member.MemberType.*;
 
 /**
- * 貸出制限の表条件
+ * *貸出制限の表条件
  */
 class RestrictionMap {
 
