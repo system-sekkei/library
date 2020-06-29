@@ -10,6 +10,9 @@
 * Gradleタスク bootRunを実行(アプリケーションの起動)
 * Gradleタスク jigReportを実行(設計ドキュメントの出力)
 
+この実装例の内容を学ぶためのチュートリアルが公開されました。  
+[図書館サンプルのチュートリアル](https://github.com/jnuank/library/tree/master/tutorial)
+
 #### アプリケーションの内容
 RDRA 2.0 ハンドブックのサンプル「図書館システム」の以下の業務を実装しています。
 
