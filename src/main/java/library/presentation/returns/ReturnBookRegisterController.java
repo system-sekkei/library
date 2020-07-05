@@ -2,8 +2,8 @@ package library.presentation.returns;
 
 import library.application.coordinator.loan.LoanCoordinator;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.loan.returned.ReturnDate;
-import library.domain.model.loan.returned.Returned;
+import library.domain.model.returned.ReturnDate;
+import library.domain.model.returned.Returned;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

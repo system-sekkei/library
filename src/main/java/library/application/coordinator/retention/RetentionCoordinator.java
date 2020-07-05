@@ -10,7 +10,7 @@ import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.retention.*;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservations;

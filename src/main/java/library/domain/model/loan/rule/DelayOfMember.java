@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.DelayStatus;
+import library.domain.model.loan.delay.DelayStatus;
 import library.domain.model.member.MemberType;
 
 import java.util.Objects;

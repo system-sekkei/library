@@ -2,16 +2,16 @@ package library.infrastructure.datasource.loan;
 
 import library.application.repository.LoanRepository;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.loan.loan.Loan;
-import library.domain.model.loan.loan.Loans;
-import library.domain.model.loan.returned.Returned;
+import library.domain.model.loan.Loan;
+import library.domain.model.loan.Loans;
+import library.domain.model.returned.Returned;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.CurrentDate;
 import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.member.MemberMapper;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 

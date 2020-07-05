@@ -1,7 +1,7 @@
 package library.presentation.loan;
 
 import library.application.coordinator.loan.LoanCoordinator;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.member.MemberStatus;

@@ -1,5 +1,7 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan;
 
+import library.domain.model.loan.delay.DaysLate;
+import library.domain.model.loan.delay.DelayStatus;
 import library.domain.type.date.CurrentDate;
 import library.domain.type.date.Days;
 

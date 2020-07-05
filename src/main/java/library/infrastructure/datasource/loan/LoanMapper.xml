@@ -7,7 +7,7 @@
         SELECT NEXTVAL('貸出.貸出番号')
     </select>
 
-    <resultMap id="loan" type="library.domain.model.loan.loan.Loan">
+    <resultMap id="loan" type="library.domain.model.loan.Loan">
         <association property="member"
                      column="memberNumber.value"
                      select="library.infrastructure.datasource.member.MemberMapper.selectMember" />
@@ -59,7 +59,7 @@
         </foreach>
     </select>
 
-    <resultMap id="returned" type="library.domain.model.loan.returned.Returned">
+    <resultMap id="returned" type="library.domain.model.returned.Returned">
         <association property="loan"
                      column="loanNumber.value"
                      select="selectByItemNumber" />

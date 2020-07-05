@@ -1,4 +1,4 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan;
 
 import library.domain.model.item.ItemNumber;
 import library.domain.model.member.MemberNumber;

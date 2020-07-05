@@ -1,4 +1,4 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan;
 
 /**
  * 貸出冊数

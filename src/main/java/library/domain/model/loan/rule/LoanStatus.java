@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.Loans;
+import library.domain.model.loan.Loans;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.CurrentDate;

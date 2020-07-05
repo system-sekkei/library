@@ -1,12 +1,10 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan;
 
 import library.domain.model.item.Item;
+import library.domain.model.loan.delay.DaysLate;
 import library.domain.type.date.CurrentDate;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.type.date.Days;
-
-import java.time.Period;
 
 /**
  * *貸出

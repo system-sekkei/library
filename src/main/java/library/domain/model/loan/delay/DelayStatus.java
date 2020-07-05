@@ -1,4 +1,4 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan.delay;
 
 import library.domain.type.date.Days;
 
