@@ -14,7 +14,7 @@ import library.domain.model.reservation.request.Reservation;
 import org.springframework.stereotype.Service;
 
 /**
- * 予約コーディネータ
+ * 予約受付業務
  */
 @Service
 public class ReservationCoordinator {

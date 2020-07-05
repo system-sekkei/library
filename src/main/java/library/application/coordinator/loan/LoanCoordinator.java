@@ -12,7 +12,7 @@ import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * 貸出コーディネーター
+ * 貸出業務
  */
 @Service
 public class LoanCoordinator {
@@ -59,12 +59,5 @@ public class LoanCoordinator {
      */
     public LoanStatus loanStatus(LoanRequest loanRequest) {
         return loanQueryService.status(loanRequest.memberNumber());
-    }
-
-    /**
-     * 返却を受け付ける
-     */
-    public void returend(Returned returned) {
-        returnBookRecordService.returned(returned);
     }
 }
