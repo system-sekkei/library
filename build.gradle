@@ -14,6 +14,10 @@ sourceSets {
 
 repositories {
     jcenter()
+    mavenLocal()
+    maven {
+        url "https://dl.bintray.com/jignite/maven/"
+    }
 }
 
 dependencies {
@@ -23,6 +27,8 @@ dependencies {
     runtime("org.springframework.boot:spring-boot-starter-thymeleaf")
 
     implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.2")
+
+    testImplementation('irof:jig-erd:+')
 
     runtimeOnly("com.h2database:h2")
 
