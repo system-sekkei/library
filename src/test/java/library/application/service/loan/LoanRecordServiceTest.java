@@ -14,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
-class LoanRegisterServiceTest {
+class LoanRecordServiceTest {
     @Autowired
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -28,7 +28,7 @@ class LoanRegisterServiceTest {
     void 貸出を登録できる() {
         ItemNumber itemNumber = new ItemNumber("2-A");
         LoanRequest loanRequest = new LoanRequest(new MemberNumber(1), itemNumber, LoanDate.parse("2020-02-20"));
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
 
         Loan loan = loanQueryService.findBy(itemNumber);
 

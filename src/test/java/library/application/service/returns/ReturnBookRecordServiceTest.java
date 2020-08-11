@@ -2,7 +2,7 @@ package library.application.service.returns;
 
 import library.LibraryDBTest;
 import library.application.service.loan.LoanQueryService;
-import library.application.service.loan.LoanRegisterService;
+import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.returned.ReturnDate;
@@ -21,7 +21,7 @@ class ReturnBookRecordServiceTest {
     LoanQueryService loanQueryService;
 
     @Autowired
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
     @Autowired
     MemberQueryService memberQueryService;

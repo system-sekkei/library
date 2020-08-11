@@ -26,7 +26,7 @@ class LoanQueryServiceTest {
     ReturnBookRecordService returnBookRecordService;
 
     @Autowired
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -62,6 +62,6 @@ class LoanQueryServiceTest {
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {
         MemberNumber member = new MemberNumber(memberNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemNumber, LoanDate.parse("2020-02-20"));
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
     }
 }

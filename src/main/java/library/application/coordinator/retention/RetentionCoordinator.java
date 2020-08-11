@@ -1,7 +1,7 @@
 package library.application.coordinator.retention;
 
 import library.application.service.item.ItemQueryService;
-import library.application.service.loan.LoanRegisterService;
+import library.application.service.loan.LoanRecordService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
@@ -26,15 +26,15 @@ public class RetentionCoordinator {
     RetentionQueryService retentionQueryService;
     RetentionRecordService retentionRecordService;
     ItemQueryService itemQueryService;
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRegisterService loanRegisterService) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRecordService loanRecordService) {
         this.reservationQueryService = reservationQueryService;
         this.reservationRecordService = reservationRecordService;
         this.retentionQueryService = retentionQueryService;
         this.retentionRecordService = retentionRecordService;
         this.itemQueryService = itemQueryService;
-        this.loanRegisterService = loanRegisterService;
+        this.loanRecordService = loanRecordService;
     }
 
     /**
@@ -85,7 +85,7 @@ public class RetentionCoordinator {
         // 貸出の実行
         Retained retained = retentionQueryService.findBy(itemNumber);
         LoanRequest loanRequest = retained.toLoanRequest();
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
 
         retentionRecordService.releaseForLoan(itemNumber);
     }

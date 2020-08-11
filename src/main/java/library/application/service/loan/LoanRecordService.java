@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
  * 貸出記録サービス
  */
 @Service
-public class LoanRegisterService {
+public class LoanRecordService {
     LoanRepository loanRepository;
 
-    LoanRegisterService(LoanRepository loanRepository) {
+    LoanRecordService(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
 

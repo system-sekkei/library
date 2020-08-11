@@ -1,11 +1,10 @@
 package library.application.coordinator.loan;
 
 import library.application.service.loan.LoanQueryService;
-import library.application.service.loan.LoanRegisterService;
+import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnBookRecordService;
 import library.domain.model.loan.LoanRequest;
-import library.domain.model.returned.Returned;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.member.MemberStatus;
@@ -18,17 +17,17 @@ import org.springframework.stereotype.Service;
 public class LoanCoordinator {
     MemberQueryService memberQueryService;
     LoanQueryService loanQueryService;
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
     ReturnBookRecordService returnBookRecordService;
 
     public LoanCoordinator(
             MemberQueryService memberQueryService,
             LoanQueryService loanQueryService,
-            LoanRegisterService loanRegisterService,
+            LoanRecordService loanRecordService,
             ReturnBookRecordService returnBookRecordService) {
         this.memberQueryService = memberQueryService;
         this.loanQueryService = loanQueryService;
-        this.loanRegisterService = loanRegisterService;
+        this.loanRecordService = loanRecordService;
         this.returnBookRecordService = returnBookRecordService;
     }
 
@@ -51,7 +50,7 @@ public class LoanCoordinator {
      * 貸し出す
      */
     public void loan(LoanRequest loanRequest) {
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
     }
 
     /**
