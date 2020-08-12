@@ -79,7 +79,7 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 貸し出す
+     * 取り置いた本を貸し出す
      */
     public void loan(ItemNumber itemNumber) {
         // 貸出の実行
