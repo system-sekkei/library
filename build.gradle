@@ -41,6 +41,10 @@ test {
     useJUnitPlatform()
 }
 
+jig {
+    linkPrefix = "https://github.com/system-sekkei/library/tree/master/src/main/java"
+}
+
 [compileJava, processResources]*.shouldRunAfter(clean)
 jigReports.dependsOn(clean, classes)
 
