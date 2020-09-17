@@ -3,7 +3,6 @@ package library.domain.model.loan;
 import library.domain.model.item.Item;
 import library.domain.model.loan.delay.DaysLate;
 import library.domain.model.loan.due.DueDate;
-import library.domain.model.loan.due.DueDateStatus;
 import library.domain.type.date.CurrentDate;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -26,15 +25,6 @@ public class Loan {
         this.member = member;
         this.item = item;
         this.loanDate = loanDate;
-    }
-
-    public DaysLate daysLate(CurrentDate date) {
-        DueDate dueDate = DueDate.from(loanDate);
-        return dueDate.daysLate(date.value());
-    }
-
-    public DueDateStatus dueDateStatus() {
-        return null;
     }
 
     public Member member() {

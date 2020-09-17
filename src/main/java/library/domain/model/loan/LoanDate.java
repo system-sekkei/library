@@ -1,5 +1,6 @@
 package library.domain.model.loan;
 
+import library.domain.model.loan.due.DueDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
