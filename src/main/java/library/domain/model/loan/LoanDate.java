@@ -40,4 +40,8 @@ public class LoanDate {
     public static LoanDate parse(String dateText) {
         return new LoanDate(LocalDate.parse(dateText));
     }
+
+    public LocalDate value() {
+        return value;
+    }
 }
