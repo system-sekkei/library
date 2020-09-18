@@ -12,7 +12,7 @@ import java.util.Comparator;
  * 貸出期限のリスト
  */
 public class Dues {
-    private Loans loans;
+    Loans loans;
 
     public Dues(Loans loans) {
         this.loans = loans;

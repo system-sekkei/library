@@ -14,7 +14,7 @@ public class DueDate {
     LocalDate value;
     static final int 最大貸出日数 = 14;
 
-    public DueDate(LocalDate value) {
+    DueDate(LocalDate value) {
         this.value = value;
     }
 
@@ -29,7 +29,7 @@ public class DueDate {
         return DaysLate.from(日数);
     }
 
-    public DueDateStatus dueDateStatus() {
+    public DueDateStatus status() {
         return null;
     }
 }
