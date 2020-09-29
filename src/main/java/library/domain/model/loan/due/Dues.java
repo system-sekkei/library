@@ -6,8 +6,6 @@ import library.domain.model.loan.delay.DelayStatus;
 import library.domain.type.date.CurrentDate;
 import library.domain.type.date.Days;
 
-import java.util.Comparator;
-
 /**
  * 貸出期限のリスト
  */
@@ -18,15 +16,14 @@ public class Dues {
         this.loans = loans;
     }
 
-    public DelayStatus worst(CurrentDate date) {
-        DaysLate worstDays = worstDays(date);
-        return worstDays.delayStatus();
+    public DelayStatus delayStatus(CurrentDate date) {
+        return daysLate(date).delayStatus();
     }
 
-    DaysLate worstDays(CurrentDate date) {
-        return loans.asList().stream()
-                .map(loan -> DueDate.from(loan).daysLate(date))
-                .max(Comparator.comparingInt(period -> period.intValue()))
-                .orElse(new DaysLate(new Days(0)));
+    DaysLate daysLate(CurrentDate date) {
+        int days = loans.asList().stream()
+                .mapToInt(loan -> DueDate.from(loan).daysLate(date).intValue())
+                .sum();
+        return new DaysLate(new Days(days));
     }
 }
