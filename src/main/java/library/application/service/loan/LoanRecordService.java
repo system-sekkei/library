@@ -1,17 +1,17 @@
 package library.application.service.loan;
 
 import library.application.repository.LoanRepository;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import org.springframework.stereotype.Service;
 
 /**
  * 貸出記録サービス
  */
 @Service
-public class LoanRegisterService {
+public class LoanRecordService {
     LoanRepository loanRepository;
 
-    LoanRegisterService(LoanRepository loanRepository) {
+    LoanRecordService(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
 

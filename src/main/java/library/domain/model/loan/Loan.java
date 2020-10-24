@@ -1,12 +1,8 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan;
 
 import library.domain.model.item.Item;
-import library.domain.type.date.CurrentDate;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.type.date.Days;
-
-import java.time.Period;
 
 /**
  * *貸出
@@ -26,11 +22,6 @@ public class Loan {
         this.member = member;
         this.item = item;
         this.loanDate = loanDate;
-    }
-
-    public DaysLate daysLate(CurrentDate date) {
-        DueDate dueDate = DueDate.from(loanDate);
-        return dueDate.daysLate(date.value());
     }
 
     public Member member() {

@@ -1,4 +1,4 @@
-package library.domain.model.loan.loan;
+package library.domain.model.loan.delay;
 
 import library.domain.type.date.Days;
 
@@ -19,7 +19,7 @@ public class DaysLate {
         return DelayStatus.level(value);
     }
 
-    static DaysLate from(long delays) {
+    public static DaysLate from(long delays) {
         Days days = new Days((int) delays);
         return new DaysLate(days);
     }

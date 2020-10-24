@@ -4,13 +4,13 @@ import library.LibraryDBTest;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnBookRecordService;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.loan.loan.Loan;
-import library.domain.model.loan.loan.LoanDate;
-import library.domain.model.loan.returned.ReturnDate;
-import library.domain.model.loan.returned.Returned;
+import library.domain.model.loan.Loan;
+import library.domain.model.loan.LoanDate;
+import library.domain.model.returned.ReturnDate;
+import library.domain.model.returned.Returned;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,7 +26,7 @@ class LoanQueryServiceTest {
     ReturnBookRecordService returnBookRecordService;
 
     @Autowired
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -62,6 +62,6 @@ class LoanQueryServiceTest {
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {
         MemberNumber member = new MemberNumber(memberNumber);
         LoanRequest loanRequest = new LoanRequest(member, itemNumber, LoanDate.parse("2020-02-20"));
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
     }
 }

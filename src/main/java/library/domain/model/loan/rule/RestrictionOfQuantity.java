@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.Loans;
+import library.domain.model.loan.Loans;
 
 /**
  * *冊数制限(判定結果)

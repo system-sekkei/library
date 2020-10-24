@@ -1,4 +1,4 @@
 /**
- * 貸出・返却
+ * 貸出
  */
 package library.domain.model.loan;

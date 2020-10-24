@@ -27,11 +27,17 @@ jobs:
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/category-usage.svg converted/category-usage.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/service-method-call-hierarchy.svg converted/service-method-call-hierarchy.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/composite-usecase.svg converted/composite-usecase.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/business-rule-core.svg converted/business-rule-core.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/business-rule-overconcentration.svg converted/business-rule-overconcentration.png
 
       - run: curl -X POST -F channel=${SLACK_CANNEL} -F token=${SLACK_TOKEN} -F text=https://github.com/system-sekkei/library https://slack.com/api/chat.postMessage
       - run: curl -X POST -F file=@build/jig/business-rule.xlsx -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
       - run: curl -X POST -F file=@build/jig/application.xlsx -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
       - run: for file in $(ls converted); do curl -X POST -F file=@converted/${file} -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload; done;
+
+      - run: curl -X POST -F file=@build/jig-erd-overview.png -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
+      - run: curl -X POST -F file=@build/jig-erd-summary.png -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
+      - run: curl -X POST -F file=@build/jig-erd-detail.png -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
 
       - store_artifacts:
           path: build/jig/

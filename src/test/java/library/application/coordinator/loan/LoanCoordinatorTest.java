@@ -4,10 +4,10 @@ import library.LibraryDBTest;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.item.ItemNumber;
-import library.domain.model.loan.loan.LoanDate;
+import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

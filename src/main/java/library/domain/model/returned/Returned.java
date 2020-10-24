@@ -1,4 +1,4 @@
-package library.domain.model.loan.returned;
+package library.domain.model.returned;
 
 import library.domain.model.item.ItemNumber;
 

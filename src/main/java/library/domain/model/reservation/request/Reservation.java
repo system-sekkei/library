@@ -6,7 +6,7 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 
 /**
- * 貸出予約
+ * *貸出予約
  */
 public class Reservation {
     ReservationNumber reservationNumber;

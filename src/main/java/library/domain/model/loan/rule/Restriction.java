@@ -1,7 +1,8 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.loan.DelayStatus;
-import library.domain.model.loan.loan.Loans;
+import library.domain.model.loan.delay.DelayStatus;
+import library.domain.model.loan.Loans;
+import library.domain.model.loan.due.Dues;
 import library.domain.model.member.Member;
 import library.domain.type.date.CurrentDate;
 
@@ -22,7 +23,7 @@ class Restriction {
     static final RestrictionMap map = new RestrictionMap();
 
     RestrictionOfQuantity ofQuantity() {
-        DelayStatus delayStatus = loans.worst(date);
+        DelayStatus delayStatus = new Dues(loans).delayStatus(date);
         DelayOfMember delayOfMember = new DelayOfMember(delayStatus, member.type());
         return map.of(delayOfMember);
     }

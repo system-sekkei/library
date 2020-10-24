@@ -1,7 +1,7 @@
 package library.application.coordinator.retention;
 
 import library.application.service.item.ItemQueryService;
-import library.application.service.loan.LoanRegisterService;
+import library.application.service.loan.LoanRecordService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
@@ -10,14 +10,14 @@ import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;
 import library.domain.model.reservation.retention.*;
-import library.domain.model.loan.loan.LoanRequest;
+import library.domain.model.loan.LoanRequest;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservations;
 import org.springframework.stereotype.Service;
 
 /**
- * 取置コーディネータ
+ * 取置業務
  */
 @Service
 public class RetentionCoordinator {
@@ -26,15 +26,15 @@ public class RetentionCoordinator {
     RetentionQueryService retentionQueryService;
     RetentionRecordService retentionRecordService;
     ItemQueryService itemQueryService;
-    LoanRegisterService loanRegisterService;
+    LoanRecordService loanRecordService;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRegisterService loanRegisterService) {
+    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRecordService loanRecordService) {
         this.reservationQueryService = reservationQueryService;
         this.reservationRecordService = reservationRecordService;
         this.retentionQueryService = retentionQueryService;
         this.retentionRecordService = retentionRecordService;
         this.itemQueryService = itemQueryService;
-        this.loanRegisterService = loanRegisterService;
+        this.loanRecordService = loanRecordService;
     }
 
     /**
@@ -79,13 +79,13 @@ public class RetentionCoordinator {
     }
 
     /**
-     * 貸し出す
+     * 取り置いた本を貸し出す
      */
     public void loan(ItemNumber itemNumber) {
         // 貸出の実行
         Retained retained = retentionQueryService.findBy(itemNumber);
         LoanRequest loanRequest = retained.toLoanRequest();
-        loanRegisterService.loaned(loanRequest);
+        loanRecordService.loaned(loanRequest);
 
         retentionRecordService.releaseForLoan(itemNumber);
     }
