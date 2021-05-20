@@ -29,6 +29,9 @@ jobs:
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/composite-usecase.svg converted/composite-usecase.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/business-rule-core.svg converted/business-rule-core.png
       - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig/business-rule-overconcentration.svg converted/business-rule-overconcentration.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig-erd-overview.svg build/jig-erd-overview.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig-erd-summary.svg build/jig-erd-summary.png
+      - run: sudo convert -font /usr/share/fonts/opentype/ipafont-mincho/ipam.ttf build/jig-erd-detail.svg build/jig-erd-detail.png
 
       - run: curl -X POST -F channel=${SLACK_CANNEL} -F token=${SLACK_TOKEN} -F text=https://github.com/system-sekkei/library https://slack.com/api/chat.postMessage
       - run: curl -X POST -F file=@build/jig/business-rule.xlsx -F channels=${SLACK_CANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
