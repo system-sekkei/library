@@ -1,6 +1,6 @@
 package library.presentation.reservation;
 
-import library.application.coordinator.reservation.ReservationCoordinator;
+import library.application.scenario.ReservationScenario;
 import library.domain.model.item.bibliography.Keyword;
 import library.domain.model.reservation.availability.BookAvailabilities;
 import org.springframework.stereotype.Controller;
@@ -18,15 +18,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("reservation/books")
 public class BookSearchController {
-    ReservationCoordinator reservationCoordinator;
+    ReservationScenario reservationScenario;
 
-    public BookSearchController(ReservationCoordinator reservationCoordinator) {
-        this.reservationCoordinator = reservationCoordinator;
+    public BookSearchController(ReservationScenario reservationScenario) {
+        this.reservationScenario = reservationScenario;
     }
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        BookAvailabilities availabilities = reservationCoordinator.search(searchKeyword);
+        BookAvailabilities availabilities = reservationScenario.search(searchKeyword);
         model.addAttribute("availabilities", availabilities);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/books/search";

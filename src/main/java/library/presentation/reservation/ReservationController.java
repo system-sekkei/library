@@ -1,6 +1,6 @@
 package library.presentation.reservation;
 
-import library.application.coordinator.reservation.ReservationCoordinator;
+import library.application.scenario.ReservationScenario;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
@@ -19,10 +19,10 @@ import static library.domain.model.member.MemberStatus.未登録;
 @Controller
 @RequestMapping("reservation/register")
 public class ReservationController {
-    ReservationCoordinator reservationCoordinator;
+    ReservationScenario reservationScenario;
 
-    public ReservationController(ReservationCoordinator reservationCoordinator) {
-        this.reservationCoordinator = reservationCoordinator;
+    public ReservationController(ReservationScenario reservationScenario) {
+        this.reservationScenario = reservationScenario;
     }
 
     @GetMapping
@@ -32,7 +32,7 @@ public class ReservationController {
 
     @GetMapping(params = {"book"})
     String reservationForm(@RequestParam("book") BookNumber bookNumber, Model model) {
-        Book book = reservationCoordinator.findBook(bookNumber);
+        Book book = reservationScenario.findBook(bookNumber);
         model.addAttribute("book", book);
         model.addAttribute("member", MemberNumber.empty());
         return "reservation/register/form";
@@ -46,20 +46,20 @@ public class ReservationController {
             Model model
             ) {
 
-        Book book = reservationCoordinator.findBook(bookNumber);
+        Book book = reservationScenario.findBook(bookNumber);
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
             return "reservation/register/form";
         }
 
-        if (reservationCoordinator.memberStatus(memberNumber) == 未登録) {
+        if (reservationScenario.memberStatus(memberNumber) == 未登録) {
             model.addAttribute("member", memberNumber);
             model.addAttribute("book", book);
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),"value","その番号の会員はいません"));
             return "reservation/register/form";
         }
 
-        reservationCoordinator.reserve(book, memberNumber);
+        reservationScenario.reserve(book, memberNumber);
 
         return "redirect:/reservation/register/completed";
     }

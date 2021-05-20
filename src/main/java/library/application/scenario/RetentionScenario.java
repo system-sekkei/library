@@ -1,4 +1,4 @@
-package library.application.coordinator.retention;
+package library.application.scenario;
 
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanRecordService;
@@ -17,10 +17,10 @@ import library.domain.model.reservation.request.Reservations;
 import org.springframework.stereotype.Service;
 
 /**
- * 取置業務
+ * 取置シナリオ
  */
 @Service
-public class RetentionCoordinator {
+public class RetentionScenario {
     ReservationQueryService reservationQueryService;
     ReservationRecordService reservationRecordService;
     RetentionQueryService retentionQueryService;
@@ -28,7 +28,7 @@ public class RetentionCoordinator {
     ItemQueryService itemQueryService;
     LoanRecordService loanRecordService;
 
-    public RetentionCoordinator(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRecordService loanRecordService) {
+    public RetentionScenario(ReservationQueryService reservationQueryService, ReservationRecordService reservationRecordService, RetentionQueryService retentionQueryService, RetentionRecordService retentionRecordService, ItemQueryService itemQueryService, LoanRecordService loanRecordService) {
         this.reservationQueryService = reservationQueryService;
         this.reservationRecordService = reservationRecordService;
         this.retentionQueryService = retentionQueryService;

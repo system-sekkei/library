@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.loan;
 
 import library.domain.model.loan.Loan;
 

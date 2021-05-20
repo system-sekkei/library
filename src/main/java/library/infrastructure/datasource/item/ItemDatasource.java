@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.item;
 
-import library.application.repository.ItemRepository;
+import library.application.service.item.ItemRepository;
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.item.ItemStatus;

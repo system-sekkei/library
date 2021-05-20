@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.member;
 
-import library.application.repository.MemberRepository;
+import library.application.service.member.MemberRepository;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;

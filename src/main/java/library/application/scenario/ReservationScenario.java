@@ -1,4 +1,4 @@
-package library.application.coordinator.reservation;
+package library.application.scenario;
 
 import library.application.service.book.BookQueryService;
 import library.application.service.member.MemberQueryService;
@@ -14,15 +14,15 @@ import library.domain.model.reservation.request.Reservation;
 import org.springframework.stereotype.Service;
 
 /**
- * 予約受付業務
+ * 予約受付シナリオ
  */
 @Service
-public class ReservationCoordinator {
+public class ReservationScenario {
     ReservationRecordService reservationRecordService;
     MemberQueryService memberQueryService;
     BookQueryService bookQueryService;
 
-    public ReservationCoordinator(ReservationRecordService reservationRecordService, MemberQueryService memberQueryService, BookQueryService bookQueryService) {
+    public ReservationScenario(ReservationRecordService reservationRecordService, MemberQueryService memberQueryService, BookQueryService bookQueryService) {
         this.reservationRecordService = reservationRecordService;
         this.memberQueryService = memberQueryService;
         this.bookQueryService = bookQueryService;

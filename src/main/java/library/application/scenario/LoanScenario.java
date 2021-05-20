@@ -1,4 +1,4 @@
-package library.application.coordinator.loan;
+package library.application.scenario;
 
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
@@ -11,16 +11,16 @@ import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * 貸出業務
+ * 貸出シナリオ
  */
 @Service
-public class LoanCoordinator {
+public class LoanScenario {
     MemberQueryService memberQueryService;
     LoanQueryService loanQueryService;
     LoanRecordService loanRecordService;
     ReturnBookRecordService returnBookRecordService;
 
-    public LoanCoordinator(
+    public LoanScenario(
             MemberQueryService memberQueryService,
             LoanQueryService loanQueryService,
             LoanRecordService loanRecordService,

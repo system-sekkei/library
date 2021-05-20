@@ -1,6 +1,6 @@
 package library.infrastructure.transfer;
 
-import library.application.repository.RetentionNotification;
+import library.application.service.retention.RetentionNotification;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.retention.Retained;

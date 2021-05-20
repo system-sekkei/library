@@ -1,6 +1,7 @@
-package library.application.coordinator.loan;
+package library.application.scenario.loan;
 
 import library.LibraryDBTest;
+import library.application.scenario.LoanScenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.item.ItemNumber;
@@ -16,9 +17,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @LibraryDBTest
-class LoanCoordinatorTest {
+class LoanScenarioTest {
     @Autowired
-    LoanCoordinator loanCoordinator;
+    LoanScenario loanScenario;
 
     @Autowired
     MemberQueryService memberQueryService;
@@ -30,7 +31,7 @@ class LoanCoordinatorTest {
     void 図書を貸し出すことができる() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
-        Loanability loanability = loanCoordinator.loanability(loanRequest);
+        Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability , Loanability.貸出可能);
     }
@@ -40,7 +41,7 @@ class LoanCoordinatorTest {
     void 貸出中の蔵書は貸し出すことができない() {
         LoanRequest loanRequest =
                 generate(2, "2-B", LoanDate.now().toString());
-        Loanability loanability = loanCoordinator.loanability(loanRequest);
+        Loanability loanability = loanScenario.loanability(loanRequest);
         assertNotSame(loanability , Loanability.貸出可能);
     }
 
@@ -50,13 +51,13 @@ class LoanCoordinatorTest {
         for (String code : list) {
             LoanRequest loanRequest =
                     generate(3, code, "2020-02-20");
-            loanCoordinator.loan(loanRequest);
+            loanScenario.loan(loanRequest);
         }
 
         LoanRequest loanRequest =
                 generate(3, "2-H", "2020-02-20");
 
-        Loanability loanability = loanCoordinator.loanability(loanRequest);
+        Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertNotSame(loanability, Loanability.貸出可能);
     }

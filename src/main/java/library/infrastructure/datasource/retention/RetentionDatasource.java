@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.retention;
 
-import library.application.repository.RetentionRepository;
+import library.application.service.retention.RetentionRepository;
 import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;

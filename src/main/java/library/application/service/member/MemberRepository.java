@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.member;
 
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;

@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.item;
 
 import library.domain.model.item.Item;
 import library.domain.model.item.ItemNumber;

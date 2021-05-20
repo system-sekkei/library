@@ -1,6 +1,7 @@
-package library.application.coordinator.retention;
+package library.application.scenario.retention;
 
 import library.LibraryDBTest;
+import library.application.scenario.RetentionScenario;
 import library.application.service.member.MemberQueryService;
 import library.application.service.book.BookQueryService;
 import library.application.service.reservation.ReservationQueryService;
@@ -14,9 +15,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @LibraryDBTest
-class RetentionCoordinatorTest {
+class RetentionScenarioTest {
     @Autowired
-    RetentionCoordinator retentionCoordinator;
+    RetentionScenario retentionScenario;
 
     @Autowired
     ReservationQueryService reservationQueryService;

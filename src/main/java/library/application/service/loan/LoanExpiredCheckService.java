@@ -1,6 +1,5 @@
 package library.application.service.loan;
 
-import library.application.repository.NotificationRepository;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.due.DueDate;
 import org.springframework.stereotype.Service;

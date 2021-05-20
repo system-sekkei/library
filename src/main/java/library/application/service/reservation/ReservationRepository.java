@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.reservation;
 
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;

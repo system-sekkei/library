@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.book;
 
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;

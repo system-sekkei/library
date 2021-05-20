@@ -1,7 +1,6 @@
 package library.application.service.reservation;
 
-import library.application.repository.ReservationRepository;
-import library.application.repository.RetentionNotification;
+import library.application.service.retention.RetentionNotification;
 import library.domain.model.reservation.request.Reservation;
 import org.springframework.stereotype.Service;
 

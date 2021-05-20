@@ -1,4 +1,4 @@
-package library.application.repository;
+package library.application.service.retention;
 
 import library.domain.model.item.ItemNumber;
 import library.domain.model.reservation.retention.Retained;

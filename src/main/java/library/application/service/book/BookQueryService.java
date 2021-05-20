@@ -1,6 +1,5 @@
 package library.application.service.book;
 
-import library.application.repository.BookRepository;
 import library.domain.model.item.bibliography.Book;
 import library.domain.model.item.bibliography.BookNumber;
 import library.domain.model.item.bibliography.Keyword;
