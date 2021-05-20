@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'org.dddjava.jig-gradle-plugin' version '2021.3.2'
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id 'org.springframework.boot' version '2.4.5'
+    id 'org.dddjava.jig-gradle-plugin' version '2021.5.3'
 }
 
 sourceCompatibility = '11'
@@ -13,23 +14,17 @@ sourceSets {
 }
 
 repositories {
-    jcenter()
-    mavenLocal()
-    maven {
-        url "https://dl.bintray.com/jignite/maven/"
-    }
+    mavenCentral()
 }
 
 dependencies {
-    implementation platform("org.springframework.boot:spring-boot-dependencies:2.3.3.RELEASE")
-
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     runtime("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.3")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.4")
 
-    testImplementation('irof:jig-erd:latest.release')
+    testImplementation('com.github.irof:jig-erd:latest.release')
 
     runtimeOnly("com.h2database:h2")
 
