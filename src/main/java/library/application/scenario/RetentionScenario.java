@@ -6,9 +6,9 @@ import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
 import library.application.service.retention.RetentionRecordService;
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.ItemStatus;
+import library.domain.model.book.collection.Item;
+import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.book.collection.ItemStatus;
 import library.domain.model.reservation.retention.*;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.reservation.request.Reservation;
@@ -69,6 +69,7 @@ public class RetentionScenario {
      */
     public void retain(Retention retention) {
         retentionRecordService.retain(retention);
+        reservationRecordService.retained(retention.reservationNumber());
     }
 
     /**

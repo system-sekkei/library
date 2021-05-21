@@ -1,6 +1,6 @@
 package library.domain.model.loan;
 
-import library.domain.model.item.Item;
+import library.domain.model.book.collection.Item;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 

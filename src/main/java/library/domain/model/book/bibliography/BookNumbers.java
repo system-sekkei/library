@@ -1,4 +1,4 @@
-package library.domain.model.item.bibliography;
+package library.domain.model.book.bibliography;
 
 import java.util.List;
 

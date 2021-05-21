@@ -1,8 +1,8 @@
 package library.application.service.item;
 
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.ItemStatus;
+import library.domain.model.book.collection.Item;
+import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.book.collection.ItemStatus;
 
 /**
  * 蔵書リポジトリ

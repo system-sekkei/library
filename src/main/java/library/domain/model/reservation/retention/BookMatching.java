@@ -1,6 +1,6 @@
 package library.domain.model.reservation.retention;
 
-import library.domain.model.item.bibliography.Book;
+import library.domain.model.book.bibliography.Book;
 
 /**
  * 蔵書と本の照合結果

@@ -1,10 +1,10 @@
-package library.domain.model.item.bibliography;
+package library.domain.model.book.bibliography;
 
 import java.util.Collections;
 import java.util.List;
 
 /**
- * 本のリスト
+ * 書籍のリスト
  */
 public class Books {
     List<Book> list;

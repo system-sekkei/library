@@ -38,6 +38,16 @@
         WHERE 予約番号 = #{value}
     </select>
 
+    <insert id="insert未準備">
+        INSERT INTO 予約.未準備(予約番号)
+        VALUES (#{value})
+    </insert>
+
+    <delete id="delete未準備">
+        DELETE FROM 予約.未準備
+        WHERE 予約番号 = #{value}
+    </delete>
+
     <insert id="cancelReservation">
         INSERT INTO 予約.予約取消履歴(予約番号) VALUES (#{value})
     </insert>

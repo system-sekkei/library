@@ -4,28 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
 
-    <insert id="insert未準備">
-        INSERT INTO 予約.未準備(予約番号)
-        VALUES (#{value})
-    </insert>
-
-    <delete id="delete未準備">
-        DELETE FROM 予約.未準備
-        WHERE 予約番号 = #{value}
-    </delete>
-
     <insert id="insert取置履歴">
-        INSERT INTO 予約.取置履歴(予約番号, 蔵書番号, 取置日)
+        INSERT INTO 取置.取置履歴(予約番号, 蔵書番号, 取置日)
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 予約.準備完了(予約番号, 蔵書番号, 取置日)
+        INSERT INTO 取置.準備完了(予約番号, 蔵書番号, 取置日)
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <delete id="delete準備完了">
-        DELETE FROM 予約.準備完了 WHERE 蔵書番号 = #{value}
+        DELETE FROM 取置.準備完了 WHERE 蔵書番号 = #{value}
     </delete>
 
     <resultMap id="準備完了" type="library.domain.model.reservation.retention.Retained">
@@ -39,7 +29,7 @@
             蔵書番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
-        FROM 予約.準備完了
+        FROM 取置.準備完了
         ORDER BY 取置日
     </select>
 
@@ -48,16 +38,16 @@
             蔵書番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
-        FROM 予約.準備完了
+        FROM 取置.準備完了
         WHERE 蔵書番号 = #{value}
     </select>
 
     <insert id="insert取置解放履歴">
-        INSERT INTO 予約.取置解放履歴(予約番号, 蔵書番号)
+        INSERT INTO 取置.取置解放履歴(予約番号, 蔵書番号)
         VALUES (#{reservationNumber.value}, #{itemNumber.value})
     </insert>
 
     <insert id="insert取置期限切れ履歴">
-        INSERT INTO 予約.取置期限切れ履歴(予約番号) VALUES (#{value})
+        INSERT INTO 取置.取置期限切れ履歴(予約番号) VALUES (#{value})
     </insert>
 </mapper>

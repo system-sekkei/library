@@ -1,7 +1,7 @@
-package library.domain.model.item.bibliography;
+package library.domain.model.book.bibliography;
 
 /**
- * 本のタイトル
+ * 書籍の題名
  */
 public class Title {
     String value;

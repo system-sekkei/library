@@ -1,7 +1,5 @@
 package library.domain.model.reservation.retention;
 
-import library.domain.model.item.Item;
-
 import java.util.List;
 
 /**

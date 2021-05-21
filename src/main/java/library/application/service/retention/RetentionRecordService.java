@@ -1,8 +1,8 @@
 package library.application.service.retention;
 
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.bibliography.Book;
+import library.domain.model.book.collection.Item;
+import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.book.bibliography.Book;
 import library.domain.model.reservation.progress.Progress;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.retention.BookMatching;

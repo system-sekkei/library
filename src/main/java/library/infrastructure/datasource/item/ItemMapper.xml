@@ -19,7 +19,7 @@
         SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.取置中 WHERE 蔵書番号 = #{value})
     </select>
 
-    <resultMap id="蔵書" type="library.domain.model.item.Item">
+    <resultMap id="蔵書" type="library.domain.model.book.collection.Item">
         <association property="book"
                      column="bookNumber"
                      select="library.infrastructure.datasource.book.BookMapper.findBook" />
@@ -27,9 +27,9 @@
     <select id="selectItem" resultMap="蔵書">
         SELECT
             蔵書.蔵書番号 as "itemNumber.value",
-            蔵書タイトル.本番号 as "bookNumber"
+            書籍.本番号 as "bookNumber"
         FROM 蔵書.蔵書
-        INNER JOIN 蔵書.蔵書タイトル on (蔵書.本番号 = 蔵書タイトル.本番号)
+        INNER JOIN 蔵書.書籍 on (蔵書.本番号 = 書籍.本番号)
         WHERE 蔵書.蔵書番号 = #{value}
     </select>
 

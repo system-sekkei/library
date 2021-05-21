@@ -4,7 +4,7 @@ import library.LibraryDBTest;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;

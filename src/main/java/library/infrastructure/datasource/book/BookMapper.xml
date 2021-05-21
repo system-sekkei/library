@@ -6,23 +6,23 @@
 
     <select id="searchBooks" resultType="library.domain.model.reservation.availability.BookAvailability">
         SELECT
-            蔵書タイトル.本番号 as "book.bookNumber.value",
-            蔵書タイトル.タイトル as "book.title.value",
-            蔵書タイトル.著者 as "book.author.value",
+            書籍.本番号 as "book.bookNumber.value",
+            書籍.タイトル as "book.title.value",
+            書籍.著者 as "book.author.value",
             (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.蔵書 on 貸出可能.蔵書番号 = 蔵書.蔵書番号
-                WHERE 蔵書.本番号 = 蔵書タイトル.本番号) as "loanableItems"
-        FROM 蔵書.蔵書タイトル
-        WHERE 蔵書タイトル.タイトル || 蔵書タイトル.著者 LIKE '%' || #{keyword.value} || '%'
-        ORDER BY 蔵書タイトル.本番号
+                WHERE 蔵書.本番号 = 書籍.本番号) as "loanableItems"
+        FROM 蔵書.書籍
+        WHERE 書籍.タイトル || 書籍.著者 LIKE '%' || #{keyword.value} || '%'
+        ORDER BY 書籍.本番号
         LIMIT #{limit}
     </select>
 
-    <select id="findBook" resultType="library.domain.model.item.bibliography.Book">
+    <select id="findBook" resultType="library.domain.model.book.bibliography.Book">
         SELECT
-            蔵書タイトル.本番号 as "bookNumber.value",
-            蔵書タイトル.タイトル as "title.value",
-            蔵書タイトル.著者 as "author.value"
-        FROM 蔵書.蔵書タイトル
-        WHERE 蔵書タイトル.本番号 = #{bookNumber.value}
+            書籍.本番号 as "bookNumber.value",
+            書籍.タイトル as "title.value",
+            書籍.著者 as "author.value"
+        FROM 蔵書.書籍
+        WHERE 書籍.本番号 = #{bookNumber.value}
     </select>
 </mapper>
