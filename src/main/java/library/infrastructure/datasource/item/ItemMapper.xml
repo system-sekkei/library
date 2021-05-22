@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.item.ItemMapper">
    <select id="exists" resultType="boolean">
-       SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.登録 WHERE 蔵書番号 = #{value})
+       SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.蔵書 WHERE 蔵書番号 = #{value})
    </select>
 
     <select id="loanable" resultType="boolean">
@@ -19,18 +19,18 @@
         SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.取置中 WHERE 蔵書番号 = #{value})
     </select>
 
-    <resultMap id="蔵書" type="library.domain.model.item.Item">
+    <resultMap id="蔵書" type="library.domain.model.book.collection.Item">
         <association property="book"
                      column="bookNumber"
                      select="library.infrastructure.datasource.book.BookMapper.findBook" />
     </resultMap>
     <select id="selectItem" resultMap="蔵書">
         SELECT
-            登録.蔵書番号 as "itemNumber.value",
-            本.本番号 as "bookNumber"
-        FROM 蔵書.登録
-        INNER JOIN 蔵書.本 on (登録.本番号 = 本.本番号)
-        WHERE 登録.蔵書番号 = #{value}
+            蔵書.蔵書番号 as "itemNumber.value",
+            書籍.本番号 as "bookNumber"
+        FROM 蔵書.蔵書
+        INNER JOIN 蔵書.書籍 on (蔵書.本番号 = 書籍.本番号)
+        WHERE 蔵書.蔵書番号 = #{value}
     </select>
 
     <insert id="insert貸出可能">

@@ -1,6 +1,6 @@
 package library.presentation.loan;
 
-import library.application.coordinator.loan.LoanCoordinator;
+import library.application.scenario.LoanScenario;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
@@ -24,9 +24,9 @@ import static library.domain.model.member.MemberStatus.未登録;
 @Controller
 @RequestMapping("loan/register")
 public class LoanRegisterController {
-    LoanCoordinator coordinator;
+    LoanScenario coordinator;
 
-    public LoanRegisterController(LoanCoordinator coordinator) {
+    public LoanRegisterController(LoanScenario coordinator) {
         this.coordinator = coordinator;
     }
 

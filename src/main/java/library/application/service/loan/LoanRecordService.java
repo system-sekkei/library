@@ -1,6 +1,5 @@
 package library.application.service.loan;
 
-import library.application.repository.LoanRepository;
 import library.domain.model.loan.LoanRequest;
 import org.springframework.stereotype.Service;
 

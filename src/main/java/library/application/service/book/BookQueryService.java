@@ -1,9 +1,8 @@
 package library.application.service.book;
 
-import library.application.repository.BookRepository;
-import library.domain.model.item.bibliography.Book;
-import library.domain.model.item.bibliography.BookNumber;
-import library.domain.model.item.bibliography.Keyword;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.reservation.availability.BookAvailabilities;
 import org.springframework.stereotype.Service;
 

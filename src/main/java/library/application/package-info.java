@@ -1,4 +1,4 @@
 /**
- * 機能
+ * ビジネスアクション
  */
 package library.application;

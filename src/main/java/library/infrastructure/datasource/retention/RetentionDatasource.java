@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.retention;
 
-import library.application.repository.RetentionRepository;
-import library.domain.model.item.ItemNumber;
+import library.application.service.retention.RetentionRepository;
+import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.RetainedDate;
@@ -41,10 +41,7 @@ public class RetentionDatasource implements RetentionRepository {
 
         // 取置の発生の記録
         retentionMapper.insert取置履歴(reservationNumber, itemNumber, retainedDate);
-
-        // 予約の状態
         retentionMapper.insert準備完了(reservationNumber, itemNumber, retainedDate);
-        retentionMapper.delete未準備(reservationNumber);
 
         // 蔵書の状態
         itemMapper.delete貸出可能(itemNumber);

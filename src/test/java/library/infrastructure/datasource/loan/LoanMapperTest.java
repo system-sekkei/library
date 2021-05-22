@@ -1,15 +1,11 @@
 package library.infrastructure.datasource.loan;
 
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.loan.Loan;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.junit.jupiter.api.Test;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 

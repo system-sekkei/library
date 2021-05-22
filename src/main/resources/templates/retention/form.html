@@ -18,7 +18,7 @@
     th:value="*{itemNumber()}" placeholder="1-A,2-Aなど">
     <p th:if="${#fields.hasErrors('itemNumber.value')}">
       <mark>
-        <!--/*@thymesVar id="itemNumber" type="library.domain.model.item.ItemNumber"*/-->
+        <!--/*@thymesVar id="itemNumber" type="library.domain.model.book.collection.ItemNumber"*/-->
         <span th:errors="*{itemNumber.value}"></span>
       </mark>
     </p>

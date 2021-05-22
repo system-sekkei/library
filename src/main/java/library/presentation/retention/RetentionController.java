@@ -1,8 +1,8 @@
 package library.presentation.retention;
 
-import library.application.coordinator.retention.RetentionCoordinator;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.ItemStatus;
+import library.application.scenario.RetentionScenario;
+import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.book.collection.ItemStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.retention.BookMatching;
 import library.domain.model.reservation.retention.RetainedList;
@@ -15,8 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import static library.domain.model.item.ItemStatus.未登録;
-import static library.domain.model.item.ItemStatus.貸出可能;
+import static library.domain.model.book.collection.ItemStatus.未登録;
+import static library.domain.model.book.collection.ItemStatus.貸出可能;
 import static library.domain.model.reservation.retention.BookMatching.不一致;
 
 /**
@@ -25,15 +25,15 @@ import static library.domain.model.reservation.retention.BookMatching.不一致;
 @Controller("取置の管理")
 @RequestMapping("retentions")
 public class RetentionController {
-    RetentionCoordinator retentionCoordinator;
+    RetentionScenario retentionScenario;
 
-    public RetentionController(RetentionCoordinator retentionCoordinator) {
-        this.retentionCoordinator = retentionCoordinator;
+    public RetentionController(RetentionScenario retentionScenario) {
+        this.retentionScenario = retentionScenario;
     }
 
     @GetMapping
     String retainedList(Model model) {
-        RetainedList retainedList = retentionCoordinator.retainedList();
+        RetainedList retainedList = retentionScenario.retainedList();
         model.addAttribute("retainedList", retainedList);
         return "retention/retentions";
     }
@@ -42,14 +42,14 @@ public class RetentionController {
     String retain(@Validated @ModelAttribute("retention") Retention retention, BindingResult bindingResult,
                   Model model) {
 
-        Reservation reservation = retentionCoordinator.reservationOf(retention.reservationNumber());
+        Reservation reservation = retentionScenario.reservationOf(retention.reservationNumber());
         model.addAttribute("reservation", reservation);
 
         if (bindingResult.hasErrors()) {
             return "retention/form";
         }
 
-        ItemStatus itemStatus = retentionCoordinator.itemStatus(retention.itemNumber());
+        ItemStatus itemStatus = retentionScenario.itemStatus(retention.itemNumber());
 
         if (itemStatus == 未登録) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
@@ -57,7 +57,7 @@ public class RetentionController {
             return "retention/form";
         }
 
-        BookMatching matching = retentionCoordinator.isSameBook(reservation, retention);
+        BookMatching matching = retentionScenario.isSameBook(reservation, retention);
         if (matching == 不一致) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
                     "itemNumber.value", matching.description()));
@@ -70,20 +70,20 @@ public class RetentionController {
             return "retention/form";
         }
 
-        retentionCoordinator.retain(retention);
+        retentionScenario.retain(retention);
 
         return "redirect:/retentions/requests";
     }
 
     @PostMapping(value = "loans", params = {"loaned"})
     String loan(@RequestParam("loaned") ItemNumber itemNumber) {
-        retentionCoordinator.loan(itemNumber);
+        retentionScenario.loan(itemNumber);
         return "redirect:/retentions";
     }
 
     @PostMapping(value = "loans", params = {"expired"})
     String expired(@RequestParam("expired")ItemNumber itemNumber) {
-        retentionCoordinator.expire(itemNumber);
+        retentionScenario.expire(itemNumber);
         return "redirect:/retentions";
     }
 

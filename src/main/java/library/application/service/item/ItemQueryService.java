@@ -1,13 +1,9 @@
 package library.application.service.item;
 
-import library.application.repository.ItemRepository;
-import library.domain.model.item.Item;
-import library.domain.model.item.ItemNumber;
-import library.domain.model.item.ItemStatus;
+import library.domain.model.book.collection.Item;
+import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.book.collection.ItemStatus;
 import org.springframework.stereotype.Service;
-
-import static library.domain.model.item.ItemStatus.未登録;
-import static library.domain.model.item.ItemStatus.貸出不可;
 
 /**
  * 蔵書検索サービス

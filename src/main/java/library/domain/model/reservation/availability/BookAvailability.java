@@ -1,7 +1,7 @@
 package library.domain.model.reservation.availability;
 
-import library.domain.model.item.bibliography.Book;
-import library.domain.model.item.bibliography.BookNumber;
+import library.domain.model.book.bibliography.Book;
+import library.domain.model.book.bibliography.BookNumber;
 
 import static library.domain.model.reservation.availability.Availability.予約できる;
 

@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.retention;
 
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.retention.Retained;
 import library.domain.model.reservation.retention.RetainedDate;
@@ -11,10 +11,6 @@ import java.util.List;
 
 @Mapper
 public interface RetentionMapper {
-
-    void insert未準備(ReservationNumber reservationNumber);
-
-    void delete未準備(ReservationNumber reservationNumber);
 
     void insert取置履歴(
             @Param("reservationNumber") ReservationNumber reservationNumber,

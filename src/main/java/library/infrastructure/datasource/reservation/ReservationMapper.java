@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.reservation;
 
-import library.domain.model.item.bibliography.BookNumber;
+import library.domain.model.book.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservation;
@@ -21,6 +21,10 @@ public interface ReservationMapper {
     List<Reservation> selectAllReservation();
 
     Reservation selectReservation(ReservationNumber reservationNumber);
+
+    void insert未準備(ReservationNumber reservationNumber);
+
+    void delete未準備(ReservationNumber reservationNumber);
 
     void cancelReservation(ReservationNumber reservationNumber);
 }

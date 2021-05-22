@@ -1,6 +1,6 @@
 package library.presentation.retention;
 
-import library.application.coordinator.retention.RetentionCoordinator;
+import library.application.scenario.RetentionScenario;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservations;
@@ -15,15 +15,15 @@ import org.springframework.web.bind.annotation.*;
 @Controller("予約の管理")
 @RequestMapping("retentions/requests")
 public class ReservationController {
-    RetentionCoordinator retentionCoordinator;
+    RetentionScenario retentionScenario;
 
-    public ReservationController(RetentionCoordinator retentionCoordinator) {
-        this.retentionCoordinator = retentionCoordinator;
+    public ReservationController(RetentionScenario retentionScenario) {
+        this.retentionScenario = retentionScenario;
     }
 
     @GetMapping
     String requests(Model model) {
-        Reservations reservations = retentionCoordinator.reservations();
+        Reservations reservations = retentionScenario.reservations();
         model.addAttribute("reservations", reservations);
         return "retention/requests";
     }
@@ -32,7 +32,7 @@ public class ReservationController {
     String retentionForm(
             @PathVariable("reservationNumber") ReservationNumber reservationNumber,
             Model model) {
-        Reservation reservation = retentionCoordinator.reservationOf(reservationNumber);
+        Reservation reservation = retentionScenario.reservationOf(reservationNumber);
         model.addAttribute("reservation", reservation);
         model.addAttribute("retention", new Retention());
         return "retention/form";
@@ -40,7 +40,7 @@ public class ReservationController {
 
     @PostMapping("canceled")
     String cancel(@RequestParam("notAvailable") ReservationNumber reservationNumber){
-        retentionCoordinator.cancel(reservationNumber);
+        retentionScenario.cancel(reservationNumber);
         return "redirect:/retentions/requests";
     }
 }

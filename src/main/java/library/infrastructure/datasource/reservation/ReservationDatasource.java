@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.reservation;
 
-import library.application.repository.ReservationRepository;
+import library.application.service.reservation.ReservationRepository;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservations;
@@ -30,7 +30,7 @@ public class ReservationDatasource implements ReservationRepository {
                 reservation.memberNumber(),
                 reservation.bookNumber());
 
-        retentionMapper.insert未準備(reservationNumber);
+        reservationMapper.insert未準備(reservationNumber);
     }
 
     @Override
@@ -45,10 +45,15 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
+    public void retained(ReservationNumber reservation) {
+        reservationMapper.delete未準備(reservation);
+    }
+
+    @Override
     @Transactional
     public void cancel(Reservation reservation) {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
-        retentionMapper.delete未準備(reservationNumber);
+        reservationMapper.delete未準備(reservationNumber);
     }
 }

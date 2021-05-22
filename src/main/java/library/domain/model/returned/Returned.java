@@ -1,6 +1,6 @@
 package library.domain.model.returned;
 
-import library.domain.model.item.ItemNumber;
+import library.domain.model.book.collection.ItemNumber;
 
 /**
  * 返却
