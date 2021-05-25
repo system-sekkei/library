@@ -1,4 +1,4 @@
 /**
- * 取置サービス
+ * 取置
  */
 package library.application.service.retention;

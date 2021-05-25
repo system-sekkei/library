@@ -4,9 +4,9 @@ import library.application.scenario.RetentionScenario;
 import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.book.collection.ItemStatus;
 import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.retention.BookMatching;
-import library.domain.model.reservation.retention.RetainedList;
-import library.domain.model.reservation.retention.Retention;
+import library.domain.model.retention.BookMatching;
+import library.domain.model.retention.RetainedList;
+import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static library.domain.model.book.collection.ItemStatus.未登録;
 import static library.domain.model.book.collection.ItemStatus.貸出可能;
-import static library.domain.model.reservation.retention.BookMatching.不一致;
+import static library.domain.model.retention.BookMatching.不一致;
 
 /**
  * 取置の管理画面

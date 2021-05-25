@@ -1,12 +1,12 @@
 package library.application.service.retention;
 
 import library.domain.model.book.collection.ItemNumber;
-import library.domain.model.reservation.retention.Retained;
-import library.domain.model.reservation.retention.RetainedList;
+import library.domain.model.retention.Retained;
+import library.domain.model.retention.RetainedList;
 import org.springframework.stereotype.Service;
 
 /**
- * 取置参照サービス
+ * 取置の参照
  */
 @Service
 public class RetentionQueryService {

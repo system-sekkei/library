@@ -2,8 +2,8 @@ package library.infrastructure.datasource.retention;
 
 import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.retention.Retained;
-import library.domain.model.reservation.retention.RetainedDate;
+import library.domain.model.retention.Retained;
+import library.domain.model.retention.RetainedDate;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

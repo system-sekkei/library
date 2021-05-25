@@ -6,7 +6,7 @@ import library.domain.model.book.collection.ItemStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * 蔵書検索サービス
+ * 蔵書の検索
  */
 @Service
 public class ItemQueryService {

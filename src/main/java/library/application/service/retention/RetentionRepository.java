@@ -1,9 +1,9 @@
 package library.application.service.retention;
 
 import library.domain.model.book.collection.ItemNumber;
-import library.domain.model.reservation.retention.Retained;
-import library.domain.model.reservation.retention.Retention;
-import library.domain.model.reservation.retention.RetainedList;
+import library.domain.model.retention.Retained;
+import library.domain.model.retention.Retention;
+import library.domain.model.retention.RetainedList;
 
 /**
  * 取置リポジトリ

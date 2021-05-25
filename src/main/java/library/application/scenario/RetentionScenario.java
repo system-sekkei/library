@@ -9,7 +9,7 @@ import library.application.service.retention.RetentionRecordService;
 import library.domain.model.book.collection.Item;
 import library.domain.model.book.collection.ItemNumber;
 import library.domain.model.book.collection.ItemStatus;
-import library.domain.model.reservation.retention.*;
+import library.domain.model.retention.*;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;

@@ -1,4 +1,4 @@
 /**
- * 会員サービス
+ * 会員
  */
 package library.application.service.member;

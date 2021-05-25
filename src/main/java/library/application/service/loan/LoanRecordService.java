@@ -4,7 +4,7 @@ import library.domain.model.loan.LoanRequest;
 import org.springframework.stereotype.Service;
 
 /**
- * 貸出記録サービス
+ * 貸出の記録
  */
 @Service
 public class LoanRecordService {
