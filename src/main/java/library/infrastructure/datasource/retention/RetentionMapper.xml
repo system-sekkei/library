@@ -18,7 +18,7 @@
         DELETE FROM 取置.準備完了 WHERE 蔵書番号 = #{value}
     </delete>
 
-    <resultMap id="準備完了" type="library.domain.model.reservation.retention.Retained">
+    <resultMap id="準備完了" type="library.domain.model.retention.Retained">
         <association property="reservation"
                      column="reservation"
                      select="library.infrastructure.datasource.reservation.ReservationMapper.selectReservation" />

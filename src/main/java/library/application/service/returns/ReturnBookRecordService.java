@@ -5,7 +5,7 @@ import library.domain.model.returned.Returned;
 import org.springframework.stereotype.Service;
 
 /**
- * 返却登録サービス
+ * 返却の登録
  */
 @Service
 public class ReturnBookRecordService {

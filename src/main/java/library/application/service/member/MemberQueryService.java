@@ -6,7 +6,7 @@ import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * 会員参照サービス
+ * 会員の参照
  */
 @Service
 public class MemberQueryService {

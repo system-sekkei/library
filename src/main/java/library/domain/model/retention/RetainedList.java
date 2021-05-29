@@ -1,4 +1,4 @@
-package library.domain.model.reservation.retention;
+package library.domain.model.retention;
 
 import java.util.List;
 

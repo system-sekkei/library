@@ -1,4 +1,4 @@
 /**
- * 書籍サービス
+ * 書籍
  */
 package library.application.service.book;

@@ -6,7 +6,7 @@ import library.domain.model.reservation.request.Reservations;
 import org.springframework.stereotype.Service;
 
 /**
- * 貸出予約参照サービス
+ * 予約の参照
  */
 @Service
 public class ReservationQueryService {

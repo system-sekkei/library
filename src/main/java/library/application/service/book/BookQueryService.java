@@ -7,7 +7,7 @@ import library.domain.model.reservation.availability.BookAvailabilities;
 import org.springframework.stereotype.Service;
 
 /**
- * 本参照サービス
+ * 書籍の参照と検索
  */
 @Service
 public class BookQueryService {
