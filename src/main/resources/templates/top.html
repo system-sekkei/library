@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
-    <title>業務体系</title>
-    <link th:replace="_fragments/counter/head :: css-dark">
+  <title>業務体系</title>
+  <link th:replace="_parts/head :: css">
 </head>
 <body>
-<h1>業務</h1>
-    <h3>窓口：<a target="counter" th:href="@{/loan/register}">貸出・返却</a></h3>
-    <h3>会員：<a target="member" th:href="@{/reservation/books/search}">Web予約</a>（取置の依頼）</h3>
+<head>
+</head>
+<main>
+  <h1>図書館サービス</h1>
+  <article>
+    <h2>利用者向け</h2>
+    <h3>一般：<a th:href="@{/}">ご利用案内</a>　＜未実装＞</h3>
+    <h3>会員：<a target="member" th:href="@{/reservation/books/search}">本の予約</a></h3>
+  </article>
 
-    <h3>図書館員：
-        <a target="librarian" th:href="@{/retentions/requests}">予約の管理</a>
-        | <a target="librarian" th:href="@{/retentions}">取置の管理</a>
-    </h3>
-    <h3>図書館員：<a th:href="@{/}">会員管理</a>　＜未実装＞</h3>
-    <h3>図書館員：<a th:href="@{/}">蔵書管理</a>　＜未実装＞</h3>
+  <article>
+    <h2>図書館スタッフ業務</h2>
+    <h3><a target="counter" th:href="@{/loan/register}">貸出・返却</a></h3>
+    <h3><a target="librarian" th:href="@{/retentions/requests}">予約の管理</a></h3>
+    <h3><a target="librarian" th:href="@{/retentions}">取置の管理</a></h3>
+    <h3><a th:href="@{/}">会員管理</a>　＜未実装＞</h3>
+    <h3><a th:href="@{/}">蔵書管理</a>　＜未実装＞</h3>
+  </article>
+</main>
 </body>
 </html>

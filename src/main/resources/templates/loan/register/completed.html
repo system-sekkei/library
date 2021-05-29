@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="_fragments/member/layout :: htmlhead(~{::title})">
+<head th:replace="_parts/member/layout :: htmlhead(~{::title})">
   <meta charset="utf-8"/>
   <title>貸出の登録</title>
 </head>
 <body>
-<header th:replace="_fragments/librarian/navigation::navigation('貸出の登録')"></header>
+<header th:replace="_parts/librarian/navigation::navigation('貸出の登録')"></header>
 
 <main class="container">
-  <header th:replace="_fragments/member/header::header('貸出の登録')"></header>
+  <header th:replace="_parts/member/header::header('貸出の登録')"></header>
 
   <div class="notification">
     会員番号: <span th:text="${loanStatus.memberNumber()}"></span> の貸出を登録しました。
