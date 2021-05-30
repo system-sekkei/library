@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class ReturnBookRegisterControllerTest {
+class ReturnBookControllerTest {
 
     @Autowired
     MockMvc mockMvc;
