@@ -5,6 +5,17 @@
     <title>図書館スタッフ　ナビゲーション</title>
 </head>
 <body>
+<header th:fragment="reservation">
+  <nav>
+    <!--    <a></a>-->
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/reservation/books/search}">本を探す</a></li>
+      <li><a th:href="@{/reservation/register}">本の貸出予約</a></li>
+    </ul>
+  </nav>
+</header>
+
 <header th:fragment="loan">
   <nav>
     <ul>

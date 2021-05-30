@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_parts/member/layout :: htmlhead(~{::title})">
+<head>
   <th:block th:replace="_parts/head :: meta"/>
   <title>予約フォーム</title>
   <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
-<header th:replace="_parts/member/navigation::navigation"></header>
+<header th:replace="_parts/navigation::reservation"></header>
 <main>
   <article>
     <h3 th:text="予約する本"></h3>
