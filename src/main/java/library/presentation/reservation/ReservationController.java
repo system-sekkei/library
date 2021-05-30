@@ -35,7 +35,7 @@ public class ReservationController {
         Book book = reservationScenario.findBook(bookNumber);
         model.addAttribute("book", book);
         model.addAttribute("member", MemberNumber.empty());
-        return "reservation/register/form";
+        return "reservation/form";
     }
 
     @PostMapping
@@ -49,14 +49,14 @@ public class ReservationController {
         Book book = reservationScenario.findBook(bookNumber);
         if (bindingResult.hasErrors()) {
             model.addAttribute("book", book);
-            return "reservation/register/form";
+            return "reservation/form";
         }
 
         if (reservationScenario.memberStatus(memberNumber) == 未登録) {
             model.addAttribute("member", memberNumber);
             model.addAttribute("book", book);
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),"value","その番号の会員はいません"));
-            return "reservation/register/form";
+            return "reservation/form";
         }
 
         reservationScenario.reserve(book, memberNumber);
@@ -65,8 +65,8 @@ public class ReservationController {
     }
 
     @GetMapping("completed")
-    String completed(Model model) {
-        return "reservation/register/completed";
+    String completed() {
+        return "reservation/completed";
     }
 
     @InitBinder

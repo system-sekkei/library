@@ -9,8 +9,7 @@
     <link rel="shortcut icon" type="image/png" th:href="@{/images/favicon.png}"/>
 
     <title th:replace="${title}">(title)</title>
-
-    <link th:replace="_parts/head :: css">
+<th:block th:replace="_parts/head :: css"></th:block>
 </head>
 
 <body>

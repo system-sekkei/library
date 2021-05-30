@@ -29,7 +29,7 @@ public class BookSearchController {
         BookAvailabilities availabilities = reservationScenario.search(searchKeyword);
         model.addAttribute("availabilities", availabilities);
         model.addAttribute("searchKeyword", searchKeyword);
-        return "reservation/books/search";
+        return "reservation/search";
     }
 
     @InitBinder

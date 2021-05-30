@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_parts/member/layout :: htmlhead(~{::title})">
-  <meta charset="utf-8"/>
-  <title>本の貸出予約</title>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>予約フォーム</title>
+  <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
 <header th:replace="_parts/member/navigation::navigation"></header>
@@ -24,14 +25,12 @@
              th:field="*{value}"/>
 
       <p th:if="${#fields.hasErrors('value')}">
-        <span th:errors="*{value}"></span>
+        <mark><span th:errors="*{value}"></span></mark>
       </p>
 
       <input type="hidden" name="book" th:value="${book.bookNumber()}">
 
-      <div class="formFooter has-text-centered">
-        <button class="button is-primary is-outlined">予約する</button>
-      </div>
+        <button>予約する</button>
     </form>
   </article>
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>ナビゲーションバー</title>
@@ -9,7 +9,8 @@
   <nav>
 <!--    <a></a>-->
     <ul>
-      <li><a th:href="@{/reservation/books/search}">蔵書検索</a></li>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/reservation/books/search}">本を探す</a></li>
       <li><a th:href="@{/reservation/register}">本の貸出予約</a></li>
     </ul>
   </nav>

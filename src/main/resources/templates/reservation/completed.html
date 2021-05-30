@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="_parts/member/layout :: htmlhead(~{::title})">
-  <meta charset="utf-8"/>
-  <title>本の貸出予約</title>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>予約完了</title>
+  <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
 <header th:replace="_parts/member/navigation::navigation"></header>

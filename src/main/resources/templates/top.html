@@ -5,24 +5,26 @@
   <link th:replace="_parts/head :: css">
 </head>
 <body>
-<head>
-</head>
+<header>
+</header>
 <main>
-  <h1>図書館サービス</h1>
   <article>
-    <h2>利用者向け</h2>
-    <h3>一般：<a th:href="@{/}">ご利用案内</a>　＜未実装＞</h3>
-    <h3>会員：<a target="member" th:href="@{/reservation/books/search}">本の予約</a></h3>
-  </article>
-
-  <article>
-    <h2>図書館スタッフ業務</h2>
-    <h3><a target="counter" th:href="@{/loan/register}">貸出・返却</a></h3>
-    <h3><a target="librarian" th:href="@{/retentions/requests}">予約の管理</a></h3>
-    <h3><a target="librarian" th:href="@{/retentions}">取置の管理</a></h3>
-    <h3><a th:href="@{/}">会員管理</a>　＜未実装＞</h3>
-    <h3><a th:href="@{/}">蔵書管理</a>　＜未実装＞</h3>
+    <h2>図書館サービス</h2>
+    <h3>利用者向け</h3>
+    <ul>
+      <li>一般：<a th:href="@{/}">ご利用案内</a>　<small>未実装</small></li>
+      <li>会員：<a target="member" th:href="@{/reservation/books/search}">本の予約</a></li>
+    </ul>
+    <h3>図書館スタッフ用</h3>
+    <ul>
+    <li><a target="counter" th:href="@{/loan/register}">貸出・返却</a></li>
+    <li><a target="librarian" th:href="@{/retentions/requests}">予約の管理</a></li>
+    <li><a target="librarian" th:href="@{/retentions}">取置の管理</a></li>
+    <li><a th:href="@{/}">会員管理</a>　<small>未実装</small></li>
+    <li><a th:href="@{/}">蔵書管理</a>　<small>未実装</small></li>
+    </ul>
   </article>
 </main>
+<footer th:replace="_parts/footer :: default"/>
 </body>
 </html>

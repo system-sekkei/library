@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html" >
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>貸出の登録</title>
+  <th:block th:replace="_parts/head :: css"/>
+</head>
+<body>
+<header th:replace="_parts/librarian/navigation::navigation"></header>
+
+<main>
+  <article>
+    <h3>貸出の記録</h3>
+    <form method="post" action="#"
+          th:object="${loanRequest}" th:action="@{/loan/register}">
+
+      <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">
+        <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+      </ul>
+
+      <label>会員番号</label>
+      <input type="text" th:field="*{memberNumber.value}" placeholder="会員番号　1,2など">
+      <p th:if="${#fields.hasErrors('memberNumber.value')}">
+        <mark><span th:errors="*{memberNumber.value}"></span></mark>
+      </p>
+
+      <label>蔵書番号</label>
+      <input type="text" th:field="*{itemNumber.value}" placeholder="蔵書番号　1-A, 2-Aなど">
+      <p th:if="${#fields.hasErrors('itemNumber.value')}">
+        <mark><span th:errors="*{itemNumber.value}"></span></mark>
+      </p>
+
+      <label>貸出日</label>
+      <input type="date" th:field="*{loanDate.value}">
+      <p th:if="${#fields.hasErrors('loanDate.value')}">
+        <mark><span th:errors="*{loanDate.value}"></span></mark>
+      </p>
+
+      <button>登録</button>
+    </form>
+  </article>
+
+</main>
+</body>
+</html>

@@ -1,24 +1,17 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>ナビゲーションバー</title>
+    <title>図書館スタッフ　ナビゲーション</title>
 </head>
 <body>
-<header class="hero is-warning" th:fragment="navigation(active)">
-  <nav class="navbar">
-    <div class="navbar-menu is-flex">
-      <a class="navbar-item" th:classappend="${active.equals('貸出の登録')} ? 'is-active' : ''"
-         th:href="@{/loan/register}">
-        <span class="icon"><i class="fas mdiBookOpenVariant"></i></span>
-        <span>貸出の登録</span>
-      </a>
-      <a class="navbar-item" th:classappend="${active.equals('貸出の返却')} ? 'is-active' : ''"
-         th:href="@{/returns/register}">
-          <span class="icon"><i class="fas mdiBookOpenVariant"></i></span>
-          <span>貸出の返却</span>
-      </a>
-    </div>
+<header th:fragment="navigation">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/loan/register}">貸出を記録する</a></li>
+      <li><a th:href="@{/returns/register}">返却を記録する</a></li>
+    </ul>
   </nav>
 </header>
 </body>
