@@ -5,12 +5,21 @@
     <title>図書館スタッフ　ナビゲーション</title>
 </head>
 <body>
-<header th:fragment="navigation">
+<header th:fragment="loan">
   <nav>
     <ul>
       <li><a th:href="@{/}">ホーム</a></li>
       <li><a th:href="@{/loan/register}">貸出を記録する</a></li>
       <li><a th:href="@{/returns}">返却を記録する</a></li>
+    </ul>
+  </nav>
+</header>
+<header th:fragment="retention">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/retentions/requests}">未準備の予約</a></li>
+      <li><a th:href="@{/retentions}">準備完了・貸出待ち</a></li>
     </ul>
   </nav>
 </header>
