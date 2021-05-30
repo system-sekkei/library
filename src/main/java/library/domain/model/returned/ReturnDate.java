@@ -21,6 +21,10 @@ public class ReturnDate {
         this.value = value;
     }
 
+    @Deprecated(since = "thymeleaf")
+    public void value() {
+    }
+
     @Override
     public String toString() {
         return value.toString();

@@ -1,61 +1,42 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="_parts/member/layout :: htmlhead(~{::title})">
-  <meta charset="utf-8"/>
-  <title>貸出の返却</title>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>本の返却</title>
+  <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
-<header th:replace="_parts/librarian/navigation::navigation('貸出の返却')"></header>
+<header th:replace="_parts/librarian/navigation::navigation"></header>
 
-<main class="container">
-  <header th:replace="_parts/member/header::header('貸出の返却')"></header>
-
-  <section class="attendanceInput has-text-centered">
-    <form id="custom-form" class="form" name="body"
-          method="post" action="#"
+<main>
+  <article>
+    <h3>本の返却</h3>
+    <form method="post" action="#"
           th:object="${returned}"
-          th:action="@{/returns/register}">
+          th:action="@{/returns}">
 
       <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <div th:replace="_parts/member/field::macro('蔵書番号', ~{::div#holdingCodeField})">
-        <div id="holdingCodeField" class="field-body">
-          <div class="field">
-            <p class="control">
-              <input class="input" type="text" placeholder="蔵書番号　1-A,2-Aなど"
-                     th:field="*{itemNumber.value}">
-            </p>
-            <p class="help is-danger has-text-left"
-               th:if="${#fields.hasErrors('itemNumber.value')}">
-              <span th:errors="*{itemNumber.value}"></span>
-            </p>
-          </div>
-        </div>
-      </div>
+      <label>蔵書番号</label>
+      <input class="input" type="text" placeholder="蔵書番号　1-A,2-Aなど"
+             th:field="*{itemNumber.value}">
+      <p th:if="${#fields.hasErrors('itemNumber.value')}">
+        <mark><span th:errors="*{itemNumber.value}"></span></mark>
+      </p>
 
-      <div th:replace="_parts/member/field::macro('返却日', ~{::div#returnDateField})">
-        <div id="returnDateField" class="field-body">
-          <div class="field">
-            <p class="control">
+              <label>返却日</label>
               <input class="input" type="date"
                      th:field="*{returnDate.value}">
-            </p>
             <p class="help is-danger has-text-left"
                th:if="${#fields.hasErrors('returnDate.value')}">
-              <span th:errors="*{returnDate.value}"></span>
+              <mark><span th:errors="*{returnDate.value}"></span></mark>
             </p>
-          </div>
-        </div>
-      </div>
 
-      <div class="formFooter has-text-centered">
-        <button class="button is-primary is-outlined">登録</button>
-      </div>
+        <button>登録</button>
     </form>
-  </section>
-
+  </article>
 </main>
 </body>
 <footer th:replace="_parts/footer :: default"></footer>

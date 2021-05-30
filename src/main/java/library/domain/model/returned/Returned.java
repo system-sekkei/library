@@ -15,7 +15,13 @@ public class Returned {
         this.returnDate = returnDate;
     }
 
+    @Deprecated(since = "thymeleaf")
     public ItemNumber itemNumber() {
         return itemNumber;
+    }
+
+    @Deprecated(since = "thymeleaf")
+    public ReturnDate returnDate() {
+        return returnDate;
     }
 }

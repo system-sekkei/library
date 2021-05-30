@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ja">
-<head th:replace="_parts/member/layout :: htmlhead(~{::title})">
-  <meta charset="utf-8"/>
-  <title>貸出の返却</title>
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>返却完了</title>
+  <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
-<header th:replace="_parts/librarian/navigation::navigation('貸出の返却')"></header>
+<header th:replace="_parts/librarian/navigation::navigation"></header>
 
-<main class="container">
-  <header th:replace="_parts/member/header::header('貸出の返却')"></header>
-
-  <div class="notification">
-    返却しました。
-  </div>
-
+<main>
+<article>
+  <h3>返却</h3>
+  <p>返却を記録しました</p>
+</article>
 </main>
 </body>
 <footer th:replace="_parts/footer :: default"></footer>
