@@ -1,43 +1,46 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="utf-8"/>
+  <th:block th:replace="_parts/head :: meta"/>
   <title>予約の管理</title>
-  <link th:replace="_parts/counter/head :: css">
+  <th:block th:replace="_parts/head :: css"/>
 </head>
 <body>
-<nav>
-  <a th:href="@{/retentions/requests}">未準備の予約</a>
-  | <a th:href="@{/retentions}">準備完了・貸出待ち</a>
-</nav>
-<h1>未準備の予約</h1>
-  <p th:text="${reservations.numberOfReservation()}">件</p>
-  <table class="table">
-    <thead>
-    <tr>
-      <th>会員</th>
-      <th>本</th>
-      <th>アクション</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="reservation : ${reservations.asList()}">
-      <td th:text="${reservation.member().number()}"></td>
-      <td th:text="${reservation.showBook()}"></td>
-      <td>
-        <form th:action="@{/retentions/requests/{reservation}(reservation=${reservation.number()})}" method="get">
-        <button type="submit">取置</button>
-        </form>
-      </td>
-      <td>
-        <form th:action="@{/retentions/requests/canceled}" method="post">
-        <button type="submit" name="notAvailable" th:value="${reservation.number()}">在庫なし</button>
-        </form>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</body>
+<header th:replace="_parts/librarian/navigation::retention"></header>
+<main>
+  <article>
+    <h1>予約の管理</h1>
+    <p th:text="${reservations.numberOfReservation()}">件</p>
+    <form>
+    <table th:unless="${reservations.isEmpty()}">
+      <thead>
+      <tr>
+        <th>アクション</th>
+        <th>本</th>
+        <th>会員</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="reservation : ${reservations.asList()}">
+
+        <td>
+            <button type="submit"
+                    th:formmethod="get" th:formaction="@{/retentions/requests/{reservation}(reservation=${reservation.number()})}">
+              取置</button>
+            <button type="submit" name="notAvailable"
+                    th:formmethod="post" th:formaction="@{/retentions/requests/canceled}"
+                    th:value="${reservation.number()}">キャンセル</button>
+        </td>
+        <td th:text="${reservation.showBook()}"></td>
+        <td th:text="${reservation.member().number()}"></td>
+
+      </tr>
+      </tbody>
+    </table>
+    </form>
+  </article>
+</main>
 <footer th:replace="_parts/footer :: default"></footer>
+</body>
 </html>

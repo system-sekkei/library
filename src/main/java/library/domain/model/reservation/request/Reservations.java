@@ -20,6 +20,9 @@ public class Reservations {
         return list;
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
     @Override
     public String toString() {
         return "Reservations{" +

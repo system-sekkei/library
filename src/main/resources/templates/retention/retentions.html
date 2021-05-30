@@ -8,7 +8,7 @@
 <body>
 <header th:replace="_parts/librarian/navigation::retention"></header>
 <main>
-  <h1>準備完了・貸出待ち</h1>
+  <h1>取置中</h1>
   <p th:text="${retainedList.showCount()}">件</p>
   <form th:unless="${retainedList.isEmpty()}"
       th:action="@{/retentions/loans}" method="post">
