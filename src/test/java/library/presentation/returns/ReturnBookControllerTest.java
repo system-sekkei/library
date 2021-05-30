@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class ReturnBookRegisterControllerTest {
+class ReturnBookControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -19,7 +19,7 @@ class ReturnBookRegisterControllerTest {
     @Test
     void 返却画面が表示できる() throws Exception {
         mockMvc.perform(
-                get("/returns/register"))
+                get("/returns"))
                 .andExpect(status().isOk());
     }
 }

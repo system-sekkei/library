@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>図書館スタッフ　ナビゲーション</title>
+</head>
+<body>
+<header th:fragment="reservation">
+  <nav>
+    <!--    <a></a>-->
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/reservation/books/search}">本を探す</a></li>
+      <li><a th:href="@{/reservation/register}">本の貸出予約</a></li>
+    </ul>
+  </nav>
+</header>
+
+<header th:fragment="loan">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/loan/register}">本の貸出</a></li>
+      <li><a th:href="@{/returns}">本の返却</a></li>
+    </ul>
+  </nav>
+</header>
+<header th:fragment="retention">
+  <nav>
+    <ul>
+      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/retentions/requests}">予約の管理</a></li>
+      <li><a th:href="@{/retentions}">取置の管理</a></li>
+    </ul>
+  </nav>
+</header>
+</body>
+</html>

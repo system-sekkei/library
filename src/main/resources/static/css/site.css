@@ -1,0 +1,44 @@
+/* 色の調整 */
+
+body {
+    background: whitesmoke;
+}
+
+header,
+footer {
+    background: white;
+}
+
+main {
+    background: ivory;
+}
+
+/* 幅とマージンの調整 */
+
+body {
+    margin-top: 2rem;
+}
+
+footer,
+header,
+main {
+    max-width: var(--width-card-wide);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+nav {
+    margin-bottom: 0;
+}
+
+/* テーブルカラムのアラインメントの調整 */
+
+table thead th:first-child,
+table tr td:first-child {
+    text-align: var(--justify-important);
+}
+
+table thead th:nth-child(2),
+table tr td:nth-child(2) {
+    text-align: var(--justify-normal);
+}

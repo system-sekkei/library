@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>貸出完了</title>
+  <th:block th:replace="_parts/head :: css"/>
+</head>
+<body>
+<header th:replace="_parts/navigation::loan"></header>
+
+<main>
+  <article>
+    <p>会員番号: <span th:text="${loanStatus.memberNumber()}"></span> の貸出を登録しました。
+    </p>
+    <h3>貸出状況</h3>
+    <table>
+      <thead>
+      <tr>
+        <th>貸出日</th>
+        <th>本</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="loan : ${loanStatus.loans().asList()}">
+        <td th:text="${loan.date().show()}"></td>
+        <td th:text="${loan.item().show()}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </article>
+</main>
+</body>
+<footer th:replace="_parts/footer :: default"></footer>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>予約完了</title>
+  <th:block th:replace="_parts/head :: css"/>
+</head>
+<body>
+<header th:replace="_parts/navigation::reservation"></header>
+<main>
+  <div class="notification">
+    本を予約しました。
+  </div>
+</main>
+</body>
+<footer th:replace="_parts/footer :: default"></footer>
+</html>

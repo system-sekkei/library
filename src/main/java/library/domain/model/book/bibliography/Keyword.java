@@ -18,6 +18,10 @@ public class Keyword {
         return value.isBlank();
     }
 
+    @Deprecated(since = "thymeleaf inspection")
+    public void value() {
+    }
+
     @Override
     public String toString() {
         return value;

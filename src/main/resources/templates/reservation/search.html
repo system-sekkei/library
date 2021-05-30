@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>本の検索</title>
+  <th:block th:replace="_parts/head :: css"/>
+</head>
+<body>
+<header th:replace="_parts/navigation::reservation"></header>
+<main>
+  <article>
+    <form method="get" action="#" th:action="@{/reservation/books/search}">
+      <label>キーワード検索（空白で全件を検索します）</label>
+      <input class="input" type="text" placeholder="キーワード" th:field="${searchKeyword.value}">
+      <button>本を探す</button>
+    </form>
+  </article>
+
+    <article>
+      <h4>検索結果：
+        <span th:text="${availabilities.numberOfBook().show()}"></span>
+      </h4>
+      <table th:if="${availabilities.size()} > 0">
+        <thead>
+        <tr>
+          <th></th>
+          <th>書籍</th>
+          <th>貸出</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="availability : ${availabilities.asList()}">
+          <td>
+            <span th:unless="${availability.isAvailable()}">-</span>
+            <a th:if="${availability.isAvailable()}"
+               class="button is-primary is-small"
+               th:href="@{/reservation/register(book=${availability.bookNumber()})}">予約する</a>
+          </td>
+          <td th:text="${availability.describeBook()}"></td>
+          <td th:text="${availability.showAvailability()}"></td>
+        </tr>
+        </tbody>
+      </table>
+    </article>
+</main>
+<footer th:replace="_parts/footer :: default"></footer>
+</body>
+</html>

@@ -25,6 +25,10 @@ public class RetainedList {
         return list.size() + "件を取り置いています";
     }
 
+    public boolean isEmpty() {
+        return list.isEmpty();
+    }
+
     @Override
     public String toString() {
         return "Retentions{" +

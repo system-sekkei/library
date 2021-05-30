@@ -24,6 +24,11 @@ public class ItemNumber {
     public static ItemNumber empty() {
         return new ItemNumber("");
     }
+
+    @Deprecated(since = "thymeleaf")
+    public void value() {
+    }
+
     @Override
     public String toString() {
         return value;

@@ -33,26 +33,26 @@ public class LoanRegisterController {
     @GetMapping
     String init(Model model) {
         model.addAttribute("loanRequest", LoanRequest.empty());
-        return "loan/register/form";
+        return "loan/form";
     }
 
     @PostMapping
     String register(@Validated @ModelAttribute("loanRequest") LoanRequest loanRequest, BindingResult bindingResult,
                     RedirectAttributes attributes) {
-        if (bindingResult.hasErrors()) return "loan/register/form";
+        if (bindingResult.hasErrors()) return "loan/form";
 
         MemberStatus memberStatus = coordinator.memberStatus(loanRequest);
         if ( memberStatus == 未登録) {
             bindingResult.addError(
                     new FieldError(bindingResult.getObjectName(),
                     "memberNumber.value", "この番号の会員はいません"));
-            return "loan/register/form";
+            return "loan/form";
         }
 
         Loanability loanability = coordinator.loanability(loanRequest);
         if (loanability == 貸出不可) {
             bindingResult.addError(new ObjectError("error", loanability.message()));
-            return "loan/register/form";
+            return "loan/form";
         }
 
         coordinator.loan(loanRequest);
@@ -65,7 +65,7 @@ public class LoanRegisterController {
     @GetMapping("completed")
     String completed(@ModelAttribute("status") LoanStatus status, Model model) {
         model.addAttribute("loanStatus", status);
-        return "loan/register/completed";
+        return "loan/completed";
     }
 
     @InitBinder

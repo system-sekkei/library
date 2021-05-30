@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:replace="_parts/head :: meta"/>
+  <title>予約フォーム</title>
+  <th:block th:replace="_parts/head :: css"/>
+</head>
+<body>
+<header th:replace="_parts/navigation::reservation"></header>
+<main>
+  <article>
+    <h3 th:text="予約する本"></h3>
+    <h4 th:text="${book.show()}"></h4>
+    <form id="custom-form" class="form" name="body"
+          method="post" action="#"
+          th:object="${member}"
+          th:action="@{/reservation/register}">
+
+      <ul th:if="${#fields.hasGlobalErrors()}" class="notification is-danger">
+        <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
+      </ul>
+
+      <label>会員番号を入力してください</label>
+      <input class="input" type="text" placeholder="会員番号　1,2など"
+             th:field="*{value}"/>
+
+      <p th:if="${#fields.hasErrors('value')}">
+        <mark><span th:errors="*{value}"></span></mark>
+      </p>
+
+      <input type="hidden" name="book" th:value="${book.bookNumber()}">
+
+        <button>予約する</button>
+    </form>
+  </article>
+
+</main>
+<footer th:replace="_parts/footer :: default"></footer>
+</body>
+</html>
