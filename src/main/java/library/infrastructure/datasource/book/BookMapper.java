@@ -16,5 +16,5 @@ public interface BookMapper {
             @Param("limit") int limit
     );
 
-    Book findBook(@Param("bookNumber") BookNumber bookNumber);
+    Book findBook(BookNumber bookNumber);
 }

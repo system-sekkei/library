@@ -23,6 +23,6 @@
             書籍.タイトル as "title.value",
             書籍.著者 as "author.value"
         FROM 蔵書.書籍
-        WHERE 書籍.本番号 = #{bookNumber.value}
+        WHERE 書籍.本番号 = #{value}
     </select>
 </mapper>
