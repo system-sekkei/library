@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.book.BookMapper">
 
-    <select id="searchBooks" resultType="library.domain.model.reservation.availability.BookAvailability">
+    <select id="searchBooks" resultType="library.domain.model.reservation.loanability.BookLoanability">
         SELECT
             書籍.本番号 as "book.bookNumber.value",
             書籍.タイトル as "book.title.value",

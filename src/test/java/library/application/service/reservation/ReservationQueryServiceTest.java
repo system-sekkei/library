@@ -6,7 +6,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.availability.BookAvailability;
+import library.domain.model.reservation.loanability.BookLoanability;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.Reservations;
 import org.junit.jupiter.api.Test;
@@ -32,7 +32,7 @@ class ReservationQueryServiceTest {
     @Test
     void 予約を一覧できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        BookAvailability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
+        BookLoanability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
         Reservation tryingToReserveBook = Reservation.of(member, book.book());
         reservationRecordService.reserve(tryingToReserveBook);
 

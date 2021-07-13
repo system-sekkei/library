@@ -1,27 +1,21 @@
-package library.domain.model.reservation.availability;
+package library.domain.model.reservation.loanability;
 
 import library.domain.model.book.bibliography.Book;
 import library.domain.model.book.bibliography.BookNumber;
 
-import static library.domain.model.reservation.availability.Availability.予約できる;
-
 /**
  * 本の貸出可否
  */
-public class BookAvailability {
+public class BookLoanability {
     Book book;
     int loanableItems;
 
-    public String showAvailability() {
-        return availability().show();
+    public String showLoanability() {
+        return loanability().show();
     }
 
-    public boolean isAvailable() {
-        return 予約できる == availability();
-    }
-
-    private Availability availability() {
-        return Availability.availability(loanableItems);
+    private Loanability loanability() {
+        return Loanability.loanability(loanableItems);
     }
 
     public String describeBook() {
@@ -39,7 +33,7 @@ public class BookAvailability {
 
     @Override
     public String toString() {
-        return "BookAvailability{" +
+        return "BookLoanability{" +
                 "book=" + book +
                 ", loanable=" + loanableItems +
                 '}';
