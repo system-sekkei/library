@@ -2,7 +2,7 @@ package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
 import library.domain.model.book.bibliography.Keyword;
-import library.domain.model.reservation.availability.BookAvailabilities;
+import library.domain.model.reservation.loanability.BookLoanabilities;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,8 +26,8 @@ public class BookSearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        BookAvailabilities availabilities = reservationScenario.search(searchKeyword);
-        model.addAttribute("availabilities", availabilities);
+        BookLoanabilities loanabilities = reservationScenario.search(searchKeyword);
+        model.addAttribute("loanabilities", loanabilities);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/search";
     }

@@ -1,4 +1,4 @@
-package library.domain.model.reservation.availability;
+package library.domain.model.reservation.loanability;
 
 import library.domain.model.book.bibliography.NumberOfBook;
 
@@ -7,10 +7,10 @@ import java.util.List;
 /**
  * 本の一覧と貸出可否
  */
-public class BookAvailabilities {
-    List<BookAvailability> list;
+public class BookLoanabilities {
+    List<BookLoanability> list;
 
-    public BookAvailabilities(List<BookAvailability> list) {
+    public BookLoanabilities(List<BookLoanability> list) {
         this.list = list;
     }
 
@@ -21,13 +21,13 @@ public class BookAvailabilities {
         return list.size();
     }
 
-    public List<BookAvailability> asList() {
+    public List<BookLoanability> asList() {
         return list;
     }
 
     @Override
     public String toString() {
-        return "BookAvailabilities{" +
+        return "BookLoanabilities{" +
                 "list=" + list +
                 '}';
     }

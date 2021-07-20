@@ -5,7 +5,7 @@ import library.application.service.book.BookQueryService;
 import library.domain.model.book.bibliography.Book;
 import library.domain.model.book.bibliography.BookNumber;
 import library.domain.model.book.bibliography.Keyword;
-import library.domain.model.reservation.availability.BookAvailabilities;
+import library.domain.model.reservation.loanability.BookLoanabilities;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +20,7 @@ class BookQueryServiceTest {
     @Test
     void 本を検索できる() {
         Keyword keyword = new Keyword("ハンドブック");
-        BookAvailabilities books = bookQueryService.search(keyword);
+        BookLoanabilities books = bookQueryService.search(keyword);
 
         assertAll(
                 () -> assertEquals(1, books.size()),

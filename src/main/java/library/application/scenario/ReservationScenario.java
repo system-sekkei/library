@@ -9,7 +9,7 @@ import library.domain.model.book.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
-import library.domain.model.reservation.availability.BookAvailabilities;
+import library.domain.model.reservation.loanability.BookLoanabilities;
 import library.domain.model.reservation.request.Reservation;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +31,7 @@ public class ReservationScenario {
     /**
      * 本を探す
      */
-    public BookAvailabilities search(Keyword keyword) {
+    public BookLoanabilities search(Keyword keyword) {
         return bookQueryService.search(keyword);
     }
 

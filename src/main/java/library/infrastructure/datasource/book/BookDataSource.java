@@ -2,8 +2,8 @@ package library.infrastructure.datasource.book;
 
 import library.application.service.book.BookRepository;
 import library.domain.model.book.bibliography.*;
-import library.domain.model.reservation.availability.BookAvailabilities;
-import library.domain.model.reservation.availability.BookAvailability;
+import library.domain.model.reservation.loanability.BookLoanabilities;
+import library.domain.model.reservation.loanability.BookLoanability;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,9 +19,9 @@ public class BookDataSource implements BookRepository {
     }
 
     @Override
-    public BookAvailabilities search(Keyword keyword) {
-        List<BookAvailability> books = bookMapper.searchBooks(keyword, NumberOfBook.MAX_TO_SHOW + 1);
-        return new BookAvailabilities(books);
+    public BookLoanabilities search(Keyword keyword) {
+        List<BookLoanability> books = bookMapper.searchBooks(keyword, NumberOfBook.MAX_TO_SHOW + 1);
+        return new BookLoanabilities(books);
     }
 
     @Override

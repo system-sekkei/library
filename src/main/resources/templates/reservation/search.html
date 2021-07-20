@@ -18,9 +18,9 @@
 
     <article>
       <h4>検索結果：
-        <span th:text="${availabilities.numberOfBook().show()}"></span>
+        <span th:text="${loanabilities.numberOfBook().show()}"></span>
       </h4>
-      <table th:if="${availabilities.size()} > 0">
+      <table th:if="${loanabilities.size()} > 0">
         <thead>
         <tr>
           <th></th>
@@ -29,15 +29,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="availability : ${availabilities.asList()}">
+        <tr th:each="loanability : ${loanabilities.asList()}">
           <td>
-            <span th:unless="${availability.isAvailable()}">-</span>
-            <a th:if="${availability.isAvailable()}"
-               class="button is-primary is-small"
-               th:href="@{/reservation/register(book=${availability.bookNumber()})}">予約する</a>
+            <a class="button is-primary is-small"
+               th:href="@{/reservation/register(book=${loanability.bookNumber()})}">予約する</a>
           </td>
-          <td th:text="${availability.describeBook()}"></td>
-          <td th:text="${availability.showAvailability()}"></td>
+          <td th:text="${loanability.describeBook()}"></td>
+          <td th:text="${loanability.showLoanability()}"></td>
         </tr>
         </tbody>
       </table>
