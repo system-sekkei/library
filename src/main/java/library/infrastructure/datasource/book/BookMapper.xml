@@ -11,7 +11,7 @@
             書籍.著者 as "book.author.value",
             (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.蔵書 on 貸出可能.蔵書番号 = 蔵書.蔵書番号
                 WHERE 蔵書.本番号 = 書籍.本番号) as "loanableItems"
-        FROM 蔵書.書籍
+        FROM 書籍.書籍
         WHERE 書籍.タイトル || 書籍.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 書籍.本番号
         LIMIT #{limit}
@@ -22,7 +22,7 @@
             書籍.本番号 as "bookNumber.value",
             書籍.タイトル as "title.value",
             書籍.著者 as "author.value"
-        FROM 蔵書.書籍
-        WHERE 書籍.本番号 = #{bookNumber.value}
+        FROM 書籍.書籍
+        WHERE 書籍.本番号 = #{value}
     </select>
 </mapper>

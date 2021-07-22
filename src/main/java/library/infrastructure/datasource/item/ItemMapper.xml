@@ -29,7 +29,7 @@
             蔵書.蔵書番号 as "itemNumber.value",
             書籍.本番号 as "bookNumber"
         FROM 蔵書.蔵書
-        INNER JOIN 蔵書.書籍 on (蔵書.本番号 = 書籍.本番号)
+        INNER JOIN 書籍.書籍 on (蔵書.本番号 = 書籍.本番号)
         WHERE 蔵書.蔵書番号 = #{value}
     </select>
 
