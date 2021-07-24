@@ -17,4 +17,5 @@ public interface MemberMapper {
 
     void insertLoanMemberRelation(@Param("memberNumber") MemberNumber memberNumber, @Param("loanNumber") LoanNumber loanNumber);
     List<Loan> selectLoansByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
+    void deleteLoanMemberRelation(@Param("loanNumber") LoanNumber loanNumber);
 }

@@ -56,8 +56,7 @@ class LoanQueryServiceTest {
         returnBookRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
         LoanStatus loanStatus = loanQueryService.status(new MemberNumber(2));
 
-        // FIXME:
-        // assertEquals(loanStatus.count(), 0);
+        assertEquals(0, loanStatus.count());
     }
 
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {

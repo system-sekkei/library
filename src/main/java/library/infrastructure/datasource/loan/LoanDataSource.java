@@ -63,6 +63,8 @@ public class LoanDataSource implements LoanRepository {
 
         itemMapper.insert貸出可能(itemNumber);
         itemMapper.delete貸出中(itemNumber);
+
+        memberMapper.deleteLoanMemberRelation(loan.loanNumber());
     }
 
 
