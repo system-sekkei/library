@@ -17,4 +17,9 @@
         FROM 会員.会員
         WHERE 会員番号 = #{value}
     </select>
+
+    <insert id="insertLoanMemberRelation">
+        INSERT INTO 会員.貸出履歴会員関連(会員番号, 貸出番号)
+        VALUES (#{memberNumber.value}, #{loanNumber.value})
+    </insert>
 </mapper>

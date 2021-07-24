@@ -6,6 +6,10 @@ package library.domain.model.loan;
 public class LoanNumber {
     int value;
 
+    public LoanNumber(int value) {
+        this.value = value;
+    }
+
     public int value() {
         return value;
     }
@@ -13,5 +17,9 @@ public class LoanNumber {
     @Override
     public String toString() {
         return String.valueOf(value);
+    }
+
+    @Deprecated
+    LoanNumber() {
     }
 }
