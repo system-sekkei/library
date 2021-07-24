@@ -62,7 +62,7 @@ INSERT INTO 貸出.貸出履歴(貸出番号, 蔵書番号, 貸出日)
 VALUES
 ((SELECT NEXTVAL('貸出.貸出番号')), '1-A', CURRENT_DATE);
 
-INSERT INTO 会員.貸出履歴会員関連(会員番号, 貸出番号)
+INSERT INTO 会員.貸出と会員(会員番号, 貸出番号)
 VALUES (1, CURRVAL('貸出.貸出番号'));
 
 -- 貸出したので貸出可能から除外

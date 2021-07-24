@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS 会員,本,蔵書,貸出可能,貸出,返却,予約,予約取消,取置,貸出履歴会員関連;
+DROP TABLE IF EXISTS 会員,本,蔵書,貸出可能,貸出,返却,予約,予約取消,取置,貸出と会員;
 DROP SEQUENCE IF EXISTS 貸出ID;
 DROP SEQUENCE IF EXISTS 予約ID;
 
@@ -141,8 +141,8 @@ CREATE TABLE 取置.取置期限切れ履歴
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- 貸出履歴と会員の関連テーブル
-CREATE TABLE 会員.貸出履歴会員関連
+-- 貸出と会員の関連テーブル
+CREATE TABLE 会員.貸出と会員
 (
     会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
     貸出番号 INTEGER     NOT NULL REFERENCES 貸出.貸出履歴,
