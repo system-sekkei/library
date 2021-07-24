@@ -18,19 +18,9 @@
 
 
     <insert id="insertLoan">
-        INSERT INTO 貸出.貸出履歴(貸出番号, 会員番号, 蔵書番号, 貸出日)
-        VALUES (#{loanNumber}, #{memberNumber.value}, #{itemNumber.value}, #{loanDate.value})
+        INSERT INTO 貸出.貸出履歴(貸出番号, 蔵書番号, 貸出日)
+        VALUES (#{loanNumber}, #{itemNumber.value}, #{loanDate.value})
     </insert>
-
-    <select id="selectByMemberNumber" resultMap="loan">
-        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
-               貸出履歴.蔵書番号 as "itemNumber.value",
-               貸出履歴.会員番号 as "memberNumber.value",
-               貸出履歴.貸出日   as "loanDate.value"
-        FROM 貸出.貸出履歴
-        LEFT OUTER JOIN 貸出.返却履歴 ON 貸出履歴.貸出番号 = 返却履歴.貸出番号
-        WHERE 貸出履歴.会員番号 = #{memberNumber.value} AND 返却履歴.貸出番号 IS NULL
-    </select>
 
     <insert id="insertReturnBook">
         INSERT INTO 貸出.返却履歴(貸出番号, 返却日)
@@ -40,19 +30,21 @@
     <select id="selectByItemNumber" resultMap="loan">
         SELECT 貸出履歴.貸出番号 as "loanNumber.value",
                貸出履歴.蔵書番号 as "itemNumber.value",
-               貸出履歴.会員番号 as "memberNumber.value",
+               貸出履歴会員関連.会員番号 as "memberNumber.value",
                貸出履歴.貸出日   as "loanDate.value"
         FROM 貸出.貸出履歴
+        INNER JOIN 会員.貸出履歴会員関連 ON 貸出履歴.貸出番号 = 貸出履歴会員関連.貸出番号
         LEFT OUTER JOIN 貸出.返却履歴 ON 貸出履歴.貸出番号 = 返却履歴.貸出番号
         WHERE 貸出履歴.蔵書番号 = #{itemNumber.value} AND 返却履歴.貸出番号 IS NULL
     </select>
 
     <select id="selectByItemNumbers" resultMap="loan">
-        SELECT 貸出番号 as "loanNumber.value",
-               蔵書番号 as "itemNumber.value",
-               会員番号 as "memberNumber.value",
-               貸出日   as "loanDate.value"
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               貸出履歴.蔵書番号 as "itemNumber.value",
+               貸出履歴会員関連.会員番号 as "memberNumber.value",
+               貸出履歴.貸出日   as "loanDate.value"
         FROM 貸出.貸出履歴
+        INNER JOIN 会員.貸出履歴会員関連 ON 貸出履歴.貸出番号 = 貸出履歴会員関連.貸出番号
         WHERE 蔵書番号 IN
         <foreach item="itemNumber" collection="itemNumbers" open="(" separator="," close=")">
             #{itemNumber.value}
@@ -66,11 +58,12 @@
     </resultMap>
 
     <select id="selectByLoanNumber" resultMap="loan">
-        SELECT 貸出番号 as "loanNumber.value",
-               蔵書番号 as "itemNumber.value",
-               会員番号 as "memberNumber.value",
-               貸出日   as "loanDate.value"
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               貸出履歴.蔵書番号 as "itemNumber.value",
+               貸出履歴会員関連.会員番号 as "memberNumber.value",
+               貸出履歴.貸出日   as "loanDate.value"
         FROM 貸出.貸出履歴
+        INNER JOIN 会員.貸出履歴会員関連 ON 貸出履歴.貸出番号 = 貸出履歴会員関連.貸出番号
         WHERE 貸出番号 = #{loanNumber.value}
     </select>
 

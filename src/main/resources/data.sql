@@ -58,9 +58,12 @@ VALUES
 ;
 
 -- 貸出した
-INSERT INTO 貸出.貸出履歴(貸出番号, 会員番号, 蔵書番号, 貸出日)
+INSERT INTO 貸出.貸出履歴(貸出番号, 蔵書番号, 貸出日)
 VALUES
-((SELECT NEXTVAL('貸出.貸出番号')), 1, '1-A', CURRENT_DATE);
+((SELECT NEXTVAL('貸出.貸出番号')), '1-A', CURRENT_DATE);
+
+INSERT INTO 会員.貸出履歴会員関連(会員番号, 貸出番号)
+VALUES (1, CURRVAL('貸出.貸出番号'));
 
 -- 貸出したので貸出可能から除外
 DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '1-A';

@@ -5,7 +5,6 @@ import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanNumber;
 import library.domain.model.returned.Returned;
-import library.domain.model.member.MemberNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -16,11 +15,8 @@ import java.util.Optional;
 public interface LoanMapper {
     int newLoanNumber();
 
-    List<Loan> selectByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
-
     void insertLoan(
             @Param("loanNumber") int loanNumber,
-            @Param("memberNumber") MemberNumber memberNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("loanDate") LoanDate loanDate);
 

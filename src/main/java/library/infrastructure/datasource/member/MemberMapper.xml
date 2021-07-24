@@ -4,6 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.member.MemberMapper">
 
+    <resultMap id="loan" type="library.domain.model.loan.Loan">
+        <association property="member"
+                     column="memberNumber.value"
+                     select="library.infrastructure.datasource.member.MemberMapper.selectMember" />
+        <association property="item"
+                     column="itemNumber.value"
+                     select="library.infrastructure.datasource.item.ItemMapper.selectItem" />
+    </resultMap>
+
     <select id="exists" resultType="boolean">
     SELECT EXISTS (
            SELECT 会員番号 FROM 会員.会員 WHERE 会員番号 = #{value}
@@ -22,4 +31,15 @@
         INSERT INTO 会員.貸出履歴会員関連(会員番号, 貸出番号)
         VALUES (#{memberNumber.value}, #{loanNumber.value})
     </insert>
+
+    <select id="selectLoansByMemberNumber" resultMap="loan">
+        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
+               貸出履歴.蔵書番号 as "itemNumber.value",
+               貸出履歴会員関連.会員番号 as "memberNumber.value",
+               貸出履歴.貸出日   as "loanDate.value"
+        FROM 貸出.貸出履歴
+                 LEFT OUTER JOIN 貸出.返却履歴 ON 貸出履歴.貸出番号 = 返却履歴.貸出番号
+                 INNER JOIN 会員.貸出履歴会員関連 ON 貸出履歴.貸出番号 = 貸出履歴会員関連.貸出番号
+        WHERE 返却履歴.貸出番号 IS NULL
+    </select>
 </mapper>

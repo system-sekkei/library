@@ -44,7 +44,6 @@ public class LoanDataSource implements LoanRepository {
         int loanNumber = loanMapper.newLoanNumber();
         loanMapper.insertLoan(
                 loanNumber,
-                loanRequest.memberNumber(),
                 itemNumber,
                 loanRequest.loanDate());
 
@@ -69,8 +68,9 @@ public class LoanDataSource implements LoanRepository {
 
     @Override
     public LoanStatus status(MemberNumber memberNumber) {
-        List<Loan> loans = loanMapper.selectByMemberNumber(memberNumber);
+        List<Loan> loans = memberMapper.selectLoansByMemberNumber(memberNumber);
         Member member = memberMapper.selectMember(memberNumber);
+
         return new LoanStatus(member, new Loans(loans), new CurrentDate(LocalDate.now()));
     }
 
