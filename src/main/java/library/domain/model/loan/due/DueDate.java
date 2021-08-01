@@ -12,7 +12,7 @@ import java.time.temporal.ChronoUnit;
  */
 public class DueDate {
     LocalDate value;
-    static final int 最大貸出日数 = 14;
+    static final int 最大貸出日数 = 15;
 
     DueDate(LocalDate value) {
         this.value = value;
@@ -20,7 +20,7 @@ public class DueDate {
 
     public static DueDate from(Loan loan) {
         LocalDate loaned = loan.date().value();
-        LocalDate 期限日 = loaned.plusDays(最大貸出日数);
+        LocalDate 期限日 = loaned.plusDays(最大貸出日数).minusDays(1);
         return new DueDate(期限日);
     }
 
