@@ -14,4 +14,4 @@
  * - プレゼンテーション層のクラスのテストは対象外
  * - 遷移不可のテストケースをどうするか？
  */
-package library.business_rule;
+package library.domain;
