@@ -18,14 +18,14 @@ class RestrictionMap {
     Map<DelayOfMember, RestrictionOfQuantity> map = new HashMap<>();
 
     {
-        define(遅延日数合計３日未満, 中学生以上, 貸出５冊まで);
-        define(遅延日数合計３日未満, 小学生以下, 貸出７冊まで);
+        define(遅延日数１５日未満, 中学生以上, 貸出２０点まで);
+        define(遅延日数１５日未満, 小学生以下, 貸出１５点まで);
 
-        define(遅延日数合計７日未満, 中学生以上, 貸出不可);
-        define(遅延日数合計７日未満, 小学生以下, 貸出４冊まで);
+        define(遅延日数２ヶ月未満, 中学生以上, 新規貸出不可);
+        define(遅延日数２ヶ月未満, 小学生以下, 新規貸出不可);
 
-        define(それ以外, 中学生以上, 貸出不可);
-        define(それ以外, 小学生以下, 貸出不可);
+        define(遅延日数２ヶ月以上, 中学生以上, 貸出予約停止);
+        define(遅延日数２ヶ月以上, 小学生以下, 貸出予約停止);
     }
 
     void define(DelayStatus delayStatus, MemberType memberType, RestrictionOfQuantity restrictionOfQuantity) {

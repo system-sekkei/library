@@ -1,18 +1,16 @@
 package library.domain.model.loan.delay;
 
-import library.domain.type.date.Days;
-
 /**
  * 遅延状態
  */
 public enum DelayStatus {
-    遅延日数合計３日未満,
-    遅延日数合計７日未満,
-    それ以外;
+    遅延日数１５日未満,
+    遅延日数２ヶ月未満,
+    遅延日数２ヶ月以上;
 
-    public static DelayStatus level(Days days) {
-        if (days.lessThan(3)) return 遅延日数合計３日未満;
-        if (days.lessThan(7)) return 遅延日数合計７日未満;
-        return それ以外;
+    public static DelayStatus level(DaysPeriod 遅延期間) {
+        if (遅延期間.days.未満(15) && 遅延期間.months.未満(1)) return 遅延日数１５日未満;
+        if (遅延期間.days.以上(15) && 遅延期間.months.未満(2)) return 遅延日数２ヶ月未満;
+        return 遅延日数２ヶ月以上;
     }
 }

@@ -1,7 +1,7 @@
 package library.domain.model.loan.due;
 
 import library.domain.model.loan.Loan;
-import library.domain.model.loan.delay.DaysLate;
+import library.domain.model.loan.delay.DaysPeriod;
 import library.domain.type.date.CurrentDate;
 
 import java.time.LocalDate;
@@ -18,15 +18,16 @@ public class DueDate {
         this.value = value;
     }
 
-    public static DueDate from(Loan loan) {
+    public static DueDate 貸出期限(Loan loan) {
         LocalDate loaned = loan.date().value();
         LocalDate 期限日 = loaned.plusDays(最大貸出日数).minusDays(1);
         return new DueDate(期限日);
     }
 
-    DaysLate daysLate(CurrentDate 判定日) {
+    DaysPeriod 遅延期間(CurrentDate 判定日) {
+        long 月数 = value.until(判定日.value(), ChronoUnit.MONTHS);
         long 日数 = value.until(判定日.value(), ChronoUnit.DAYS);
-        return DaysLate.from(日数);
+        return DaysPeriod.遅延期間(月数, 日数);
     }
 
     public DueDateStatus status() {

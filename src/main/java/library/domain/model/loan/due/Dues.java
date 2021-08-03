@@ -1,10 +1,13 @@
 package library.domain.model.loan.due;
 
 import library.domain.model.loan.Loans;
-import library.domain.model.loan.delay.DaysLate;
+import library.domain.model.loan.delay.DaysPeriod;
+import library.domain.model.loan.delay.DaysPeriods;
 import library.domain.model.loan.delay.DelayStatus;
 import library.domain.type.date.CurrentDate;
-import library.domain.type.date.Days;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 貸出期限のリスト
@@ -16,14 +19,14 @@ public class Dues {
         this.loans = loans;
     }
 
-    public DelayStatus delayStatus(CurrentDate date) {
-        return daysLate(date).delayStatus();
+    public DelayStatus 遅延状態(CurrentDate 現在日) {
+        return 遅延日数(現在日).遅延状態();
     }
 
-    DaysLate daysLate(CurrentDate date) {
-        int days = loans.asList().stream()
-                .mapToInt(loan -> DueDate.from(loan).daysLate(date).intValue())
-                .sum();
-        return new DaysLate(new Days(days));
+    DaysPeriods 遅延日数(CurrentDate date) {
+        List<DaysPeriod> lists = loans.asList().stream()
+                .map(loan -> DueDate.貸出期限(loan).遅延期間(date)).collect(Collectors.toList());
+
+        return new DaysPeriods(lists);
     }
 }

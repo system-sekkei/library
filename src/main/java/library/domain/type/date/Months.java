@@ -1,12 +1,12 @@
 package library.domain.type.date;
 
 /**
- * 日数
+ * 月数
  */
-public class Days {
+public class Months {
     int value;
 
-    public Days(int value) {
+    public Months(int value) {
         this.value = value;
     }
 

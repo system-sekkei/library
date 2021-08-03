@@ -23,7 +23,7 @@ class Restriction {
     static final RestrictionMap map = new RestrictionMap();
 
     RestrictionOfQuantity ofQuantity() {
-        DelayStatus delayStatus = new Dues(loans).delayStatus(date);
+        DelayStatus delayStatus = new Dues(loans).遅延状態(date);
         DelayOfMember delayOfMember = new DelayOfMember(delayStatus, member.type());
         return map.of(delayOfMember);
     }
