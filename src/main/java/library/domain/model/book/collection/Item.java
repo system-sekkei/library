@@ -9,6 +9,7 @@ public class Item {
     ItemNumber itemNumber;
     Book book;
     ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
+    ItemType itemType;
 
     @Deprecated
     Item() {
