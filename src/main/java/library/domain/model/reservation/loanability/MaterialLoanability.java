@@ -1,13 +1,13 @@
 package library.domain.model.reservation.loanability;
 
-import library.domain.model.material.bibliography.Book;
-import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.Material;
+import library.domain.model.material.MaterialNumber;
 
 /**
  * 本の貸出可否
  */
-public class BookLoanability {
-    Book book;
+public class MaterialLoanability {
+    Material material;
     int loanableItems;
 
     public String showLoanability() {
@@ -18,23 +18,23 @@ public class BookLoanability {
         return Loanability.loanability(loanableItems);
     }
 
-    public String describeBook() {
-        return book.show();
+    public String describeMaterial() {
+        return material.show();
     }
 
-    public BookNumber bookNumber() {
-        return book.bookNumber();
+    public MaterialNumber materialNumber() {
+        return material.materialNumber();
     }
 
     // TODO テスト用：テストを変更して、このメソッドを廃止する
-    public Book book() {
-        return book;
+    public Material material() {
+        return material;
     }
 
     @Override
     public String toString() {
-        return "BookLoanability{" +
-                "book=" + book +
+        return "MaterialLoanability{" +
+                "material=" + material +
                 ", loanable=" + loanableItems +
                 '}';
     }

@@ -27,8 +27,8 @@ public class Retained {
         return ExpireDate.of(retainedDate).show();
     }
 
-    public String showBook() {
-        return reservation.showBook();
+    public String showMaterial() {
+        return reservation.showMaterial();
     }
 
     public ItemNumber itemNumber() {

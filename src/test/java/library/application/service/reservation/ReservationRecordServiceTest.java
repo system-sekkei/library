@@ -1,12 +1,12 @@
 package library.application.service.reservation;
 
 import library.LibraryDBTest;
-import library.application.service.book.BookQueryService;
+import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.loanability.BookLoanability;
+import library.domain.model.reservation.loanability.MaterialLoanability;
 import library.domain.model.reservation.request.Reservation;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ class ReservationRecordServiceTest {
     MemberQueryService memberQueryService;
 
     @Autowired
-    BookQueryService bookQueryService;
+    MaterialQueryService materialQueryService;
 
     @Autowired
     ReservationMapper reservationMapper;
@@ -38,10 +38,10 @@ class ReservationRecordServiceTest {
     @Test
     void 貸出予約を登録することができる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        BookLoanability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
+        MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveBook = Reservation.of(member, book.book());
-        reservationRecordService.reserve(tryingToReserveBook);
+        Reservation tryingToReserveMaterial = Reservation.of(member, material.material());
+        reservationRecordService.reserve(tryingToReserveMaterial);
 
         List<Reservation> result = reservationMapper.selectAllReservation();
 
@@ -51,10 +51,10 @@ class ReservationRecordServiceTest {
     @Test
     void 予約を取り消すことができる() {
         Member member = memberQueryService.findMember(new MemberNumber(2));
-        BookLoanability book = bookQueryService.search(new Keyword("ハンドブック")).asList().get(0);
+        MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveBook = Reservation.of(member, book.book());
-        reservationRecordService.reserve(tryingToReserveBook);
+        Reservation tryingToReserveMaterial = Reservation.of(member, material.material());
+        reservationRecordService.reserve(tryingToReserveMaterial);
 
         Reservation reservation = reservationMapper.selectAllReservation().get(0);
 

@@ -1,13 +1,13 @@
-package library.domain.model.material.bibliography;
+package library.domain.model.material;
 
 /**
  * 本の点数
  * (本の種類の数)
  */
-public class NumberOfBook {
+public class NumberOfMaterial {
     int value;
 
-    public NumberOfBook(int value) {
+    public NumberOfMaterial(int value) {
         this.value = value;
     }
 

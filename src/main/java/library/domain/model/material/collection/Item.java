@@ -1,13 +1,13 @@
 package library.domain.model.material.collection;
 
-import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.Material;
 
 /**
  * *蔵書
  */
 public class Item {
     ItemNumber itemNumber;
-    Book book;
+    Material material;
     ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
     ItemType itemType;
 
@@ -15,13 +15,13 @@ public class Item {
     Item() {
     }
 
-    public Item(ItemNumber itemNumber, Book book) {
+    public Item(ItemNumber itemNumber, Material material) {
         this.itemNumber = itemNumber;
-        this.book = book;
+        this.material = material;
     }
 
-    public Book book() {
-        return book;
+    public Material material() {
+        return material;
     }
     public ItemNumber itemNumber() {
         return itemNumber;
@@ -29,13 +29,13 @@ public class Item {
 
     public String show() {
         return String.format("[%s] %s",
-                itemNumber.toString(), book.show());
+                itemNumber.toString(), material.show());
     }
     @Override
     public String toString() {
         return "Item{" +
                 "itemNumber=" + itemNumber +
-                ", book=" + book +
+                ", material=" + material +
                 ", status=" + status +
                 '}';
     }

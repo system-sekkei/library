@@ -54,9 +54,9 @@ public class RetentionScenario {
     /**
      * 予約された本であることを確認する
      */
-    public BookMatching isSameBook(Reservation reservation, Retention retention) {
+    public MaterialMatching isSameMaterial(Reservation reservation, Retention retention) {
         Item item = itemQueryService.findBy(retention.itemNumber());
-        return retentionRecordService.bookMatching(reservation, item);
+        return retentionRecordService.materialMatching(reservation, item);
     }
     /**
      * 蔵書の状態を確認する

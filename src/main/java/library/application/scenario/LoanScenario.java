@@ -3,7 +3,7 @@ package library.application.scenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
-import library.application.service.returns.ReturnBookRecordService;
+import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
@@ -18,17 +18,17 @@ public class LoanScenario {
     MemberQueryService memberQueryService;
     LoanQueryService loanQueryService;
     LoanRecordService loanRecordService;
-    ReturnBookRecordService returnBookRecordService;
+    ReturnMaterialRecordService returnMaterialRecordService;
 
     public LoanScenario(
             MemberQueryService memberQueryService,
             LoanQueryService loanQueryService,
             LoanRecordService loanRecordService,
-            ReturnBookRecordService returnBookRecordService) {
+            ReturnMaterialRecordService returnMaterialRecordService) {
         this.memberQueryService = memberQueryService;
         this.loanQueryService = loanQueryService;
         this.loanRecordService = loanRecordService;
-        this.returnBookRecordService = returnBookRecordService;
+        this.returnMaterialRecordService = returnMaterialRecordService;
     }
 
     /**

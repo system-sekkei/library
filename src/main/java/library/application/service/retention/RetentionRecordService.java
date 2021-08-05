@@ -2,10 +2,10 @@ package library.application.service.retention;
 
 import library.domain.model.material.collection.Item;
 import library.domain.model.material.collection.ItemNumber;
-import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.Material;
 import library.domain.model.reservation.progress.Progress;
 import library.domain.model.reservation.request.Reservation;
-import library.domain.model.retention.BookMatching;
+import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Service;
@@ -29,10 +29,10 @@ public class RetentionRecordService {
     /**
      * 予約された本であることを確認する
      */
-    public BookMatching bookMatching(Reservation reservation, Item item) {
-        Book requested = reservation.book();
-        Book toRetain = item.book();
-        return BookMatching.isSame(requested, toRetain);
+    public MaterialMatching materialMatching(Reservation reservation, Item item) {
+        Material requested = reservation.material();
+        Material toRetain = item.material();
+        return MaterialMatching.isSame(requested, toRetain);
     }
     /**
      * 予約された本を取り置く

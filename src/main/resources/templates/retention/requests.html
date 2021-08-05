@@ -16,7 +16,7 @@
       <thead>
       <tr>
         <th>アクション</th>
-        <th>本</th>
+        <th>資料</th>
         <th>会員</th>
         <th></th>
       </tr>
@@ -32,7 +32,7 @@
                     th:formmethod="post" th:formaction="@{/retentions/requests/canceled}"
                     th:value="${reservation.number()}">キャンセル</button>
         </td>
-        <td th:text="${reservation.showBook()}"></td>
+        <td th:text="${reservation.showMaterial()}"></td>
         <td th:text="${reservation.member().number()}"></td>
 
       </tr>

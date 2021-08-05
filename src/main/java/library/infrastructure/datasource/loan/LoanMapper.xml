@@ -22,7 +22,7 @@
         VALUES (#{loanNumber}, #{itemNumber.value}, #{loanDate.value})
     </insert>
 
-    <insert id="insertReturnBook">
+    <insert id="insertReturnMaterial">
         INSERT INTO 貸出.返却履歴(貸出番号, 返却日)
         VALUES (#{loanNumber.value}, #{returned.returnDate.value})
     </insert>

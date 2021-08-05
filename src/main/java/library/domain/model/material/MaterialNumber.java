@@ -1,22 +1,22 @@
-package library.domain.model.material.bibliography;
+package library.domain.model.material;
 
 import javax.validation.constraints.NotNull;
 
 /**
  * 資料番号
  */
-public class BookNumber {
+public class MaterialNumber {
     @NotNull(message = "本IDを入力してください。")
     int value;
 
     @Deprecated
-    BookNumber() {
+    MaterialNumber() {
     }
 
-    public BookNumber(int value) {
+    public MaterialNumber(int value) {
         this.value = value;
     }
-    public BookNumber(String value) {
+    public MaterialNumber(String value) {
         this.value = Integer.parseInt(value);
     }
 
@@ -24,7 +24,7 @@ public class BookNumber {
         return value;
     }
 
-    public boolean sameValue(BookNumber other) {
+    public boolean sameValue(MaterialNumber other) {
         return this.value == other.value;
     }
 

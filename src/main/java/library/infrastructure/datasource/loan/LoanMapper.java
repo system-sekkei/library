@@ -20,7 +20,7 @@ public interface LoanMapper {
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("loanDate") LoanDate loanDate);
 
-    void insertReturnBook(
+    void insertReturnMaterial(
             @Param("loanNumber") LoanNumber loanNumber,
             @Param("returned") Returned returned);
 

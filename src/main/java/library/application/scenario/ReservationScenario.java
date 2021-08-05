@@ -1,15 +1,15 @@
 package library.application.scenario;
 
-import library.application.service.book.BookQueryService;
+import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationRecordService;
-import library.domain.model.material.bibliography.Book;
-import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.Material;
+import library.domain.model.material.MaterialNumber;
 import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
-import library.domain.model.reservation.loanability.BookLoanabilities;
+import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import library.domain.model.reservation.request.Reservation;
 import org.springframework.stereotype.Service;
 
@@ -20,27 +20,27 @@ import org.springframework.stereotype.Service;
 public class ReservationScenario {
     ReservationRecordService reservationRecordService;
     MemberQueryService memberQueryService;
-    BookQueryService bookQueryService;
+    MaterialQueryService materialQueryService;
 
-    public ReservationScenario(ReservationRecordService reservationRecordService, MemberQueryService memberQueryService, BookQueryService bookQueryService) {
+    public ReservationScenario(ReservationRecordService reservationRecordService, MemberQueryService memberQueryService, MaterialQueryService materialQueryService) {
         this.reservationRecordService = reservationRecordService;
         this.memberQueryService = memberQueryService;
-        this.bookQueryService = bookQueryService;
+        this.materialQueryService = materialQueryService;
     }
 
     /**
      * 本を探す
      */
-    public BookLoanabilities search(Keyword keyword) {
-        return bookQueryService.search(keyword);
+    public MaterialLoanabilities search(Keyword keyword) {
+        return materialQueryService.search(keyword);
     }
 
 
     /**
      * 本を見つける
      */
-    public Book findBook(BookNumber bookNumber) {
-        return bookQueryService.findBook(bookNumber);
+    public Material findMaterial(MaterialNumber materialNumber) {
+        return materialQueryService.findMaterial(materialNumber);
     }
 
     /**
@@ -53,9 +53,9 @@ public class ReservationScenario {
     /**
      * 予約を記録する
      */
-    public void reserve(Book book, MemberNumber memberNumber) {
+    public void reserve(Material material, MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
-        Reservation reservation = Reservation.of(member, book);
+        Reservation reservation = Reservation.of(member, material);
         reservationRecordService.reserve(reservation);
     }
 }

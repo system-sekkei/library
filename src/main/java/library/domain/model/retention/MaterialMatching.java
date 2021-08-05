@@ -1,17 +1,17 @@
 package library.domain.model.retention;
 
-import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.Material;
 
 /**
  * 蔵書と本の照合結果
  */
-public enum BookMatching {
+public enum MaterialMatching {
     一致("この蔵書は該当の資料です"),
     不一致("この蔵書は該当の資料ではありません");
 
     String description;
 
-    BookMatching(String description) {
+    MaterialMatching(String description) {
         this.description = description;
     }
 
@@ -19,7 +19,7 @@ public enum BookMatching {
         return description;
     }
 
-    public static BookMatching isSame(Book one, Book another) {
+    public static MaterialMatching isSame(Material one, Material another) {
         return one.isSame(another) ? 一致 : 不一致;
     }
 }

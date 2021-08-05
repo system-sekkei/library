@@ -1,7 +1,7 @@
 package library.domain.model.reservation.request;
 
-import library.domain.model.material.bibliography.Book;
-import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.Material;
+import library.domain.model.material.MaterialNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 
@@ -11,24 +11,24 @@ import library.domain.model.member.MemberNumber;
 public class Reservation {
     ReservationNumber reservationNumber;
     Member member;
-    Book book;
+    Material material;
 
     @Deprecated
     Reservation() {
     }
 
-    private Reservation(ReservationNumber reservationNumber, Member member, Book book) {
+    private Reservation(ReservationNumber reservationNumber, Member member, Material material) {
         this.reservationNumber = reservationNumber;
         this.member = member;
-        this.book = book;
+        this.material = material;
     }
 
-    public static Reservation of(Member member, Book book) {
-        return new Reservation(ReservationNumber.generate(), member, book);
+    public static Reservation of(Member member, Material material) {
+        return new Reservation(ReservationNumber.generate(), member, material);
     }
 
-    public Book book() {
-        return book;
+    public Material material() {
+        return material;
     }
 
     public Member member() {
@@ -38,11 +38,11 @@ public class Reservation {
     public MemberNumber memberNumber() {
         return member.number();
     }
-    public BookNumber bookNumber() {
-        return book.bookNumber();
+    public MaterialNumber materialNumber() {
+        return material.materialNumber();
     }
-    public String showBook() {
-        return book.show();
+    public String showMaterial() {
+        return material.show();
     }
 
     public ReservationNumber number() {
@@ -54,7 +54,7 @@ public class Reservation {
         return "Reservation{" +
                 "reservationNumber=" + reservationNumber +
                 ", member=" + member +
-                ", book=" + book +
+                ", material=" + material +
                 '}';
     }
 }

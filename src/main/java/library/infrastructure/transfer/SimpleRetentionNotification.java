@@ -12,7 +12,7 @@ public class SimpleRetentionNotification implements RetentionNotification {
     public void retained(Retained retained) {
         String message = String.format(
                 "予約いただいた本が準備できました。\n本：%s\n取置期限:%s",
-                retained.showBook(),
+                retained.showMaterial(),
                 retained.showExpireDate()
         );
         notify(retained.memberNumber(), message);
@@ -22,7 +22,7 @@ public class SimpleRetentionNotification implements RetentionNotification {
     public void notAvailable(Reservation reservation) {
         String message = String.format(
                 "予約いただいた本は在庫がありませんでした。\n本：%s",
-                reservation.showBook()
+                reservation.showMaterial()
         );
         notify(reservation.memberNumber(), message);
 

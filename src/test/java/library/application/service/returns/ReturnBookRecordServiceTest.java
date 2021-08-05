@@ -13,9 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @LibraryDBTest
-class ReturnBookRecordServiceTest {
+class ReturnMaterialRecordServiceTest {
     @Autowired
-    ReturnBookRecordService returnBookRecordService;
+    ReturnMaterialRecordService returnMaterialRecordService;
 
     @Autowired
     LoanQueryService loanQueryService;
@@ -32,7 +32,7 @@ class ReturnBookRecordServiceTest {
         ReturnDate returnDate = ReturnDate.parse("2020-02-20");
 
         Returned returned = new Returned(itemNumber, returnDate);
-        returnBookRecordService.returned(returned);
+        returnMaterialRecordService.returned(returned);
 
         assertThrows(IllegalArgumentException.class, () -> loanQueryService.findBy(new ItemNumber("1-A")));
     }

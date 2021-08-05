@@ -4,7 +4,7 @@ import library.application.scenario.RetentionScenario;
 import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.material.collection.ItemStatus;
 import library.domain.model.reservation.request.Reservation;
-import library.domain.model.retention.BookMatching;
+import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.RetainedList;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import static library.domain.model.material.collection.ItemStatus.未登録;
 import static library.domain.model.material.collection.ItemStatus.貸出可能;
-import static library.domain.model.retention.BookMatching.不一致;
+import static library.domain.model.retention.MaterialMatching.不一致;
 
 /**
  * 取置の管理画面
@@ -57,7 +57,7 @@ public class RetentionController {
             return "retention/form";
         }
 
-        BookMatching matching = retentionScenario.isSameBook(reservation, retention);
+        MaterialMatching matching = retentionScenario.isSameMaterial(reservation, retention);
         if (matching == 不一致) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
                     "itemNumber.value", matching.description()));

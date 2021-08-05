@@ -8,7 +8,7 @@ import library.domain.model.reservation.request.Reservations;
  * 予約リポジトリ
  */
 public interface ReservationRepository {
-    void reserve(Reservation tryingToReserveBook);
+    void reserve(Reservation tryingToReserveMaterial);
 
     Reservations reservations();
 

@@ -1,6 +1,6 @@
 package library.infrastructure.datasource.reservation;
 
-import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.MaterialNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservation;
@@ -16,7 +16,7 @@ public interface ReservationMapper {
     void insertReservation(
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("memberNumber") MemberNumber memberNumber,
-            @Param("bookNumber") BookNumber bookNumber);
+            @Param("materialNumber") MaterialNumber materialNumber);
 
     List<Reservation> selectAllReservation();
 

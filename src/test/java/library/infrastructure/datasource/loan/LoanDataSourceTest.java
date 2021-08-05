@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.loan;
 
 import library.LibraryDBTest;
-import library.application.service.returns.ReturnBookRecordService;
+import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.returned.ReturnDate;
@@ -26,7 +26,7 @@ class LoanDataSourceTest {
     MockMvc mockMvc;
 
     @Autowired
-    ReturnBookRecordService returnBookRecordService;
+    ReturnMaterialRecordService returnMaterialRecordService;
 
     @Test
     void 蔵書番号で貸出を取得できる() throws Exception {
@@ -52,7 +52,7 @@ class LoanDataSourceTest {
 
         ItemNumber itemNumber = new ItemNumber("2-D");
         ReturnDate returnDate = ReturnDate.parse("2019-01-01");
-        returnBookRecordService.returned(new Returned(itemNumber, returnDate));
+        returnMaterialRecordService.returned(new Returned(itemNumber, returnDate));
 
 
         assertThrows(IllegalArgumentException.class, () -> loanDataSource.findBy(itemNumber));

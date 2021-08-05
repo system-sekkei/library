@@ -9,7 +9,7 @@
 <header th:replace="_parts/navigation::reservation"></header>
 <main>
   <article>
-    <form method="get" action="#" th:action="@{/reservation/books/search}">
+    <form method="get" action="#" th:action="@{/reservation/materials/search}">
       <label>キーワード検索（空白で全件を検索します）</label>
       <input class="input" type="text" placeholder="キーワード" th:field="${searchKeyword.value}">
       <button>本を探す</button>
@@ -18,7 +18,7 @@
 
     <article>
       <h4>検索結果：
-        <span th:text="${loanabilities.numberOfBook().show()}"></span>
+        <span th:text="${loanabilities.numberOfMaterial().show()}"></span>
       </h4>
       <table th:if="${loanabilities.size()} > 0">
         <thead>
@@ -32,9 +32,9 @@
         <tr th:each="loanability : ${loanabilities.asList()}">
           <td>
             <a class="button is-primary is-small"
-               th:href="@{/reservation/register(book=${loanability.bookNumber()})}">予約する</a>
+               th:href="@{/reservation/register(material=${loanability.materialNumber()})}">予約する</a>
           </td>
-          <td th:text="${loanability.describeBook()}"></td>
+          <td th:text="${loanability.describeMaterial()}"></td>
           <td th:text="${loanability.showLoanability()}"></td>
         </tr>
         </tbody>

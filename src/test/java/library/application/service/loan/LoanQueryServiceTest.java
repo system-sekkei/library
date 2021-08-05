@@ -2,7 +2,7 @@ package library.application.service.loan;
 
 import library.LibraryDBTest;
 import library.application.service.member.MemberQueryService;
-import library.application.service.returns.ReturnBookRecordService;
+import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
@@ -23,7 +23,7 @@ class LoanQueryServiceTest {
     LoanQueryService loanQueryService;
 
     @Autowired
-    ReturnBookRecordService returnBookRecordService;
+    ReturnMaterialRecordService returnMaterialRecordService;
 
     @Autowired
     LoanRecordService loanRecordService;
@@ -44,7 +44,7 @@ class LoanQueryServiceTest {
     void 返却された貸出は取得できない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerLoan(itemNumber, 1);
-        returnBookRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
+        returnMaterialRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
 
         assertThrows(IllegalArgumentException.class, () -> loanQueryService.findBy(itemNumber));
     }
@@ -53,7 +53,7 @@ class LoanQueryServiceTest {
     void 会員が現在借りている全貸出取得時に返却した貸出が含まれない() {
         ItemNumber itemNumber = new ItemNumber("2-B");
         registerLoan(itemNumber, 2);
-        returnBookRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
+        returnMaterialRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
         LoanStatus loanStatus = loanQueryService.status(new MemberNumber(2));
 
         assertEquals(0, loanStatus.count());

@@ -21,8 +21,8 @@ public class ReservationRecordService {
     /**
      * 予約する
      */
-    public void reserve(Reservation tryingToReserveBook) {
-        reservationRepository.reserve(tryingToReserveBook);
+    public void reserve(Reservation tryingToReserveMaterial) {
+        reservationRepository.reserve(tryingToReserveMaterial);
     }
 
     /**

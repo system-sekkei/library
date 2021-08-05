@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
  * 返却の登録
  */
 @Service
-public class ReturnBookRecordService {
+public class ReturnMaterialRecordService {
     LoanRepository loanRepository;
 
-    ReturnBookRecordService(LoanRepository loanRepository) {
+    ReturnMaterialRecordService(LoanRepository loanRepository) {
         this.loanRepository = loanRepository;
     }
 

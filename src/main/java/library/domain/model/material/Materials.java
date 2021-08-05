@@ -1,4 +1,4 @@
-package library.domain.model.material.bibliography;
+package library.domain.model.material;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,20 +6,20 @@ import java.util.List;
 /**
  * 資料のリスト
  */
-public class Books {
-    List<Book> list;
+public class Materials {
+    List<Material> list;
 
-    public Books(List<Book> list) {
+    public Materials(List<Material> list) {
         this.list = list;
     }
 
     public String count() {
-        return new NumberOfBook(list.size()).show();
+        return new NumberOfMaterial(list.size()).show();
     }
     public int size() {
         return list.size();
     }
-    public List<Book> asList() {
+    public List<Material> asList() {
         return Collections.unmodifiableList(list);
     }
 }

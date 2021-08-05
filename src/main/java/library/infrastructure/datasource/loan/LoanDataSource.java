@@ -59,7 +59,7 @@ public class LoanDataSource implements LoanRepository {
         ItemNumber itemNumber = returned.itemNumber();
         Loan loan = loanMapper.selectByItemNumber(itemNumber)
                 .orElseThrow(() -> new IllegalArgumentException(String.format("現在貸し出されていない蔵書です。蔵書番号：%s", itemNumber)));
-        loanMapper.insertReturnBook(loan.loanNumber(), returned);
+        loanMapper.insertReturnMaterial(loan.loanNumber(), returned);
 
         itemMapper.insert貸出可能(itemNumber);
         itemMapper.delete貸出中(itemNumber);
