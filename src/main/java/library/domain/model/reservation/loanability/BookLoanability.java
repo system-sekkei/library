@@ -1,7 +1,7 @@
 package library.domain.model.reservation.loanability;
 
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
 
 /**
  * 本の貸出可否

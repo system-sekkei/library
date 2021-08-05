@@ -1,8 +1,8 @@
 package library.application.service.book;
 
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
-import library.domain.model.book.bibliography.Keyword;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.reservation.loanability.BookLoanabilities;
 
 /**

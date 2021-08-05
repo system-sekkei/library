@@ -1,7 +1,7 @@
 package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
-import library.domain.model.book.bibliography.Keyword;
+import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.reservation.loanability.BookLoanabilities;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

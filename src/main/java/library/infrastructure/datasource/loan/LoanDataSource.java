@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.loan;
 
 import library.application.service.loan.LoanRepository;
-import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanNumber;
 import library.domain.model.loan.Loans;

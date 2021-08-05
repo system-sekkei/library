@@ -1,13 +1,13 @@
 package library.domain.model.retention;
 
-import library.domain.model.book.bibliography.Book;
+import library.domain.model.material.bibliography.Book;
 
 /**
  * 蔵書と本の照合結果
  */
 public enum BookMatching {
-    一致("この蔵書は該当の書籍です"),
-    不一致("この蔵書は該当の書籍ではありません");
+    一致("この蔵書は該当の資料です"),
+    不一致("この蔵書は該当の資料ではありません");
 
     String description;
 

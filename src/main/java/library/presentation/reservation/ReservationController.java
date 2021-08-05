@@ -1,8 +1,8 @@
 package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,6 +1,6 @@
 package library.application.service.retention;
 
-import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.RetainedList;
 import org.springframework.stereotype.Service;

@@ -4,7 +4,7 @@ import library.LibraryDBTest;
 import library.application.scenario.LoanScenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.member.MemberNumber;

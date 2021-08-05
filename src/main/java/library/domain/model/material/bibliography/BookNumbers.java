@@ -1,9 +1,9 @@
-package library.domain.model.book.bibliography;
+package library.domain.model.material.bibliography;
 
 import java.util.List;
 
 /**
- * 書籍番号のリスト
+ * 資料番号のリスト
  */
 public class BookNumbers {
     List<BookNumber> list;

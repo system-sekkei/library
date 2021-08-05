@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.book;
 
 import library.application.service.book.BookRepository;
-import library.domain.model.book.bibliography.*;
+import library.domain.model.material.bibliography.*;
 import library.domain.model.reservation.loanability.BookLoanabilities;
 import library.domain.model.reservation.loanability.BookLoanability;
 import org.springframework.stereotype.Repository;

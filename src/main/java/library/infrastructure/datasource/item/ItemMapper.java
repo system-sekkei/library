@@ -1,7 +1,7 @@
 package library.infrastructure.datasource.item;
 
-import library.domain.model.book.collection.Item;
-import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.material.collection.Item;
+import library.domain.model.material.collection.ItemNumber;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

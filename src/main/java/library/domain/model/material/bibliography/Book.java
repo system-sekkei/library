@@ -1,7 +1,7 @@
-package library.domain.model.book.bibliography;
+package library.domain.model.material.bibliography;
 
 /**
- * 書籍
+ * 資料
  */
 public class Book {
     BookNumber bookNumber;

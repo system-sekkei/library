@@ -2,7 +2,7 @@ package library.application.service.loan;
 
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.rule.LoanStatus;
-import library.domain.model.book.collection.ItemNumber;
+import library.domain.model.material.collection.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Service;
 

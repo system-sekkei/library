@@ -6,23 +6,23 @@
 
     <select id="searchBooks" resultType="library.domain.model.reservation.loanability.BookLoanability">
         SELECT
-            書籍.本番号 as "book.bookNumber.value",
-            書籍.タイトル as "book.title.value",
-            書籍.著者 as "book.author.value",
+            資料.本番号 as "book.bookNumber.value",
+            資料.タイトル as "book.title.value",
+            資料.著者 as "book.author.value",
             (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.蔵書 on 貸出可能.蔵書番号 = 蔵書.蔵書番号
-                WHERE 蔵書.本番号 = 書籍.本番号) as "loanableItems"
-        FROM 書籍.書籍
-        WHERE 書籍.タイトル || 書籍.著者 LIKE '%' || #{keyword.value} || '%'
-        ORDER BY 書籍.本番号
+                WHERE 蔵書.本番号 = 資料.本番号) as "loanableItems"
+        FROM 資料.資料
+        WHERE 資料.タイトル || 資料.著者 LIKE '%' || #{keyword.value} || '%'
+        ORDER BY 資料.本番号
         LIMIT #{limit}
     </select>
 
-    <select id="findBook" resultType="library.domain.model.book.bibliography.Book">
+    <select id="findBook" resultType="library.domain.model.material.bibliography.Book">
         SELECT
-            書籍.本番号 as "bookNumber.value",
-            書籍.タイトル as "title.value",
-            書籍.著者 as "author.value"
-        FROM 書籍.書籍
-        WHERE 書籍.本番号 = #{value}
+            資料.本番号 as "bookNumber.value",
+            資料.タイトル as "title.value",
+            資料.著者 as "author.value"
+        FROM 資料.資料
+        WHERE 資料.本番号 = #{value}
     </select>
 </mapper>

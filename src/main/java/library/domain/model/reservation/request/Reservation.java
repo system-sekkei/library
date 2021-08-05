@@ -1,7 +1,7 @@
 package library.domain.model.reservation.request;
 
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 

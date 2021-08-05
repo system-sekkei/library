@@ -1,13 +1,13 @@
 package library.application.service.book;
 
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
-import library.domain.model.book.bibliography.Keyword;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.reservation.loanability.BookLoanabilities;
 import org.springframework.stereotype.Service;
 
 /**
- * 書籍の参照と検索
+ * 資料の参照と検索
  */
 @Service
 public class BookQueryService {
@@ -18,7 +18,7 @@ public class BookQueryService {
     }
 
     /**
-     * 書籍番号で本を見つける
+     * 資料番号で本を見つける
      */
     public Book findBook(BookNumber bookNumber) {
         return bookRepository.findBook(bookNumber);

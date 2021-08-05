@@ -1,8 +1,8 @@
 package library.presentation.retention;
 
 import library.application.scenario.RetentionScenario;
-import library.domain.model.book.collection.ItemNumber;
-import library.domain.model.book.collection.ItemStatus;
+import library.domain.model.material.collection.ItemNumber;
+import library.domain.model.material.collection.ItemStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.retention.BookMatching;
 import library.domain.model.retention.RetainedList;
@@ -15,8 +15,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import static library.domain.model.book.collection.ItemStatus.未登録;
-import static library.domain.model.book.collection.ItemStatus.貸出可能;
+import static library.domain.model.material.collection.ItemStatus.未登録;
+import static library.domain.model.material.collection.ItemStatus.貸出可能;
 import static library.domain.model.retention.BookMatching.不一致;
 
 /**

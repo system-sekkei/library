@@ -2,9 +2,9 @@ package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.application.service.book.BookQueryService;
-import library.domain.model.book.bibliography.Book;
-import library.domain.model.book.bibliography.BookNumber;
-import library.domain.model.book.bibliography.Keyword;
+import library.domain.model.material.bibliography.Book;
+import library.domain.model.material.bibliography.BookNumber;
+import library.domain.model.material.bibliography.Keyword;
 import library.domain.model.reservation.loanability.BookLoanabilities;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

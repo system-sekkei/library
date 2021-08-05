@@ -1,9 +1,9 @@
-package library.domain.model.book.bibliography;
+package library.domain.model.material.bibliography;
 
 import javax.validation.constraints.NotNull;
 
 /**
- * 書籍番号
+ * 資料番号
  */
 public class BookNumber {
     @NotNull(message = "本IDを入力してください。")

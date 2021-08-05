@@ -1,17 +1,17 @@
-package library.domain.model.book.bibliography;
+package library.domain.model.material.bibliography;
 
 /**
- * 著者
+ * 資料の題名
  */
-public class Author {
+public class Title {
     String value;
 
-    public Author(String value) {
+    public Title(String value) {
         this.value = value;
     }
 
     @Deprecated
-    Author() {
+    Title() {
     }
 
     @Override
