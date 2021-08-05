@@ -8,7 +8,7 @@
     </select>
 
     <insert id="insertReservation">
-        INSERT INTO 予約.予約履歴(予約番号, 会員番号, 図書番号)
+        INSERT INTO 予約.予約履歴(予約番号, 会員番号, 資料番号)
         VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{materialNumber.value})
     </insert>
 
@@ -24,7 +24,7 @@
     <select id="selectAllReservation" resultMap="reservation">
         SELECT 未準備.予約番号 as "reservationNumber.value",
                予約履歴.会員番号 as "memberNumber.value",
-               予約履歴.図書番号 as "materialNumber.value"
+               予約履歴.資料番号 as "materialNumber.value"
         FROM 予約.未準備
         INNER JOIN 予約.予約履歴 USING (予約番号)
         ORDER BY 未準備.予約番号
@@ -33,7 +33,7 @@
     <select id="selectReservation" resultMap="reservation">
         SELECT 予約番号 as "reservationNumber.value",
                会員番号 as "memberNumber.value",
-               図書番号 as "materialNumber.value"
+               資料番号 as "materialNumber.value"
         FROM 予約.予約履歴
         WHERE 予約番号 = #{value}
     </select>
