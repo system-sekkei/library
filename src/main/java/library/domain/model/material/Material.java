@@ -1,6 +1,6 @@
 package library.domain.model.material;
 
-import library.domain.model.material.bibliography.Author;
+import library.domain.model.material.bibliography.Book;
 import library.domain.model.material.bibliography.Title;
 
 /**
@@ -8,17 +8,15 @@ import library.domain.model.material.bibliography.Title;
  */
 public class Material {
     MaterialNumber materialNumber;
-    Title title;
-    Author author;
+    Book book;
 
     @Deprecated
     Material() {
     }
 
-    public Material(MaterialNumber materialNumber, Title title, Author author) {
+    public Material(MaterialNumber materialNumber, Book book) {
         this.materialNumber = materialNumber;
-        this.title = title;
-        this.author = author;
+        this.book = book;
     }
 
     public MaterialNumber materialNumber() {
@@ -29,19 +27,18 @@ public class Material {
         return materialNumber.sameValue(other.materialNumber);
     }
     public Title title() {
-        return title;
+        return book.title();
     }
 
     public String show() {
-        return String.format("%s (%s)", title, author);
+        return String.format("%s (%s)", book.title(), book.author());
     }
 
     @Override
     public String toString() {
         return "Material{" +
                 "materialNumber=" + materialNumber +
-                ", title=" + title +
-                ", author=" + author +
+                ", book=" + book +
                 '}';
     }
 }
