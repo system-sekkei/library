@@ -1,9 +1,9 @@
-package library.domain.model.material.collection;
+package library.domain.model.material.item;
 
 import library.domain.model.material.Material;
 
 /**
- * *蔵書
+ * *所蔵品
  */
 public class Item {
     ItemNumber itemNumber;

@@ -2,7 +2,7 @@ package library.application.service.loan;
 
 import library.LibraryDBTest;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.material.collection.ItemNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.member.MemberNumber;

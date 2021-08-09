@@ -1,12 +1,12 @@
 package library.infrastructure.datasource.item;
 
 import library.application.service.item.ItemRepository;
-import library.domain.model.material.collection.Item;
-import library.domain.model.material.collection.ItemNumber;
-import library.domain.model.material.collection.ItemStatus;
+import library.domain.model.material.item.Item;
+import library.domain.model.material.item.ItemNumber;
+import library.domain.model.material.item.ItemStatus;
 import org.springframework.stereotype.Repository;
 
-import static library.domain.model.material.collection.ItemStatus.*;
+import static library.domain.model.material.item.ItemStatus.*;
 
 @Repository
 public class ItemDatasource implements ItemRepository {

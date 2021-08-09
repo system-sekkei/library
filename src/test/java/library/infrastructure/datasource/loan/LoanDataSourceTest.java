@@ -2,7 +2,7 @@ package library.infrastructure.datasource.loan;
 
 import library.LibraryDBTest;
 import library.application.service.returns.ReturnMaterialRecordService;
-import library.domain.model.material.collection.ItemNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;

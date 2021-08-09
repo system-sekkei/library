@@ -1,4 +1,4 @@
-package library.domain.model.material.collection;
+package library.domain.model.material.item;
 
 import javax.validation.constraints.NotBlank;
 

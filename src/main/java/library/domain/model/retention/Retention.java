@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.material.collection.ItemNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 
 import javax.validation.Valid;

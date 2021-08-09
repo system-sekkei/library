@@ -1,7 +1,7 @@
 package library.presentation.returns;
 
 import library.application.service.returns.ReturnMaterialRecordService;
-import library.domain.model.material.collection.ItemNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.springframework.stereotype.Controller;

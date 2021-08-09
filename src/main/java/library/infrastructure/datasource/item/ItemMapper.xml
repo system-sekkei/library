@@ -19,7 +19,7 @@
         SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.取置中 WHERE 蔵書番号 = #{value})
     </select>
 
-    <resultMap id="蔵書" type="library.domain.model.material.collection.Item">
+    <resultMap id="蔵書" type="library.domain.model.material.item.Item">
         <association property="material"
                      column="materialNumber"
                      select="library.infrastructure.datasource.material.MaterialMapper.findMaterial" />
