@@ -5,7 +5,7 @@ import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.Material;
 import library.domain.model.material.MaterialNumber;
-import library.domain.model.material.bibliography.Keyword;
+import library.domain.model.material.entry.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;

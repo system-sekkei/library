@@ -3,7 +3,7 @@ package library.application.service.reservation;
 import library.LibraryDBTest;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.material.bibliography.Keyword;
+import library.domain.model.material.entry.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.loanability.MaterialLoanability;

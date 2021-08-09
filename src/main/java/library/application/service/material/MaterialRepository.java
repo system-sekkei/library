@@ -2,7 +2,7 @@ package library.application.service.material;
 
 import library.domain.model.material.Material;
 import library.domain.model.material.MaterialNumber;
-import library.domain.model.material.bibliography.Keyword;
+import library.domain.model.material.entry.Keyword;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 
 /**

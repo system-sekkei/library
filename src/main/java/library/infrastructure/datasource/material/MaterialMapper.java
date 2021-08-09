@@ -2,7 +2,7 @@ package library.infrastructure.datasource.material;
 
 import library.domain.model.material.Material;
 import library.domain.model.material.MaterialNumber;
-import library.domain.model.material.bibliography.Keyword;
+import library.domain.model.material.entry.Keyword;
 import library.domain.model.reservation.loanability.MaterialLoanability;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;

@@ -1,22 +1,22 @@
 package library.domain.model.material;
 
-import library.domain.model.material.bibliography.Book;
-import library.domain.model.material.bibliography.Title;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.Title;
 
 /**
  * 資料
  */
 public class Material {
     MaterialNumber materialNumber;
-    Book book;
+    Entry entry;
 
     @Deprecated
     Material() {
     }
 
-    public Material(MaterialNumber materialNumber, Book book) {
+    public Material(MaterialNumber materialNumber, Entry entry) {
         this.materialNumber = materialNumber;
-        this.book = book;
+        this.entry = entry;
     }
 
     public MaterialNumber materialNumber() {
@@ -27,18 +27,18 @@ public class Material {
         return materialNumber.sameValue(other.materialNumber);
     }
     public Title title() {
-        return book.title();
+        return entry.title();
     }
 
     public String show() {
-        return String.format("%s (%s)", book.title(), book.author());
+        return String.format("%s (%s)", entry.title(), entry.author());
     }
 
     @Override
     public String toString() {
         return "Material{" +
                 "materialNumber=" + materialNumber +
-                ", book=" + book +
+                ", book=" + entry +
                 '}';
     }
 }

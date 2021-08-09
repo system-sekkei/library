@@ -4,7 +4,7 @@ import library.application.service.material.MaterialRepository;
 import library.domain.model.material.Material;
 import library.domain.model.material.MaterialNumber;
 import library.domain.model.material.NumberOfMaterial;
-import library.domain.model.material.bibliography.*;
+import library.domain.model.material.entry.*;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import library.domain.model.reservation.loanability.MaterialLoanability;
 import org.springframework.stereotype.Repository;

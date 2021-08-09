@@ -1,19 +1,19 @@
-package library.domain.model.material.bibliography;
+package library.domain.model.material.entry;
 
 /**
- * 図書
+ * 所蔵品目
  */
-public class Book {
+public class Entry {
     Title title;
     Author author;
 
-    public Book(Title title, Author author) {
+    public Entry(Title title, Author author) {
         this.title = title;
         this.author = author;
     }
 
     @Deprecated
-    Book() {
+    Entry() {
     }
 
     public Title title() {
