@@ -2,7 +2,7 @@ package library.application.service.retention;
 
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
-import library.domain.model.material.Material;
+import library.domain.model.material.entry.Material;
 import library.domain.model.reservation.progress.Progress;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.retention.MaterialMatching;

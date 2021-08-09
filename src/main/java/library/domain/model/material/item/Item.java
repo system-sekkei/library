@@ -1,6 +1,6 @@
 package library.domain.model.material.item;
 
-import library.domain.model.material.Material;
+import library.domain.model.material.entry.Material;
 
 /**
  * *所蔵品

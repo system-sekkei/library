@@ -1,8 +1,8 @@
 package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
-import library.domain.model.material.Material;
-import library.domain.model.material.MaterialNumber;
+import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.MaterialNumber;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

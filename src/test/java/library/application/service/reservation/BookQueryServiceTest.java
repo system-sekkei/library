@@ -2,8 +2,8 @@ package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.application.service.material.MaterialQueryService;
-import library.domain.model.material.Material;
-import library.domain.model.material.MaterialNumber;
+import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.MaterialNumber;
 import library.domain.model.material.entry.Keyword;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import org.junit.jupiter.api.Test;

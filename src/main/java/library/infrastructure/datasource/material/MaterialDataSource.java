@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.material;
 
 import library.application.service.material.MaterialRepository;
-import library.domain.model.material.Material;
-import library.domain.model.material.MaterialNumber;
-import library.domain.model.material.NumberOfMaterial;
+import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.NumberOfMaterial;
 import library.domain.model.material.entry.*;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import library.domain.model.reservation.loanability.MaterialLoanability;

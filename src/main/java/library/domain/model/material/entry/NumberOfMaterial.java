@@ -1,4 +1,4 @@
-package library.domain.model.material;
+package library.domain.model.material.entry;
 
 /**
  * 本の点数

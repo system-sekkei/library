@@ -1,6 +1,6 @@
 package library.domain.model.reservation.loanability;
 
-import library.domain.model.material.NumberOfMaterial;
+import library.domain.model.material.entry.NumberOfMaterial;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package library.domain.model.reservation.request;
 
-import library.domain.model.material.Material;
-import library.domain.model.material.MaterialNumber;
+import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.MaterialNumber;
 
 /**
  * 予約図書

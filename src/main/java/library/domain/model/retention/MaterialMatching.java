@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.material.Material;
+import library.domain.model.material.entry.Material;
 
 /**
  * 蔵書と本の照合結果
