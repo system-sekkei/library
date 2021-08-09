@@ -1,6 +1,6 @@
 package library.domain.model.reservation.loanability;
 
-import library.domain.model.material.entry.NumberOfMaterial;
+import library.domain.model.material.entry.NumberOfEntry;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ public class MaterialLoanabilities {
         this.list = list;
     }
 
-    public NumberOfMaterial numberOfMaterial() {
-        return new NumberOfMaterial(list.size());
+    public NumberOfEntry numberOfMaterial() {
+        return new NumberOfEntry(list.size());
     }
     public int size() {
         return list.size();

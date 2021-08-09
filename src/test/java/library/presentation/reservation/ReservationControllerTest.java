@@ -19,7 +19,7 @@ public class ReservationControllerTest {
     @Test
     void 本の予約画面を表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/register?material=1"))
+                get("/reservation/register?entry=1"))
                 .andExpect(status().isOk());
     }
 }

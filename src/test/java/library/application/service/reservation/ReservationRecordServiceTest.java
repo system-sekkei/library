@@ -40,7 +40,7 @@ class ReservationRecordServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveMaterial = Reservation.of(member, material.material());
+        Reservation tryingToReserveMaterial = Reservation.of(member, material.entry());
         reservationRecordService.reserve(tryingToReserveMaterial);
 
         List<Reservation> result = reservationMapper.selectAllReservation();
@@ -53,7 +53,7 @@ class ReservationRecordServiceTest {
         Member member = memberQueryService.findMember(new MemberNumber(2));
         MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
 
-        Reservation tryingToReserveMaterial = Reservation.of(member, material.material());
+        Reservation tryingToReserveMaterial = Reservation.of(member, material.entry());
         reservationRecordService.reserve(tryingToReserveMaterial);
 
         Reservation reservation = reservationMapper.selectAllReservation().get(0);

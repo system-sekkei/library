@@ -28,7 +28,7 @@ public class ReservationDatasource implements ReservationRepository {
         reservationMapper.insertReservation(
                 reservationNumber,
                 reservation.memberNumber(),
-                reservation.materialNumber());
+                reservation.entryNumber());
 
         reservationMapper.insert未準備(reservationNumber);
     }

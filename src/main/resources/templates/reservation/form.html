@@ -10,7 +10,7 @@
 <main>
   <article>
     <h3 th:text="予約する本"></h3>
-    <h4 th:text="${material.show()}"></h4>
+    <h4 th:text="${entry.show()}"></h4>
     <form id="custom-form" class="form" name="body"
           method="post" action="#"
           th:object="${member}"
@@ -28,7 +28,7 @@
         <mark><span th:errors="*{value}"></span></mark>
       </p>
 
-      <input type="hidden" name="material" th:value="${material.materialNumber()}">
+      <input type="hidden" name="entry" th:value="${entry.entryNumber()}">
 
         <button>予約する</button>
     </form>

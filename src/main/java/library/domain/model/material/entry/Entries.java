@@ -4,22 +4,22 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * 資料のリスト
+ * 所蔵品目のリスト
  */
-public class Materials {
-    List<Material> list;
+public class Entries {
+    List<Entry> list;
 
-    public Materials(List<Material> list) {
+    public Entries(List<Entry> list) {
         this.list = list;
     }
 
     public String count() {
-        return new NumberOfMaterial(list.size()).show();
+        return new NumberOfEntry(list.size()).show();
     }
     public int size() {
         return list.size();
     }
-    public List<Material> asList() {
+    public List<Entry> asList() {
         return Collections.unmodifiableList(list);
     }
 }

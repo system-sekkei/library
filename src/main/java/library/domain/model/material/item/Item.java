@@ -1,13 +1,13 @@
 package library.domain.model.material.item;
 
-import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.Entry;
 
 /**
  * *所蔵品
  */
 public class Item {
     ItemNumber itemNumber;
-    Material material;
+    Entry entry;
     ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
     ItemType itemType;
 
@@ -15,13 +15,13 @@ public class Item {
     Item() {
     }
 
-    public Item(ItemNumber itemNumber, Material material) {
+    public Item(ItemNumber itemNumber, Entry entry) {
         this.itemNumber = itemNumber;
-        this.material = material;
+        this.entry = entry;
     }
 
-    public Material material() {
-        return material;
+    public Entry entry() {
+        return entry;
     }
     public ItemNumber itemNumber() {
         return itemNumber;
@@ -29,13 +29,13 @@ public class Item {
 
     public String show() {
         return String.format("[%s] %s",
-                itemNumber.toString(), material.show());
+                itemNumber.toString(), entry.show());
     }
     @Override
     public String toString() {
         return "Item{" +
                 "itemNumber=" + itemNumber +
-                ", material=" + material +
+                ", entry=" + entry +
                 ", status=" + status +
                 '}';
     }

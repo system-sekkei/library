@@ -1,8 +1,8 @@
 package library.application.service.retention;
 
+import library.domain.model.material.entry.Entry;
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
-import library.domain.model.material.entry.Material;
 import library.domain.model.reservation.progress.Progress;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.retention.MaterialMatching;
@@ -30,8 +30,8 @@ public class RetentionRecordService {
      * 予約された本であることを確認する
      */
     public MaterialMatching materialMatching(Reservation reservation, Item item) {
-        Material requested = reservation.material();
-        Material toRetain = item.material();
+        Entry requested = reservation.entry();
+        Entry toRetain = item.entry();
         return MaterialMatching.isSame(requested, toRetain);
     }
     /**

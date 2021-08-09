@@ -2,8 +2,8 @@ package library.application.service.reservation;
 
 import library.LibraryDBTest;
 import library.application.service.material.MaterialQueryService;
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
-class MaterialQueryServiceTest {
+class EntryQueryServiceTest {
     @Autowired
     MaterialQueryService materialQueryService;
 
@@ -31,7 +31,7 @@ class MaterialQueryServiceTest {
 
     @Test
     void 本を取得できる() {
-        Material material = materialQueryService.findMaterial(new MaterialNumber(1));
-        assertEquals(material.materialNumber().value(), 1);
+        Entry entry = materialQueryService.findMaterial(new EntryNumber(1));
+        assertEquals(entry.entryNumber().value(), 1);
     }
 }

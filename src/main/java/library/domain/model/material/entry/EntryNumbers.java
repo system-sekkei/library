@@ -5,14 +5,14 @@ import java.util.List;
 /**
  * 資料番号のリスト
  */
-public class MaterialNumbers {
-    List<MaterialNumber> list;
+public class EntryNumbers {
+    List<EntryNumber> list;
 
-    public MaterialNumbers(List<MaterialNumber> list) {
+    public EntryNumbers(List<EntryNumber> list) {
         this.list = list;
     }
 
-    public List<MaterialNumber> asList() {
+    public List<EntryNumber> asList() {
         return list;
     }
 

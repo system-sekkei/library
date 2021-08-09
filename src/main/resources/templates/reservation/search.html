@@ -32,7 +32,7 @@
         <tr th:each="loanability : ${loanabilities.asList()}">
           <td>
             <a class="button is-primary is-small"
-               th:href="@{/reservation/register(material=${loanability.materialNumber()})}">予約する</a>
+               th:href="@{/reservation/register(entry=${loanability.entryNumber()})}">予約する</a>
           </td>
           <td th:text="${loanability.describeMaterial()}"></td>
           <td th:text="${loanability.showLoanability()}"></td>

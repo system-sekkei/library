@@ -1,6 +1,6 @@
 package library.domain.model.retention;
 
-import library.domain.model.material.entry.Material;
+import library.domain.model.material.entry.Entry;
 
 /**
  * 蔵書と本の照合結果
@@ -19,7 +19,7 @@ public enum MaterialMatching {
         return description;
     }
 
-    public static MaterialMatching isSame(Material one, Material another) {
+    public static MaterialMatching isSame(Entry one, Entry another) {
         return one.isSame(another) ? 一致 : 不一致;
     }
 }

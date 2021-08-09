@@ -20,16 +20,16 @@
     </select>
 
     <resultMap id="蔵書" type="library.domain.model.material.item.Item">
-        <association property="material"
-                     column="materialNumber"
+        <association property="entry"
+                     column="entryNumber"
                      select="library.infrastructure.datasource.material.MaterialMapper.findMaterial" />
     </resultMap>
     <select id="selectItem" resultMap="蔵書">
         SELECT
             蔵書.蔵書番号 as "itemNumber.value",
-            資料.資料番号 as "materialNumber"
+            図書.資料番号 as "entryNumber"
         FROM 蔵書.蔵書
-        INNER JOIN 資料.資料 on (蔵書.資料番号 = 資料.資料番号)
+        INNER JOIN 資料.図書 on (蔵書.資料番号 = 図書.資料番号)
         WHERE 蔵書.蔵書番号 = #{value}
     </select>
 

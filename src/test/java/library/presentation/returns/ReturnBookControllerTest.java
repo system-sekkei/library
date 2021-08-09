@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-class ReturnMaterialControllerTest {
+class ReturnEntryControllerTest {
 
     @Autowired
     MockMvc mockMvc;

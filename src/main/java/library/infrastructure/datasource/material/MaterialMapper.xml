@@ -6,25 +6,23 @@
 
     <select id="searchMaterials" resultType="library.domain.model.reservation.loanability.MaterialLoanability">
         SELECT
-            資料.資料番号 as "material.materialNumber.value",
-            図書.タイトル as "material.title.value",
-            図書.著者 as "material.workOf.value",
+            図書.資料番号 as "entry.entryNumber.value",
+            図書.タイトル as "entry.title.value",
+            図書.著者 as "entry.workOf.value",
             (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.蔵書 on 貸出可能.蔵書番号 = 蔵書.蔵書番号
-                WHERE 蔵書.資料番号 = 資料.資料番号) as "loanableItems"
-        FROM 資料.資料
-        INNER JOIN 資料.図書 ON 資料.資料番号 = 図書.資料番号
+                WHERE 蔵書.資料番号 = 図書.資料番号) as "loanableItems"
+        FROM 資料.図書
         WHERE 図書.タイトル || 図書.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 図書.資料番号
         LIMIT #{limit}
     </select>
 
-    <select id="findMaterial" resultType="library.domain.model.material.entry.Material">
+    <select id="findMaterial" resultType="library.domain.model.material.entry.Entry">
         SELECT
-            資料.資料番号 as "materialNumber.value",
+            図書.資料番号 as "entryNumber.value",
             図書.タイトル as "title.value",
             図書.著者 as "workOf.value"
-        FROM 資料.資料
-        INNER JOIN 資料.図書 ON 資料.資料番号 = 図書.資料番号
-        WHERE 資料.資料番号 = #{value}
+        FROM 資料.図書
+        WHERE 図書.資料番号 = #{value}
     </select>
 </mapper>

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * 本の検索画面
+ * 所蔵品目の検索画面
  */
 @Controller
-@RequestMapping("reservation/materials")
-public class MaterialSearchController {
+@RequestMapping("reservation/entries")
+public class EntrySearchController {
     ReservationScenario reservationScenario;
 
-    public MaterialSearchController(ReservationScenario reservationScenario) {
+    public EntrySearchController(ReservationScenario reservationScenario) {
         this.reservationScenario = reservationScenario;
     }
 

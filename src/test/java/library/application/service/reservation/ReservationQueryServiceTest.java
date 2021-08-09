@@ -33,7 +33,7 @@ class ReservationQueryServiceTest {
     void 予約を一覧できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
-        Reservation tryingToReserveMaterial = Reservation.of(member, material.material());
+        Reservation tryingToReserveMaterial = Reservation.of(member, material.entry());
         reservationRecordService.reserve(tryingToReserveMaterial);
 
         Reservations reservations = reservationQueryService.reservations();

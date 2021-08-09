@@ -1,8 +1,8 @@
 package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,39 +27,39 @@ public class ReservationController {
 
     @GetMapping
     String redirectToSearch() {
-        return "redirect:/reservation/materials/search";
+        return "redirect:/reservation/entries/search";
     }
 
-    @GetMapping(params = {"material"})
-    String reservationForm(@RequestParam("material") MaterialNumber materialNumber, Model model) {
-        Material material = reservationScenario.findMaterial(materialNumber);
-        model.addAttribute("material", material);
+    @GetMapping(params = {"entry"})
+    String reservationForm(@RequestParam("entry") EntryNumber entryNumber, Model model) {
+        Entry entry = reservationScenario.findMaterial(entryNumber);
+        model.addAttribute("entry", entry);
         model.addAttribute("member", MemberNumber.empty());
         return "reservation/form";
     }
 
     @PostMapping
     String register(
-            @RequestParam("material") MaterialNumber materialNumber,
+            @RequestParam("entry") EntryNumber entryNumber,
             @ModelAttribute("member") MemberNumber memberNumber,
             BindingResult bindingResult,
             Model model
             ) {
 
-        Material material = reservationScenario.findMaterial(materialNumber);
+        Entry entry = reservationScenario.findMaterial(entryNumber);
         if (bindingResult.hasErrors()) {
-            model.addAttribute("material", material);
+            model.addAttribute("entry", entry);
             return "reservation/form";
         }
 
         if (reservationScenario.memberStatus(memberNumber) == 未登録) {
             model.addAttribute("member", memberNumber);
-            model.addAttribute("material", material);
+            model.addAttribute("entry", entry);
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),"value","その番号の会員はいません"));
             return "reservation/form";
         }
 
-        reservationScenario.reserve(material, memberNumber);
+        reservationScenario.reserve(entry, memberNumber);
 
         return "redirect:/reservation/register/completed";
     }

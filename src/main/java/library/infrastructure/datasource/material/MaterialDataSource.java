@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.material;
 
 import library.application.service.material.MaterialRepository;
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
-import library.domain.model.material.entry.NumberOfMaterial;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
+import library.domain.model.material.entry.NumberOfEntry;
 import library.domain.model.material.entry.*;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import library.domain.model.reservation.loanability.MaterialLoanability;
@@ -23,12 +23,12 @@ public class MaterialDataSource implements MaterialRepository {
 
     @Override
     public MaterialLoanabilities search(Keyword keyword) {
-        List<MaterialLoanability> materials = materialMapper.searchMaterials(keyword, NumberOfMaterial.MAX_TO_SHOW + 1);
+        List<MaterialLoanability> materials = materialMapper.searchMaterials(keyword, NumberOfEntry.MAX_TO_SHOW + 1);
         return new MaterialLoanabilities(materials);
     }
 
     @Override
-    public Material findMaterial(MaterialNumber materialNumber) {
-        return materialMapper.findMaterial(materialNumber);
+    public Entry findMaterial(EntryNumber entryNumber) {
+        return materialMapper.findMaterial(entryNumber);
     }
 }

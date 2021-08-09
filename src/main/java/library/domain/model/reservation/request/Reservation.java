@@ -1,7 +1,7 @@
 package library.domain.model.reservation.request;
 
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 
@@ -11,24 +11,24 @@ import library.domain.model.member.MemberNumber;
 public class Reservation {
     ReservationNumber reservationNumber;
     Member member;
-    Material material;
+    Entry entry;
 
     @Deprecated
     Reservation() {
     }
 
-    private Reservation(ReservationNumber reservationNumber, Member member, Material material) {
+    private Reservation(ReservationNumber reservationNumber, Member member, Entry entry) {
         this.reservationNumber = reservationNumber;
         this.member = member;
-        this.material = material;
+        this.entry = entry;
     }
 
-    public static Reservation of(Member member, Material material) {
-        return new Reservation(ReservationNumber.generate(), member, material);
+    public static Reservation of(Member member, Entry entry) {
+        return new Reservation(ReservationNumber.generate(), member, entry);
     }
 
-    public Material material() {
-        return material;
+    public Entry entry() {
+        return entry;
     }
 
     public Member member() {
@@ -38,11 +38,11 @@ public class Reservation {
     public MemberNumber memberNumber() {
         return member.number();
     }
-    public MaterialNumber materialNumber() {
-        return material.materialNumber();
+    public EntryNumber entryNumber() {
+        return entry.entryNumber();
     }
     public String showMaterial() {
-        return material.show();
+        return entry.show();
     }
 
     public ReservationNumber number() {
@@ -54,7 +54,7 @@ public class Reservation {
         return "Reservation{" +
                 "reservationNumber=" + reservationNumber +
                 ", member=" + member +
-                ", material=" + material +
+                ", entry=" + entry +
                 '}';
     }
 }

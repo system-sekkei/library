@@ -11,7 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @LibraryDBTest
 @AutoConfigureMockMvc
-public class MaterialSearchControllerTest {
+public class EntrySearchControllerTest {
 
     @Autowired
     MockMvc mockMvc;
@@ -19,7 +19,7 @@ public class MaterialSearchControllerTest {
     @Test
     void 本の検索画面が表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/materials/search"))
+                get("/reservation/entries/search"))
                 .andExpect(status().isOk());
     }
 }

@@ -3,8 +3,8 @@ package library.application.scenario;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationRecordService;
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -39,8 +39,8 @@ public class ReservationScenario {
     /**
      * 本を見つける
      */
-    public Material findMaterial(MaterialNumber materialNumber) {
-        return materialQueryService.findMaterial(materialNumber);
+    public Entry findMaterial(EntryNumber entryNumber) {
+        return materialQueryService.findMaterial(entryNumber);
     }
 
     /**
@@ -53,9 +53,9 @@ public class ReservationScenario {
     /**
      * 予約を記録する
      */
-    public void reserve(Material material, MemberNumber memberNumber) {
+    public void reserve(Entry entry, MemberNumber memberNumber) {
         Member member = memberQueryService.findMember(memberNumber);
-        Reservation reservation = Reservation.of(member, material);
+        Reservation reservation = Reservation.of(member, entry);
         reservationRecordService.reserve(reservation);
     }
 }

@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @LibraryDBTest
-class ReturnMaterialRecordServiceTest {
+class ReturnEntryRecordServiceTest {
     @Autowired
     ReturnMaterialRecordService returnMaterialRecordService;
 

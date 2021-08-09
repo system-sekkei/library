@@ -1,13 +1,13 @@
 package library.domain.model.material.entry;
 
 /**
- * 本の点数
- * (本の種類の数)
+ * 所蔵品目の点数
+ * (所蔵品目の種類の数)
  */
-public class NumberOfMaterial {
+public class NumberOfEntry {
     int value;
 
-    public NumberOfMaterial(int value) {
+    public NumberOfEntry(int value) {
         this.value = value;
     }
 

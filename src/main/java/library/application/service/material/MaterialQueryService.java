@@ -1,7 +1,7 @@
 package library.application.service.material;
 
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,8 @@ public class MaterialQueryService {
     /**
      * 資料番号で本を見つける
      */
-    public Material findMaterial(MaterialNumber materialNumber) {
-        return materialRepository.findMaterial(materialNumber);
+    public Entry findMaterial(EntryNumber entryNumber) {
+        return materialRepository.findMaterial(entryNumber);
     }
 
     /**

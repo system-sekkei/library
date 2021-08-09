@@ -6,8 +6,8 @@ import library.application.service.member.MemberQueryService;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
-import library.domain.model.material.entry.Material;
-import library.domain.model.material.entry.MaterialNumber;
+import library.domain.model.material.entry.Entry;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.Reservation;
@@ -34,8 +34,8 @@ class RetentionScenarioTest {
     @Test
     void 取置可能な貸出予約図書一覧を出力できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
-        Material material = materialQueryService.findMaterial(new MaterialNumber(2));
-        Reservation reservation = Reservation.of(member, material);
+        Entry entry = materialQueryService.findMaterial(new EntryNumber(2));
+        Reservation reservation = Reservation.of(member, entry);
         reservationRecordService.reserve(reservation);
 
         // TODO 仕様から再定義

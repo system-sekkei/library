@@ -3,20 +3,20 @@ package library.domain.model.material.entry;
 import javax.validation.constraints.NotNull;
 
 /**
- * 資料番号
+ * 所蔵品目番号
  */
-public class MaterialNumber {
-    @NotNull(message = "本IDを入力してください。")
+public class EntryNumber {
+    @NotNull(message = "所蔵品目IDを入力してください。")
     int value;
 
     @Deprecated
-    MaterialNumber() {
+    EntryNumber() {
     }
 
-    public MaterialNumber(int value) {
+    public EntryNumber(int value) {
         this.value = value;
     }
-    public MaterialNumber(String value) {
+    public EntryNumber(String value) {
         this.value = Integer.parseInt(value);
     }
 
@@ -24,7 +24,7 @@ public class MaterialNumber {
         return value;
     }
 
-    public boolean sameValue(MaterialNumber other) {
+    public boolean sameValue(EntryNumber other) {
         return this.value == other.value;
     }
 
