@@ -1,17 +1,17 @@
 package library.domain.model.material.entry;
 
 /**
- * 著者
+ * 著者・アーティスト
  */
-public class Author {
+public class WorkOf {
     String value;
 
-    public Author(String value) {
+    public WorkOf(String value) {
         this.value = value;
     }
 
     @Deprecated
-    Author() {
+    WorkOf() {
     }
 
     @Override

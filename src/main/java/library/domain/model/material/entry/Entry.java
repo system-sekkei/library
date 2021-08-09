@@ -5,11 +5,11 @@ package library.domain.model.material.entry;
  */
 public class Entry {
     Title title;
-    Author author;
+    WorkOf workOf;
 
-    public Entry(Title title, Author author) {
+    public Entry(Title title, WorkOf workOf) {
         this.title = title;
-        this.author = author;
+        this.workOf = workOf;
     }
 
     @Deprecated
@@ -20,15 +20,15 @@ public class Entry {
         return title;
     }
 
-    public Author author() {
-        return author;
+    public WorkOf author() {
+        return workOf;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "title=" + title +
-                ", author=" + author +
+                ", author=" + workOf +
                 '}';
     }
 }
