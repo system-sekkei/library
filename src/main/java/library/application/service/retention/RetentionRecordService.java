@@ -48,7 +48,7 @@ public class RetentionRecordService {
     }
 
     /**
-     * 取り置いた蔵書を貸し出す(準備完了を消しこむ)
+     * 取り置いた所蔵品を貸し出す(準備完了を消しこむ)
      */
     public void releaseForLoan(ItemNumber itemNumber) {
         ensure(準備完了);

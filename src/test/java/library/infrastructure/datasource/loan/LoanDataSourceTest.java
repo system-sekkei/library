@@ -29,7 +29,7 @@ class LoanDataSourceTest {
     ReturnMaterialRecordService returnMaterialRecordService;
 
     @Test
-    void 蔵書番号で貸出を取得できる() throws Exception {
+    void 所蔵品番号で貸出を取得できる() throws Exception {
         mockMvc.perform(
                 post("/loan/register")
                         .param("memberNumber.value", "1")
@@ -43,7 +43,7 @@ class LoanDataSourceTest {
     }
 
     @Test
-    void 返却した蔵書は取得できない() throws Exception {
+    void 返却した所蔵品は取得できない() throws Exception {
         mockMvc.perform(
                 post("/loan/register")
                         .param("memberNumber.value", "1")

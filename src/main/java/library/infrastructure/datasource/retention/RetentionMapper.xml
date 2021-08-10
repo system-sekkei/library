@@ -5,17 +5,17 @@
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
 
     <insert id="insert取置履歴">
-        INSERT INTO 取置.取置履歴(予約番号, 蔵書番号, 取置日)
+        INSERT INTO 取置.取置履歴(予約番号, 所蔵品番号, 取置日)
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 取置.準備完了(予約番号, 蔵書番号, 取置日)
+        INSERT INTO 取置.準備完了(予約番号, 所蔵品番号, 取置日)
         VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <delete id="delete準備完了">
-        DELETE FROM 取置.準備完了 WHERE 蔵書番号 = #{value}
+        DELETE FROM 取置.準備完了 WHERE 所蔵品番号 = #{value}
     </delete>
 
     <resultMap id="準備完了" type="library.domain.model.retention.Retained">
@@ -26,7 +26,7 @@
 
     <select id="selectAll準備完了" resultMap="準備完了">
         SELECT
-            蔵書番号 AS "itemNumber.value",
+            所蔵品番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
         FROM 取置.準備完了
@@ -35,15 +35,15 @@
 
     <select id="select準備完了" resultMap="準備完了">
         SELECT
-            蔵書番号 AS "itemNumber.value",
+            所蔵品番号 AS "itemNumber.value",
             予約番号 AS "reservation",
             取置日 AS "retainedDate.value"
         FROM 取置.準備完了
-        WHERE 蔵書番号 = #{value}
+        WHERE 所蔵品番号 = #{value}
     </select>
 
     <insert id="insert取置解放履歴">
-        INSERT INTO 取置.取置解放履歴(予約番号, 蔵書番号)
+        INSERT INTO 取置.取置解放履歴(予約番号, 所蔵品番号)
         VALUES (#{reservationNumber.value}, #{itemNumber.value})
     </insert>
 

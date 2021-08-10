@@ -19,8 +19,8 @@
         <li th:each="err : ${#fields.globalErrors()}" th:text="${err}"></li>
       </ul>
 
-      <label>蔵書番号</label>
-      <input class="input" type="text" placeholder="蔵書番号　1-A,2-Aなど"
+      <label>所蔵品番号</label>
+      <input class="input" type="text" placeholder="所蔵品番号　1-A,2-Aなど"
              th:field="*{itemNumber.value}">
       <p th:if="${#fields.hasErrors('itemNumber.value')}">
         <mark><span th:errors="*{itemNumber.value}"></span></mark>

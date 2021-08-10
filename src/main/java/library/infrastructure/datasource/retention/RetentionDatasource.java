@@ -43,7 +43,7 @@ public class RetentionDatasource implements RetentionRepository {
         retentionMapper.insert取置履歴(reservationNumber, itemNumber, retainedDate);
         retentionMapper.insert準備完了(reservationNumber, itemNumber, retainedDate);
 
-        // 蔵書の状態
+        // 所蔵品の状態
         itemMapper.delete貸出可能(itemNumber);
         itemMapper.insert取置中(itemNumber);
     }
@@ -54,7 +54,7 @@ public class RetentionDatasource implements RetentionRepository {
         ItemNumber itemNumber = retained.itemNumber();
         retentionMapper.insert取置解放履歴(retained.reservationNumber(), itemNumber);
 
-        // 蔵書の状態
+        // 所蔵品の状態
         itemMapper.delete取置中(itemNumber);
         itemMapper.insert貸出可能(itemNumber);
 

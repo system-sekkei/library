@@ -6,7 +6,7 @@ import library.domain.model.material.item.ItemStatus;
 import org.springframework.stereotype.Service;
 
 /**
- * 蔵書の検索
+ * 所蔵品の検索
  */
 @Service
 public class ItemQueryService {
@@ -17,13 +17,13 @@ public class ItemQueryService {
     }
 
     /**
-     * 蔵書の状態を調べる
+     * 所蔵品の状態を調べる
      */
     public ItemStatus status(ItemNumber itemNumber) {
         return itemRepository.status(itemNumber);
     }
     /**
-     * 蔵書を見つける
+     * 所蔵品を見つける
      */
     public Item findBy(ItemNumber itemNumber) {
         return itemRepository.findBy(itemNumber);

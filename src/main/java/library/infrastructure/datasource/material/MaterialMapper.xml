@@ -9,8 +9,8 @@
             図書.資料番号 as "entry.entryNumber.value",
             図書.タイトル as "entry.title.value",
             図書.著者 as "entry.workOf.value",
-            (SELECT count(*) FROM 蔵書.貸出可能 INNER JOIN 蔵書.蔵書 on 貸出可能.蔵書番号 = 蔵書.蔵書番号
-                WHERE 蔵書.資料番号 = 図書.資料番号) as "loanableItems"
+            (SELECT count(*) FROM 所蔵品.貸出可能 INNER JOIN 所蔵品.所蔵品 on 貸出可能.所蔵品番号 = 所蔵品.所蔵品番号
+                WHERE 所蔵品.資料番号 = 図書.資料番号) as "loanableItems"
         FROM 資料.図書
         WHERE 図書.タイトル || 図書.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 図書.資料番号

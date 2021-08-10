@@ -5,7 +5,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 
 /**
- * 蔵書リポジトリ
+ * 所蔵品リポジトリ
  */
 public interface ItemRepository {
     ItemStatus status(ItemNumber itemNumber);

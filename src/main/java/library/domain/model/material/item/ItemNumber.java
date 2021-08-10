@@ -3,10 +3,10 @@ package library.domain.model.material.item;
 import javax.validation.constraints.NotBlank;
 
 /**
- * 蔵書番号
+ * 所蔵品番号
  */
 public class ItemNumber {
-    @NotBlank(message = "蔵書番号を入力してください。")
+    @NotBlank(message = "所蔵品番号を入力してください。")
     String value;
 
     public ItemNumber(String value) {

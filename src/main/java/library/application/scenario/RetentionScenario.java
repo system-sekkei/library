@@ -59,7 +59,7 @@ public class RetentionScenario {
         return retentionRecordService.materialMatching(reservation, item);
     }
     /**
-     * 蔵書の状態を確認する
+     * 所蔵品の状態を確認する
      */
     public ItemStatus itemStatus(ItemNumber itemNumber) {
         return itemQueryService.status(itemNumber);

@@ -3,11 +3,11 @@ package library.domain.model.retention;
 import library.domain.model.material.entry.Entry;
 
 /**
- * 蔵書と本の照合結果
+ * 所蔵品と本の照合結果
  */
 public enum MaterialMatching {
-    一致("この蔵書は該当の資料です"),
-    不一致("この蔵書は該当の資料ではありません");
+    一致("この所蔵品は該当の資料です"),
+    不一致("この所蔵品は該当の資料ではありません");
 
     String description;
 

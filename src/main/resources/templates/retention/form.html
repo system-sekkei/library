@@ -12,7 +12,7 @@
     <h1>取置の登録</h1>
     <form th:action="@{/retentions}" th:object="${retention}" method="post">
       <p th:text="${reservation.showMaterial()}"></p>
-      <label for="item">取り置く本の蔵書番号</label>
+      <label for="item">取り置く本の所蔵品番号</label>
       <input id="item" type="text" name="itemNumber.value"
              th:value="*{itemNumber()}" placeholder="1-A,2-Aなど">
       <p th:if="${#fields.hasErrors('itemNumber.value')}">

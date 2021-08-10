@@ -38,7 +38,7 @@ class LoanScenarioTest {
 
     // FIXME 貸出可能になる
     //@Test
-    void 貸出中の蔵書は貸し出すことができない() {
+    void 貸出中の所蔵品は貸し出すことができない() {
         LoanRequest loanRequest =
                 generate(2, "2-B", LoanDate.now().toString());
         Loanability loanability = loanScenario.loanability(loanRequest);

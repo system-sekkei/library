@@ -4,62 +4,62 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.item.ItemMapper">
    <select id="exists" resultType="boolean">
-       SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.蔵書 WHERE 蔵書番号 = #{value})
+       SELECT EXISTS(SELECT 所蔵品番号 FROM 所蔵品.所蔵品 WHERE 所蔵品番号 = #{value})
    </select>
 
     <select id="loanable" resultType="boolean">
-        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.貸出可能 WHERE 蔵書番号 = #{value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 所蔵品.貸出可能 WHERE 所蔵品番号 = #{value})
     </select>
 
     <select id="loaned" resultType="boolean">
-        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.貸出中 WHERE 蔵書番号 = #{value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 所蔵品.貸出中 WHERE 所蔵品番号 = #{value})
     </select>
 
     <select id="retained" resultType="boolean">
-        SELECT EXISTS(SELECT 蔵書番号 FROM 蔵書.取置中 WHERE 蔵書番号 = #{value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 所蔵品.取置中 WHERE 所蔵品番号 = #{value})
     </select>
 
-    <resultMap id="蔵書" type="library.domain.model.material.item.Item">
+    <resultMap id="所蔵品" type="library.domain.model.material.item.Item">
         <association property="entry"
                      column="entryNumber"
                      select="library.infrastructure.datasource.material.MaterialMapper.findMaterial" />
     </resultMap>
-    <select id="selectItem" resultMap="蔵書">
+    <select id="selectItem" resultMap="所蔵品">
         SELECT
-            蔵書.蔵書番号 as "itemNumber.value",
+            所蔵品.所蔵品番号 as "itemNumber.value",
             図書.資料番号 as "entryNumber"
-        FROM 蔵書.蔵書
-        INNER JOIN 資料.図書 on (蔵書.資料番号 = 図書.資料番号)
-        WHERE 蔵書.蔵書番号 = #{value}
+        FROM 所蔵品.所蔵品
+        INNER JOIN 資料.図書 on (所蔵品.資料番号 = 図書.資料番号)
+        WHERE 所蔵品.所蔵品番号 = #{value}
     </select>
 
     <insert id="insert貸出可能">
-        INSERT INTO 蔵書.貸出可能(蔵書番号)
+        INSERT INTO 所蔵品.貸出可能(所蔵品番号)
         VALUES (#{value})
     </insert>
 
     <delete id="delete貸出可能">
-        DELETE FROM 蔵書.貸出可能
-        WHERE 蔵書番号 = #{value}
+        DELETE FROM 所蔵品.貸出可能
+        WHERE 所蔵品番号 = #{value}
     </delete>
 
     <insert id="insert貸出中">
-        INSERT INTO 蔵書.貸出中(蔵書番号)
+        INSERT INTO 所蔵品.貸出中(所蔵品番号)
         VALUES (#{value})
     </insert>
 
     <delete id="delete貸出中">
-        DELETE FROM 蔵書.貸出中
-        WHERE 蔵書番号 = #{value}
+        DELETE FROM 所蔵品.貸出中
+        WHERE 所蔵品番号 = #{value}
     </delete>
 
     <insert id="insert取置中">
-        INSERT INTO 蔵書.取置中(蔵書番号)
+        INSERT INTO 所蔵品.取置中(所蔵品番号)
         VALUES (#{value})
     </insert>
 
     <delete id="delete取置中">
-        DELETE FROM 蔵書.取置中
-        WHERE 蔵書番号 = #{value}
+        DELETE FROM 所蔵品.取置中
+        WHERE 所蔵品番号 = #{value}
     </delete>
 </mapper>

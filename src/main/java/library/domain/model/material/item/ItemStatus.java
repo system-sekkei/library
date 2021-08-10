@@ -1,7 +1,7 @@
 package library.domain.model.material.item;
 
 /**
- * 蔵書の状態
+ * 所蔵品の状態
  */
 public enum ItemStatus {
     未登録("登録されていません"),

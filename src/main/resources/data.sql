@@ -16,8 +16,8 @@ VALUES
 
 -- イベント履歴テーブルと状態テーブル
 
--- 蔵書の登録イベント
-INSERT INTO 蔵書.蔵書(蔵書番号, 資料番号)
+-- 所蔵品の登録イベント
+INSERT INTO 所蔵品.所蔵品(所蔵品番号, 資料番号)
 VALUES
 ('1-A', 1),
 ('1-B', 1),
@@ -36,8 +36,8 @@ VALUES
 ('6-A', 6),
 ('7-A', 7);
 
--- いったん、すべての蔵書を貸出可能に追加（初期状態）
-INSERT INTO 蔵書.貸出可能(蔵書番号)
+-- いったん、すべての所蔵品を貸出可能に追加（初期状態）
+INSERT INTO 所蔵品.貸出可能(所蔵品番号)
 VALUES
 ('1-A'),
 ('1-B'),
@@ -58,7 +58,7 @@ VALUES
 ;
 
 -- 貸出した
-INSERT INTO 貸出.貸出履歴(貸出番号, 蔵書番号, 貸出日)
+INSERT INTO 貸出.貸出履歴(貸出番号, 所蔵品番号, 貸出日)
 VALUES
 ((SELECT NEXTVAL('貸出.貸出番号')), '1-A', CURRENT_DATE);
 
@@ -66,10 +66,10 @@ INSERT INTO 会員.貸出と会員(会員番号, 貸出番号)
 VALUES (1, CURRVAL('貸出.貸出番号'));
 
 -- 貸出したので貸出可能から除外
-DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '1-A';
+DELETE FROM 所蔵品.貸出可能 WHERE 所蔵品番号 = '1-A';
 
 -- 貸出したので、貸出中に追加
-INSERT INTO 蔵書.貸出中(蔵書番号)
+INSERT INTO 所蔵品.貸出中(所蔵品番号)
 VALUES ('1-A');
 
 -- Webで予約した
@@ -78,13 +78,13 @@ VALUES
 ((SELECT NEXTVAL('予約.予約番号')),1, 4);
 
 -- 取り置いた
-INSERT INTO 取置.取置履歴(予約番号, 蔵書番号, 取置日)
+INSERT INTO 取置.取置履歴(予約番号, 所蔵品番号, 取置日)
 VALUES
 ((SELECT CURRVAL('予約.予約番号')), '4-A', CURRENT_DATE - 8);
 
-INSERT INTO 取置.準備完了(蔵書番号, 予約番号, 取置日)
+INSERT INTO 取置.準備完了(所蔵品番号, 予約番号, 取置日)
 VALUES
 ('4-A', (SELECT CURRVAL('予約.予約番号')), CURRENT_DATE - 8);
 
-DELETE FROM 蔵書.貸出可能 WHERE 蔵書番号 = '4-A';
-INSERT INTO 蔵書.取置中 (蔵書番号) VALUES ('4-A');
+DELETE FROM 所蔵品.貸出可能 WHERE 所蔵品番号 = '4-A';
+INSERT INTO 所蔵品.取置中 (所蔵品番号) VALUES ('4-A');

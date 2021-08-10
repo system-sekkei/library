@@ -22,7 +22,7 @@ class LoanMapperTest {
     LoanMapper loanMapper;
 
     @Test
-    void 蔵書番号で貸出を取得できる() throws Exception {
+    void 所蔵品番号で貸出を取得できる() throws Exception {
         ItemNumber targetItem = new ItemNumber("1-A");
         Optional<Loan> loan = loanMapper.selectByItemNumber(targetItem);
         assertTrue(loan.isPresent());

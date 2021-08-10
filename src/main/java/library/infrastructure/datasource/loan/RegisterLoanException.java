@@ -6,7 +6,7 @@ public class RegisterLoanException extends RuntimeException {
     LoanRequest loanRequest;
 
     public RegisterLoanException(LoanRequest loanRequest) {
-        super("貸出中の蔵書に対して貸出登録が行われました。");
+        super("貸出中の所蔵品に対して貸出登録が行われました。");
         this.loanRequest = loanRequest;
     }
 }

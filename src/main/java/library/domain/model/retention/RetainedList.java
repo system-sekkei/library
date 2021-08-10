@@ -21,7 +21,7 @@ public class RetainedList {
     }
 
     public String showCount() {
-        if (list.size() == 0) return "取置中の蔵書はありません";
+        if (list.size() == 0) return "取置中の所蔵品はありません";
         return list.size() + "件を取り置いています";
     }
 

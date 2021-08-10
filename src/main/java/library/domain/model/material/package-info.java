@@ -1,4 +1,4 @@
 /**
- * 資料と蔵書
+ * 資料と所蔵品
  */
 package library.domain.model.material;

@@ -24,8 +24,8 @@
         <mark><span th:errors="*{memberNumber.value}"></span></mark>
       </p>
 
-      <label>蔵書番号</label>
-      <input type="text" th:field="*{itemNumber.value}" placeholder="蔵書番号　1-A, 2-Aなど">
+      <label>所蔵品番号</label>
+      <input type="text" th:field="*{itemNumber.value}" placeholder="所蔵品番号　1-A, 2-Aなど">
       <p th:if="${#fields.hasErrors('itemNumber.value')}">
         <mark><span th:errors="*{itemNumber.value}"></span></mark>
       </p>
