@@ -7,15 +7,17 @@ public class Entry {
     EntryNumber entryNumber;
     Title title;
     WorkOf workOf;
+    EntryType entryType;
 
     @Deprecated
     Entry() {
     }
 
-    public Entry(EntryNumber entryNumber, Title title, WorkOf workOf) {
+    public Entry(EntryNumber entryNumber, Title title, WorkOf workOf, EntryType entryType) {
         this.entryNumber = entryNumber;
         this.title = title;
         this.workOf = workOf;
+        this.entryType = entryType;
     }
 
     public EntryNumber entryNumber() {
@@ -39,10 +41,11 @@ public class Entry {
 
     @Override
     public String toString() {
-        return "Material{" +
+        return "Entry{" +
                 "entryNumber=" + entryNumber +
                 ", title=" + title +
                 ", workOf=" + workOf +
+                ", entryType=" + entryType +
                 '}';
     }
 }
