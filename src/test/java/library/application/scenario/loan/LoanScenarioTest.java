@@ -37,23 +37,30 @@ class LoanScenarioTest {
     }
 
     @Test
-    @Deprecated
     void 視聴覚資料を貸し出すことができる() {
         LoanRequest loanRequest =
-                generate(1, "2-A", "2020-02-20");
+                generate(1, "8-A", "2020-02-20");
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability , Loanability.貸出可能);
     }
 
-    @Test
-    @Deprecated
     void 五点を超える視聴覚資料を貸し出すことはできない() {
-        LoanRequest loanRequest =
-                generate(1, "2-A", "2020-02-20");
-        Loanability loanability = loanScenario.loanability(loanRequest);
+        List<LoanRequest> requests = List.of(
+                generate(1, "8-A", "2020-02-20"),
+                generate(1, "9-A", "2020-02-20"),
+                generate(1, "10-A", "2020-02-20"),
+                generate(1, "11-A", "2020-02-20"),
+                generate(1, "12-A", "2020-02-20"),
+                generate(1, "13-A", "2020-02-20")
+        );
 
-        assertSame(loanability , Loanability.貸出可能);
+        Loanability loanability = null;
+        for (LoanRequest r : requests) {
+            loanability = loanScenario.loanability(r);
+        }
+
+        assertSame(loanability, Loanability.貸出不可);
     }
 
     // FIXME 貸出可能になる
