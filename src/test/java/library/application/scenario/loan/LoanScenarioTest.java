@@ -45,6 +45,7 @@ class LoanScenarioTest {
         assertSame(loanability , Loanability.貸出可能);
     }
 
+    @Test
     void 五点を超える視聴覚資料を貸し出すことはできない() {
         List<LoanRequest> requests = List.of(
                 generate(1, "8-A", "2020-02-20"),
@@ -58,9 +59,12 @@ class LoanScenarioTest {
         Loanability loanability = null;
         for (LoanRequest r : requests) {
             loanability = loanScenario.loanability(r);
+            if (loanability == Loanability.貸出可能) {
+                loanScenario.loan(r);
+            }
         }
 
-        assertSame(loanability, Loanability.貸出不可);
+        assertSame(loanability, Loanability.視聴覚資料貸出不可);
     }
 
     // FIXME 貸出可能になる
@@ -74,15 +78,15 @@ class LoanScenarioTest {
 
     @Test
     void 貸出制限冊数を超える会員には図書を貸し出すことができない() {
-        List<String> list = List.of("2-C", "2-D", "2-E", "2-F", "2-G");
+        List<String> list = List.of("1-B", "1-C", "2-A", "2-B", "2-C", "2-D", "2-E", "2-F", "2-G", "2-H", "3-A", "4-A", "5-A", "6-A", "7-A");
         for (String code : list) {
             LoanRequest loanRequest =
-                    generate(3, code, "2020-02-20");
+                    generate(2, code, "2020-02-20");
             loanScenario.loan(loanRequest);
         }
 
         LoanRequest loanRequest =
-                generate(3, "2-H", "2020-02-20");
+                generate(2, "8-A", "2020-02-20");
 
         Loanability loanability = loanScenario.loanability(loanRequest);
 

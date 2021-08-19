@@ -5,6 +5,7 @@ package library.domain.model.loan.rule;
  */
 public enum Loanability {
     貸出不可("これ以上本を貸し出すことができません。"),
+    視聴覚資料貸出不可("これ以上視聴覚資料を貸し出すことができません。"),
     貸出可能("");
 
     String message;

@@ -31,7 +31,7 @@ public class RetentionRecordService {
      */
     public MaterialMatching materialMatching(Reservation reservation, Item item) {
         Entry requested = reservation.entry();
-        Entry toRetain = item.entry();
+        Entry toRetain = item.所蔵品目();
         return MaterialMatching.isSame(requested, toRetain);
     }
     /**

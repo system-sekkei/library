@@ -1,6 +1,7 @@
 package library.domain.model.loan.rule;
 
 import library.domain.model.loan.Loans;
+import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.type.date.CurrentDate;
@@ -19,10 +20,10 @@ public class LoanStatus {
         this.date = date;
     }
 
-    public Loanability shouldRestrict() {
+    public Loanability 貸出可否判定(Item 借りたい所蔵品) {
         Restriction restriction = new Restriction(member, loans, date);
-        RestrictionOfQuantity restrictionOfQuantity = restriction.ofQuantity();
-        return restrictionOfQuantity.shouldRestrict(loans);
+        RestrictionOfLoanbility restrictionOfLoanbility = restriction.貸出可否();
+        return restrictionOfLoanbility.貸出可否判定(member, loans, 借りたい所蔵品);
     }
 
     public int count() {

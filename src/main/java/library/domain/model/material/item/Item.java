@@ -9,7 +9,6 @@ public class Item {
     ItemNumber itemNumber;
     Entry entry;
     ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
-    ItemType itemType;
 
     @Deprecated
     Item() {
@@ -20,10 +19,10 @@ public class Item {
         this.entry = entry;
     }
 
-    public Entry entry() {
+    public Entry 所蔵品目() {
         return entry;
     }
-    public ItemNumber itemNumber() {
+    public ItemNumber 所蔵品番号() {
         return itemNumber;
     }
 

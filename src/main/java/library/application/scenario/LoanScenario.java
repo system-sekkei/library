@@ -1,5 +1,6 @@
 package library.application.scenario;
 
+import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
@@ -7,6 +8,7 @@ import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
+import library.domain.model.material.item.Item;
 import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +21,18 @@ public class LoanScenario {
     LoanQueryService loanQueryService;
     LoanRecordService loanRecordService;
     ReturnMaterialRecordService returnMaterialRecordService;
+    ItemQueryService itemQueryService;
 
-    public LoanScenario(
-            MemberQueryService memberQueryService,
-            LoanQueryService loanQueryService,
-            LoanRecordService loanRecordService,
-            ReturnMaterialRecordService returnMaterialRecordService) {
+    public LoanScenario(MemberQueryService memberQueryService,
+                        LoanQueryService loanQueryService,
+                        LoanRecordService loanRecordService,
+                        ReturnMaterialRecordService returnMaterialRecordService,
+                        ItemQueryService itemQueryService) {
         this.memberQueryService = memberQueryService;
         this.loanQueryService = loanQueryService;
         this.loanRecordService = loanRecordService;
         this.returnMaterialRecordService = returnMaterialRecordService;
+        this.itemQueryService = itemQueryService;
     }
 
     /**
@@ -43,7 +47,8 @@ public class LoanScenario {
      */
     public Loanability loanability(LoanRequest loanRequest) {
         LoanStatus loanStatus = loanQueryService.status(loanRequest.memberNumber());
-        return loanStatus.shouldRestrict();
+        Item 借りたい所蔵品 = itemQueryService.findBy(loanRequest.itemNumber());
+        return loanStatus.貸出可否判定(借りたい所蔵品);
     }
 
     /**

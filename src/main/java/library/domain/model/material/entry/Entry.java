@@ -39,6 +39,10 @@ public class Entry {
         return String.format("%s (%s)", title(), workOf());
     }
 
+    public EntryType 所蔵品目種別() {
+        return entryType;
+    }
+
     @Override
     public String toString() {
         return "Entry{" +
