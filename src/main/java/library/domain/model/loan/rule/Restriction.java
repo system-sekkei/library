@@ -24,7 +24,6 @@ class Restriction {
 
     RestrictionOfLoanbility 貸出可否() {
         DelayStatus delayStatus = new Dues(loans).遅延状態(date);
-        DelayOfMember delayOfMember = new DelayOfMember(delayStatus, member.type());
-        return map.of(delayOfMember);
+        return map.of(delayStatus);
     }
 }
