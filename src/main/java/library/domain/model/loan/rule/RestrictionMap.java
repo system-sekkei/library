@@ -18,7 +18,7 @@ class RestrictionMap {
     {
         define(遅延日数１５日未満, 貸出点数まで貸出可);
         define(遅延日数２ヶ月未満, 新規貸出不可);
-        define(遅延日数２ヶ月以上, 貸出予約停止);
+        define(遅延日数２ヶ月以上, 貸出一定期間停止);
     }
 
     void define(DelayStatus delayStatus, RestrictionOfLoanbility restrictionOfLoanbility) {

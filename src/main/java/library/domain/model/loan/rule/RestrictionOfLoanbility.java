@@ -7,7 +7,7 @@ import library.domain.model.member.Member;
 public enum RestrictionOfLoanbility {
     貸出点数まで貸出可,
     新規貸出不可,
-    貸出予約停止;
+    貸出一定期間停止;
 
     static final RestrictionOfQuantityMap map = new RestrictionOfQuantityMap();
 
