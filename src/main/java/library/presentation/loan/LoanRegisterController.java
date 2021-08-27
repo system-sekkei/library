@@ -15,7 +15,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static library.domain.model.loan.rule.Loanability.貸出不可;
+import static library.domain.model.loan.rule.Loanability.冊数制限により貸出不可;
 import static library.domain.model.member.MemberStatus.未登録;
 
 /**
@@ -50,7 +50,7 @@ public class LoanRegisterController {
         }
 
         Loanability loanability = coordinator.loanability(loanRequest);
-        if (loanability == 貸出不可) {
+        if (loanability == 冊数制限により貸出不可) {
             bindingResult.addError(new ObjectError("error", loanability.message()));
             return "loan/form";
         }

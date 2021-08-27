@@ -8,7 +8,6 @@ import library.domain.model.material.entry.Entry;
 public class Item {
     ItemNumber itemNumber;
     Entry entry;
-    ItemStatus status; // TODO 現在は未使用：明示的に持つべきか検討する
 
     @Deprecated
     Item() {
@@ -35,7 +34,6 @@ public class Item {
         return "Item{" +
                 "itemNumber=" + itemNumber +
                 ", entry=" + entry +
-                ", status=" + status +
                 '}';
     }
 }

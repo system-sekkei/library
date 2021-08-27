@@ -9,6 +9,8 @@ import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.item.Item;
+import library.domain.model.material.item.ItemStatus;
+import library.domain.model.material.item.ItemWithStatus;
 import library.domain.model.member.MemberStatus;
 import org.springframework.stereotype.Service;
 
@@ -48,7 +50,8 @@ public class LoanScenario {
     public Loanability loanability(LoanRequest loanRequest) {
         LoanStatus loanStatus = loanQueryService.status(loanRequest.memberNumber());
         Item 借りたい所蔵品 = itemQueryService.findBy(loanRequest.itemNumber());
-        return loanStatus.貸出可否判定(借りたい所蔵品);
+        ItemStatus 所蔵品の状態 = itemQueryService.status(loanRequest.itemNumber());
+        return loanStatus.貸出可否判定(new ItemWithStatus(借りたい所蔵品, 所蔵品の状態));
     }
 
     /**

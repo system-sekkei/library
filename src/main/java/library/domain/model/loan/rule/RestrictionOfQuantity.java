@@ -32,7 +32,7 @@ enum RestrictionOfQuantity {
             return Loanability.貸出可能;
         }
 
-        return Loanability.貸出不可;
+        return Loanability.冊数制限により貸出不可;
     }
 
 }

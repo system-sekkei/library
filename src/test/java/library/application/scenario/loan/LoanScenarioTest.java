@@ -114,13 +114,12 @@ class LoanScenarioTest {
         assertSame(loanability, Loanability.視聴覚資料貸出不可);
     }
 
-    // FIXME:
-    //@Test
+    @Test
     void 貸出中の所蔵品は貸し出すことができない() {
         LoanRequest loanRequest =
                 generate(2, "1-A", LoanDate.now().toString());
         Loanability loanability = loanScenario.loanability(loanRequest);
-        assertSame(loanability , Loanability.貸出不可);
+        assertSame(loanability , Loanability.貸出中により貸出不可);
     }
 
     @Test
@@ -137,7 +136,7 @@ class LoanScenarioTest {
 
         Loanability loanability = loanScenario.loanability(loanRequest);
 
-        assertSame(loanability, Loanability.貸出不可);
+        assertSame(loanability, Loanability.冊数制限により貸出不可);
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
