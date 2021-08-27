@@ -1,0 +1,37 @@
+name: Deploy GithubPages
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+      - name: Cache Gradle packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+      - name: Generate JIG
+        run: ./gradlew clean build jig
+      - name: Deploy GithubPages
+        run: |
+          git config --global user.email "sammy@nocono.net"
+          git config --global user.name "Abe Asami"
+          git rm .gitignore
+          git add ./build/jig
+          git commit -m "Update jig"
+          git push origin `git subtree split --prefix build/jig ${GITHUB_REF#refs/heads/}`:gh-pages --force
