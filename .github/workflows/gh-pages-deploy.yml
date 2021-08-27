@@ -16,8 +16,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Install Graphviz
-        run: apt install graphviz
+      - name: Install Graph
+        run: sudo apt install graphviz
       - name: Cache Gradle packages
         uses: actions/cache@v2
         with:
