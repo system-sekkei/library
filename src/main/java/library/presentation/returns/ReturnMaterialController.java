@@ -1,6 +1,6 @@
 package library.presentation.returns;
 
-import library.application.service.returns.ReturnMaterialRecordService;
+import library.application.scenario.ReturnsScenario;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("returns")
 public class ReturnMaterialController {
-    ReturnMaterialRecordService returnMaterialRecordService;
 
-    public ReturnMaterialController(ReturnMaterialRecordService returnMaterialRecordService) {
-        this.returnMaterialRecordService = returnMaterialRecordService;
+    ReturnsScenario returnsScenario;
+
+    public ReturnMaterialController(ReturnsScenario returnsScenario) {
+        this.returnsScenario = returnsScenario;
     }
 
     @GetMapping
@@ -35,7 +36,7 @@ public class ReturnMaterialController {
                     BindingResult result) {
         if (result.hasErrors()) return "returns/form";
 
-        returnMaterialRecordService.returned(returned);
+        returnsScenario.returned(returned);
 
         return "redirect:/returns/completed";
     }
