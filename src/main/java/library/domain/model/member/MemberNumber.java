@@ -29,4 +29,8 @@ public class MemberNumber {
         if (value == null || value == 0) return "";
         return Integer.toString(value);
     }
+
+    public boolean sameValue(MemberNumber other) {
+        return value.equals(other.value);
+    }
 }

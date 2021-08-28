@@ -2,13 +2,16 @@ package library.application.scenario.loan;
 
 import library.LibraryDBTest;
 import library.application.scenario.LoanScenario;
+import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.material.item.ItemNumber;
+import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
-import library.domain.model.loan.rule.Loanability;
-import library.domain.model.member.MemberNumber;
 import library.domain.model.loan.LoanRequest;
+import library.domain.model.loan.rule.Loanability;
+import library.domain.model.material.item.ItemNumber;
+import library.domain.model.material.item.ItemStatus;
+import library.domain.model.member.MemberNumber;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -27,13 +30,24 @@ class LoanScenarioTest {
     @Autowired
     LoanQueryService loanQueryService;
 
+    @Autowired
+    ItemQueryService itemQueryService;
+
     @Test
     void 図書を貸し出すことができる() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
-        Loanability loanability = loanScenario.loanability(loanRequest);
+        loanScenario.loan(loanRequest);
 
-        assertSame(loanability , Loanability.貸出可能);
+        Loan loan = loanQueryService.findBy(new ItemNumber("2-A"));
+        ItemStatus itemStatus = itemQueryService.status(loanRequest.itemNumber());
+
+        assertAll(
+                () -> assertTrue(loanRequest.memberNumber().sameValue(loan.memberNumber())),
+                () -> assertTrue(loanRequest.itemNumber().sameValue(loan.item().所蔵品番号())),
+                () -> assertTrue(loanRequest.loanDate().sameValue(loan.loanDate())),
+                () -> assertEquals(itemStatus, ItemStatus.貸出中)
+        );
     }
 
     @Test

@@ -1,6 +1,5 @@
 package library.domain.model.loan;
 
-import library.domain.model.loan.due.DueDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -44,5 +43,9 @@ public class LoanDate {
 
     public LocalDate value() {
         return value;
+    }
+
+    public boolean sameValue(LoanDate other) {
+        return value.equals(other.value);
     }
 }

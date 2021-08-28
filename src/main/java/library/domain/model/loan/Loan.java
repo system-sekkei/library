@@ -42,4 +42,8 @@ public class Loan {
     public MemberNumber memberNumber() {
         return member.number();
     }
+
+    public LoanDate loanDate() {
+        return loanDate;
+    }
 }
