@@ -1,9 +1,8 @@
-package library.application.scenario.retention;
+package library.application.scenario;
 
 import library.LibraryDBTest;
-import library.application.scenario.RetentionScenario;
-import library.application.service.member.MemberQueryService;
 import library.application.service.material.MaterialQueryService;
+import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.entry.Entry;

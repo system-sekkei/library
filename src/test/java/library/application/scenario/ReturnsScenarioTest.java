@@ -49,4 +49,8 @@ class ReturnsScenarioTest {
                 () -> assertEquals(itemStatus, ItemStatus.貸出可能)
         );
     }
+
+    // @Test
+    void 貸出記録が消去される() {
+    }
 }

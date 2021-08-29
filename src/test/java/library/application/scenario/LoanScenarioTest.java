@@ -1,7 +1,6 @@
-package library.application.scenario.loan;
+package library.application.scenario;
 
 import library.LibraryDBTest;
-import library.application.scenario.LoanScenario;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
@@ -133,7 +132,7 @@ class LoanScenarioTest {
         LoanRequest loanRequest =
                 generate(2, "1-A", LoanDate.now().toString());
         Loanability loanability = loanScenario.loanability(loanRequest);
-        assertSame(loanability , Loanability.貸出中により貸出不可);
+        assertSame(loanability, Loanability.貸出中により貸出不可);
     }
 
     @Test
@@ -151,6 +150,15 @@ class LoanScenarioTest {
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability, Loanability.冊数制限により貸出不可);
+    }
+
+    // @Test
+    void 予約がない資料の貸出を15日間延長できる() {
+
+    }
+
+    // @Test
+    void 二回目の貸出延長はできない() {
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {
