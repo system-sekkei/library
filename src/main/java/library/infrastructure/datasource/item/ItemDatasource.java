@@ -23,7 +23,7 @@ public class ItemDatasource implements ItemRepository {
         if (itemMapper.loanable(itemNumber)) return 在庫中;
         if (itemMapper.loaned(itemNumber)) return 貸出中;
         if (itemMapper.retained(itemNumber)) return 取置中;
-        return 貸出不可;
+        return その他;
     }
     @Override
     public Item findBy(ItemNumber itemNumber) {
