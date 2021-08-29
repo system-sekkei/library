@@ -8,6 +8,7 @@ import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.Loanability;
+import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.member.MemberNumber;
@@ -129,10 +130,8 @@ class LoanScenarioTest {
 
     @Test
     void 貸出中の所蔵品は貸し出すことができない() {
-        LoanRequest loanRequest =
-                generate(2, "1-A", LoanDate.now().toString());
-        Loanability loanability = loanScenario.loanability(loanRequest);
-        assertSame(loanability, Loanability.貸出中により貸出不可);
+        ItemLoanability 貸出可能な所蔵品かどうか = loanScenario.貸出可能な所蔵品かどうか(new ItemNumber("1-A"));
+        assertSame(貸出可能な所蔵品かどうか, ItemLoanability.貸出中により貸出不可能);
     }
 
     @Test

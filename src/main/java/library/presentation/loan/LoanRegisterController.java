@@ -1,6 +1,7 @@
 package library.presentation.loan;
 
 import library.application.scenario.LoanScenario;
+import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import static library.domain.model.loan.rule.Loanability.冊数制限により貸出不可;
+import static library.domain.model.loan.rule.Loanability.貸出可能;
 import static library.domain.model.member.MemberStatus.未登録;
 
 /**
@@ -49,8 +50,14 @@ public class LoanRegisterController {
             return "loan/form";
         }
 
+        ItemLoanability 貸出可能な所蔵品かどうか = coordinator.貸出可能な所蔵品かどうか(loanRequest.itemNumber());
+        if (貸出可能な所蔵品かどうか != ItemLoanability.貸出可能) {
+            bindingResult.addError(new ObjectError("error", 貸出可能な所蔵品かどうか.message()));
+            return "loan/form";
+        }
+
         Loanability loanability = coordinator.loanability(loanRequest);
-        if (loanability == 冊数制限により貸出不可) {
+        if (loanability != 貸出可能) {
             bindingResult.addError(new ObjectError("error", loanability.message()));
             return "loan/form";
         }

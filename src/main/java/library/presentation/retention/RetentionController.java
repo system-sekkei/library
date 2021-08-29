@@ -16,7 +16,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import static library.domain.model.material.item.ItemStatus.未登録;
-import static library.domain.model.material.item.ItemStatus.貸出可能;
+import static library.domain.model.material.item.ItemStatus.在庫中;
 import static library.domain.model.retention.MaterialMatching.不一致;
 
 /**
@@ -64,7 +64,7 @@ public class RetentionController {
             return "retention/form";
         }
 
-        if (itemStatus != 貸出可能) {
+        if (itemStatus != 在庫中) {
             bindingResult.addError(new FieldError(bindingResult.getObjectName(),
                     "itemNumber.value", itemStatus.description()));
             return "retention/form";

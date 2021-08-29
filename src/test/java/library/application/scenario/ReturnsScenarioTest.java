@@ -46,7 +46,7 @@ class ReturnsScenarioTest {
 
         assertAll(
                 () -> assertThrows(IllegalArgumentException.class, () -> loanQueryService.findBy(new ItemNumber("2-A"))),
-                () -> assertEquals(itemStatus, ItemStatus.貸出可能)
+                () -> assertEquals(itemStatus, ItemStatus.在庫中)
         );
     }
 
