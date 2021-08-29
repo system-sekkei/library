@@ -1,7 +1,7 @@
 package library.domain.model.loan.due;
 
 import library.domain.model.loan.Loan;
-import library.domain.model.loan.delay.DaysPeriod;
+import library.domain.model.delay.DaysPeriod;
 import library.domain.type.date.CurrentDate;
 
 import java.time.LocalDate;

@@ -1,11 +1,11 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.delay.DelayStatus;
+import library.domain.model.delay.DelayStatus;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static library.domain.model.loan.delay.DelayStatus.*;
+import static library.domain.model.delay.DelayStatus.*;
 import static library.domain.model.loan.rule.RestrictionOfLoanbility.*;
 
 /**

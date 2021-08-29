@@ -1,6 +1,6 @@
 package library.domain.model.loan.rule;
 
-import library.domain.model.loan.delay.DelayStatus;
+import library.domain.model.delay.DelayStatus;
 import library.domain.model.loan.Loans;
 import library.domain.model.loan.due.Dues;
 import library.domain.model.member.Member;

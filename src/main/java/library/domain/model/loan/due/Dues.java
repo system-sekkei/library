@@ -1,9 +1,9 @@
 package library.domain.model.loan.due;
 
 import library.domain.model.loan.Loans;
-import library.domain.model.loan.delay.DaysPeriod;
-import library.domain.model.loan.delay.DaysPeriods;
-import library.domain.model.loan.delay.DelayStatus;
+import library.domain.model.delay.DaysPeriod;
+import library.domain.model.delay.DaysPeriods;
+import library.domain.model.delay.DelayStatus;
 import library.domain.type.date.CurrentDate;
 
 import java.util.List;

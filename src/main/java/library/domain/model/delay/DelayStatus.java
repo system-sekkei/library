@@ -1,4 +1,4 @@
-package library.domain.model.loan.delay;
+package library.domain.model.delay;
 
 /**
  * 遅延状態
