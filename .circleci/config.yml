@@ -1,6 +1,10 @@
 version: 2
 jobs:
   build:
+    filters:
+      branches:
+        ignore:
+          - gh-pages
     docker:
       - image: irof/circleci-openjdk:11-jdk-graphviz-imagemagick
     working_directory: ~/repo
