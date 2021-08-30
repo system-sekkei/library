@@ -5,7 +5,7 @@ import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
 
 public enum RestrictionOfLoanbility {
-    貸出点数まで貸出可,
+    貸出可,
     新規貸出不可,
     貸出一定期間停止;
 
