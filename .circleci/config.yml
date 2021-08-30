@@ -52,7 +52,7 @@ jobs:
 
 workflows:
   version: 2
-  build:
+  build_and_post_slack:
     jobs:
       - build:
           filters:
