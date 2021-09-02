@@ -34,6 +34,8 @@ jobs:
           git config --global user.email "sammy@nocono.net"
           git config --global user.name "Abe Asami"
           git rm .gitignore
+          mkdir ./build/jig/.circleci
+          cp ./.circleci/config.yml ./build/jig/.circleci
           git add ./build/jig
           git commit -m "Update jig"
           git push origin `git subtree split --prefix build/jig ${GITHUB_REF#refs/heads/}`:gh-pages --force
