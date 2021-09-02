@@ -3,11 +3,9 @@ package library.application.service.reservation;
 import library.LibraryDBTest;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.material.entry.Keyword;
-import library.domain.model.member.Member;
+import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.loanability.MaterialLoanability;
-import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.request.Reservations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +29,8 @@ class ReservationQueryServiceTest {
 
     @Test
     void 予約を一覧できる() {
-        Member member = memberQueryService.findMember(new MemberNumber(1));
-        MaterialLoanability material = materialQueryService.search(new Keyword("ハンドブック")).asList().get(0);
-        Reservation tryingToReserveMaterial = Reservation.of(member, material.entry());
-        reservationRecordService.reserve(tryingToReserveMaterial);
+        ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
+        reservationRecordService.reserve(reservationRequest);
 
         Reservations reservations = reservationQueryService.reservations();
 

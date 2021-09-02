@@ -6,11 +6,10 @@ import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.loanability.MaterialLoanabilities;
-import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.ReservationRequest;
 import org.springframework.stereotype.Service;
 
 /**
@@ -54,8 +53,7 @@ public class ReservationScenario {
      * 予約を記録する
      */
     public void reserve(Entry entry, MemberNumber memberNumber) {
-        Member member = memberQueryService.findMember(memberNumber);
-        Reservation reservation = Reservation.of(member, entry);
-        reservationRecordService.reserve(reservation);
+        ReservationRequest reservationRequest = new ReservationRequest(memberNumber, entry.entryNumber());
+        reservationRecordService.reserve(reservationRequest);
     }
 }

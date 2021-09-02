@@ -4,7 +4,6 @@ package library.domain.model.reservation.request;
  * 予約番号
  */
 public class ReservationNumber {
-    // TODO: UUIDに変更する
     int value;
 
     @Deprecated
@@ -15,11 +14,6 @@ public class ReservationNumber {
         this.value = Integer.parseInt(textValue);
     }
 
-    public static ReservationNumber generate() {
-        // TODO: UUID生成処理
-        return new ReservationNumber("0");
-    }
-
     public int value() {
         return value;
     }
@@ -27,5 +21,9 @@ public class ReservationNumber {
     @Override
     public String toString() {
         return Integer.toString(value);
+    }
+
+    public boolean sameValue(ReservationNumber other) {
+        return this.value == other.value;
     }
 }

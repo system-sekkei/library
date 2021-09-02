@@ -3,6 +3,7 @@ package library.infrastructure.datasource.reservation;
 import library.application.service.reservation.ReservationRepository;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.request.Reservations;
 import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
@@ -23,12 +24,12 @@ public class ReservationDatasource implements ReservationRepository {
 
     @Override
     @Transactional
-    public void reserve(Reservation reservation) {
+    public void reserve(ReservationRequest reservationRequest) {
         ReservationNumber reservationNumber = reservationMapper.nextNumber();
         reservationMapper.insertReservation(
                 reservationNumber,
-                reservation.memberNumber(),
-                reservation.entryNumber());
+                reservationRequest.memberNumber(),
+                reservationRequest.entryNumber());
 
         reservationMapper.insert未準備(reservationNumber);
     }

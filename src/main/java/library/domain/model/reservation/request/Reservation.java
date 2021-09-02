@@ -23,10 +23,6 @@ public class Reservation {
         this.entry = entry;
     }
 
-    public static Reservation of(Member member, Entry entry) {
-        return new Reservation(ReservationNumber.generate(), member, entry);
-    }
-
     public Entry entry() {
         return entry;
     }

@@ -34,8 +34,6 @@ class RetentionScenarioTest {
     void 取置可能な貸出予約図書一覧を出力できる() {
         Member member = memberQueryService.findMember(new MemberNumber(1));
         Entry entry = materialQueryService.findMaterial(new EntryNumber(2));
-        Reservation reservation = Reservation.of(member, entry);
-        reservationRecordService.reserve(reservation);
 
         // TODO 仕様から再定義
 //        Reservations reservations = retentionCoordinator.retention();
