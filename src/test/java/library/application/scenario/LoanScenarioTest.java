@@ -88,11 +88,11 @@ class LoanScenarioTest {
     @Test
     void 視聴覚資料を５点まで貸し出すことができる() {
         List<LoanRequest> requests = List.of(
-                generate(1, "8-A", "2020-02-20"),
-                generate(1, "9-A", "2020-02-20"),
-                generate(1, "10-A", "2020-02-20"),
                 generate(1, "11-A", "2020-02-20"),
-                generate(1, "12-A", "2020-02-20")
+                generate(1, "12-A", "2020-02-20"),
+                generate(1, "13-A", "2020-02-20"),
+                generate(1, "14-A", "2020-02-20"),
+                generate(1, "15-A", "2020-02-20")
         );
 
         Loanability loanability = null;
@@ -109,12 +109,12 @@ class LoanScenarioTest {
     @Test
     void 五点を超える視聴覚資料を貸し出すことはできない() {
         List<LoanRequest> requests = List.of(
-                generate(1, "8-A", "2020-02-20"),
-                generate(1, "9-A", "2020-02-20"),
-                generate(1, "10-A", "2020-02-20"),
                 generate(1, "11-A", "2020-02-20"),
                 generate(1, "12-A", "2020-02-20"),
-                generate(1, "13-A", "2020-02-20")
+                generate(1, "13-A", "2020-02-20"),
+                generate(1, "14-A", "2020-02-20"),
+                generate(1, "15-A", "2020-02-20"),
+                generate(1, "16-A", "2020-02-20")
         );
 
         Loanability loanability = null;
