@@ -15,15 +15,15 @@ public class Loans {
         this.list = list;
     }
 
-    public int count() {
-        return list.size();
+    public NumberOfLoans 冊数() {
+        return new NumberOfLoans(list.size());
     }
 
     public List<Loan> asList() {
         return Collections.unmodifiableList(list);
     }
 
-    public int 視聴覚資料の数() {
-        return (int)list.stream().filter(l -> l.item.所蔵品目().所蔵品目種別() == EntryType.視聴覚資料).count();
+    public NumberOfLoans 視聴覚資料の数() {
+        return new NumberOfLoans(list.stream().filter(l -> l.item.所蔵品目().所蔵品目種別() == EntryType.視聴覚資料).count());
     }
 }

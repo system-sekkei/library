@@ -56,7 +56,7 @@ class LoanQueryServiceTest {
         returnMaterialRecordService.returned(new Returned(itemNumber, ReturnDate.parse("2020-02-21")));
         LoanStatus loanStatus = loanQueryService.status(new MemberNumber(2));
 
-        assertEquals(0, loanStatus.count());
+        assertEquals(0, loanStatus.count().value());
     }
 
     private void registerLoan(ItemNumber itemNumber, int memberNumber) {

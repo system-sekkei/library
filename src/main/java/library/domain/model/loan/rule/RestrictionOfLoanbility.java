@@ -5,7 +5,7 @@ import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
 
 /**
- *
+ * 貸出可否
  */
 public enum RestrictionOfLoanbility {
     貸出可,

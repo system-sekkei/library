@@ -2,6 +2,7 @@ package library.domain.model.loan.rule;
 
 import library.domain.model.delay.DelayStatus;
 import library.domain.model.loan.Loans;
+import library.domain.model.loan.NumberOfLoans;
 import library.domain.model.loan.due.Dues;
 import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
@@ -29,8 +30,8 @@ public class LoanStatus {
         return restrictionOfLoanbility.貸出可否判定(member, loans, 借りたい所蔵品);
     }
 
-    public int count() {
-        return loans.count();
+    public NumberOfLoans count() {
+        return loans.冊数();
     }
 
     public MemberNumber memberNumber() {
