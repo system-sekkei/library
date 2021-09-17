@@ -1,6 +1,8 @@
 package library.domain.model.loan.rule;
 
+import library.domain.model.delay.DelayStatus;
 import library.domain.model.loan.Loans;
+import library.domain.model.loan.due.Dues;
 import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
@@ -14,6 +16,8 @@ public class LoanStatus {
     Loans loans;
     CurrentDate date;
 
+    static final RestrictionMap map = new RestrictionMap();
+
     public LoanStatus(Member member, Loans loans, CurrentDate date) {
         this.member = member;
         this.loans = loans;
@@ -21,8 +25,7 @@ public class LoanStatus {
     }
 
     public Loanability 貸出可否判定(Item 借りたい所蔵品) {
-        Restriction restriction = new Restriction(member, loans, date);
-        RestrictionOfLoanbility restrictionOfLoanbility = restriction.貸出可否();
+        RestrictionOfLoanbility restrictionOfLoanbility = 貸出可否();
         return restrictionOfLoanbility.貸出可否判定(member, loans, 借りたい所蔵品);
     }
 
@@ -36,6 +39,11 @@ public class LoanStatus {
 
     public Loans loans() {
         return loans;
+    }
+
+    RestrictionOfLoanbility 貸出可否() {
+        DelayStatus delayStatus = new Dues(loans).遅延状態(date);
+        return map.of(delayStatus);
     }
 
     @Override

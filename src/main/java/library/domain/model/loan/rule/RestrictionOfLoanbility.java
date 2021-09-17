@@ -4,6 +4,9 @@ import library.domain.model.loan.Loans;
 import library.domain.model.material.item.Item;
 import library.domain.model.member.Member;
 
+/**
+ *
+ */
 public enum RestrictionOfLoanbility {
     貸出可,
     新規貸出不可,

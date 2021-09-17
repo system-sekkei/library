@@ -1,4 +1,4 @@
-package library.domain.model.loan.rule;
+package library.domain.model.reservation.rule;
 
 /**
  * 予約制限

@@ -40,8 +40,8 @@ class RestrictionTest {
             loans.add(new Loan(null, member, null, LoanDate.parse(loanDate2)));
         }
 
-        Restriction restriction = new Restriction(member, new Loans(loans), currentDate);
+        LoanStatus loanStatus = new LoanStatus(member, new Loans(loans), currentDate);
 
-        assertEquals(expected, restriction.貸出可否());
+        assertEquals(expected, loanStatus.貸出可否());
     }
 }
