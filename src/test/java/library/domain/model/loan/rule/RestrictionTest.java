@@ -20,16 +20,16 @@ class RestrictionTest {
 
     @ParameterizedTest
     @CsvSource({
-            "中学生以上, 2020-02-19, , 貸出可",
+            "中学生以上, 2020-02-19, , 貸出可能",
             "中学生以上, 2020-02-19, 2020-02-18, 新規貸出不可",
             "中学生以上, 2020-02-19, 2020-01-05, 新規貸出不可",
             "中学生以上, 2020-02-19, 2020-01-04, 貸出一定期間停止",
-            "小学生以下, 2020-02-19, , 貸出可",
+            "小学生以下, 2020-02-19, , 貸出可能",
             "小学生以下, 2020-02-19, 2020-02-18, 新規貸出不可",
             "小学生以下, 2020-02-19, 2020-01-05, 新規貸出不可",
             "小学生以下, 2020-02-19, 2020-01-04, 貸出一定期間停止"
     })
-    void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, RestrictionOfLoanbility expected) {
+    void 貸出制限の判定ができる(MemberType memberType, String loanDate1, String loanDate2, Loanability expected) {
         CurrentDate currentDate = CurrentDate.parse("2020-03-18");
         MemberNumber memberNumber = new MemberNumber(1);
         Member member = new Member(memberNumber, new Name(""), memberType);

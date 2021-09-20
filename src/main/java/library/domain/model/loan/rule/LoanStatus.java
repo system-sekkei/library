@@ -26,8 +26,8 @@ public class LoanStatus {
     }
 
     public Loanability 貸出可否判定(Item 借りたい所蔵品) {
-        RestrictionOfLoanbility restrictionOfLoanbility = 貸出可否();
-        return restrictionOfLoanbility.貸出可否判定(member, loans, 借りたい所蔵品);
+        Loanability loanbility = 貸出可否();
+        return loanbility.貸出可否判定(member, loans, 借りたい所蔵品);
     }
 
     public NumberOfLoans count() {
@@ -42,7 +42,7 @@ public class LoanStatus {
         return loans;
     }
 
-    RestrictionOfLoanbility 貸出可否() {
+    Loanability 貸出可否() {
         DelayStatus delayStatus = new Dues(loans).遅延状態(date);
         return map.of(delayStatus);
     }

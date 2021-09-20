@@ -6,26 +6,26 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static library.domain.model.delay.DelayStatus.*;
-import static library.domain.model.loan.rule.RestrictionOfLoanbility.*;
+import static library.domain.model.loan.rule.Loanability.*;
 
 /**
  * *貸出制限の表条件
  */
 class RestrictionMap {
 
-    Map<DelayStatus, RestrictionOfLoanbility> map = new HashMap<>();
+    Map<DelayStatus, Loanability> map = new HashMap<>();
 
     {
-        define(遅延日数１５日未満, 貸出可);
+        define(遅延日数１５日未満, 貸出可能);
         define(遅延日数２ヶ月未満, 新規貸出不可);
         define(遅延日数２ヶ月以上, 貸出一定期間停止);
     }
 
-    void define(DelayStatus delayStatus, RestrictionOfLoanbility restrictionOfLoanbility) {
-        map.put(delayStatus, restrictionOfLoanbility);
+    void define(DelayStatus delayStatus, Loanability loanbility) {
+        map.put(delayStatus, loanbility);
     }
 
-    RestrictionOfLoanbility of(DelayStatus delayStatus) {
+    Loanability of(DelayStatus delayStatus) {
         return map.get(delayStatus);
     }
 }
