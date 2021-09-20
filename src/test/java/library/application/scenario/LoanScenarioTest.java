@@ -55,12 +55,12 @@ class LoanScenarioTest {
         List<String> list = List.of("1-B", "1-C", "2-A", "2-B", "2-C", "2-D", "2-E", "2-F", "2-G", "2-H", "3-A", "4-A", "5-A", "6-A");
         for (String code : list) {
             LoanRequest loanRequest =
-                    generate(2, code, "2020-02-20");
+                    generate(2, code, LoanDate.now().toString());
             loanScenario.loan(loanRequest);
         }
 
         LoanRequest loanRequest =
-                generate(2, "8-A", "2020-02-20");
+                generate(2, "8-A", LoanDate.now().toString());
 
         Loanability loanability = loanScenario.loanability(loanRequest);
 
@@ -73,26 +73,26 @@ class LoanScenarioTest {
                 "5-A", "6-A", "7-A", "8-A", "8-B", "9-A", "9-B");
         for (String code : list) {
             LoanRequest loanRequest =
-                    generate(3, code, "2020-02-20");
+                    generate(3, code, LoanDate.now().toString());
             loanScenario.loan(loanRequest);
         }
 
         LoanRequest loanRequest =
-                generate(3, "10-A", "2020-02-20");
+                generate(3, "10-A", LoanDate.now().toString());
 
         Loanability loanability = loanScenario.loanability(loanRequest);
 
-        assertSame(loanability, Loanability.貸出可能);
+        assertSame(Loanability.貸出可能, loanability);
     }
 
     @Test
     void 視聴覚資料を５点まで貸し出すことができる() {
         List<LoanRequest> requests = List.of(
-                generate(1, "11-A", "2020-02-20"),
-                generate(1, "12-A", "2020-02-20"),
-                generate(1, "13-A", "2020-02-20"),
-                generate(1, "14-A", "2020-02-20"),
-                generate(1, "15-A", "2020-02-20")
+                generate(1, "11-A", LoanDate.now().toString()),
+                generate(1, "12-A", LoanDate.now().toString()),
+                generate(1, "13-A", LoanDate.now().toString()),
+                generate(1, "14-A", LoanDate.now().toString()),
+                generate(1, "15-A", LoanDate.now().toString())
         );
 
         Loanability loanability = null;
@@ -109,12 +109,12 @@ class LoanScenarioTest {
     @Test
     void 五点を超える視聴覚資料を貸し出すことはできない() {
         List<LoanRequest> requests = List.of(
-                generate(1, "11-A", "2020-02-20"),
-                generate(1, "12-A", "2020-02-20"),
-                generate(1, "13-A", "2020-02-20"),
-                generate(1, "14-A", "2020-02-20"),
-                generate(1, "15-A", "2020-02-20"),
-                generate(1, "16-A", "2020-02-20")
+                generate(1, "11-A", LoanDate.now().toString()),
+                generate(1, "12-A", LoanDate.now().toString()),
+                generate(1, "13-A", LoanDate.now().toString()),
+                generate(1, "14-A", LoanDate.now().toString()),
+                generate(1, "15-A", LoanDate.now().toString()),
+                generate(1, "16-A", LoanDate.now().toString())
         );
 
         Loanability loanability = null;
@@ -139,12 +139,12 @@ class LoanScenarioTest {
         List<String> list = List.of("1-B", "1-C", "2-A", "2-B", "2-C", "2-D", "2-E", "2-F", "2-G", "2-H", "3-A", "4-A", "5-A", "6-A", "7-A");
         for (String code : list) {
             LoanRequest loanRequest =
-                    generate(2, code, "2020-02-20");
+                    generate(2, code, LoanDate.now().toString());
             loanScenario.loan(loanRequest);
         }
 
         LoanRequest loanRequest =
-                generate(2, "8-A", "2020-02-20");
+                generate(2, "8-A", LoanDate.now().toString());
 
         Loanability loanability = loanScenario.loanability(loanRequest);
 

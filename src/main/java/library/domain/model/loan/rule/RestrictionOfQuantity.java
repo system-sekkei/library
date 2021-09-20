@@ -9,8 +9,8 @@ import library.domain.model.material.item.Item;
  * *冊数制限(判定結果)
  */
 enum RestrictionOfQuantity {
-    貸出１５点まで(NumberOfLoans.of(15), NumberOfLoans.of(5)),
-    貸出２０点まで(NumberOfLoans.of(20), NumberOfLoans.of(5));
+    貸出１５点_視聴覚資料5点まで(NumberOfLoans.of(15), NumberOfLoans.of(5)),
+    貸出２０点_視聴覚資料5点まで(NumberOfLoans.of(20), NumberOfLoans.of(5));
 
     NumberOfLoans 冊数上限;
     NumberOfLoans 視聴覚資料の冊数上限;

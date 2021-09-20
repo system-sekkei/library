@@ -1,5 +1,6 @@
 package library.domain.model.loan;
 
+import library.domain.model.delay.DelayStatus;
 import library.domain.model.material.entry.EntryType;
 
 import java.util.Collections;

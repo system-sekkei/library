@@ -17,7 +17,7 @@ public class LoanStatus {
     Loans loans;
     CurrentDate date;
 
-    static final RestrictionMap map = new RestrictionMap();
+    static final RestrictionOfDelayMap map = new RestrictionOfDelayMap();
 
     public LoanStatus(Member member, Loans loans, CurrentDate date) {
         this.member = member;
@@ -26,8 +26,9 @@ public class LoanStatus {
     }
 
     public Loanability 貸出可否判定(Item 借りたい所蔵品) {
-        Loanability loanbility = 貸出可否();
-        return loanbility.貸出可否判定(member, loans, 借りたい所蔵品);
+        DelayStatus 遅延状態 = new Dues(loans).遅延状態(date);
+        Restriction restriction = new Restriction(member, loans, 借りたい所蔵品, 遅延状態);
+        return restriction.貸出可否判定();
     }
 
     public NumberOfLoans count() {
@@ -40,11 +41,6 @@ public class LoanStatus {
 
     public Loans loans() {
         return loans;
-    }
-
-    Loanability 貸出可否() {
-        DelayStatus delayStatus = new Dues(loans).遅延状態(date);
-        return map.of(delayStatus);
     }
 
     @Override
