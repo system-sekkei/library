@@ -7,6 +7,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanRequest;
+import library.domain.model.loan.due.DueDate;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.material.item.ItemNumber;
@@ -15,6 +16,7 @@ import library.domain.model.member.MemberNumber;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -154,7 +156,7 @@ class LoanScenarioTest {
     @Test
     void 十五日以上延滞している資料がある会員は所蔵品を新たに借りることができない() {
         LoanRequest 十五日延滞している貸出 =
-                generate(2, "2-A", LoanDate.now().minusDays(15).toString());
+                generate(2, "2-A", new DueDate(LocalDate.now().minusDays(15)).貸出日().toString());
         loanScenario.loan(十五日延滞している貸出);
 
         LoanRequest loanRequest =

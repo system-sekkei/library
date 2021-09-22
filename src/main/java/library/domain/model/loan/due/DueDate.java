@@ -15,13 +15,13 @@ public class DueDate {
     LocalDate value;
     static final int 最大貸出日数 = 15;
 
-    DueDate(LocalDate value) {
+    public DueDate(LocalDate value) {
         this.value = value;
     }
 
     public static DueDate 貸出期限日(Loan loan) {
         LocalDate loaned = loan.date().value();
-        LocalDate 期限日 = loaned.plusDays(最大貸出日数);
+        LocalDate 期限日 = loaned.plusDays(最大貸出日数).minusDays(1); // 借りた当日を含むため1日引いている
         return new DueDate(期限日);
     }
 
@@ -36,6 +36,6 @@ public class DueDate {
     }
 
     public LoanDate 貸出日() {
-        return new LoanDate(value.minusDays(最大貸出日数));
+        return new LoanDate(value.minusDays(最大貸出日数).plusDays(1)); // 借りた当日を含むため、1日足している
     }
 }
