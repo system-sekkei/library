@@ -23,10 +23,6 @@ public class LoanDate {
         this.value = value;
     }
 
-    public static LoanDate from(DueDate 返却予定日) {
-        return 返却予定日.貸出日();
-    }
-
     public String show() {
         return value.format(DateTimeFormatter.ofPattern("M月d日(E)"));
     }

@@ -17,8 +17,7 @@ class DuesTest {
 
     @Test
     void 遅延日数を出すことができる() {
-        DueDate 返却予定日 = new DueDate(LocalDate.now().minusDays(15));
-        LoanDate 十五日返却延滞している貸出の貸出日 = LoanDate.from(返却予定日);
+        LoanDate 十五日返却延滞している貸出の貸出日 = new LoanDate(LocalDate.now().minusDays(15).minusDays(15).plusDays(1));
         Loans loans = new Loans(List.of(
                 new Loan(new LoanNumber(1),
                         new Member(null, null, MemberType.中学生以上),

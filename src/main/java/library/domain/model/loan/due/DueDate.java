@@ -35,7 +35,4 @@ public class DueDate {
         return null;
     }
 
-    public LoanDate 貸出日() {
-        return new LoanDate(value.minusDays(最大貸出日数).plusDays(1)); // 借りた当日を含むため、1日足している
-    }
 }

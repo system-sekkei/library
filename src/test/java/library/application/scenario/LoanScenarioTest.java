@@ -155,8 +155,9 @@ class LoanScenarioTest {
 
     @Test
     void 十五日以上延滞している資料がある会員は所蔵品を新たに借りることができない() {
+        // 借りた当日を含むため1日足している
         LoanRequest 十五日延滞している貸出 =
-                generate(2, "2-A", new DueDate(LocalDate.now().minusDays(15)).貸出日().toString());
+                generate(2, "2-A", new LoanDate(LocalDate.now().minusDays(15).minusDays(15).plusDays(1)).toString());
         loanScenario.loan(十五日延滞している貸出);
 
         LoanRequest loanRequest =
