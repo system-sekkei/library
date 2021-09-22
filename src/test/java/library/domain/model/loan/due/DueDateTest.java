@@ -13,7 +13,7 @@ class DueDateTest {
     @Test
     void 貸出期限日を取得できる() {
         Loan loan = new Loan(null, null, null, LoanDate.from(LocalDate.of(2021, 8, 1)));
-        DueDate actual = DueDate.貸出期限(loan);
+        DueDate actual = DueDate.貸出期限日(loan);
         assertEquals(LocalDate.of(2021, 8, 15), actual.value);
     }
 }

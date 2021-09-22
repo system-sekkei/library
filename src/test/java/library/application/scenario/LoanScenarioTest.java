@@ -151,6 +151,20 @@ class LoanScenarioTest {
         assertSame(loanability, Loanability.冊数制限により貸出不可);
     }
 
+    @Test
+    void 十五日以上延滞している資料がある会員は所蔵品を新たに借りることができない() {
+        LoanRequest 十五日延滞している貸出 =
+                generate(2, "2-A", LoanDate.now().minusDays(15).toString());
+        loanScenario.loan(十五日延滞している貸出);
+
+        LoanRequest loanRequest =
+                generate(2, "8-A", LoanDate.now().toString());
+
+        Loanability loanability = loanScenario.loanability(loanRequest);
+
+        assertSame(loanability, Loanability.新規貸出不可);
+    }
+
     // @Test
     void 予約がない資料の貸出を15日間延長できる() {
 

@@ -15,7 +15,7 @@ public class LoanExpiredCheckService {
      * 貸出期限切れを確認する
      */
     public void expiredCheck(Loan loan) {
-        DueDate.貸出期限(loan).status();
+        DueDate.貸出期限日(loan).status();
         notificationRepository.expired(loan);
     }
 }

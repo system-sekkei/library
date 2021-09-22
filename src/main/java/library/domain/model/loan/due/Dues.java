@@ -25,7 +25,7 @@ public class Dues {
 
     DaysPeriods 遅延日数(CurrentDate date) {
         List<DaysPeriod> lists = loans.asList().stream()
-                .map(loan -> DueDate.貸出期限(loan).遅延期間(date)).collect(Collectors.toList());
+                .map(loan -> DueDate.貸出期限日(loan).遅延期間(date)).collect(Collectors.toList());
 
         return new DaysPeriods(lists);
     }

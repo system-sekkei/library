@@ -1,10 +1,6 @@
 package library.domain.model.delay;
 
-import library.domain.type.date.Days;
-import library.domain.type.date.Months;
-
 import java.util.List;
-import java.util.Optional;
 
 /**
  * 遅延期間のリスト
@@ -17,10 +13,13 @@ public class DaysPeriods {
     }
 
     public DelayStatus 遅延状態() {
-        Optional<DaysPeriod> 最大遅延日数 = lists.stream().max(DaysPeriod::compareTo);
-
-        DaysPeriod 遅延０日 = new DaysPeriod(new Months(0), new Days(0));
-
-        return DelayStatus.level(最大遅延日数.orElse(遅延０日));
+        DaysPeriod 最大遅延日数 = 最大遅延日数();
+        return DelayStatus.level(最大遅延日数);
     }
+
+    public DaysPeriod 最大遅延日数() {
+        DaysPeriod 遅延０日 = DaysPeriod.遅延期間(0, 0);
+        return lists.stream().max(DaysPeriod::compareTo).orElse(遅延０日);
+    }
+
 }

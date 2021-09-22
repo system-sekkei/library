@@ -1,5 +1,6 @@
 package library.domain.model.loan;
 
+import library.domain.model.loan.due.DueDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
@@ -18,8 +19,12 @@ public class LoanDate {
     LoanDate() {
     }
 
-    private LoanDate(LocalDate value) {
+    public LoanDate(LocalDate value) {
         this.value = value;
+    }
+
+    public static LoanDate from(DueDate 返却予定日) {
+        return 返却予定日.貸出日();
     }
 
     public String show() {
@@ -43,6 +48,10 @@ public class LoanDate {
 
     public LocalDate value() {
         return value;
+    }
+
+    public LoanDate minusDays(int days) {
+        return new LoanDate(this.value().minusDays(days));
     }
 
     public boolean sameValue(LoanDate other) {
