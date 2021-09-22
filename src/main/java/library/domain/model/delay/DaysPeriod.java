@@ -30,8 +30,12 @@ public class DaysPeriod {
     }
 
     public int compareTo(DaysPeriod target) {
-        if (this.days.value() == target.daysIntValue()) return 0;
-        if (this.days.value() > target.daysIntValue()) return 1;
+        if (this.months.value() == target.monthsIntValue()) {
+            if (this.days.value() == target.daysIntValue()) return 0;
+            if (this.days.value() > target.daysIntValue()) return 1;
+        }
+
+        if (this.months.value() > target.monthsIntValue()) return 1;
 
         return -1;
     }
