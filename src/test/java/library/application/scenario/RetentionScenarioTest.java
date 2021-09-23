@@ -30,17 +30,32 @@ class RetentionScenarioTest {
     @Autowired
     MaterialQueryService materialQueryService;
 
-    @Test
-    void 取置可能な貸出予約図書一覧を出力できる() {
-        Member member = memberQueryService.findMember(new MemberNumber(1));
-        Entry entry = materialQueryService.findMaterial(new EntryNumber(2));
+    // @Test
+    void 未準備の予約を一覧できる() {
 
-        // TODO 仕様から再定義
-//        Reservations reservations = retentionCoordinator.retention();
-//        Reservation reservation1 = reservations.asList().get(0);
-//
-//        assertAll(
-//                () ->assertTrue(reservation1.reservedMaterial().material().sameMaterial(material)),
-//                () -> assertEquals(1, reservation1.member().memberNumber().value()));
+    }
+
+    // @Test
+    void 未準備の予約所蔵品を取り置くことができる() {
+
+    }
+
+    // @Test
+    void 取置中の所蔵品を予約者に貸し出すことができる() {
+
+    }
+
+    // @Test
+    void 取置中の所蔵品を予約者以外に貸し出すことはできない() {
+
+    }
+
+    // @Test
+    void 予約が取り消された取置を一覧できる() {
+
+    }
+
+    // @Test
+    void 取置中の所蔵品を在庫に戻すことができる() {
     }
 }

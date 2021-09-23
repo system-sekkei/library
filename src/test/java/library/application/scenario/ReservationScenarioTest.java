@@ -104,12 +104,22 @@ public class ReservationScenarioTest {
         );
     }
 
-//    @Test
+    // @Test
+    void 予約資料を予約者が受け取ったら予約履歴が削除される() {
+
+    }
+
+    //    @Test
     void 貸出中の資料を予約することができる() {
 
     }
 
 //    @Test
     void 取置期限内に受け取らなかった予約が無効になる() {
+    }
+
+    // @Test
+    void 予約を取り消すことができる() {
+
     }
 }
