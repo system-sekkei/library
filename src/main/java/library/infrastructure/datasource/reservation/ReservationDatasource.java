@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.reservation;
 
 import library.application.service.reservation.ReservationRepository;
+import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
+import static library.domain.model.material.item.ItemStatus.*;
 
 @Repository
 public class ReservationDatasource implements ReservationRepository {
@@ -56,5 +59,13 @@ public class ReservationDatasource implements ReservationRepository {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
         reservationMapper.delete未準備(reservationNumber);
+    }
+
+    @Override
+    public ReservationStatus status(ReservationNumber reservationNumber) {
+        if (! reservationMapper.exists予約(reservationNumber)) return ReservationStatus.消込済;
+        if (reservationMapper.exist未準備(reservationNumber)) return ReservationStatus.未準備;
+        if (retentionMapper.exists準備完了(reservationNumber)) return ReservationStatus.準備完了;
+        return ReservationStatus.消込済;
     }
 }

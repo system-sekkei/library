@@ -50,4 +50,9 @@
     <insert id="insert取置期限切れ履歴">
         INSERT INTO 取置.取置期限切れ履歴(予約番号) VALUES (#{value})
     </insert>
+
+    <select id="exists準備完了" resultType="boolean">
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 予約番号 = #{value})
+    </select>
+
 </mapper>

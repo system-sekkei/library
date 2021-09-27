@@ -13,6 +13,19 @@ public class Retention {
     @Valid
     ItemNumber itemNumber = ItemNumber.empty();
 
+    public Retention(@Valid ReservationNumber reservationNumber, @Valid ItemNumber itemNumber) {
+        this.reservationNumber = reservationNumber;
+        this.itemNumber = itemNumber;
+    }
+
+    @Deprecated
+    Retention() {
+    }
+
+    public static Retention empty() {
+        return new Retention();
+    }
+
     public ReservationNumber reservationNumber() {
         return reservationNumber;
     }

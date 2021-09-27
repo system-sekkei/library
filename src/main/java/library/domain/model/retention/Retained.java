@@ -8,7 +8,7 @@ import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 
 /**
- * 準備完了
+ * 取置資料
  */
 public class Retained {
     Reservation reservation;
@@ -41,6 +41,10 @@ public class Retained {
 
     public LoanRequest toLoanRequest() {
         return new LoanRequest(reservation.memberNumber(), itemNumber, LoanDate.from(retainedDate.value));
+    }
+
+    public RetainedDate retainedDate() {
+        return retainedDate;
     }
 
     @Override

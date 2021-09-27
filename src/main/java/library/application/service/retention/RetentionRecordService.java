@@ -3,14 +3,14 @@ package library.application.service.retention;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
-import library.domain.model.reservation.progress.Progress;
+import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Service;
 
-import static library.domain.model.reservation.progress.Progress.*;
+import static library.domain.model.reservation.ReservationStatus.*;
 
 /**
  * 取置の登録
@@ -71,7 +71,7 @@ public class RetentionRecordService {
     /**
      * 事前/事後の進捗状態を確認する
      */
-    private void ensure(Progress progress) {
+    private void ensure(ReservationStatus reservationStatus) {
         // 進捗状態の表現の実験
         // TODO 状態の取得・判定・例外送出
         // 進捗という関心事の表現が目的

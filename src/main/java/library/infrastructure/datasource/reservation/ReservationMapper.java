@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.reservation;
 
 import library.domain.model.material.entry.EntryNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservation;
@@ -27,4 +28,7 @@ public interface ReservationMapper {
     void delete未準備(ReservationNumber reservationNumber);
 
     void cancelReservation(ReservationNumber reservationNumber);
+
+    boolean exists予約(ReservationNumber reservationNumber);
+    boolean exist未準備(ReservationNumber reservationNumber);
 }

@@ -51,4 +51,12 @@
     <insert id="cancelReservation">
         INSERT INTO 予約.予約取消履歴(予約番号) VALUES (#{value})
     </insert>
+
+    <select id="exist未準備" resultType="boolean">
+        SELECT EXISTS(SELECT 予約番号 FROM 予約.未準備 WHERE 予約番号 = #{value})
+    </select>
+
+    <select id="exists予約" resultType="boolean">
+        SELECT EXISTS(SELECT 予約番号 FROM 予約.予約履歴 WHERE 予約番号 = #{value})
+    </select>
 </mapper>

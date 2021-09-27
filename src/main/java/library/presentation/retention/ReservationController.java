@@ -23,7 +23,7 @@ public class ReservationController {
 
     @GetMapping
     String requests(Model model) {
-        Reservations reservations = retentionScenario.reservations();
+        Reservations reservations = retentionScenario.未準備の予約一覧();
         model.addAttribute("reservations", reservations);
         return "retention/requests";
     }
@@ -34,7 +34,7 @@ public class ReservationController {
             Model model) {
         Reservation reservation = retentionScenario.reservationOf(reservationNumber);
         model.addAttribute("reservation", reservation);
-        model.addAttribute("retention", new Retention());
+        model.addAttribute("retention", Retention.empty());
         return "retention/form";
     }
 

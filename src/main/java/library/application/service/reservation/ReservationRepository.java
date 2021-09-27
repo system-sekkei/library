@@ -1,5 +1,6 @@
 package library.application.service.reservation;
 
+import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
@@ -18,4 +19,6 @@ public interface ReservationRepository {
     void retained(ReservationNumber reservation);
 
     void cancel(Reservation reservation);
+
+    ReservationStatus status(ReservationNumber reservationNumber);
 }

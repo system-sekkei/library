@@ -32,4 +32,6 @@ public interface RetentionMapper {
             @Param("itemNumber") ItemNumber itemNumber);
 
     void insert取置期限切れ履歴(ReservationNumber reservationNumber);
+
+    boolean exists準備完了(ReservationNumber reservationNumber);
 }
