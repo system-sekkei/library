@@ -1,5 +1,6 @@
 package library.application.service.reservation;
 
+import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
@@ -21,4 +22,6 @@ public interface ReservationRepository {
     void cancel(Reservation reservation);
 
     ReservationStatus status(ReservationNumber reservationNumber);
+
+    Reservations findByMember(MemberNumber memberNumber);
 }

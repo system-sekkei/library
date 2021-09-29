@@ -1,5 +1,7 @@
 package library.domain.model.reservation.request;
 
+import library.domain.model.material.entry.EntryType;
+
 import java.util.List;
 
 /**
@@ -28,5 +30,9 @@ public class Reservations {
         return "Reservations{" +
                 "list=" + list +
                 '}';
+    }
+
+    public NumberOfReservation 視聴覚資料の冊数() {
+        return new NumberOfReservation((int) list.stream().filter(reservation -> reservation.entry().所蔵品目種別() == EntryType.視聴覚資料).count());
     }
 }

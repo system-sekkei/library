@@ -1,5 +1,6 @@
 package library.application.service.reservation;
 
+import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
@@ -36,5 +37,12 @@ public class ReservationQueryService {
      */
     public ReservationStatus reservationStatus(ReservationNumber reservationNumber) {
         return reservationRepository.status(reservationNumber);
+    }
+
+    /**
+     * 会員の予約一覧を取得する
+     */
+    public Reservations 予約一覧(MemberNumber memberNumber) {
+        return reservationRepository.findByMember(memberNumber);
     }
 }

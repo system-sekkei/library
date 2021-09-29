@@ -38,6 +38,14 @@
         WHERE 予約番号 = #{value}
     </select>
 
+    <select id="selectReservationsByMember" resultMap="reservation">
+        SELECT 予約履歴.予約番号 as "reservationNumber.value",
+               予約履歴.会員番号 as "memberNumber.value",
+               予約履歴.所蔵品目番号 as "entryNumber.value"
+        FROM 予約.予約履歴
+        WHERE 会員番号 = #{value}
+    </select>
+
     <insert id="insert未準備">
         INSERT INTO 予約.未準備(予約番号)
         VALUES (#{value})

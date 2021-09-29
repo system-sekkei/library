@@ -5,6 +5,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.request.Reservations;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -31,4 +32,6 @@ public interface ReservationMapper {
 
     boolean exists予約(ReservationNumber reservationNumber);
     boolean exist未準備(ReservationNumber reservationNumber);
+
+    List<Reservation> selectReservationsByMember(MemberNumber memberNumber);
 }
