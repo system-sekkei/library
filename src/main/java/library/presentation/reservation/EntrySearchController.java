@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 所蔵品目の検索画面
  */
 @Controller
-@RequestMapping("reservation/entries")
+@RequestMapping("reservation/materials")
 public class EntrySearchController {
     ReservationScenario reservationScenario;
 
