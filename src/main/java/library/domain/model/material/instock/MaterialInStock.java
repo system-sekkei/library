@@ -10,7 +10,7 @@ public class MaterialInStock {
     Entry entry;
     int 在庫数;
 
-    public String showLoanability() {
+    public String showInStock() {
         return 在庫有無().show();
     }
 

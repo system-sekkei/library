@@ -26,8 +26,8 @@ public class EntrySearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        MaterialInStockList loanabilities = reservationScenario.search(searchKeyword);
-        model.addAttribute("loanabilities", loanabilities);
+        MaterialInStockList materialInStockList = reservationScenario.search(searchKeyword);
+        model.addAttribute("materialInStockList", materialInStockList);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/search";
     }
