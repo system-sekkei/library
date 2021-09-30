@@ -5,6 +5,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanNumber;
 import library.domain.model.loan.Loans;
+import library.domain.model.retention.Retained;
 import library.domain.model.returned.Returned;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.member.Member;
@@ -13,6 +14,8 @@ import library.domain.type.date.CurrentDate;
 import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import library.domain.model.loan.LoanRequest;
+import library.infrastructure.datasource.reservation.ReservationMapper;
+import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +27,16 @@ public class LoanDataSource implements LoanRepository {
     LoanMapper loanMapper;
     ItemMapper itemMapper;
     MemberMapper memberMapper;
+    ReservationMapper reservationMapper;
+    RetentionMapper retentionMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public LoanDataSource(LoanMapper loanMapper, ItemMapper itemMapper, MemberMapper memberMapper) {
+    public LoanDataSource(LoanMapper loanMapper, ItemMapper itemMapper, MemberMapper memberMapper, ReservationMapper reservationMapper, RetentionMapper retentionMapper) {
         this.loanMapper = loanMapper;
         this.itemMapper = itemMapper;
         this.memberMapper = memberMapper;
+        this.reservationMapper = reservationMapper;
+        this.retentionMapper = retentionMapper;
     }
 
     @Override
@@ -65,6 +72,33 @@ public class LoanDataSource implements LoanRepository {
         itemMapper.delete貸出中(itemNumber);
 
         memberMapper.deleteLoanMemberRelation(loan.loanNumber());
+    }
+
+    @Override
+    @Transactional
+    public void loan(LoanRequest loanRequest, Retained retained) {
+        ItemNumber itemNumber = retained.itemNumber();
+
+        if (loanMapper.selectByItemNumber(itemNumber).isPresent()) {
+            throw new RegisterLoanException(loanRequest);
+        }
+
+        int loanNumber = loanMapper.newLoanNumber();
+        loanMapper.insertLoan(
+                loanNumber,
+                itemNumber,
+                loanRequest.loanDate());
+
+        itemMapper.delete取置中(itemNumber);
+        itemMapper.insert貸出中(itemNumber);
+
+        memberMapper.insertLoanMemberRelation(loanRequest.memberNumber(), new LoanNumber(loanNumber));
+
+        // TODO: 予約履歴削除
+
+        // 取置の状態変更
+        retentionMapper.insert取置解放履歴(retained.reservationNumber(), itemNumber);
+        retentionMapper.delete準備完了(itemNumber);
     }
 
 

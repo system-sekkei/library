@@ -14,6 +14,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.material.item.ItemWithStatus;
 import library.domain.model.member.MemberStatus;
+import library.domain.model.retention.Retained;
 import org.springframework.stereotype.Service;
 
 /**
@@ -60,6 +61,13 @@ public class LoanScenario {
      */
     public void loan(LoanRequest loanRequest) {
         loanRecordService.loaned(loanRequest);
+    }
+
+    /**
+     * 取り置いた所蔵品を貸し出す
+     */
+    public void loan(LoanRequest loanRequest, Retained retained) {
+        loanRecordService.loaned(loanRequest, retained);
     }
 
     /**

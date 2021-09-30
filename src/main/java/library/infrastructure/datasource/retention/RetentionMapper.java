@@ -34,4 +34,5 @@ public interface RetentionMapper {
     void insert取置期限切れ履歴(ReservationNumber reservationNumber);
 
     boolean exists準備完了(ReservationNumber reservationNumber);
+    boolean exists取置解放履歴(@Param("reservationNumber") ReservationNumber reservationNumber, @Param("itemNumber") ItemNumber itemNumber);
 }

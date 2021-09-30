@@ -55,4 +55,7 @@
         SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 予約番号 = #{value})
     </select>
 
+    <select id="exists取置解放履歴" resultType="boolean">
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放履歴 WHERE 予約番号 = #{reservationNumber.value} AND 所蔵品番号 = #{itemNumber.value})
+    </select>
 </mapper>
