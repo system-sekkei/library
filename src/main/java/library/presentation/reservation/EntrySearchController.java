@@ -2,7 +2,7 @@ package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.reservation.loanability.MaterialLoanabilities;
+import library.domain.model.material.instock.MaterialInStockList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * 所蔵品目の検索画面
  */
 @Controller
-@RequestMapping("reservation/materials")
+@RequestMapping("reservation/entries")
 public class EntrySearchController {
     ReservationScenario reservationScenario;
 
@@ -26,7 +26,7 @@ public class EntrySearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        MaterialLoanabilities loanabilities = reservationScenario.search(searchKeyword);
+        MaterialInStockList loanabilities = reservationScenario.search(searchKeyword);
         model.addAttribute("loanabilities", loanabilities);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/search";

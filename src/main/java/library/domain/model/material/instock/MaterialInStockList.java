@@ -1,16 +1,16 @@
-package library.domain.model.reservation.loanability;
+package library.domain.model.material.instock;
 
 import library.domain.model.material.entry.NumberOfEntry;
 
 import java.util.List;
 
 /**
- * 本の一覧と貸出可否
+ * 本と在庫有無の一覧
  */
-public class MaterialLoanabilities {
-    List<MaterialLoanability> list;
+public class MaterialInStockList {
+    List<MaterialInStock> list;
 
-    public MaterialLoanabilities(List<MaterialLoanability> list) {
+    public MaterialInStockList(List<MaterialInStock> list) {
         this.list = list;
     }
 
@@ -21,13 +21,13 @@ public class MaterialLoanabilities {
         return list.size();
     }
 
-    public List<MaterialLoanability> asList() {
+    public List<MaterialInStock> asList() {
         return list;
     }
 
     @Override
     public String toString() {
-        return "MaterialLoanabilities{" +
+        return "MaterialInStockList{" +
                 "list=" + list +
                 '}';
     }

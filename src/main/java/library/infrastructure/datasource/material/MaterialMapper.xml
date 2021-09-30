@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.material.MaterialMapper">
 
-    <select id="searchMaterials" resultType="library.domain.model.reservation.loanability.MaterialLoanability">
+    <select id="searchMaterials" resultType="library.domain.model.material.instock.MaterialInStock">
         SELECT
             所蔵品目.所蔵品目番号 as "entry.entryNumber.value",
             所蔵品目.タイトル as "entry.title.value",
             所蔵品目.著者 as "entry.workOf.value",
             所蔵品目.所蔵品目種別 as "entry.entryType",
             (SELECT count(*) FROM 資料_所蔵品.貸出可能 INNER JOIN 資料_所蔵品.所蔵品 on 貸出可能.所蔵品番号 = 所蔵品.所蔵品番号
-                WHERE 所蔵品.所蔵品目番号 = 所蔵品目.所蔵品目番号) as "loanableItems"
+                WHERE 所蔵品.所蔵品目番号 = 所蔵品目.所蔵品目番号) as "在庫数"
         FROM 資料_所蔵品目.所蔵品目
         WHERE 所蔵品目.タイトル || 所蔵品目.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 所蔵品目.所蔵品目番号

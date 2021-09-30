@@ -1,21 +1,21 @@
-package library.domain.model.reservation.loanability;
+package library.domain.model.material.instock;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 
 /**
- * 本の貸出可否
+ * 本の在庫有無
  */
-public class MaterialLoanability {
+public class MaterialInStock {
     Entry entry;
-    int loanableItems;
+    int 在庫数;
 
     public String showLoanability() {
-        return loanability().show();
+        return 在庫有無().show();
     }
 
-    private Loanability loanability() {
-        return Loanability.loanability(loanableItems);
+    private InStock 在庫有無() {
+        return InStock.在庫有無(在庫数);
     }
 
     public String describeMaterial() {
@@ -33,9 +33,9 @@ public class MaterialLoanability {
 
     @Override
     public String toString() {
-        return "MaterialLoanability{" +
+        return "MaterialInStock{" +
                 "material=" + entry +
-                ", loanable=" + loanableItems +
+                ", loanable=" + 在庫数 +
                 '}';
     }
 }

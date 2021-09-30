@@ -19,7 +19,7 @@ public class EntrySearchControllerTest {
     @Test
     void 本の検索画面が表示できる() throws Exception {
         mockMvc.perform(
-                get("/reservation/materials/search"))
+                get("/reservation/entries/search"))
                 .andExpect(status().isOk());
     }
 }

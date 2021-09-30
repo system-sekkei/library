@@ -5,7 +5,7 @@ import library.application.service.material.MaterialQueryService;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.reservation.loanability.MaterialLoanabilities;
+import library.domain.model.material.instock.MaterialInStockList;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,14 +13,14 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @LibraryDBTest
-class EntryQueryServiceTest {
+class MaterialQueryServiceTest {
     @Autowired
     MaterialQueryService materialQueryService;
 
     @Test
     void 本を検索できる() {
         Keyword keyword = new Keyword("ハンドブック");
-        MaterialLoanabilities materials = materialQueryService.search(keyword);
+        MaterialInStockList materials = materialQueryService.search(keyword);
 
         assertAll(
                 () -> assertEquals(1, materials.size()),

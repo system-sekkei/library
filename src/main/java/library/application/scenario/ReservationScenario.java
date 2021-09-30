@@ -4,18 +4,14 @@ import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
-import library.domain.model.loan.LoanRequest;
-import library.domain.model.loan.rule.LoanStatus;
-import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.material.item.*;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.availability.ReservationAvailability;
-import library.domain.model.reservation.loanability.MaterialLoanabilities;
+import library.domain.model.material.instock.MaterialInStockList;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.request.Reservations;
 import library.domain.model.reservation.rule.ReservationRestriction;
@@ -41,7 +37,7 @@ public class ReservationScenario {
     /**
      * 本を探す
      */
-    public MaterialLoanabilities search(Keyword keyword) {
+    public MaterialInStockList search(Keyword keyword) {
         return materialQueryService.search(keyword);
     }
 

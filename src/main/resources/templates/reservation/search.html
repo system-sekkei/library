@@ -9,7 +9,7 @@
 <header th:replace="_parts/navigation::reservation"></header>
 <main>
   <article>
-    <form method="get" action="#" th:action="@{/reservation/materials/search}">
+    <form method="get" action="#" th:action="@{/reservation/entries/search}">
       <label>キーワード検索（空白で全件を検索します）</label>
       <input class="input" type="text" placeholder="キーワード" th:field="${searchKeyword.value}">
       <button>本を探す</button>
