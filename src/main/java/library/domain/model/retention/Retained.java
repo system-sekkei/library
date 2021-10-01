@@ -39,8 +39,8 @@ public class Retained {
         return reservation.memberNumber();
     }
 
-    public LoanRequest toLoanRequest() {
-        return new LoanRequest(reservation.memberNumber(), itemNumber, LoanDate.from(retainedDate.value));
+    public LoanRequest toLoanRequest(LoanDate loanDate) {
+        return new LoanRequest(reservation.memberNumber(), itemNumber, loanDate);
     }
 
     public RetainedDate retainedDate() {

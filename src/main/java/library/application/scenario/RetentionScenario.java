@@ -6,6 +6,7 @@ import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
 import library.application.service.retention.RetentionRecordService;
+import library.domain.model.loan.LoanDate;
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
@@ -84,7 +85,7 @@ public class RetentionScenario {
     public void loan(ItemNumber itemNumber) {
         // 貸出の実行
         Retained retained = retentionQueryService.findBy(itemNumber);
-        LoanRequest loanRequest = retained.toLoanRequest();
+        LoanRequest loanRequest = retained.toLoanRequest(LoanDate.now());
         loanRecordService.loaned(loanRequest);
 
         retentionRecordService.releaseForLoan(itemNumber);
