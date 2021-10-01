@@ -86,9 +86,7 @@ public class RetentionScenario {
         // 貸出の実行
         Retained retained = retentionQueryService.findBy(itemNumber);
         LoanRequest loanRequest = retained.toLoanRequest(LoanDate.now());
-        loanRecordService.loaned(loanRequest);
-
-        retentionRecordService.releaseForLoan(itemNumber);
+        loanRecordService.loaned(loanRequest, retained);
     }
 
     /**

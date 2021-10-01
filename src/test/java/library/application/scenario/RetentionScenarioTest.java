@@ -112,11 +112,9 @@ class RetentionScenarioTest {
         ReservationNumber reservationNumber = retentionScenario.未準備の予約一覧().asList().get(0).number();
         Retention 未準備の予約された所蔵品 = new Retention(reservationNumber, itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
-        Retained 取置資料 = retentionDatasource.findBy(itemNumber);
 
         // 貸出
-        LoanRequest loanRequest = new LoanRequest(memberNumber, itemNumber, LoanDate.now());
-        loanScenario.loan(loanRequest, 取置資料);
+        retentionScenario.loan(itemNumber);
 
         Loan loan = loanQueryService.findBy(itemNumber);
         ReservationStatus 予約の状態 = reservationQueryService.reservationStatus(reservationNumber);
@@ -125,14 +123,14 @@ class RetentionScenarioTest {
         boolean 取置の解放履歴有無 = retentionMapper.exists取置解放履歴(reservationNumber, itemNumber);
 
         assertAll(
-                () -> assertTrue(loanRequest.memberNumber().sameValue(loan.memberNumber())),
-                () -> assertTrue(loanRequest.itemNumber().sameValue(loan.item().所蔵品番号())),
-                () -> assertTrue(loanRequest.loanDate().sameValue(loan.loanDate())),
+                () -> assertTrue(memberNumber.sameValue(loan.memberNumber())),
+                () -> assertTrue(itemNumber.sameValue(loan.item().所蔵品番号())),
+                () -> assertTrue(LoanDate.now().sameValue(loan.loanDate())),
                 () -> assertEquals(所蔵品の状態, ItemStatus.貸出中),
                 () -> assertFalse(取置有無),
                 () -> assertTrue(取置の解放履歴有無),
-                () -> assertEquals(消込済, 予約の状態)
-        );
+                () -> assertEquals(消込済, 予約の状態),
+                () -> assertNull(reservationQueryService.reservationOf(reservationNumber)));
     }
 
     // @Test

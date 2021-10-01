@@ -5,16 +5,11 @@ import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnMaterialRecordService;
-import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
-import library.domain.model.material.item.Item;
-import library.domain.model.material.item.ItemNumber;
-import library.domain.model.material.item.ItemStatus;
-import library.domain.model.material.item.ItemWithStatus;
+import library.domain.model.material.item.*;
 import library.domain.model.member.MemberStatus;
-import library.domain.model.retention.Retained;
 import org.springframework.stereotype.Service;
 
 /**
@@ -61,13 +56,6 @@ public class LoanScenario {
      */
     public void loan(LoanRequest loanRequest) {
         loanRecordService.loaned(loanRequest);
-    }
-
-    /**
-     * 取り置いた所蔵品を貸し出す
-     */
-    public void loan(LoanRequest loanRequest, Retained retained) {
-        loanRecordService.loaned(loanRequest, retained);
     }
 
     /**
