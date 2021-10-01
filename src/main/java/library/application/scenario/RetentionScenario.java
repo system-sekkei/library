@@ -69,7 +69,6 @@ public class RetentionScenario {
      */
     public void retain(Retention retention) {
         retentionRecordService.retain(retention);
-        reservationRecordService.retained(retention.reservationNumber());
     }
 
     /**

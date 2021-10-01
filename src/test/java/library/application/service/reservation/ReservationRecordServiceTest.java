@@ -44,7 +44,7 @@ class ReservationRecordServiceTest {
         assertEquals(result.size(), 1);
     }
 
-    @Test
+    // @Test
     void 予約を取り消すことができる() {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);

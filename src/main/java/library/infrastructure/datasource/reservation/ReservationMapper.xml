@@ -22,12 +22,13 @@
     </resultMap>
 
     <select id="selectAllReservation" resultMap="reservation">
-        SELECT 未準備.予約番号 as "reservationNumber.value",
+        SELECT 予約履歴.予約番号 as "reservationNumber.value",
                予約履歴.会員番号 as "memberNumber.value",
                予約履歴.所蔵品目番号 as "entryNumber.value"
-        FROM 予約.未準備
-        INNER JOIN 予約.予約履歴 USING (予約番号)
-        ORDER BY 未準備.予約番号
+        FROM 予約.予約履歴
+        LEFT OUTER JOIN 取置.準備完了 ON 予約履歴.予約番号 = 取置.準備完了.予約番号
+        WHERE 準備完了.予約番号 IS NULL
+        ORDER BY 予約履歴.予約番号
     </select>
 
     <select id="selectReservation" resultMap="reservation">
@@ -46,23 +47,9 @@
         WHERE 会員番号 = #{value}
     </select>
 
-    <insert id="insert未準備">
-        INSERT INTO 予約.未準備(予約番号)
-        VALUES (#{value})
-    </insert>
-
-    <delete id="delete未準備">
-        DELETE FROM 予約.未準備
-        WHERE 予約番号 = #{value}
-    </delete>
-
     <insert id="cancelReservation">
         INSERT INTO 予約.予約取消履歴(予約番号) VALUES (#{value})
     </insert>
-
-    <select id="exist未準備" resultType="boolean">
-        SELECT EXISTS(SELECT 予約番号 FROM 予約.未準備 WHERE 予約番号 = #{value})
-    </select>
 
     <select id="exists予約" resultType="boolean">
         SELECT EXISTS(SELECT 予約番号 FROM 予約.予約履歴 WHERE 予約番号 = #{value})

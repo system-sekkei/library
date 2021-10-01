@@ -17,8 +17,6 @@ public interface ReservationRepository {
 
     Reservation findBy(ReservationNumber reservationNumber);
 
-    void retained(ReservationNumber reservation);
-
     void cancel(Reservation reservation);
 
     ReservationStatus status(ReservationNumber reservationNumber);

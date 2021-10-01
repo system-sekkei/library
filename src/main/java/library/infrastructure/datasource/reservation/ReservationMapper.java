@@ -1,11 +1,10 @@
 package library.infrastructure.datasource.reservation;
 
+import library.domain.model.loan.LoanNumber;
 import library.domain.model.material.entry.EntryNumber;
-import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.ReservationNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -24,14 +23,9 @@ public interface ReservationMapper {
 
     Reservation selectReservation(ReservationNumber reservationNumber);
 
-    void insert未準備(ReservationNumber reservationNumber);
-
-    void delete未準備(ReservationNumber reservationNumber);
-
     void cancelReservation(ReservationNumber reservationNumber);
 
     boolean exists予約(ReservationNumber reservationNumber);
-    boolean exist未準備(ReservationNumber reservationNumber);
 
     List<Reservation> selectReservationsByMember(MemberNumber memberNumber);
 }

@@ -2,7 +2,6 @@ package library.application.service.reservation;
 
 import library.application.service.retention.RetentionNotification;
 import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +23,6 @@ public class ReservationRecordService {
      */
     public void reserve(ReservationRequest reservationRequest) {
         reservationRepository.reserve(reservationRequest);
-    }
-
-    /**
-     * 取置（予約対応の完了)
-     */
-    public void retained(ReservationNumber reservation) {
-        reservationRepository.retained(reservation);
     }
 
     /**
