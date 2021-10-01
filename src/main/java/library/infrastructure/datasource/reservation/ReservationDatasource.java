@@ -7,6 +7,7 @@ import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.request.Reservations;
+import library.infrastructure.datasource.member.MemberMapper;
 import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,11 +18,13 @@ import java.util.List;
 public class ReservationDatasource implements ReservationRepository {
     ReservationMapper reservationMapper;
     RetentionMapper retentionMapper;
+    MemberMapper memberMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public ReservationDatasource(ReservationMapper reservationMapper, RetentionMapper retentionMapper) {
+    public ReservationDatasource(ReservationMapper reservationMapper, RetentionMapper retentionMapper, MemberMapper memberMapper) {
         this.reservationMapper = reservationMapper;
         this.retentionMapper = retentionMapper;
+        this.memberMapper = memberMapper;
     }
 
     @Override
@@ -30,8 +33,8 @@ public class ReservationDatasource implements ReservationRepository {
         ReservationNumber reservationNumber = reservationMapper.nextNumber();
         reservationMapper.insertReservation(
                 reservationNumber,
-                reservationRequest.memberNumber(),
                 reservationRequest.entryNumber());
+        memberMapper.insert予約と会員(reservationRequest.memberNumber(), reservationNumber);
     }
 
     @Override
@@ -50,6 +53,7 @@ public class ReservationDatasource implements ReservationRepository {
     public void cancel(Reservation reservation) {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
+        memberMapper.delete予約と会員(reservationNumber);
     }
 
     @Override

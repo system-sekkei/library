@@ -116,9 +116,12 @@ INSERT INTO 資料_所蔵品.貸出中(所蔵品番号)
 VALUES ('1-A');
 
 -- Webで予約した
-INSERT INTO 予約.予約履歴(予約番号, 会員番号, 所蔵品目番号)
+INSERT INTO 予約.予約履歴(予約番号, 所蔵品目番号)
 VALUES
-((SELECT NEXTVAL('予約.予約番号')),1, 4);
+((SELECT NEXTVAL('予約.予約番号')), 4);
+
+INSERT INTO 会員.予約と会員(会員番号, 予約番号)
+VALUES (1, CURRVAL('予約.予約番号'));
 
 -- 取り置いた
 INSERT INTO 取置.取置履歴(予約番号, 所蔵品番号, 取置日)

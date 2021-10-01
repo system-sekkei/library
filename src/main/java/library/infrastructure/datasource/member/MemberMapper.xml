@@ -46,4 +46,14 @@
         DELETE FROM 会員.貸出と会員
         WHERE 貸出番号 = #{loanNumber.value}
     </delete>
+
+    <insert id="insert予約と会員">
+        INSERT INTO 会員.予約と会員(会員番号, 予約番号)
+        VALUES (#{memberNumber.value}, #{reservationNumber.value})
+    </insert>
+
+    <delete id="delete予約と会員">
+        DELETE FROM 会員.予約と会員
+        WHERE 予約番号 = #{reservationNumber.value}
+    </delete>
 </mapper>

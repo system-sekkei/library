@@ -16,7 +16,6 @@ public interface ReservationMapper {
 
     void insertReservation(
             @Param("reservationNumber") ReservationNumber reservationNumber,
-            @Param("memberNumber") MemberNumber memberNumber,
             @Param("entryNumber") EntryNumber entryNumber);
 
     List<Reservation> selectAllReservation();

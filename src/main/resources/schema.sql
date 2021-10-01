@@ -88,7 +88,6 @@ CREATE SEQUENCE 予約.予約番号;
 CREATE TABLE 予約.予約履歴
 (
   予約番号 INTEGER PRIMARY KEY,
-  会員番号 INTEGER   NOT NULL REFERENCES 会員.会員,
   所蔵品目番号  INTEGER   NOT NULL REFERENCES 資料_所蔵品目.所蔵品目,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -136,7 +135,15 @@ CREATE TABLE 取置.取置期限切れ履歴
 -- 貸出と会員の関連テーブル
 CREATE TABLE 会員.貸出と会員
 (
+    貸出番号 INTEGER     PRIMARY KEY REFERENCES 貸出.貸出履歴,
     会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
-    貸出番号 INTEGER     NOT NULL REFERENCES 貸出.貸出履歴,
+    登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 予約と会員の関連テーブル
+CREATE TABLE 会員.予約と会員
+(
+    予約番号 INTEGER     PRIMARY KEY REFERENCES 予約.予約履歴,
+    会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
     登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

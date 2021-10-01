@@ -4,6 +4,7 @@ import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.reservation.request.ReservationNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,4 +19,6 @@ public interface MemberMapper {
     void insertLoanMemberRelation(@Param("memberNumber") MemberNumber memberNumber, @Param("loanNumber") LoanNumber loanNumber);
     List<Loan> selectLoansByMemberNumber(@Param("memberNumber") MemberNumber memberNumber);
     void deleteLoanMemberRelation(@Param("loanNumber") LoanNumber loanNumber);
+    void insert予約と会員(@Param("memberNumber") MemberNumber memberNumber, @Param("reservationNumber") ReservationNumber reservationNumber);
+    void delete予約と会員(@Param("reservationNumber") ReservationNumber reservationNumber);
 }

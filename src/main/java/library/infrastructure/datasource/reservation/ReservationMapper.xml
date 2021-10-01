@@ -8,8 +8,8 @@
     </select>
 
     <insert id="insertReservation">
-        INSERT INTO 予約.予約履歴(予約番号, 会員番号, 所蔵品目番号)
-        VALUES (#{reservationNumber.value}, #{memberNumber.value}, #{entryNumber.value})
+        INSERT INTO 予約.予約履歴(予約番号, 所蔵品目番号)
+        VALUES (#{reservationNumber.value}, #{entryNumber.value})
     </insert>
 
     <resultMap id="reservation" type="library.domain.model.reservation.request.Reservation">
@@ -23,27 +23,30 @@
 
     <select id="selectAllReservation" resultMap="reservation">
         SELECT 予約履歴.予約番号 as "reservationNumber.value",
-               予約履歴.会員番号 as "memberNumber.value",
+               予約と会員.会員番号 as "memberNumber.value",
                予約履歴.所蔵品目番号 as "entryNumber.value"
         FROM 予約.予約履歴
+        INNER JOIN 会員.予約と会員 ON 予約履歴.予約番号 = 予約と会員.予約番号
         LEFT OUTER JOIN 取置.準備完了 ON 予約履歴.予約番号 = 取置.準備完了.予約番号
         WHERE 準備完了.予約番号 IS NULL
         ORDER BY 予約履歴.予約番号
     </select>
 
     <select id="selectReservation" resultMap="reservation">
-        SELECT 予約番号 as "reservationNumber.value",
-               会員番号 as "memberNumber.value",
-               所蔵品目番号 as "entryNumber.value"
+        SELECT 予約履歴.予約番号 as "reservationNumber.value",
+               予約と会員.会員番号 as "memberNumber.value",
+               予約履歴.所蔵品目番号 as "entryNumber.value"
         FROM 予約.予約履歴
-        WHERE 予約番号 = #{value}
+        INNER JOIN 会員.予約と会員 ON 予約履歴.予約番号 = 予約と会員.予約番号
+        WHERE 予約と会員.予約番号 = #{value}
     </select>
 
     <select id="selectReservationsByMember" resultMap="reservation">
         SELECT 予約履歴.予約番号 as "reservationNumber.value",
-               予約履歴.会員番号 as "memberNumber.value",
+               予約と会員.会員番号 as "memberNumber.value",
                予約履歴.所蔵品目番号 as "entryNumber.value"
         FROM 予約.予約履歴
+        INNER JOIN 会員.予約と会員 ON 予約履歴.予約番号 = 予約と会員.予約番号
         WHERE 会員番号 = #{value}
     </select>
 
