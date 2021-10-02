@@ -11,7 +11,7 @@
             所蔵品目.著者 as "entry.workOf.value",
             所蔵品目.所蔵品目種別 as "entry.entryType",
             (SELECT count(*) FROM 資料_所蔵品.貸出可能 INNER JOIN 資料_所蔵品.所蔵品 on 貸出可能.所蔵品番号 = 所蔵品.所蔵品番号
-                WHERE 所蔵品.所蔵品目番号 = 所蔵品目.所蔵品目番号) as "在庫数"
+                WHERE 所蔵品.所蔵品目番号 = 所蔵品目.所蔵品目番号) as "在庫数.value"
         FROM 資料_所蔵品目.所蔵品目
         WHERE 所蔵品目.タイトル || 所蔵品目.著者 LIKE '%' || #{keyword.value} || '%'
         ORDER BY 所蔵品目.所蔵品目番号

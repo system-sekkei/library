@@ -29,13 +29,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="materialInStock : ${entryInStockList.asList()}">
+        <tr th:each="entryInStock : ${entryInStockList.asList()}">
           <td>
             <a class="button is-primary is-small"
-               th:href="@{/reservation/register(entry=${materialInStock.entryNumber()})}">予約する</a>
+               th:href="@{/reservation/register(entry=${entryInStock.entryNumber()})}">予約する</a>
           </td>
-          <td th:text="${materialInStock.describeMaterial()}"></td>
-          <td th:text="${materialInStock.showInStock()}"></td>
+          <td th:text="${entryInStock.describeMaterial()}"></td>
+          <td th:text="${entryInStock.showInStock()}"></td>
         </tr>
         </tbody>
       </table>

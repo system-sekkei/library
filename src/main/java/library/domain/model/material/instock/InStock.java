@@ -12,8 +12,8 @@ public enum InStock {
     InStock(String label) {
         this.label = label;
     }
-    public static InStock 在庫有無(int 在庫数) {
-        if (在庫数 > 0) return 在庫あり;
+    public static InStock 在庫有無(StockQuantity 在庫数) {
+        if (在庫数.value > 0) return 在庫あり;
         return 在庫なし;
     }
 
