@@ -5,8 +5,8 @@ import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.NumberOfEntry;
 import library.domain.model.material.entry.*;
-import library.domain.model.material.instock.MaterialInStockList;
-import library.domain.model.material.instock.MaterialInStock;
+import library.domain.model.material.instock.EntryInStockList;
+import library.domain.model.material.instock.EntryInStock;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public class MaterialDataSource implements MaterialRepository {
     }
 
     @Override
-    public MaterialInStockList search(Keyword keyword) {
-        List<MaterialInStock> materials = materialMapper.searchMaterials(keyword, NumberOfEntry.MAX_TO_SHOW + 1);
-        return new MaterialInStockList(materials);
+    public EntryInStockList search(Keyword keyword) {
+        List<EntryInStock> materials = materialMapper.searchMaterials(keyword, NumberOfEntry.MAX_TO_SHOW + 1);
+        return new EntryInStockList(materials);
     }
 
     @Override

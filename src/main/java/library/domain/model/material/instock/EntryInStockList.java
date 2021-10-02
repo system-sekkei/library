@@ -7,10 +7,10 @@ import java.util.List;
 /**
  * 本と在庫有無の一覧
  */
-public class MaterialInStockList {
-    List<MaterialInStock> list;
+public class EntryInStockList {
+    List<EntryInStock> list;
 
-    public MaterialInStockList(List<MaterialInStock> list) {
+    public EntryInStockList(List<EntryInStock> list) {
         this.list = list;
     }
 
@@ -21,7 +21,7 @@ public class MaterialInStockList {
         return list.size();
     }
 
-    public List<MaterialInStock> asList() {
+    public List<EntryInStock> asList() {
         return list;
     }
 

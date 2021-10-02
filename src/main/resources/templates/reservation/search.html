@@ -18,9 +18,9 @@
 
     <article>
       <h4>検索結果：
-        <span th:text="${materialInStockList.numberOfMaterial().show()}"></span>
+        <span th:text="${entryInStockList.numberOfMaterial().show()}"></span>
       </h4>
-      <table th:if="${materialInStockList.size()} > 0">
+      <table th:if="${entryInStockList.size()} > 0">
         <thead>
         <tr>
           <th></th>
@@ -29,7 +29,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="materialInStock : ${materialInStockList.asList()}">
+        <tr th:each="materialInStock : ${entryInStockList.asList()}">
           <td>
             <a class="button is-primary is-small"
                th:href="@{/reservation/register(entry=${materialInStock.entryNumber()})}">予約する</a>

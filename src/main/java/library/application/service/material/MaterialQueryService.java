@@ -3,7 +3,7 @@ package library.application.service.material;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.material.instock.MaterialInStockList;
+import library.domain.model.material.instock.EntryInStockList;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,7 +27,7 @@ public class MaterialQueryService {
     /**
      * キーワードで本を探す
      */
-    public MaterialInStockList search(Keyword keyword) {
+    public EntryInStockList search(Keyword keyword) {
         return materialRepository.search(keyword);
     }
 }

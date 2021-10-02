@@ -11,7 +11,7 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.availability.ReservationAvailability;
-import library.domain.model.material.instock.MaterialInStockList;
+import library.domain.model.material.instock.EntryInStockList;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.request.Reservations;
 import library.domain.model.reservation.rule.ReservationRestriction;
@@ -37,7 +37,7 @@ public class ReservationScenario {
     /**
      * 本を探す
      */
-    public MaterialInStockList search(Keyword keyword) {
+    public EntryInStockList search(Keyword keyword) {
         return materialQueryService.search(keyword);
     }
 

@@ -2,7 +2,7 @@ package library.presentation.reservation;
 
 import library.application.scenario.ReservationScenario;
 import library.domain.model.material.entry.Keyword;
-import library.domain.model.material.instock.MaterialInStockList;
+import library.domain.model.material.instock.EntryInStockList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,8 +26,8 @@ public class EntrySearchController {
 
     @GetMapping("search")
     String search(Model model, @ModelAttribute("searchKeyword") Keyword searchKeyword, BindingResult result) {
-        MaterialInStockList materialInStockList = reservationScenario.search(searchKeyword);
-        model.addAttribute("materialInStockList", materialInStockList);
+        EntryInStockList entryInStockList = reservationScenario.search(searchKeyword);
+        model.addAttribute("materialInStockList", entryInStockList);
         model.addAttribute("searchKeyword", searchKeyword);
         return "reservation/search";
     }
