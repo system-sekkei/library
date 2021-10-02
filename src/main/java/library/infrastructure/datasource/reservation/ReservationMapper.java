@@ -18,7 +18,7 @@ public interface ReservationMapper {
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("entryNumber") EntryNumber entryNumber);
 
-    List<Reservation> selectAllReservation();
+    List<Reservation> select在庫がある未準備の予約一覧();
 
     Reservation selectReservation(ReservationNumber reservationNumber);
 

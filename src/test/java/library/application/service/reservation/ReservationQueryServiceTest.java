@@ -32,7 +32,7 @@ class ReservationQueryServiceTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        Reservations reservations = reservationQueryService.reservations();
+        Reservations reservations = reservationQueryService.取置可能な未準備の予約一覧();
 
         assertAll(
                 () -> assertEquals("1件", reservations.numberOfReservation().toString()));

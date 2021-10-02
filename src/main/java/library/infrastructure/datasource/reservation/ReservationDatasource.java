@@ -38,8 +38,8 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
-    public Reservations reservations() {
-        List<Reservation> reservations = reservationMapper.selectAllReservation();
+    public Reservations 取置可能な未準備の予約一覧() {
+        List<Reservation> reservations = reservationMapper.select在庫がある未準備の予約一覧();
         return new Reservations(reservations);
     }
 

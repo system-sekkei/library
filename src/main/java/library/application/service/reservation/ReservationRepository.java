@@ -13,7 +13,7 @@ import library.domain.model.reservation.request.Reservations;
 public interface ReservationRepository {
     void reserve(ReservationRequest reservationRequest);
 
-    Reservations reservations();
+    Reservations 取置可能な未準備の予約一覧();
 
     Reservation findBy(ReservationNumber reservationNumber);
 

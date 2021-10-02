@@ -19,10 +19,10 @@ public class ReservationQueryService {
     }
 
     /**
-     * 未準備の予約を一覧する
+     * 取置可能な未準備の予約を一覧する
      */
-    public Reservations reservations() {
-        return reservationRepository.reservations();
+    public Reservations 取置可能な未準備の予約一覧() {
+        return reservationRepository.取置可能な未準備の予約一覧();
     }
 
     /**
