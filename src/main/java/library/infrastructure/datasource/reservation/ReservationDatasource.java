@@ -35,11 +35,13 @@ public class ReservationDatasource implements ReservationRepository {
                 reservationNumber,
                 reservationRequest.entryNumber());
         memberMapper.insert予約と会員(reservationRequest.memberNumber(), reservationNumber);
+
+        reservationMapper.insert未準備(reservationNumber);
     }
 
     @Override
-    public Reservations 取置可能な未準備の予約一覧() {
-        List<Reservation> reservations = reservationMapper.select在庫がある未準備の予約一覧();
+    public Reservations 未準備の予約一覧() {
+        List<Reservation> reservations = reservationMapper.select未準備の予約一覧();
         return new Reservations(reservations);
     }
 
@@ -54,11 +56,13 @@ public class ReservationDatasource implements ReservationRepository {
         ReservationNumber reservationNumber = reservation.number();
         reservationMapper.cancelReservation(reservationNumber);
         memberMapper.delete予約と会員(reservationNumber);
+        reservationMapper.delete未準備(reservationNumber);
     }
 
     @Override
     public ReservationStatus status(ReservationNumber reservationNumber) {
         if (! reservationMapper.exists予約(reservationNumber)) return ReservationStatus.消込済;
+        if (reservationMapper.exist未準備(reservationNumber)) return ReservationStatus.未準備;
         if (retentionMapper.exists準備完了(reservationNumber)) return ReservationStatus.準備完了;
         return ReservationStatus.消込済;
     }

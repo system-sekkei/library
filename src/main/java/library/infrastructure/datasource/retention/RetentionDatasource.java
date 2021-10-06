@@ -46,6 +46,9 @@ public class RetentionDatasource implements RetentionRepository {
         // 所蔵品の状態
         itemMapper.delete貸出可能(itemNumber);
         itemMapper.insert取置中(itemNumber);
+
+        // 予約の状態
+        reservationMapper.delete未準備(reservationNumber);
     }
 
     @Override
@@ -58,9 +61,11 @@ public class RetentionDatasource implements RetentionRepository {
         itemMapper.delete取置中(itemNumber);
         itemMapper.insert貸出可能(itemNumber);
 
-        //　予約の状態
+        // 取置の状態
         retentionMapper.delete準備完了(itemNumber);
 
+        // 予約の状態
+        reservationMapper.delete未準備(retained.reservationNumber());
     }
 
     @Override

@@ -42,7 +42,7 @@ public class RetentionScenario {
      * 未準備の予約を一覧する
      */
     public Reservations 未準備の予約一覧() {
-        return reservationQueryService.取置可能な未準備の予約一覧();
+        return reservationQueryService.未準備の予約一覧();
     }
 
     /**

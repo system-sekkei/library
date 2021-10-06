@@ -44,7 +44,7 @@ public class ReservationScenarioTest {
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
 
-        Reservation reservation = reservationQueryService.取置可能な未準備の予約一覧().asList().get(0);
+        Reservation reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
 
         assertAll(
                 () -> assertTrue(reservation.memberNumber().sameValue(memberNumber)),
