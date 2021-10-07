@@ -1,4 +1,4 @@
-package library.domain.model.reservation.request;
+package library.domain.model.reservation;
 
 
 /**

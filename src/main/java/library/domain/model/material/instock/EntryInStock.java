@@ -3,6 +3,9 @@ package library.domain.model.material.instock;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 
+/**
+ * 所蔵品目と在庫数
+ */
 public class EntryInStock {
     Entry entry;
     StockQuantity 在庫数;

@@ -3,8 +3,8 @@ package library.domain.model.reservation.rule;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.member.Member;
 import library.domain.model.reservation.availability.ReservationAvailability;
-import library.domain.model.reservation.request.NumberOfReservation;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.NumberOfReservation;
+import library.domain.model.reservation.Reservations;
 
 import static library.domain.model.material.entry.EntryType.視聴覚資料;
 import static library.domain.model.reservation.availability.ReservationAvailability.*;

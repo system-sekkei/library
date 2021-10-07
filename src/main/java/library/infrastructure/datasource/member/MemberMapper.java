@@ -4,7 +4,7 @@ import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.ReservationNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

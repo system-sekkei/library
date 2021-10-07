@@ -4,7 +4,7 @@ import library.domain.model.material.entry.Entry;
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.reservation.ReservationStatus;
-import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.Reservation;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;

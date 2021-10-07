@@ -1,7 +1,7 @@
 package library.domain.model.material.entry;
 
 /**
- * 図書の題名
+ * 所蔵品目の題名
  */
 public class Title {
     String value;

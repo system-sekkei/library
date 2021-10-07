@@ -3,7 +3,7 @@ package library.presentation.retention;
 import library.application.scenario.RetentionScenario;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
-import library.domain.model.reservation.request.Reservation;
+import library.domain.model.reservation.Reservation;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.RetainedList;
 import library.domain.model.retention.Retention;

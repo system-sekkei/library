@@ -6,7 +6,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.UnpreparedReservations;
+import library.domain.model.reservation.unprepared.UnpreparedReservations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

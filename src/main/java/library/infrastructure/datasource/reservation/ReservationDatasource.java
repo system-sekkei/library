@@ -2,8 +2,10 @@ package library.infrastructure.datasource.reservation;
 
 import library.application.service.reservation.ReservationRepository;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.ReservationStatus;
+import library.domain.model.reservation.*;
 import library.domain.model.reservation.request.*;
+import library.domain.model.reservation.unprepared.UnpreparedReservation;
+import library.domain.model.reservation.unprepared.UnpreparedReservations;
 import library.infrastructure.datasource.member.MemberMapper;
 import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;

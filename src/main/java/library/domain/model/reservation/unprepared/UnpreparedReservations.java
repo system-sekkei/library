@@ -1,16 +1,17 @@
-package library.domain.model.reservation.request;
+package library.domain.model.reservation.unprepared;
 
 import library.domain.model.material.entry.EntryType;
+import library.domain.model.reservation.NumberOfReservation;
 
 import java.util.List;
 
 /**
- * 貸出予約リスト
+ * 未準備の貸出予約リスト
  */
-public class Reservations {
-    List<Reservation> list;
+public class UnpreparedReservations {
+    List<UnpreparedReservation> list;
 
-    public Reservations(List<Reservation> list) {
+    public UnpreparedReservations(List<UnpreparedReservation> list) {
         this.list = list;
     }
 
@@ -18,7 +19,7 @@ public class Reservations {
         return new NumberOfReservation(list.size());
     }
 
-    public List<Reservation> asList() {
+    public List<UnpreparedReservation> asList() {
         return list;
     }
 
@@ -27,7 +28,7 @@ public class Reservations {
     }
     @Override
     public String toString() {
-        return "Reservations{" +
+        return "UnpreparedReservation{" +
                 "list=" + list +
                 '}';
     }

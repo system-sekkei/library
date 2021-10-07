@@ -10,7 +10,7 @@ import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.UnpreparedReservation;
+import library.domain.model.reservation.unprepared.UnpreparedReservation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

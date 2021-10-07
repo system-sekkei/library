@@ -2,10 +2,10 @@ package library.application.service.reservation;
 
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
-import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.request.Reservations;
-import library.domain.model.reservation.request.UnpreparedReservations;
+import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationNumber;
+import library.domain.model.reservation.Reservations;
+import library.domain.model.reservation.unprepared.UnpreparedReservations;
 import org.springframework.stereotype.Service;
 
 /**

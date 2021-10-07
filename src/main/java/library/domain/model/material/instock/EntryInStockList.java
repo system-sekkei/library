@@ -5,7 +5,7 @@ import library.domain.model.material.entry.NumberOfEntry;
 import java.util.List;
 
 /**
- * 本と在庫有無の一覧
+ * 本と在庫数の一覧
  */
 public class EntryInStockList {
     List<EntryInStock> list;

@@ -1,31 +1,30 @@
-package library.domain.model.reservation.request;
+package library.domain.model.reservation;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
-import library.domain.model.material.instock.EntryInStock;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 
 /**
- * *未準備の貸出予約
+ * *貸出予約
  */
-public class UnpreparedReservation {
+public class Reservation {
     ReservationNumber reservationNumber;
     Member member;
-    EntryInStock entryInStock;
+    Entry entry;
 
     @Deprecated
-    UnpreparedReservation() {
+    Reservation() {
     }
 
-    public UnpreparedReservation(ReservationNumber reservationNumber, Member member, EntryInStock entryInStock) {
+    public Reservation(ReservationNumber reservationNumber, Member member, Entry entry) {
         this.reservationNumber = reservationNumber;
         this.member = member;
-        this.entryInStock = entryInStock;
+        this.entry = entry;
     }
 
     public Entry entry() {
-        return entryInStock.entry();
+        return entry;
     }
 
     public Member member() {
@@ -36,10 +35,10 @@ public class UnpreparedReservation {
         return member.number();
     }
     public EntryNumber entryNumber() {
-        return entry().entryNumber();
+        return entry.entryNumber();
     }
     public String showMaterial() {
-        return entry().show();
+        return entry.show();
     }
 
     public ReservationNumber number() {
@@ -51,12 +50,7 @@ public class UnpreparedReservation {
         return "Reservation{" +
                 "reservationNumber=" + reservationNumber +
                 ", member=" + member +
-                ", entry=" + entry() +
+                ", entry=" + entry +
                 '}';
-    }
-
-    // FIXME: テスト用
-    public Reservation reservation() {
-        return new Reservation(reservationNumber, member, entry());
     }
 }

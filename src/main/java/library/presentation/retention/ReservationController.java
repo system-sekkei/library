@@ -1,9 +1,9 @@
 package library.presentation.retention;
 
 import library.application.scenario.RetentionScenario;
-import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.request.UnpreparedReservations;
+import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationNumber;
+import library.domain.model.reservation.unprepared.UnpreparedReservations;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -13,7 +13,7 @@ import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.material.instock.EntryInStockList;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.Reservations;
 import library.domain.model.reservation.rule.ReservationRestriction;
 import org.springframework.stereotype.Service;
 
