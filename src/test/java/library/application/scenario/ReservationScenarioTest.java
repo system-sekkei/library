@@ -9,8 +9,8 @@ import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
-import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationRequest;
+import library.domain.model.reservation.request.UnpreparedReservation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -19,7 +19,6 @@ import java.util.List;
 import static library.domain.model.material.entry.EntryType.図書;
 import static library.domain.model.reservation.availability.ReservationAvailability.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @LibraryDBTest
 public class ReservationScenarioTest {
@@ -44,7 +43,7 @@ public class ReservationScenarioTest {
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
 
-        Reservation reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
+        UnpreparedReservation reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
 
         assertAll(
                 () -> assertTrue(reservation.memberNumber().sameValue(memberNumber)),

@@ -7,14 +7,17 @@ import library.application.service.reservation.ReservationRecordService;
 import library.application.service.retention.RetentionQueryService;
 import library.application.service.retention.RetentionRecordService;
 import library.domain.model.loan.LoanDate;
+import library.domain.model.loan.LoanRequest;
 import library.domain.model.material.item.Item;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
-import library.domain.model.retention.*;
-import library.domain.model.loan.LoanRequest;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.UnpreparedReservations;
+import library.domain.model.retention.MaterialMatching;
+import library.domain.model.retention.Retained;
+import library.domain.model.retention.RetainedList;
+import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Service;
 
 /**
@@ -41,7 +44,7 @@ public class RetentionScenario {
     /**
      * 未準備の予約を一覧する
      */
-    public Reservations 未準備の予約一覧() {
+    public UnpreparedReservations 未準備の予約一覧() {
         return reservationQueryService.未準備の予約一覧();
     }
 

@@ -5,8 +5,8 @@ import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationRequest;
+import library.domain.model.reservation.request.UnpreparedReservation;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ class ReservationRecordServiceTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        List<Reservation> result = reservationMapper.select未準備の予約一覧();
+        List<UnpreparedReservation> result = reservationMapper.select未準備の予約一覧();
 
         assertEquals(result.size(), 1);
     }
@@ -49,11 +49,11 @@ class ReservationRecordServiceTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        Reservation reservation = reservationMapper.select未準備の予約一覧().get(0);
+        UnpreparedReservation reservation = reservationMapper.select未準備の予約一覧().get(0);
 
-        reservationRecordService.cancel(reservation);
+        reservationRecordService.cancel(reservation.reservation());
 
-        List<Reservation> reservations = reservationMapper.select未準備の予約一覧();
+        List<UnpreparedReservation> reservations = reservationMapper.select未準備の予約一覧();
 
         assertTrue(reservations.stream().noneMatch(r -> r.number().value() == reservation.number().value()));
     }

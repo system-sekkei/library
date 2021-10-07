@@ -5,6 +5,7 @@ import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.UnpreparedReservations;
 import org.springframework.stereotype.Service;
 
 /**
@@ -21,7 +22,7 @@ public class ReservationQueryService {
     /**
      * 未準備の予約を一覧する
      */
-    public Reservations 未準備の予約一覧() {
+    public UnpreparedReservations 未準備の予約一覧() {
         return reservationRepository.未準備の予約一覧();
     }
 

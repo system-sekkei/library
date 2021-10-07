@@ -3,10 +3,7 @@ package library.infrastructure.datasource.reservation;
 import library.application.service.reservation.ReservationRepository;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
-import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.*;
 import library.infrastructure.datasource.member.MemberMapper;
 import library.infrastructure.datasource.retention.RetentionMapper;
 import org.springframework.stereotype.Repository;
@@ -40,9 +37,9 @@ public class ReservationDatasource implements ReservationRepository {
     }
 
     @Override
-    public Reservations 未準備の予約一覧() {
-        List<Reservation> reservations = reservationMapper.select未準備の予約一覧();
-        return new Reservations(reservations);
+    public UnpreparedReservations 未準備の予約一覧() {
+        List<UnpreparedReservation> reservations = reservationMapper.select未準備の予約一覧();
+        return new UnpreparedReservations(reservations);
     }
 
     @Override

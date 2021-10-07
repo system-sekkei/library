@@ -7,6 +7,15 @@ public class EntryInStock {
     Entry entry;
     StockQuantity 在庫数;
 
+    public EntryInStock(Entry entry, StockQuantity 在庫数) {
+        this.entry = entry;
+        this.在庫数 = 在庫数;
+    }
+
+    @Deprecated
+    EntryInStock() {
+    }
+
     public String showInStock() {
         return 在庫有無().show();
     }

@@ -9,7 +9,6 @@ import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
-import library.domain.model.loan.LoanRequest;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
@@ -17,7 +16,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.request.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.UnpreparedReservations;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import library.infrastructure.datasource.retention.RetentionDatasource;
@@ -68,7 +67,7 @@ class RetentionScenarioTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        Reservations 未準備の予約一覧 = retentionScenario.未準備の予約一覧();
+        UnpreparedReservations 未準備の予約一覧 = retentionScenario.未準備の予約一覧();
 
         assertAll(
                 () -> assertEquals(1, 未準備の予約一覧.asList().size()),

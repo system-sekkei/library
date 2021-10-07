@@ -6,7 +6,7 @@ import library.application.service.member.MemberQueryService;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.UnpreparedReservations;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -32,7 +32,7 @@ class ReservationQueryServiceTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        Reservations reservations = reservationQueryService.未準備の予約一覧();
+        UnpreparedReservations reservations = reservationQueryService.未準備の予約一覧();
 
         assertAll(
                 () -> assertEquals("1件", reservations.numberOfReservation().toString()));

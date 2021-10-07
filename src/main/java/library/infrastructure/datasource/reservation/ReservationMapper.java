@@ -4,6 +4,7 @@ import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.request.Reservation;
 import library.domain.model.reservation.request.ReservationNumber;
+import library.domain.model.reservation.request.UnpreparedReservation;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -17,7 +18,7 @@ public interface ReservationMapper {
             @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("entryNumber") EntryNumber entryNumber);
 
-    List<Reservation> select未準備の予約一覧();
+    List<UnpreparedReservation> select未準備の予約一覧();
 
     Reservation selectReservation(ReservationNumber reservationNumber);
 

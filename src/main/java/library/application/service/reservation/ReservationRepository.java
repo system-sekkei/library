@@ -2,10 +2,7 @@ package library.application.service.reservation;
 
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
-import library.domain.model.reservation.request.Reservation;
-import library.domain.model.reservation.request.ReservationNumber;
-import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.request.Reservations;
+import library.domain.model.reservation.request.*;
 
 /**
  * 予約リポジトリ
@@ -13,7 +10,7 @@ import library.domain.model.reservation.request.Reservations;
 public interface ReservationRepository {
     void reserve(ReservationRequest reservationRequest);
 
-    Reservations 未準備の予約一覧();
+    UnpreparedReservations 未準備の予約一覧();
 
     Reservation findBy(ReservationNumber reservationNumber);
 

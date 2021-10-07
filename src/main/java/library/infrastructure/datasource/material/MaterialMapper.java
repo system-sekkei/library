@@ -17,4 +17,5 @@ public interface MaterialMapper {
     );
 
     Entry findMaterial(EntryNumber entryNumber);
+    EntryInStock findEntryInStock(EntryNumber entryNumber);
 }
