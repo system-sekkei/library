@@ -5,6 +5,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.unprepared.UnpreparedReservation;
+import library.domain.model.reservation.wait.WaitingOrder;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -19,6 +20,7 @@ public interface ReservationMapper {
             @Param("entryNumber") EntryNumber entryNumber);
 
     List<UnpreparedReservation> select未準備の予約一覧();
+    WaitingOrder select待ち順番(ReservationNumber reservationNumber);
 
     Reservation selectReservation(ReservationNumber reservationNumber);
 

@@ -13,4 +13,12 @@ public class StockQuantity {
     @Deprecated
     StockQuantity() {
     }
+
+    public StockQuantity 引く(int 自身より前の予約人数) {
+        return new StockQuantity(value - 自身より前の予約人数);
+    }
+
+    public int value() {
+        return value;
+    }
 }

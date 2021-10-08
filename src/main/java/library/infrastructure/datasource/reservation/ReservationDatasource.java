@@ -41,6 +41,10 @@ public class ReservationDatasource implements ReservationRepository {
     @Override
     public UnpreparedReservations 未準備の予約一覧() {
         List<UnpreparedReservation> reservations = reservationMapper.select未準備の予約一覧();
+
+        // 待ち順番を取得
+
+
         return new UnpreparedReservations(reservations);
     }
 

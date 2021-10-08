@@ -35,6 +35,10 @@ public class EntryInStock {
         return entry.entryNumber();
     }
 
+    public StockQuantity 在庫数() {
+        return 在庫数;
+    }
+
     // TODO テスト用：テストを変更して、このメソッドを廃止する
     public Entry entry() {
         return entry;

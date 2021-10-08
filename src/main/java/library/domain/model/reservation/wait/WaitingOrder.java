@@ -10,6 +10,10 @@ public class WaitingOrder {
         this.value = value;
     }
 
+    public int value() {
+        return value;
+    }
+
     @Deprecated
     WaitingOrder() {
     }
