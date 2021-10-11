@@ -3,7 +3,7 @@ package library.presentation.retention;
 import library.application.scenario.RetentionScenario;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.reservation.unprepared.UnpreparedReservations;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +23,7 @@ public class ReservationController {
 
     @GetMapping
     String requests(Model model) {
-        UnpreparedReservations reservations = retentionScenario.未準備の予約一覧();
+        ReservationWithWaitingOrderList reservations = retentionScenario.未準備の予約一覧();
         model.addAttribute("reservations", reservations);
         return "retention/requests";
     }

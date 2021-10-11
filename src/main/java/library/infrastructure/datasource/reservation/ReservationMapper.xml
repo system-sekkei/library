@@ -21,16 +21,7 @@
                      select="library.infrastructure.datasource.material.MaterialMapper.findMaterial" />
     </resultMap>
 
-    <resultMap id="unpreparedReservation" type="library.domain.model.reservation.unprepared.UnpreparedReservation">
-        <association property="member"
-                     column="memberNumber.value"
-                     select="library.infrastructure.datasource.member.MemberMapper.selectMember" />
-        <association property="entryInStock"
-                     column="entryNumber.value"
-                     select="library.infrastructure.datasource.material.MaterialMapper.findEntryInStock" />
-    </resultMap>
-
-    <select id="select未準備の予約一覧" resultMap="unpreparedReservation">
+    <select id="select未準備の予約一覧" resultMap="reservation">
         SELECT 予約履歴.予約番号 as "reservationNumber.value",
                予約と会員.会員番号 as "memberNumber.value",
                予約履歴.所蔵品目番号 as "entryNumber.value"
@@ -41,14 +32,6 @@
     </select>
 
     <select id="select待ち順番" resultType="library.domain.model.reservation.wait.WaitingOrder">
-        SELECT 予約履歴.予約番号 as "reservationNumber.value",
-               予約と会員.会員番号 as "memberNumber.value",
-               予約履歴.所蔵品目番号 as "entryNumber.value"
-        FROM 予約.未準備
-        INNER JOIN 予約.予約履歴 USING (予約番号)
-        INNER JOIN 会員.予約と会員 USING (予約番号)
-        WHERE 所蔵品目番号 = #{value}
-        ORDER BY 未準備.予約番号
     </select>
 
     <select id="selectReservation" resultMap="reservation">

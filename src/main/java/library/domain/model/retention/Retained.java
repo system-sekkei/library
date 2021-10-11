@@ -21,7 +21,7 @@ public class Retained {
     }
 
     public ReservationNumber reservationNumber() {
-        return reservation.number();
+        return reservation.reservationNumber();
     }
     public String showExpireDate() {
         return ExpireDate.of(retainedDate).show();

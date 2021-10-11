@@ -16,7 +16,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.unprepared.UnpreparedReservations;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import library.infrastructure.datasource.retention.RetentionDatasource;
@@ -67,7 +67,7 @@ class RetentionScenarioTest {
         ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        UnpreparedReservations 未準備の予約一覧 = retentionScenario.未準備の予約一覧();
+        ReservationWithWaitingOrderList 未準備の予約一覧 = retentionScenario.未準備の予約一覧();
 
         assertAll(
                 () -> assertEquals(1, 未準備の予約一覧.asList().size()),
@@ -82,7 +82,7 @@ class RetentionScenarioTest {
         reservationRecordService.reserve(reservationRequest);
 
         ItemNumber itemNumber = new ItemNumber("2-A");
-        ReservationNumber reservationNumber = retentionScenario.未準備の予約一覧().asList().get(0).number();
+        ReservationNumber reservationNumber = retentionScenario.未準備の予約一覧().asList().get(0).reservationNumber();
         Retention 未準備の予約された所蔵品 = new Retention(reservationNumber, itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 
@@ -108,7 +108,7 @@ class RetentionScenarioTest {
         ReservationRequest reservationRequest = new ReservationRequest(memberNumber, new EntryNumber(2));
         reservationRecordService.reserve(reservationRequest);
 
-        ReservationNumber reservationNumber = retentionScenario.未準備の予約一覧().asList().get(0).number();
+        ReservationNumber reservationNumber = retentionScenario.未準備の予約一覧().asList().get(0).reservationNumber();
         Retention 未準備の予約された所蔵品 = new Retention(reservationNumber, itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 

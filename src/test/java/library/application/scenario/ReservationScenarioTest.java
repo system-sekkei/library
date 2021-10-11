@@ -10,7 +10,7 @@ import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.unprepared.UnpreparedReservation;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -43,7 +43,7 @@ public class ReservationScenarioTest {
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
 
-        UnpreparedReservation reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
+        ReservationWithWaitingOrder reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
 
         assertAll(
                 () -> assertTrue(reservation.memberNumber().sameValue(memberNumber)),

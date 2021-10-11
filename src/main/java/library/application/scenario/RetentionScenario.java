@@ -13,7 +13,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.reservation.unprepared.UnpreparedReservations;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.RetainedList;
@@ -44,7 +44,7 @@ public class RetentionScenario {
     /**
      * 未準備の予約を一覧する
      */
-    public UnpreparedReservations 未準備の予約一覧() {
+    public ReservationWithWaitingOrderList 未準備の予約一覧() {
         return reservationQueryService.未準備の予約一覧();
     }
 

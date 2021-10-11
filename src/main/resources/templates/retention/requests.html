@@ -30,7 +30,7 @@
               取置</button>
             <button type="submit" name="notAvailable"
                     th:formmethod="post" th:formaction="@{/retentions/requests/canceled}"
-                    th:value="${reservation.number()}">キャンセル</button>
+                    th:value="${reservation.reservationNumber()}">キャンセル</button>
         </td>
         <td th:text="${reservation.showMaterial()}"></td>
         <td th:text="${reservation.member().number()}"></td>

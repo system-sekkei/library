@@ -41,7 +41,7 @@ public class Reservation {
         return entry.show();
     }
 
-    public ReservationNumber number() {
+    public ReservationNumber reservationNumber() {
         return reservationNumber;
     }
 

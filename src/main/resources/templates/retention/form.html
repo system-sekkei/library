@@ -20,7 +20,7 @@
           <span th:errors="*{itemNumber.value}"></span>
         </mark>
       </p>
-      <input type="hidden" name="reservationNumber.value" th:value="${reservation.number()}">
+      <input type="hidden" name="reservationNumber.value" th:value="${reservation.reservationNumber()}">
       <button type="submit" value="取置">取置</button>
     </form>
   </article>

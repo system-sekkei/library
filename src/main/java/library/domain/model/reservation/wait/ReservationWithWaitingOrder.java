@@ -1,4 +1,4 @@
-package library.domain.model.reservation.unprepared;
+package library.domain.model.reservation.wait;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
@@ -11,21 +11,19 @@ import library.domain.model.reservation.wait.WaitingOrder;
 import library.domain.model.retention.availability.RetentionAvailability;
 
 /**
- * *未準備の貸出予約
+ * 貸出予約と待ち順番
  */
-public class UnpreparedReservation {
-    ReservationNumber reservationNumber;
-    Member member;
+public class ReservationWithWaitingOrder {
+    Reservation reservation;
     EntryInStock entryInStock;
     WaitingOrder 待ち順番;
 
     @Deprecated
-    UnpreparedReservation() {
+    ReservationWithWaitingOrder() {
     }
 
-    public UnpreparedReservation(ReservationNumber reservationNumber, Member member, EntryInStock entryInStock, WaitingOrder 待ち順番) {
-        this.reservationNumber = reservationNumber;
-        this.member = member;
+    public ReservationWithWaitingOrder(Reservation reservation, EntryInStock entryInStock, WaitingOrder 待ち順番) {
+        this.reservation = reservation;
         this.entryInStock = entryInStock;
         this.待ち順番 = 待ち順番;
     }
@@ -35,11 +33,11 @@ public class UnpreparedReservation {
     }
 
     public Member member() {
-        return member;
+        return reservation().member();
     }
 
     public MemberNumber memberNumber() {
-        return member.number();
+        return reservation().member().number();
     }
     public EntryNumber entryNumber() {
         return entry().entryNumber();
@@ -48,8 +46,8 @@ public class UnpreparedReservation {
         return entry().show();
     }
 
-    public ReservationNumber number() {
-        return reservationNumber;
+    public ReservationNumber reservationNumber() {
+        return reservation().reservationNumber();
     }
 
     public RetentionAvailability 取置可否() {
@@ -60,17 +58,17 @@ public class UnpreparedReservation {
         return RetentionAvailability.取置不可;
     }
 
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationNumber=" + reservationNumber +
-                ", member=" + member +
-                ", entry=" + entry() +
-                '}';
+    public Reservation reservation() {
+        return reservation;
+
     }
 
-    // FIXME: テスト用
-    public Reservation reservation() {
-        return new Reservation(reservationNumber, member, entry());
+    @Override
+    public String toString() {
+        return "ReservationWithWaitingOrder{" +
+                "reservation=" + reservation +
+                ", entryInStock=" + entryInStock +
+                ", 待ち順番=" + 待ち順番 +
+                '}';
     }
 }

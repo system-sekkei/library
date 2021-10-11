@@ -1,4 +1,4 @@
-package library.domain.model.reservation.unprepared;
+package library.domain.model.reservation.wait;
 
 import library.domain.model.material.entry.EntryType;
 import library.domain.model.reservation.NumberOfReservation;
@@ -6,12 +6,12 @@ import library.domain.model.reservation.NumberOfReservation;
 import java.util.List;
 
 /**
- * 未準備の貸出予約リスト
+ * 待ち順番と貸出予約リスト
  */
-public class UnpreparedReservations {
-    List<UnpreparedReservation> list;
+public class ReservationWithWaitingOrderList {
+    List<ReservationWithWaitingOrder> list;
 
-    public UnpreparedReservations(List<UnpreparedReservation> list) {
+    public ReservationWithWaitingOrderList(List<ReservationWithWaitingOrder> list) {
         this.list = list;
     }
 
@@ -19,16 +19,17 @@ public class UnpreparedReservations {
         return new NumberOfReservation(list.size());
     }
 
-    public List<UnpreparedReservation> asList() {
+    public List<ReservationWithWaitingOrder> asList() {
         return list;
     }
 
     public boolean isEmpty() {
         return list.isEmpty();
     }
+
     @Override
     public String toString() {
-        return "UnpreparedReservation{" +
+        return "ReservationWithWaitingOrderList{" +
                 "list=" + list +
                 '}';
     }
