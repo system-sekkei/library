@@ -19,7 +19,9 @@ public interface ReservationMapper {
             @Param("entryNumber") EntryNumber entryNumber);
 
     List<Reservation> select未準備の予約一覧();
-    WaitingOrder select待ち順番(ReservationNumber reservationNumber);
+    WaitingOrder select待ち順番(
+            @Param("entryNumber") EntryNumber entryNumber,
+            @Param("reservationNumber") ReservationNumber reservationNumber);
 
     Reservation selectReservation(ReservationNumber reservationNumber);
 

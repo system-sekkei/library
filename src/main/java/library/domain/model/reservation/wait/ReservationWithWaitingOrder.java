@@ -50,7 +50,7 @@ public class ReservationWithWaitingOrder {
         return reservation().reservationNumber();
     }
 
-    public RetentionAvailability 取置可否() {
+    public RetentionAvailability retentionAvailability() {
         int 自身より前の予約人数 = 待ち順番.value() - 1;
         if(entryInStock.在庫数().引く(自身より前の予約人数).value() > 0) {
             return RetentionAvailability.取置可能;

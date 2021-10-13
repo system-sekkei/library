@@ -26,7 +26,7 @@
 
         <td>
             <button type="submit"
-                    th:formmethod="get" th:formaction="@{/retentions/requests/{reservation}(reservation=${reservation.number()})}">
+                    th:formmethod="get" th:formaction="@{/retentions/requests/{reservation}(reservation=${reservation.reservationNumber()})}">
               取置</button>
             <button type="submit" name="notAvailable"
                     th:formmethod="post" th:formaction="@{/retentions/requests/canceled}"
@@ -34,7 +34,7 @@
         </td>
         <td th:text="${reservation.showMaterial()}"></td>
         <td th:text="${reservation.member().number()}"></td>
-        <td th:text="${reservation.取置可否()}"></td>
+        <td th:text="${reservation.retentionAvailability()}"></td>
 
       </tr>
       </tbody>

@@ -32,6 +32,12 @@
     </select>
 
     <select id="select待ち順番" resultType="library.domain.model.reservation.wait.WaitingOrder">
+        <![CDATA[
+        SELECT count(予約履歴.予約番号) as "value"
+        FROM 予約.未準備
+        INNER JOIN 予約.予約履歴 USING (予約番号)
+        WHERE 予約.予約履歴.所蔵品目番号 = #{entryNumber.value} AND 予約.予約履歴.予約番号 <= #{reservationNumber.value}
+        ]]>
     </select>
 
     <select id="selectReservation" resultMap="reservation">

@@ -7,6 +7,7 @@ import library.domain.model.reservation.*;
 import library.domain.model.reservation.request.*;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
+import library.domain.model.reservation.wait.WaitingOrder;
 import library.infrastructure.datasource.material.MaterialMapper;
 import library.infrastructure.datasource.member.MemberMapper;
 import library.infrastructure.datasource.retention.RetentionMapper;
@@ -49,9 +50,8 @@ public class ReservationDatasource implements ReservationRepository {
 
         List<ReservationWithWaitingOrder> 待ち順番と未準備の予約一覧 = reservations.stream().map(reservation -> {
             EntryInStock 所蔵品目と在庫状況 = materialMapper.findEntryInStock(reservation.entryNumber());
-            // TODO: 待ち順番を取得する
-            // WaitingOrder 待ち順番 = reservationMapper.select待ち順番(reservation.reservationNumber());
-            return new ReservationWithWaitingOrder(reservation, 所蔵品目と在庫状況, null);
+            WaitingOrder 待ち順番 = reservationMapper.select待ち順番(reservation.entryNumber(), reservation.reservationNumber());
+            return new ReservationWithWaitingOrder(reservation, 所蔵品目と在庫状況, 待ち順番);
         }).collect(Collectors.toList());
 
         return new ReservationWithWaitingOrderList(待ち順番と未準備の予約一覧);

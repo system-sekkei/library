@@ -16,6 +16,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
@@ -28,6 +29,8 @@ import java.time.LocalDate;
 
 import static library.domain.model.reservation.ReservationStatus.消込済;
 import static library.domain.model.reservation.ReservationStatus.準備完了;
+import static library.domain.model.retention.availability.RetentionAvailability.取置不可;
+import static library.domain.model.retention.availability.RetentionAvailability.取置可能;
 import static org.junit.jupiter.api.Assertions.*;
 
 @LibraryDBTest
@@ -74,6 +77,29 @@ class RetentionScenarioTest {
                 () -> assertTrue(未準備の予約一覧.asList().get(0).memberNumber().sameValue(new MemberNumber(1))),
                 () -> assertTrue(未準備の予約一覧.asList().get(0).entryNumber().sameValue(new EntryNumber(2)))
         );
+    }
+
+    @Test
+    void 在庫がある未準備の予約が取置可能であることがわかる() {
+        ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(2));
+        reservationRecordService.reserve(reservationRequest);
+
+        ReservationWithWaitingOrder 未準備の予約 = retentionScenario.未準備の予約一覧().asList().get(0);
+
+        assertEquals(取置可能, 未準備の予約.retentionAvailability());
+    }
+
+    @Test
+    void 在庫がない未準備の予約が取置不可であることがわかる() {
+        ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(1), new EntryNumber(4));
+        reservationRecordService.reserve(reservationRequest);
+
+        ReservationRequest reservationRequest2 = new ReservationRequest(new MemberNumber(2), new EntryNumber(4));
+        reservationRecordService.reserve(reservationRequest2);
+
+        ReservationWithWaitingOrder 未準備の予約 = retentionScenario.未準備の予約一覧().asList().get(1);
+
+        assertEquals(取置不可, 未準備の予約.retentionAvailability());
     }
 
     @Test
