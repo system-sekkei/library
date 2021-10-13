@@ -2,13 +2,14 @@ version: 2
 jobs:
   build:
     docker:
-      - image: irof/circleci-openjdk:11-jdk-graphviz-imagemagick
+      - image: openjdk:17-jdk
     working_directory: ~/repo
     environment:
       JVM_OPTS: -Xmx3200m
       TERM: dumb
     steps:
       - checkout
+      - run: sudo apt-get update && sudo apt-get install -y graphviz fonts-ipafont imagemagick
 
       - restore_cache:
           keys:

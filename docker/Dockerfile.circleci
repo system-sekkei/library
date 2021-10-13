@@ -1,4 +1,4 @@
-FROM circleci/openjdk:11-jdk
+FROM circleci/openjdk:17-jdk
 
 RUN sudo apt-get update && sudo apt-get install -y graphviz imagemagick fonts-ipafont
 
