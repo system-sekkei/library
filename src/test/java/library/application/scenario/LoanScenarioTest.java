@@ -4,7 +4,6 @@ import library.ScenarioTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
-import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.Loanability;
@@ -20,7 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 @ScenarioTest
 class LoanScenarioTest {
@@ -45,15 +45,9 @@ class LoanScenarioTest {
                 generate(1, "2-A", "2020-02-20");
         loanScenario.loan(loanRequest);
 
-        Loan loan = loanQueryService.findBy(new ItemNumber("2-A"));
         ItemStatus itemStatus = itemQueryService.status(loanRequest.itemNumber());
 
-        assertAll(
-                () -> assertTrue(loanRequest.memberNumber().sameValue(loan.memberNumber())),
-                () -> assertTrue(loanRequest.itemNumber().sameValue(loan.item().所蔵品番号())),
-                () -> assertTrue(loanRequest.loanDate().sameValue(loan.loanDate())),
-                () -> assertEquals(itemStatus, ItemStatus.貸出中)
-        );
+        assertEquals(itemStatus, ItemStatus.貸出中);
 
         返却("2-A");
     }

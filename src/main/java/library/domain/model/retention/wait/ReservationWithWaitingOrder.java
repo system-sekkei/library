@@ -7,7 +7,6 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.retention.wait.WaitingOrder;
 import library.domain.model.retention.availability.RetentionAvailability;
 
 /**
@@ -70,5 +69,9 @@ public class ReservationWithWaitingOrder {
                 ", entryInStock=" + entryInStock +
                 ", 待ち順番=" + 待ち順番 +
                 '}';
+    }
+
+    public WaitingOrder 待ち順番() {
+        return 待ち順番;
     }
 }

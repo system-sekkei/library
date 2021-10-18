@@ -58,10 +58,7 @@ public class ReservationScenarioTest {
                 .未準備の予約一覧().asList().stream()
                 .filter(r -> r.memberNumber().sameValue(memberNumber)).toList().get(0);
 
-        assertAll(
-                () -> assertTrue(reservation.memberNumber().sameValue(memberNumber)),
-                () -> assertTrue(reservation.entryNumber().sameValue(entryNumber))
-        );
+        assertTrue(reservation.memberNumber().sameValue(memberNumber));
 
         取置(reservation.reservationNumber().toString(), "2-A");
         貸出("2-A");
@@ -78,9 +75,7 @@ public class ReservationScenarioTest {
 
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(3), new EntryNumber(15)));
 
-        assertAll(
-                () -> assertEquals(予約可能, reservationAvailability)
-        );
+        assertEquals(予約可能, reservationAvailability);
     }
 
     @Test
@@ -93,9 +88,7 @@ public class ReservationScenarioTest {
 
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(4), new EntryNumber(19)));
 
-        assertAll(
-                () -> assertEquals(冊数制限により予約不可, reservationAvailability)
-        );
+        assertEquals(冊数制限により予約不可, reservationAvailability);
     }
 
     @Test
@@ -108,9 +101,7 @@ public class ReservationScenarioTest {
 
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(5), new EntryNumber(15)));
 
-        assertAll(
-                () -> assertEquals(予約可能, reservationAvailability)
-        );
+        assertEquals(予約可能, reservationAvailability);
     }
 
     @Test
@@ -123,9 +114,7 @@ public class ReservationScenarioTest {
 
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(6), new EntryNumber(16)));
 
-        assertAll(
-                () -> assertEquals(視聴覚資料予約不可, reservationAvailability)
-        );
+        assertEquals(視聴覚資料予約不可, reservationAvailability);
     }
 
     // @Test
