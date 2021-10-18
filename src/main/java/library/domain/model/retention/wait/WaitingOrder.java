@@ -1,4 +1,4 @@
-package library.domain.model.reservation.wait;
+package library.domain.model.retention.wait;
 
 /**
  * 待ち順番
