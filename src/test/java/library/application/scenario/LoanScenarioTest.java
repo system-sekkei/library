@@ -1,18 +1,19 @@
 package library.application.scenario;
 
-import library.LibraryDBTest;
+import library.ScenarioTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanRequest;
-import library.domain.model.loan.due.DueDate;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.returned.ReturnDate;
+import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +22,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@LibraryDBTest
+@ScenarioTest
 class LoanScenarioTest {
     @Autowired
     LoanScenario loanScenario;
@@ -34,6 +35,9 @@ class LoanScenarioTest {
 
     @Autowired
     ItemQueryService itemQueryService;
+
+    @Autowired
+    ReturnsScenario returnsScenario;
 
     @Test
     void 図書を貸し出すことができる() {
@@ -50,6 +54,8 @@ class LoanScenarioTest {
                 () -> assertTrue(loanRequest.loanDate().sameValue(loan.loanDate())),
                 () -> assertEquals(itemStatus, ItemStatus.貸出中)
         );
+
+        返却("2-A");
     }
 
     @Test
@@ -67,6 +73,10 @@ class LoanScenarioTest {
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability, Loanability.貸出可能);
+
+        for (String code : list) {
+            返却(code);
+        }
     }
 
     @Test
@@ -85,6 +95,10 @@ class LoanScenarioTest {
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(Loanability.貸出可能, loanability);
+
+        for (String code : list) {
+            返却(code);
+        }
     }
 
     @Test
@@ -106,6 +120,12 @@ class LoanScenarioTest {
         }
 
         assertSame(loanability, Loanability.貸出可能);
+
+        返却("11-A");
+        返却("12-A");
+        返却("13-A");
+        返却("14-A");
+        返却("15-A");
     }
 
     @Test
@@ -128,12 +148,24 @@ class LoanScenarioTest {
         }
 
         assertSame(loanability, Loanability.視聴覚資料貸出不可);
+
+        返却("11-A");
+        返却("12-A");
+        返却("13-A");
+        返却("14-A");
+        返却("15-A");
     }
 
     @Test
     void 貸出中の所蔵品は貸し出すことができない() {
+        LoanRequest loanRequest =
+                generate(1, "1-A", "2020-02-20");
+        loanScenario.loan(loanRequest);
+
         ItemLoanability 貸出可能な所蔵品かどうか = loanScenario.貸出可能な所蔵品かどうか(new ItemNumber("1-A"));
         assertSame(貸出可能な所蔵品かどうか, ItemLoanability.貸出中により貸出不可能);
+
+        返却("1-A");
     }
 
     @Test
@@ -151,6 +183,10 @@ class LoanScenarioTest {
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability, Loanability.冊数制限により貸出不可);
+
+        for (String code : list) {
+            返却(code);
+        }
     }
 
     @Test
@@ -166,6 +202,8 @@ class LoanScenarioTest {
         Loanability loanability = loanScenario.loanability(loanRequest);
 
         assertSame(loanability, Loanability.新規貸出不可);
+
+        返却("2-A");
     }
 
     // @Test
@@ -181,5 +219,10 @@ class LoanScenarioTest {
         MemberNumber member = new MemberNumber(memberNumber);
         ItemNumber item = new ItemNumber(itemNumber);
         return new LoanRequest(member, item, LoanDate.parse(loanDate));
+    }
+
+    private void 返却(String itemNumber) {
+        Returned returned = new Returned(new ItemNumber(itemNumber), ReturnDate.now());
+        returnsScenario.returned(returned);
     }
 }

@@ -1,6 +1,6 @@
 package library.application.scenario;
 
-import library.LibraryDBTest;
+import library.ScenarioTest;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.domain.model.loan.Loan;
@@ -19,7 +19,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@LibraryDBTest
+@ScenarioTest
 class ReturnsScenarioTest {
 
     @Autowired

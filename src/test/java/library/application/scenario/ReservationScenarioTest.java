@@ -1,16 +1,21 @@
 package library.application.scenario;
 
-import library.LibraryDBTest;
+import library.ScenarioTest;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
+import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
+import library.domain.model.retention.Retention;
+import library.domain.model.returned.ReturnDate;
+import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,7 +25,7 @@ import static library.domain.model.material.entry.EntryType.図書;
 import static library.domain.model.reservation.availability.ReservationAvailability.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-@LibraryDBTest
+@ScenarioTest
 public class ReservationScenarioTest {
     @Autowired
     ReservationScenario reservationScenario;
@@ -37,18 +42,30 @@ public class ReservationScenarioTest {
     @Autowired
     MaterialQueryService materialQueryService;
 
+    @Autowired
+    ReturnsScenario returnsScenario;
+
+    @Autowired
+    RetentionScenario retentionScenario;
+
     @Test
     void 所蔵品目を予約をすることができる() {
         EntryNumber entryNumber = new EntryNumber(2);
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
 
-        ReservationWithWaitingOrder reservation = reservationQueryService.未準備の予約一覧().asList().get(0);
+        ReservationWithWaitingOrder reservation = reservationQueryService
+                .未準備の予約一覧().asList().stream()
+                .filter(r -> r.memberNumber().sameValue(memberNumber)).toList().get(0);
 
         assertAll(
                 () -> assertTrue(reservation.memberNumber().sameValue(memberNumber)),
                 () -> assertTrue(reservation.entryNumber().sameValue(entryNumber))
         );
+
+        取置(reservation.reservationNumber().toString(), "2-A");
+        貸出("2-A");
+        返却("2-A");
     }
 
     @Test
@@ -56,10 +73,10 @@ public class ReservationScenarioTest {
         List<Integer> entryNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
 
         entryNumbers.forEach(entryNumber -> {
-            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(2), new EntryNumber(entryNumber)));
+            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(3), new EntryNumber(entryNumber)));
         });
 
-        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(2), new EntryNumber(15)));
+        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(3), new EntryNumber(15)));
 
         assertAll(
                 () -> assertEquals(予約可能, reservationAvailability)
@@ -71,10 +88,10 @@ public class ReservationScenarioTest {
         List<Integer> entryNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 
         entryNumbers.forEach(entryNumber -> {
-            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(2), new EntryNumber(entryNumber)));
+            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(4), new EntryNumber(entryNumber)));
         });
 
-        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(2), new EntryNumber(19)));
+        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(4), new EntryNumber(19)));
 
         assertAll(
                 () -> assertEquals(冊数制限により予約不可, reservationAvailability)
@@ -86,10 +103,10 @@ public class ReservationScenarioTest {
         List<Integer> entryNumbers = List.of(11, 12, 13, 14);
 
         entryNumbers.forEach(entryNumber -> {
-            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(2), new EntryNumber(entryNumber)));
+            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(5), new EntryNumber(entryNumber)));
         });
 
-        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(2), new EntryNumber(15)));
+        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(5), new EntryNumber(15)));
 
         assertAll(
                 () -> assertEquals(予約可能, reservationAvailability)
@@ -101,10 +118,10 @@ public class ReservationScenarioTest {
         List<Integer> entryNumbers = List.of(11, 12, 13, 14, 15);
 
         entryNumbers.forEach(entryNumber -> {
-            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(2), new EntryNumber(entryNumber)));
+            reservationRecordService.reserve(new ReservationRequest(new MemberNumber(6), new EntryNumber(entryNumber)));
         });
 
-        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(2), new EntryNumber(16)));
+        ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(6), new EntryNumber(16)));
 
         assertAll(
                 () -> assertEquals(視聴覚資料予約不可, reservationAvailability)
@@ -128,5 +145,19 @@ public class ReservationScenarioTest {
     // @Test
     void 予約を取り消すことができる() {
 
+    }
+
+    private void 取置(String reservationNumber, String itemNumber) {
+        Retention 未準備の予約された所蔵品 = new Retention(new ReservationNumber(reservationNumber), new ItemNumber(itemNumber));
+        retentionScenario.retain(未準備の予約された所蔵品);
+    }
+
+    private void 貸出(String itemNumber) {
+        retentionScenario.loan(new ItemNumber(itemNumber));
+    }
+
+    private void 返却(String itemNumber) {
+        Returned returned = new Returned(new ItemNumber(itemNumber), ReturnDate.now());
+        returnsScenario.returned(returned);
     }
 }
