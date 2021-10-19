@@ -28,6 +28,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import static library.domain.model.reservation.ReservationStatus.消込済;
 import static library.domain.model.reservation.ReservationStatus.準備完了;
@@ -109,14 +110,22 @@ class RetentionScenarioTest {
 
     @Test
     void 在庫がない未準備の予約が取置不可であることがわかる() {
-        ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(3), new EntryNumber(4));
+        EntryNumber entryNumber = new EntryNumber(4);
+        ReservationRequest reservationRequest = new ReservationRequest(new MemberNumber(3), entryNumber);
         reservationRecordService.reserve(reservationRequest);
 
-        ReservationRequest reservationRequest2 = new ReservationRequest(new MemberNumber(3), new EntryNumber(4));
+        ReservationRequest reservationRequest2 = new ReservationRequest(new MemberNumber(4), entryNumber);
         reservationRecordService.reserve(reservationRequest2);
 
-        ReservationWithWaitingOrder 未準備の予約 = retentionScenario.未準備の予約一覧().asList().get(0);
-        ReservationWithWaitingOrder 取置不可の未準備の予約 = retentionScenario.未準備の予約一覧().asList().get(1);
+        List<ReservationWithWaitingOrder> 未準備の予約一覧 = retentionScenario.未準備の予約一覧().asList();
+        ReservationWithWaitingOrder 未準備の予約 = new ReservationWithWaitingOrder(null, null, null);
+        ReservationWithWaitingOrder 取置不可の未準備の予約 = new ReservationWithWaitingOrder(null, null, null);
+        for (ReservationWithWaitingOrder 予約 : 未準備の予約一覧) {
+            if (予約.memberNumber().sameValue(new MemberNumber(3)))
+                未準備の予約 = 予約;
+            else if (予約.memberNumber().sameValue(new MemberNumber(4)))
+                取置不可の未準備の予約 = 予約;
+        }
 
         assertEquals(取置不可, 取置不可の未準備の予約.retentionAvailability());
 
