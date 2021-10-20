@@ -57,14 +57,6 @@ public class ReservationScenario {
     }
 
     /**
-     * 予約を記録する
-     */
-    public void reserve(Entry entry, MemberNumber memberNumber) {
-        ReservationRequest reservationRequest = new ReservationRequest(memberNumber, entry.entryNumber());
-        reservationRecordService.reserve(reservationRequest);
-    }
-
-    /**
      * 予約制限を判断する
      */
     public ReservationAvailability reservationAvailability(ReservationRequest reservationRequest) {
@@ -73,5 +65,13 @@ public class ReservationScenario {
         ReservationRestriction reservationRestriction = new ReservationRestriction(member, reservations);
         Entry 予約したい本 = materialQueryService.findMaterial(reservationRequest.entryNumber());
         return reservationRestriction.予約可否判定(予約したい本);
+    }
+    
+    /**
+     * 予約を記録する
+     */
+    public void reserve(Entry entry, MemberNumber memberNumber) {
+        ReservationRequest reservationRequest = new ReservationRequest(memberNumber, entry.entryNumber());
+        reservationRecordService.reserve(reservationRequest);
     }
 }

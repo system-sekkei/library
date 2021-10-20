@@ -92,11 +92,4 @@ public class RetentionScenario {
         loanRecordService.loaned(loanRequest, retained);
     }
 
-    /**
-     * 予約の取り消し
-     */
-    public void cancel(ReservationNumber reservationNumber) {
-        Reservation reservation = reservationQueryService.reservationOf(reservationNumber);
-        reservationRecordService.cancel(reservation);
-    }
 }

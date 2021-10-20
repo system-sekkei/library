@@ -1,5 +1,6 @@
 package library.presentation.retention;
 
+import library.application.scenario.ReservationCancellationScenario;
 import library.application.scenario.RetentionScenario;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
@@ -16,9 +17,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("retentions/requests")
 public class ReservationController {
     RetentionScenario retentionScenario;
+    ReservationCancellationScenario reservationCancellationScenario;
 
-    public ReservationController(RetentionScenario retentionScenario) {
+    public ReservationController(RetentionScenario retentionScenario, ReservationCancellationScenario reservationCancellationScenario) {
         this.retentionScenario = retentionScenario;
+        this.reservationCancellationScenario = reservationCancellationScenario;
     }
 
     @GetMapping
@@ -40,7 +43,7 @@ public class ReservationController {
 
     @PostMapping("canceled")
     String cancel(@RequestParam("notAvailable") ReservationNumber reservationNumber){
-        retentionScenario.cancel(reservationNumber);
+        reservationCancellationScenario.cancel(reservationNumber);
         return "redirect:/retentions/requests";
     }
 }
