@@ -1,5 +1,6 @@
 package library.presentation.retention;
 
+import library.application.scenario.RetentionExpireScenario;
 import library.application.scenario.RetentionScenario;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
@@ -26,9 +27,11 @@ import static library.domain.model.retention.MaterialMatching.不一致;
 @RequestMapping("retentions")
 public class RetentionController {
     RetentionScenario retentionScenario;
+    RetentionExpireScenario retentionExpireScenario;
 
-    public RetentionController(RetentionScenario retentionScenario) {
+    public RetentionController(RetentionScenario retentionScenario, RetentionExpireScenario retentionExpireScenario) {
         this.retentionScenario = retentionScenario;
+        this.retentionExpireScenario = retentionExpireScenario;
     }
 
     @GetMapping
@@ -83,7 +86,7 @@ public class RetentionController {
 
     @PostMapping(value = "loans", params = {"expired"})
     String expired(@RequestParam("expired")ItemNumber itemNumber) {
-        retentionScenario.expire(itemNumber);
+        retentionExpireScenario.expire(itemNumber);
         return "redirect:/retentions";
     }
 

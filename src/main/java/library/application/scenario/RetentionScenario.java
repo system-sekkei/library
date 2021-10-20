@@ -93,13 +93,6 @@ public class RetentionScenario {
     }
 
     /**
-     * 取置の期限切れ
-     */
-    public void expire(ItemNumber itemNumber) {
-        retentionRecordService.releaseAndExpire(itemNumber);
-    }
-
-    /**
      * 予約の取り消し
      */
     public void cancel(ReservationNumber reservationNumber) {
