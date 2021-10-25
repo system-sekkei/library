@@ -1,9 +1,9 @@
 package library.infrastructure.datasource.retention;
 
 import library.domain.model.material.item.ItemNumber;
-import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.RetainedDate;
+import library.domain.model.retention.RetentionNumber;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -11,14 +11,15 @@ import java.util.List;
 
 @Mapper
 public interface RetentionMapper {
+    RetentionNumber nextNumber();
 
     void insert取置履歴(
-            @Param("reservationNumber") ReservationNumber reservationNumber,
+            @Param("retentionNumber") RetentionNumber retentionNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
 
     void insert準備完了(
-            @Param("reservationNumber") ReservationNumber reservationNumber,
+            @Param("retentionNumber") RetentionNumber retentionNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
 
@@ -28,11 +29,11 @@ public interface RetentionMapper {
     void delete準備完了(ItemNumber itemNumber);
 
     void insert取置解放履歴(
-            @Param("reservationNumber") ReservationNumber reservationNumber,
+            @Param("retentionNumber") RetentionNumber retentionNumber,
             @Param("itemNumber") ItemNumber itemNumber);
 
-    void insert取置期限切れ履歴(ReservationNumber reservationNumber);
+    void insert取置期限切れ履歴(RetentionNumber retentionNumber);
 
-    boolean exists準備完了(ReservationNumber reservationNumber);
-    boolean exists取置解放履歴(@Param("reservationNumber") ReservationNumber reservationNumber, @Param("itemNumber") ItemNumber itemNumber);
+    boolean exists準備完了(RetentionNumber retentionNumber);
+    boolean exists取置解放履歴(@Param("retentionNumber") RetentionNumber retentionNumber, @Param("itemNumber") ItemNumber itemNumber);
 }

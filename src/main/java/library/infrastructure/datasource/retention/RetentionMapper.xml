@@ -3,15 +3,18 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
+    <select id="nextNumber" resultType="library.domain.model.retention.RetentionNumber">
+        SELECT NEXTVAL('取置.取置番号') AS "value"
+    </select>
 
     <insert id="insert取置履歴">
-        INSERT INTO 取置.取置履歴(予約番号, 所蔵品番号, 取置日)
-        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
+        INSERT INTO 取置.取置履歴(取置番号, 所蔵品番号, 取置日)
+        VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 取置.準備完了(予約番号, 所蔵品番号, 取置日)
-        VALUES (#{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
+        INSERT INTO 取置.準備完了(取置番号, 所蔵品番号, 取置日)
+        VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <delete id="delete準備完了">
@@ -19,43 +22,52 @@
     </delete>
 
     <resultMap id="準備完了" type="library.domain.model.retention.Retained">
-        <association property="reservation"
-                     column="reservation"
-                     select="library.infrastructure.datasource.reservation.ReservationMapper.selectReservation" />
+        <association property="item"
+                     column="itemNumber.value"
+                     select="library.infrastructure.datasource.item.ItemMapper.selectItem" />
+        <association property="member"
+                     column="memberNumber.value"
+                     select="library.infrastructure.datasource.member.MemberMapper.selectMember" />
     </resultMap>
 
     <select id="selectAll準備完了" resultMap="準備完了">
         SELECT
-            所蔵品番号 AS "itemNumber.value",
-            予約番号 AS "reservation",
-            取置日 AS "retainedDate.value"
+            取置履歴.所蔵品番号 AS "itemNumber.value",
+            取置と会員.会員番号 AS "memberNumber.value",
+            準備完了.取置番号 AS "retentionNumber.value",
+            取置履歴.取置日 AS "retainedDate.value"
         FROM 取置.準備完了
+        INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
+        INNER JOIN 取置.取置履歴 ON 準備完了.取置番号 = 取置履歴.取置番号
         ORDER BY 取置日
     </select>
 
     <select id="select準備完了" resultMap="準備完了">
         SELECT
-            所蔵品番号 AS "itemNumber.value",
-            予約番号 AS "reservation",
-            取置日 AS "retainedDate.value"
+            取置履歴.所蔵品番号 AS "itemNumber.value",
+            取置と会員.会員番号 AS "memberNumber.value",
+            準備完了.取置番号 AS "retentionNumber.value",
+            取置履歴.取置日 AS "retainedDate.value"
         FROM 取置.準備完了
-        WHERE 所蔵品番号 = #{value}
+        INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
+        INNER JOIN 取置.取置履歴 ON 準備完了.取置番号 = 取置履歴.取置番号
+        WHERE 取置履歴.所蔵品番号 = #{value}
     </select>
 
     <insert id="insert取置解放履歴">
-        INSERT INTO 取置.取置解放履歴(予約番号, 所蔵品番号)
-        VALUES (#{reservationNumber.value}, #{itemNumber.value})
+        INSERT INTO 取置.取置解放履歴(取置番号, 所蔵品番号)
+        VALUES (#{retentionNumber.value}, #{itemNumber.value})
     </insert>
 
     <insert id="insert取置期限切れ履歴">
-        INSERT INTO 取置.取置期限切れ履歴(予約番号) VALUES (#{value})
+        INSERT INTO 取置.取置期限切れ履歴(取置番号) VALUES (#{value})
     </insert>
 
     <select id="exists準備完了" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 予約番号 = #{value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 取置番号 = #{value})
     </select>
 
     <select id="exists取置解放履歴" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放履歴 WHERE 予約番号 = #{reservationNumber.value} AND 所蔵品番号 = #{itemNumber.value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放履歴 WHERE 取置番号 = #{retentionNumber.value} AND 所蔵品番号 = #{itemNumber.value})
     </select>
 </mapper>

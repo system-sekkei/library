@@ -144,7 +144,7 @@ class RetentionScenarioTest {
 
         Retained 取置資料 = retentionDatasource.findBy(itemNumber);
 
-        assertTrue(取置資料.reservationNumber().sameValue(reservationNumber));
+        assertTrue(取置資料.itemNumber().sameValue(itemNumber));
 
         貸出("2-A");
         返却("2-A");

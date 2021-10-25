@@ -2,12 +2,10 @@ package library.infrastructure.datasource.retention;
 
 import library.application.service.retention.RetentionRepository;
 import library.domain.model.material.item.ItemNumber;
-import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.retention.Retained;
-import library.domain.model.retention.RetainedDate;
-import library.domain.model.retention.RetainedList;
-import library.domain.model.retention.Retention;
+import library.domain.model.reservation.Reservation;
+import library.domain.model.retention.*;
 import library.infrastructure.datasource.item.ItemMapper;
+import library.infrastructure.datasource.member.MemberMapper;
 import library.infrastructure.datasource.reservation.ReservationMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,12 +16,14 @@ import java.util.List;
 public class RetentionDatasource implements RetentionRepository {
     RetentionMapper retentionMapper;
     ItemMapper itemMapper;
+    MemberMapper memberMapper;
     ReservationMapper reservationMapper;
 
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    public RetentionDatasource(RetentionMapper retentionMapper, ItemMapper itemMapper, ReservationMapper reservationMapper) {
+    public RetentionDatasource(RetentionMapper retentionMapper, ItemMapper itemMapper, MemberMapper memberMapper, ReservationMapper reservationMapper) {
         this.retentionMapper = retentionMapper;
         this.itemMapper = itemMapper;
+        this.memberMapper = memberMapper;
         this.reservationMapper = reservationMapper;
     }
 
@@ -35,27 +35,31 @@ public class RetentionDatasource implements RetentionRepository {
     @Override
     @Transactional
     public void retained(Retention retention) {
-        ReservationNumber reservationNumber = retention.reservationNumber();
+        RetentionNumber retentionNumber = retentionMapper.nextNumber();
         ItemNumber itemNumber = retention.itemNumber();
         RetainedDate retainedDate = RetainedDate.now();
 
         // 取置の発生の記録
-        retentionMapper.insert取置履歴(reservationNumber, itemNumber, retainedDate);
-        retentionMapper.insert準備完了(reservationNumber, itemNumber, retainedDate);
+        retentionMapper.insert取置履歴(retentionNumber, itemNumber, retainedDate);
+        retentionMapper.insert準備完了(retentionNumber, itemNumber, retainedDate);
+
+        Reservation reservation = reservationMapper.selectReservation(retention.reservationNumber());
+        memberMapper.insert取置と会員(reservation.memberNumber(), retentionNumber);
 
         // 所蔵品の状態
         itemMapper.delete貸出可能(itemNumber);
         itemMapper.insert取置中(itemNumber);
 
         // 予約の状態
-        reservationMapper.delete未準備(reservationNumber);
+        reservationMapper.delete未準備(retention.reservationNumber());
+        memberMapper.delete予約と会員(reservation.reservationNumber());
     }
 
     @Override
     @Transactional
     public void released(Retained retained) {
         ItemNumber itemNumber = retained.itemNumber();
-        retentionMapper.insert取置解放履歴(retained.reservationNumber(), itemNumber);
+        retentionMapper.insert取置解放履歴(retained.retentionNumber(), itemNumber);
 
         // 所蔵品の状態
         itemMapper.delete取置中(itemNumber);
@@ -63,15 +67,14 @@ public class RetentionDatasource implements RetentionRepository {
 
         // 取置の状態
         retentionMapper.delete準備完了(itemNumber);
-
-        // 予約の状態
-        reservationMapper.delete未準備(retained.reservationNumber());
+        memberMapper.delete取置と会員(retained.retentionNumber());
     }
 
     @Override
     @Transactional
     public void expired(Retained retained) {
-        retentionMapper.insert取置期限切れ履歴(retained.reservationNumber());
+        retentionMapper.insert取置期限切れ履歴(retained.retentionNumber());
+        memberMapper.delete取置と会員(retained.retentionNumber());
     }
 
     @Override

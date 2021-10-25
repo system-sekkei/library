@@ -12,8 +12,8 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.retention.wait.ReservationWithWaitingOrder;
 import library.domain.model.retention.Retention;
+import library.domain.model.retention.wait.ReservationWithWaitingOrder;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,8 @@ import java.util.List;
 
 import static library.domain.model.material.entry.EntryType.図書;
 import static library.domain.model.reservation.availability.ReservationAvailability.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ScenarioTest
 public class ReservationScenarioTest {

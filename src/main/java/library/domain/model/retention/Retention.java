@@ -13,7 +13,7 @@ public class Retention {
     @Valid
     ItemNumber itemNumber = ItemNumber.empty();
 
-    public Retention(@Valid ReservationNumber reservationNumber, @Valid ItemNumber itemNumber) {
+    public Retention(ReservationNumber reservationNumber, ItemNumber itemNumber) {
         this.reservationNumber = reservationNumber;
         this.itemNumber = itemNumber;
     }
