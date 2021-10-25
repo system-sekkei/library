@@ -53,7 +53,7 @@ CREATE TABLE 資料_所蔵品.貸出可能
 
 CREATE TABLE 資料_所蔵品.貸出中
 (
-  所蔵品番号 VARCHAR(40) PRIMARY KEY REFERENCES 資料_所蔵品.所蔵品,
+  所蔵品番号 VARCHAR(40) NOT NULL REFERENCES 資料_所蔵品.所蔵品,
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -110,8 +110,7 @@ CREATE TABLE 取置.取置履歴
   予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約履歴,
   所蔵品番号 VARCHAR(40) NOT NULL REFERENCES 資料_所蔵品.所蔵品,
   取置日  DATE        NOT NULL,
-  登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  UNIQUE (予約番号, 所蔵品番号)
+  登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 準備完了 所蔵品でユニーク（同じ所蔵品を同時に取置はできない）
