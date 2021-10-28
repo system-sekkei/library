@@ -13,12 +13,12 @@
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 取置.準備完了(取置番号, 所蔵品番号, 取置日)
+        INSERT INTO 取置._準備完了(取置番号, 所蔵品番号, 取置日)
         VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <delete id="delete準備完了">
-        DELETE FROM 取置.準備完了 WHERE 所蔵品番号 = #{value}
+        DELETE FROM 取置._準備完了 WHERE 所蔵品番号 = #{value}
     </delete>
 
     <resultMap id="準備完了" type="library.domain.model.retention.Retained">
@@ -34,11 +34,11 @@
         SELECT
             取置.所蔵品番号 AS "itemNumber.value",
             取置と会員.会員番号 AS "memberNumber.value",
-            準備完了.取置番号 AS "retentionNumber.value",
+            _準備完了.取置番号 AS "retentionNumber.value",
             取置.取置日 AS "retainedDate.value"
-        FROM 取置.準備完了
-        INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
-        INNER JOIN 取置.取置 ON 準備完了.取置番号 = 取置.取置番号
+        FROM 取置._準備完了
+        INNER JOIN 会員.取置と会員 ON _準備完了.取置番号 = 取置と会員.取置番号
+        INNER JOIN 取置.取置 ON _準備完了.取置番号 = 取置.取置番号
         ORDER BY 取置日
     </select>
 
@@ -46,11 +46,11 @@
         SELECT
             取置.所蔵品番号 AS "itemNumber.value",
             取置と会員.会員番号 AS "memberNumber.value",
-            準備完了.取置番号 AS "retentionNumber.value",
+            _準備完了.取置番号 AS "retentionNumber.value",
             取置.取置日 AS "retainedDate.value"
-        FROM 取置.準備完了
-        INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
-        INNER JOIN 取置.取置 ON 準備完了.取置番号 = 取置.取置番号
+        FROM 取置._準備完了
+        INNER JOIN 会員.取置と会員 ON _準備完了.取置番号 = 取置と会員.取置番号
+        INNER JOIN 取置.取置 ON _準備完了.取置番号 = 取置.取置番号
         WHERE 取置.所蔵品番号 = #{value}
     </select>
 
@@ -64,7 +64,7 @@
     </insert>
 
     <select id="exists準備完了" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 取置番号 = #{value})
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置._準備完了 WHERE 取置番号 = #{value})
     </select>
 
     <select id="exists取置解放" resultType="boolean">
