@@ -1,4 +1,4 @@
-package library.domain.model.retention.wait;
+package library.domain.model.reservation.wait;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
@@ -7,7 +7,7 @@ import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.retention.availability.RetentionAvailability;
+import library.domain.model.reservation.availability.RetentionAvailability;
 
 /**
  * 貸出予約と待ち順番

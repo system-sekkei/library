@@ -31,7 +31,7 @@
         ORDER BY _未準備.予約番号
     </select>
 
-    <select id="select待ち順番" resultType="library.domain.model.retention.wait.WaitingOrder">
+    <select id="select待ち順番" resultType="library.domain.model.reservation.wait.WaitingOrder">
         <![CDATA[
         SELECT count(予約.予約番号) as "value"
         FROM 予約._未準備

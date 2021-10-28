@@ -1,4 +1,4 @@
-package library.domain.model.retention.availability;
+package library.domain.model.reservation.availability;
 
 /**
  * 取置可否

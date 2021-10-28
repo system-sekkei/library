@@ -1,4 +1,4 @@
-package library.domain.model.retention.wait;
+package library.domain.model.reservation.wait;
 
 import library.domain.model.material.entry.EntryType;
 import library.domain.model.reservation.NumberOfReservation;

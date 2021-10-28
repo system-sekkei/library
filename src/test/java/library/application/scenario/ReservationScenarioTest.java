@@ -13,7 +13,7 @@ import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.retention.Retention;
-import library.domain.model.retention.wait.ReservationWithWaitingOrder;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;

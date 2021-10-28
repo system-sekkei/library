@@ -3,7 +3,7 @@ package library.application.service.reservation;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.*;
 import library.domain.model.reservation.request.*;
-import library.domain.model.retention.wait.ReservationWithWaitingOrderList;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 
 /**
  * 予約リポジトリ

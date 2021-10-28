@@ -5,7 +5,7 @@ import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.Reservations;
-import library.domain.model.retention.wait.ReservationWithWaitingOrderList;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import org.springframework.stereotype.Service;
 
 /**

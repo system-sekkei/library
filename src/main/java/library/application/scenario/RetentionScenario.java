@@ -13,7 +13,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
-import library.domain.model.retention.wait.ReservationWithWaitingOrderList;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.RetainedList;

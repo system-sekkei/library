@@ -15,8 +15,8 @@ import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
-import library.domain.model.retention.wait.ReservationWithWaitingOrder;
-import library.domain.model.retention.wait.ReservationWithWaitingOrderList;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import library.infrastructure.datasource.retention.RetentionDatasource;
@@ -26,8 +26,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static library.domain.model.retention.availability.RetentionAvailability.取置不可;
-import static library.domain.model.retention.availability.RetentionAvailability.取置可能;
+import static library.domain.model.reservation.availability.RetentionAvailability.取置不可;
+import static library.domain.model.reservation.availability.RetentionAvailability.取置可能;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
