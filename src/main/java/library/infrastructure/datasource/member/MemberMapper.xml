@@ -33,12 +33,12 @@
     </insert>
 
     <select id="selectLoansByMemberNumber" resultMap="loan">
-        SELECT 貸出履歴.貸出番号 as "loanNumber.value",
-               貸出履歴.所蔵品番号 as "itemNumber.value",
+        SELECT 貸出.貸出番号 as "loanNumber.value",
+               貸出.所蔵品番号 as "itemNumber.value",
                貸出と会員.会員番号 as "memberNumber.value",
-               貸出履歴.貸出日   as "loanDate.value"
-        FROM 貸出.貸出履歴
-            INNER JOIN 会員.貸出と会員 ON 貸出履歴.貸出番号 = 貸出と会員.貸出番号
+               貸出.貸出日   as "loanDate.value"
+        FROM 貸出.貸出
+            INNER JOIN 会員.貸出と会員 ON 貸出.貸出番号 = 貸出と会員.貸出番号
         WHERE 貸出と会員.会員番号 = #{memberNumber.value}
     </select>
 

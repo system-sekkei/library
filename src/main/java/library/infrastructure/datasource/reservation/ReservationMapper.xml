@@ -8,7 +8,7 @@
     </select>
 
     <insert id="insertReservation">
-        INSERT INTO 予約.予約履歴(予約番号, 所蔵品目番号)
+        INSERT INTO 予約.予約(予約番号, 所蔵品目番号)
         VALUES (#{reservationNumber.value}, #{entryNumber.value})
     </insert>
 
@@ -22,39 +22,39 @@
     </resultMap>
 
     <select id="select未準備の予約一覧" resultMap="reservation">
-        SELECT 予約履歴.予約番号 as "reservationNumber.value",
+        SELECT 予約.予約番号 as "reservationNumber.value",
                予約と会員.会員番号 as "memberNumber.value",
-               予約履歴.所蔵品目番号 as "entryNumber.value"
+               予約.所蔵品目番号 as "entryNumber.value"
         FROM 予約.未準備
-        INNER JOIN 予約.予約履歴 USING (予約番号)
+        INNER JOIN 予約.予約 USING (予約番号)
         INNER JOIN 会員.予約と会員 USING (予約番号)
         ORDER BY 未準備.予約番号
     </select>
 
     <select id="select待ち順番" resultType="library.domain.model.retention.wait.WaitingOrder">
         <![CDATA[
-        SELECT count(予約履歴.予約番号) as "value"
+        SELECT count(予約.予約番号) as "value"
         FROM 予約.未準備
-        INNER JOIN 予約.予約履歴 USING (予約番号)
-        WHERE 予約.予約履歴.所蔵品目番号 = #{entryNumber.value} AND 予約.予約履歴.予約番号 <= #{reservationNumber.value}
+        INNER JOIN 予約.予約 USING (予約番号)
+        WHERE 予約.予約.所蔵品目番号 = #{entryNumber.value} AND 予約.予約.予約番号 <= #{reservationNumber.value}
         ]]>
     </select>
 
     <select id="selectReservation" resultMap="reservation">
-        SELECT 予約履歴.予約番号 as "reservationNumber.value",
+        SELECT 予約.予約番号 as "reservationNumber.value",
                予約と会員.会員番号 as "memberNumber.value",
-               予約履歴.所蔵品目番号 as "entryNumber.value"
-        FROM 予約.予約履歴
-        INNER JOIN 会員.予約と会員 ON 予約履歴.予約番号 = 予約と会員.予約番号
+               予約.所蔵品目番号 as "entryNumber.value"
+        FROM 予約.予約
+        INNER JOIN 会員.予約と会員 ON 予約.予約番号 = 予約と会員.予約番号
         WHERE 予約と会員.予約番号 = #{value}
     </select>
 
     <select id="selectReservationsByMember" resultMap="reservation">
-        SELECT 予約履歴.予約番号 as "reservationNumber.value",
+        SELECT 予約.予約番号 as "reservationNumber.value",
                予約と会員.会員番号 as "memberNumber.value",
-               予約履歴.所蔵品目番号 as "entryNumber.value"
-        FROM 予約.予約履歴
-        INNER JOIN 会員.予約と会員 ON 予約履歴.予約番号 = 予約と会員.予約番号
+               予約.所蔵品目番号 as "entryNumber.value"
+        FROM 予約.予約
+        INNER JOIN 会員.予約と会員 ON 予約.予約番号 = 予約と会員.予約番号
         WHERE 会員番号 = #{value}
     </select>
 
@@ -69,7 +69,7 @@
     </delete>
 
     <insert id="cancelReservation">
-        INSERT INTO 予約.予約取消履歴(予約番号) VALUES (#{value})
+        INSERT INTO 予約.予約取消(予約番号) VALUES (#{value})
     </insert>
 
     <select id="exist未準備" resultType="boolean">
@@ -77,6 +77,6 @@
     </select>
 
     <select id="exists予約" resultType="boolean">
-        SELECT EXISTS(SELECT 予約番号 FROM 予約.予約履歴 WHERE 予約番号 = #{value})
+        SELECT EXISTS(SELECT 予約番号 FROM 予約.予約 WHERE 予約番号 = #{value})
     </select>
 </mapper>

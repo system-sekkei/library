@@ -7,8 +7,8 @@
         SELECT NEXTVAL('取置.取置番号') AS "value"
     </select>
 
-    <insert id="insert取置履歴">
-        INSERT INTO 取置.取置履歴(取置番号, 所蔵品番号, 取置日)
+    <insert id="insert取置">
+        INSERT INTO 取置.取置(取置番号, 所蔵品番号, 取置日)
         VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
@@ -32,42 +32,42 @@
 
     <select id="selectAll準備完了" resultMap="準備完了">
         SELECT
-            取置履歴.所蔵品番号 AS "itemNumber.value",
+            取置.所蔵品番号 AS "itemNumber.value",
             取置と会員.会員番号 AS "memberNumber.value",
             準備完了.取置番号 AS "retentionNumber.value",
-            取置履歴.取置日 AS "retainedDate.value"
+            取置.取置日 AS "retainedDate.value"
         FROM 取置.準備完了
         INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
-        INNER JOIN 取置.取置履歴 ON 準備完了.取置番号 = 取置履歴.取置番号
+        INNER JOIN 取置.取置 ON 準備完了.取置番号 = 取置.取置番号
         ORDER BY 取置日
     </select>
 
     <select id="select準備完了" resultMap="準備完了">
         SELECT
-            取置履歴.所蔵品番号 AS "itemNumber.value",
+            取置.所蔵品番号 AS "itemNumber.value",
             取置と会員.会員番号 AS "memberNumber.value",
             準備完了.取置番号 AS "retentionNumber.value",
-            取置履歴.取置日 AS "retainedDate.value"
+            取置.取置日 AS "retainedDate.value"
         FROM 取置.準備完了
         INNER JOIN 会員.取置と会員 ON 準備完了.取置番号 = 取置と会員.取置番号
-        INNER JOIN 取置.取置履歴 ON 準備完了.取置番号 = 取置履歴.取置番号
-        WHERE 取置履歴.所蔵品番号 = #{value}
+        INNER JOIN 取置.取置 ON 準備完了.取置番号 = 取置.取置番号
+        WHERE 取置.所蔵品番号 = #{value}
     </select>
 
-    <insert id="insert取置解放履歴">
-        INSERT INTO 取置.取置解放履歴(取置番号, 所蔵品番号)
+    <insert id="insert取置解放">
+        INSERT INTO 取置.取置解放(取置番号, 所蔵品番号)
         VALUES (#{retentionNumber.value}, #{itemNumber.value})
     </insert>
 
-    <insert id="insert取置期限切れ履歴">
-        INSERT INTO 取置.取置期限切れ履歴(取置番号) VALUES (#{value})
+    <insert id="insert取置期限切れ">
+        INSERT INTO 取置.取置期限切れ(取置番号) VALUES (#{value})
     </insert>
 
     <select id="exists準備完了" resultType="boolean">
         SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.準備完了 WHERE 取置番号 = #{value})
     </select>
 
-    <select id="exists取置解放履歴" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放履歴 WHERE 取置番号 = #{retentionNumber.value} AND 所蔵品番号 = #{itemNumber.value})
+    <select id="exists取置解放" resultType="boolean">
+        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放 WHERE 取置番号 = #{retentionNumber.value} AND 所蔵品番号 = #{itemNumber.value})
     </select>
 </mapper>

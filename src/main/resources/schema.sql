@@ -66,7 +66,7 @@ CREATE TABLE 資料_所蔵品.取置中
 -- 貸出スキーマ
 CREATE SEQUENCE 貸出.貸出番号;
 
-CREATE TABLE 貸出.貸出履歴
+CREATE TABLE 貸出.貸出
 (
   貸出番号 INTEGER PRIMARY KEY,
   所蔵品番号 VARCHAR(40) NOT NULL REFERENCES 資料_所蔵品.所蔵品,
@@ -74,9 +74,9 @@ CREATE TABLE 貸出.貸出履歴
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE 貸出.返却履歴
+CREATE TABLE 貸出.返却
 (
-  貸出番号 INTEGER PRIMARY KEY REFERENCES 貸出.貸出履歴,
+  貸出番号 INTEGER PRIMARY KEY REFERENCES 貸出.貸出,
   返却日  DATE      NOT NULL,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -85,7 +85,7 @@ CREATE TABLE 貸出.返却履歴
 -- 予約スキーマ
 CREATE SEQUENCE 予約.予約番号;
 
-CREATE TABLE 予約.予約履歴
+CREATE TABLE 予約.予約
 (
   予約番号 INTEGER PRIMARY KEY,
   所蔵品目番号  INTEGER   NOT NULL REFERENCES 資料_所蔵品目.所蔵品目,
@@ -94,20 +94,20 @@ CREATE TABLE 予約.予約履歴
 
 CREATE TABLE 予約.未準備
 (
-  予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約履歴,
+  予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE 予約.予約取消履歴
+CREATE TABLE 予約.予約取消
 (
-  予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約履歴,
+  予約番号 INTEGER PRIMARY KEY REFERENCES 予約.予約,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 取置スキーマ
 CREATE SEQUENCE 取置.取置番号;
 
-CREATE TABLE 取置.取置履歴
+CREATE TABLE 取置.取置
 (
   取置番号 INTEGER PRIMARY KEY,
   所蔵品番号 VARCHAR(40) NOT NULL REFERENCES 資料_所蔵品.所蔵品,
@@ -118,33 +118,33 @@ CREATE TABLE 取置.取置履歴
 -- 準備完了 所蔵品でユニーク（同じ所蔵品を同時に取置はできない）
 CREATE TABLE 取置.準備完了
 (
-  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置履歴,
+  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置,
   所蔵品番号 VARCHAR(40) NOT NULL,
   UNIQUE(所蔵品番号),
-  FOREIGN KEY (取置番号, 所蔵品番号) REFERENCES 取置.取置履歴 (取置番号, 所蔵品番号),
+  FOREIGN KEY (取置番号, 所蔵品番号) REFERENCES 取置.取置 (取置番号, 所蔵品番号),
   取置日  DATE      NOT NULL,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 取置を貸し出した記録
-CREATE TABLE 取置.取置解放履歴
+CREATE TABLE 取置.取置解放
 (
-  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置履歴,
+  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置,
   所蔵品番号 VARCHAR(40) NOT NULL,
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (取置番号, 所蔵品番号) REFERENCES 取置.取置履歴 (取置番号, 所蔵品番号)
+  FOREIGN KEY (取置番号, 所蔵品番号) REFERENCES 取置.取置 (取置番号, 所蔵品番号)
 );
 -- 取置の期限切れ
-CREATE TABLE 取置.取置期限切れ履歴
+CREATE TABLE 取置.取置期限切れ
 (
-  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置履歴,
+  取置番号 INTEGER PRIMARY KEY REFERENCES 取置.取置,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 貸出と会員の関連テーブル
 CREATE TABLE 会員.貸出と会員
 (
-  貸出番号 INTEGER     PRIMARY KEY REFERENCES 貸出.貸出履歴,
+  貸出番号 INTEGER     PRIMARY KEY REFERENCES 貸出.貸出,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -152,7 +152,7 @@ CREATE TABLE 会員.貸出と会員
 -- 予約と会員の関連テーブル
 CREATE TABLE 会員.予約と会員
 (
-  予約番号 INTEGER     PRIMARY KEY REFERENCES 予約.予約履歴,
+  予約番号 INTEGER     PRIMARY KEY REFERENCES 予約.予約,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -160,7 +160,7 @@ CREATE TABLE 会員.予約と会員
 -- 取置と会員の関連テーブル
 CREATE TABLE 会員.取置と会員
 (
-  取置番号 INTEGER     PRIMARY KEY REFERENCES 取置.取置履歴,
+  取置番号 INTEGER     PRIMARY KEY REFERENCES 取置.取置,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
   登録日時 TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP
 );

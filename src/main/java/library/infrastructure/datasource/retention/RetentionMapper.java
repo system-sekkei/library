@@ -13,7 +13,7 @@ import java.util.List;
 public interface RetentionMapper {
     RetentionNumber nextNumber();
 
-    void insert取置履歴(
+    void insert取置(
             @Param("retentionNumber") RetentionNumber retentionNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
@@ -28,12 +28,12 @@ public interface RetentionMapper {
     Retained select準備完了(ItemNumber itemNumber);
     void delete準備完了(ItemNumber itemNumber);
 
-    void insert取置解放履歴(
+    void insert取置解放(
             @Param("retentionNumber") RetentionNumber retentionNumber,
             @Param("itemNumber") ItemNumber itemNumber);
 
-    void insert取置期限切れ履歴(RetentionNumber retentionNumber);
+    void insert取置期限切れ(RetentionNumber retentionNumber);
 
     boolean exists準備完了(RetentionNumber retentionNumber);
-    boolean exists取置解放履歴(@Param("retentionNumber") RetentionNumber retentionNumber, @Param("itemNumber") ItemNumber itemNumber);
+    boolean exists取置解放(@Param("retentionNumber") RetentionNumber retentionNumber, @Param("itemNumber") ItemNumber itemNumber);
 }
