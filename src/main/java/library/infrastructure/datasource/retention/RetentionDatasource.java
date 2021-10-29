@@ -41,7 +41,7 @@ public class RetentionDatasource implements RetentionRepository {
 
         // 取置の発生の記録
         retentionMapper.insert取置(retentionNumber, itemNumber, retainedDate);
-        retentionMapper.insert準備完了(retentionNumber, itemNumber, retainedDate);
+        retentionMapper.insert準備完了(retentionNumber, itemNumber);
 
         Reservation reservation = reservationMapper.selectReservation(retention.reservationNumber());
         memberMapper.insert取置と会員(reservation.memberNumber(), retentionNumber);

@@ -13,8 +13,8 @@
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 取置._準備完了(取置番号, 所蔵品番号, 取置日)
-        VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
+        INSERT INTO 取置._準備完了(取置番号, 所蔵品番号)
+        VALUES (#{retentionNumber.value}, #{itemNumber.value})
     </insert>
 
     <delete id="delete準備完了">

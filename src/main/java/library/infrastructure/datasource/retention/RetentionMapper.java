@@ -20,8 +20,7 @@ public interface RetentionMapper {
 
     void insert準備完了(
             @Param("retentionNumber") RetentionNumber retentionNumber,
-            @Param("itemNumber") ItemNumber itemNumber,
-            @Param("retainedDate") RetainedDate retainedDate);
+            @Param("itemNumber") ItemNumber itemNumber);
 
     List<Retained> selectAll準備完了();
 

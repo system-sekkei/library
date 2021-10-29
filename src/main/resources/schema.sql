@@ -122,7 +122,6 @@ CREATE TABLE 取置._準備完了
   所蔵品番号 VARCHAR(40) NOT NULL,
   UNIQUE(所蔵品番号),
   FOREIGN KEY (取置番号, 所蔵品番号) REFERENCES 取置.取置 (取置番号, 所蔵品番号),
-  取置日  DATE      NOT NULL,
   登録日時 TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
