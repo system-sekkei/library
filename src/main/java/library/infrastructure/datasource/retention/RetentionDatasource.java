@@ -57,7 +57,7 @@ public class RetentionDatasource implements RetentionRepository {
 
     @Override
     @Transactional
-    public void released(Retained retained) {
+    public void expired(Retained retained) {
         ItemNumber itemNumber = retained.itemNumber();
         retentionMapper.insert取置解放(retained.retentionNumber(), itemNumber);
 
@@ -66,14 +66,8 @@ public class RetentionDatasource implements RetentionRepository {
         itemMapper.insert貸出可能(itemNumber);
 
         // 取置の状態
-        retentionMapper.delete準備完了(itemNumber);
-        memberMapper.delete取置と会員(retained.retentionNumber());
-    }
-
-    @Override
-    @Transactional
-    public void expired(Retained retained) {
         retentionMapper.insert取置期限切れ(retained.retentionNumber());
+        retentionMapper.delete準備完了(itemNumber);
         memberMapper.delete取置と会員(retained.retentionNumber());
     }
 
