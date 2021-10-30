@@ -43,7 +43,7 @@ class RetentionExpireScenarioTest {
                 .filter(r -> r.memberNumber().sameValue(memberNumber)).toList().get(0);
 
         ItemNumber itemNumber = new ItemNumber("2-A");
-        Retention 未準備の予約された所蔵品 = new Retention(reservation.reservationNumber(), itemNumber);
+        Retention 未準備の予約された所蔵品 = reservation.reservation().toRetention(itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 
         retentionExpireScenario.expire(itemNumber);
