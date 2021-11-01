@@ -141,7 +141,7 @@ CREATE TABLE 取置.取置期限切れ
 );
 
 -- 貸出と会員の関連テーブル
-CREATE TABLE 会員.貸出と会員
+CREATE TABLE 会員._貸出と会員
 (
   貸出番号 INTEGER     PRIMARY KEY REFERENCES 貸出.貸出,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
@@ -149,7 +149,7 @@ CREATE TABLE 会員.貸出と会員
 );
 
 -- 予約と会員の関連テーブル
-CREATE TABLE 会員.予約と会員
+CREATE TABLE 会員._予約と会員
 (
   予約番号 INTEGER     PRIMARY KEY REFERENCES 予約.予約,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,
@@ -157,7 +157,7 @@ CREATE TABLE 会員.予約と会員
 );
 
 -- 取置と会員の関連テーブル
-CREATE TABLE 会員.取置と会員
+CREATE TABLE 会員._取置と会員
 (
   取置番号 INTEGER     PRIMARY KEY REFERENCES 取置.取置,
   会員番号 INTEGER     NOT NULL REFERENCES 会員.会員,

@@ -23,11 +23,11 @@
 
     <select id="select未準備の予約一覧" resultMap="reservation">
         SELECT 予約.予約番号 as "reservationNumber.value",
-               予約と会員.会員番号 as "memberNumber.value",
+               _予約と会員.会員番号 as "memberNumber.value",
                予約.所蔵品目番号 as "entryNumber.value"
         FROM 予約._未準備
         INNER JOIN 予約.予約 USING (予約番号)
-        INNER JOIN 会員.予約と会員 USING (予約番号)
+        INNER JOIN 会員._予約と会員 USING (予約番号)
         ORDER BY _未準備.予約番号
     </select>
 
@@ -42,19 +42,19 @@
 
     <select id="selectReservation" resultMap="reservation">
         SELECT 予約.予約番号 as "reservationNumber.value",
-               予約と会員.会員番号 as "memberNumber.value",
+               _予約と会員.会員番号 as "memberNumber.value",
                予約.所蔵品目番号 as "entryNumber.value"
         FROM 予約.予約
-        INNER JOIN 会員.予約と会員 ON 予約.予約番号 = 予約と会員.予約番号
-        WHERE 予約と会員.予約番号 = #{value}
+        INNER JOIN 会員._予約と会員 ON 予約.予約番号 = _予約と会員.予約番号
+        WHERE _予約と会員.予約番号 = #{value}
     </select>
 
     <select id="selectReservationsByMember" resultMap="reservation">
         SELECT 予約.予約番号 as "reservationNumber.value",
-               予約と会員.会員番号 as "memberNumber.value",
+               _予約と会員.会員番号 as "memberNumber.value",
                予約.所蔵品目番号 as "entryNumber.value"
         FROM 予約.予約
-        INNER JOIN 会員.予約と会員 ON 予約.予約番号 = 予約と会員.予約番号
+        INNER JOIN 会員._予約と会員 ON 予約.予約番号 = _予約と会員.予約番号
         WHERE 会員番号 = #{value}
     </select>
 

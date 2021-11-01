@@ -28,42 +28,42 @@
     </select>
 
     <insert id="insertLoanMemberRelation">
-        INSERT INTO 会員.貸出と会員(会員番号, 貸出番号)
+        INSERT INTO 会員._貸出と会員(会員番号, 貸出番号)
         VALUES (#{memberNumber.value}, #{loanNumber.value})
     </insert>
 
     <select id="selectLoansByMemberNumber" resultMap="loan">
         SELECT 貸出.貸出番号 as "loanNumber.value",
                貸出.所蔵品番号 as "itemNumber.value",
-               貸出と会員.会員番号 as "memberNumber.value",
+               _貸出と会員.会員番号 as "memberNumber.value",
                貸出.貸出日   as "loanDate.value"
         FROM 貸出.貸出
-            INNER JOIN 会員.貸出と会員 ON 貸出.貸出番号 = 貸出と会員.貸出番号
-        WHERE 貸出と会員.会員番号 = #{memberNumber.value}
+            INNER JOIN 会員._貸出と会員 ON 貸出.貸出番号 = _貸出と会員.貸出番号
+        WHERE _貸出と会員.会員番号 = #{memberNumber.value}
     </select>
 
     <delete id="deleteLoanMemberRelation">
-        DELETE FROM 会員.貸出と会員
+        DELETE FROM 会員._貸出と会員
         WHERE 貸出番号 = #{loanNumber.value}
     </delete>
 
     <insert id="insert予約と会員">
-        INSERT INTO 会員.予約と会員(会員番号, 予約番号)
+        INSERT INTO 会員._予約と会員(会員番号, 予約番号)
         VALUES (#{memberNumber.value}, #{reservationNumber.value})
     </insert>
 
     <delete id="delete予約と会員">
-        DELETE FROM 会員.予約と会員
+        DELETE FROM 会員._予約と会員
         WHERE 予約番号 = #{reservationNumber.value}
     </delete>
 
     <insert id="insert取置と会員">
-        INSERT INTO 会員.取置と会員(会員番号, 取置番号)
+        INSERT INTO 会員._取置と会員(会員番号, 取置番号)
         VALUES (#{memberNumber.value}, #{retentionNumber.value})
     </insert>
 
     <delete id="delete取置と会員">
-        DELETE FROM 会員.取置と会員
+        DELETE FROM 会員._取置と会員
         WHERE 取置番号 = #{retentionNumber.value}
     </delete>
 </mapper>
