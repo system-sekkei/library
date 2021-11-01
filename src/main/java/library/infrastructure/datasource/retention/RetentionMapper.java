@@ -1,6 +1,7 @@
 package library.infrastructure.datasource.retention;
 
 import library.domain.model.material.item.ItemNumber;
+import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.RetainedDate;
 import library.domain.model.retention.RetentionNumber;
@@ -15,6 +16,7 @@ public interface RetentionMapper {
 
     void insert取置(
             @Param("retentionNumber") RetentionNumber retentionNumber,
+            @Param("reservationNumber") ReservationNumber reservationNumber,
             @Param("itemNumber") ItemNumber itemNumber,
             @Param("retainedDate") RetainedDate retainedDate);
 

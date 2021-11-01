@@ -8,8 +8,8 @@
     </select>
 
     <insert id="insert取置">
-        INSERT INTO 取置.取置(取置番号, 所蔵品番号, 取置日)
-        VALUES (#{retentionNumber.value}, #{itemNumber.value}, #{retainedDate.value})
+        INSERT INTO 取置.取置(取置番号, 予約番号, 所蔵品番号, 取置日)
+        VALUES (#{retentionNumber.value}, #{reservationNumber.value}, #{itemNumber.value}, #{retainedDate.value})
     </insert>
 
     <insert id="insert準備完了">

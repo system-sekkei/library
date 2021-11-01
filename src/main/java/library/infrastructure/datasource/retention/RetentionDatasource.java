@@ -40,7 +40,7 @@ public class RetentionDatasource implements RetentionRepository {
         RetainedDate retainedDate = RetainedDate.now();
 
         // 取置の発生の記録
-        retentionMapper.insert取置(retentionNumber, itemNumber, retainedDate);
+        retentionMapper.insert取置(retentionNumber, retention.reservationNumber(), itemNumber, retainedDate);
         retentionMapper.insert準備完了(retentionNumber, itemNumber);
 
         Reservation reservation = reservationMapper.selectReservation(retention.reservationNumber());
