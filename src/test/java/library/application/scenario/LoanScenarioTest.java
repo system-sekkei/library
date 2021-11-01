@@ -29,7 +29,7 @@ class LoanScenarioTest {
     ReturnsScenario returnsScenario;
 
     @Test
-    void 図書を貸し出すことができる() {
+    void 図書を貸し出す() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
         loanScenario.loan(loanRequest);
@@ -42,7 +42,7 @@ class LoanScenarioTest {
     }
 
     @Test
-    void 貸出制限を判断することができる() {
+    void 貸出制限を判断する() {
         LoanRequest loanRequest =
                 generate(1, "1-A", "2020-02-20");
         loanScenario.loan(loanRequest);
@@ -54,7 +54,7 @@ class LoanScenarioTest {
     }
 
     @Test
-    void 貸出状況を提示することができる() {
+    void 貸出状況を提示する() {
         LoanRequest loanRequest =
                 generate(1, "2-A", "2020-02-20");
         loanScenario.loan(loanRequest);

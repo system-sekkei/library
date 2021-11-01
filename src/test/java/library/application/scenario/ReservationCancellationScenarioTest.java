@@ -24,7 +24,7 @@ class ReservationCancellationScenarioTest {
     ReservationQueryService reservationQueryService;
 
     @Test
-    void 予約をキャンセルすることができる() {
+    void 予約をキャンセルする() {
         EntryNumber entryNumber = new EntryNumber(2);
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
