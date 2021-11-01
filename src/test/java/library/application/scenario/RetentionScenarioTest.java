@@ -7,12 +7,12 @@ import library.domain.model.loan.Loan;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
-import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import library.infrastructure.datasource.retention.RetentionDatasource;
@@ -50,7 +50,7 @@ class RetentionScenarioTest {
         assertEquals(1, 未準備の予約一覧.asList().size());
 
         ReservationWithWaitingOrder 未準備の予約 = 未準備の予約一覧.asList().get(0);
-        取置(未準備の予約.reservation(), "2-A");
+        取置(未準備の予約.reservationNumber().toString(), "2-A");
         貸出("2-A");
         返却("2-A");
     }
@@ -62,11 +62,11 @@ class RetentionScenarioTest {
 
         ItemNumber itemNumber = new ItemNumber("2-A");
 
-        Reservation reservation = retentionScenario
+        ReservationNumber reservationNumber = retentionScenario
                 .未準備の予約一覧().asList().stream()
-                .filter(r -> r.memberNumber().sameValue(new MemberNumber(4))).toList().get(0).reservation();
+                .filter(r -> r.memberNumber().sameValue(new MemberNumber(4))).toList().get(0).reservationNumber();
 
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(itemNumber);
+        Retention 未準備の予約された所蔵品 = new Retention(reservationNumber, itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 
         Retained 取置資料 = retentionDatasource.findBy(itemNumber);
@@ -86,11 +86,11 @@ class RetentionScenarioTest {
         ReservationRequest reservationRequest = new ReservationRequest(memberNumber, new EntryNumber(3));
         reservationRecordService.reserve(reservationRequest);
 
-        Reservation reservation = retentionScenario
+        ReservationNumber reservationNumber = retentionScenario
                 .未準備の予約一覧().asList().stream()
-                .filter(r -> r.memberNumber().sameValue(new MemberNumber(5))).toList().get(0).reservation();
+                .filter(r -> r.memberNumber().sameValue(new MemberNumber(5))).toList().get(0).reservationNumber();
 
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(itemNumber);
+        Retention 未準備の予約された所蔵品 = new Retention(reservationNumber, itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 
         // 貸出
@@ -103,8 +103,8 @@ class RetentionScenarioTest {
         返却("3-A");
     }
 
-    private void 取置(Reservation reservation, String itemNumber) {
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(new ItemNumber(itemNumber));
+    private void 取置(String reservationNumber, String itemNumber) {
+        Retention 未準備の予約された所蔵品 = new Retention(new ReservationNumber(reservationNumber), new ItemNumber(itemNumber));
         retentionScenario.retain(未準備の予約された所蔵品);
     }
 

@@ -9,6 +9,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.retention.Retention;
+import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;
@@ -43,13 +44,13 @@ public class ReservationScenarioTest {
 
         assertTrue(reservation.memberNumber().sameValue(memberNumber));
 
-        取置(reservation.reservation(), "2-A");
+        取置(reservation.reservationNumber().toString(), "2-A");
         貸出("2-A");
         返却("2-A");
     }
 
-    private void 取置(Reservation reservation, String itemNumber) {
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(new ItemNumber(itemNumber));
+    private void 取置(String reservationNumber, String itemNumber) {
+        Retention 未準備の予約された所蔵品 = new Retention(new ReservationNumber(reservationNumber), new ItemNumber(itemNumber));
         retentionScenario.retain(未準備の予約された所蔵品);
     }
 

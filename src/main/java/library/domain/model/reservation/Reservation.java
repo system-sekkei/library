@@ -2,10 +2,8 @@ package library.domain.model.reservation;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
-import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.retention.Retention;
 
 /**
  * *貸出予約
@@ -23,10 +21,6 @@ public class Reservation {
         this.reservationNumber = reservationNumber;
         this.member = member;
         this.entry = entry;
-    }
-
-    public Retention toRetention(ItemNumber itemNumber) {
-        return new Retention(reservationNumber, itemNumber);
     }
 
     public Entry entry() {
