@@ -8,7 +8,7 @@ import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.availability.ReservationAvailability;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.retention.Retention;
@@ -116,8 +116,8 @@ public class ReservationFlowTest {
 
     }
 
-    private void 取置(Reservation reservation, String itemNumber) {
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(new ItemNumber(itemNumber));
+    private void 取置(String reservationNumber, String itemNumber) {
+        Retention 未準備の予約された所蔵品 = new Retention(new ReservationNumber(reservationNumber), new ItemNumber(itemNumber));
         retentionScenario.retain(未準備の予約された所蔵品);
     }
 

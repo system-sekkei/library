@@ -10,7 +10,7 @@ import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
-import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.retention.Retention;
@@ -73,7 +73,7 @@ class RetentionFlowTest {
 
         assertEquals(取置可能, 未準備の予約.retentionAvailability());
 
-        取置(未準備の予約.reservation(), "2-A");
+        取置(未準備の予約.reservationNumber().toString(), "2-A");
         貸出("2-A");
         返却("2-A");
     }
@@ -99,11 +99,11 @@ class RetentionFlowTest {
 
         assertEquals(取置不可, 取置不可の未準備の予約.retentionAvailability());
 
-        取置(未準備の予約.reservation(), "4-A");
+        取置(未準備の予約.reservationNumber().toString(), "4-A");
         貸出("4-A");
         返却("4-A");
 
-        取置(取置不可の未準備の予約.reservation(), "4-A");
+        取置(取置不可の未準備の予約.reservationNumber().toString(), "4-A");
         貸出("4-A");
         返却("4-A");
     }
@@ -122,8 +122,8 @@ class RetentionFlowTest {
     void 取置中の所蔵品を在庫に戻すことができる() {
     }
 
-    private void 取置(Reservation reservation, String itemNumber) {
-        Retention 未準備の予約された所蔵品 = reservation.toRetention(new ItemNumber(itemNumber));
+    private void 取置(String reservationNumber, String itemNumber) {
+        Retention 未準備の予約された所蔵品 = new Retention(new ReservationNumber(reservationNumber), new ItemNumber(itemNumber));
         retentionScenario.retain(未準備の予約された所蔵品);
     }
 
