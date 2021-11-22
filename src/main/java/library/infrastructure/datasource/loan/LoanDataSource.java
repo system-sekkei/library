@@ -95,8 +95,8 @@ public class LoanDataSource implements LoanRepository {
         memberMapper.insertLoanMemberRelation(loanRequest.memberNumber(), new LoanNumber(loanNumber));
 
         // 取置の状態変更
-        retentionMapper.insert取置解放(retained.retentionNumber(), itemNumber);
-        retentionMapper.delete準備完了(itemNumber);
+        retentionMapper.insert取置解放(retained.retentionNumber());
+        retentionMapper.delete準備完了(retained.retentionNumber());
         memberMapper.delete取置と会員(retained.retentionNumber());
     }
 

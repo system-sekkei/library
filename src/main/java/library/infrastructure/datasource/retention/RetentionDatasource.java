@@ -41,7 +41,7 @@ public class RetentionDatasource implements RetentionRepository {
 
         // 取置の発生の記録
         retentionMapper.insert取置(retentionNumber, retention.reservationNumber(), itemNumber, retainedDate);
-        retentionMapper.insert準備完了(retentionNumber, itemNumber);
+        retentionMapper.insert準備完了(retentionNumber);
 
         Reservation reservation = reservationMapper.selectReservation(retention.reservationNumber());
         memberMapper.insert取置と会員(reservation.memberNumber(), retentionNumber);
@@ -59,7 +59,7 @@ public class RetentionDatasource implements RetentionRepository {
     @Transactional
     public void expired(Retained retained) {
         ItemNumber itemNumber = retained.itemNumber();
-        retentionMapper.insert取置解放(retained.retentionNumber(), itemNumber);
+        retentionMapper.insert取置解放(retained.retentionNumber());
 
         // 所蔵品の状態
         itemMapper.delete取置中(itemNumber);
@@ -67,7 +67,7 @@ public class RetentionDatasource implements RetentionRepository {
 
         // 取置の状態
         retentionMapper.insert取置期限切れ(retained.retentionNumber());
-        retentionMapper.delete準備完了(itemNumber);
+        retentionMapper.delete準備完了(retained.retentionNumber());
         memberMapper.delete取置と会員(retained.retentionNumber());
     }
 

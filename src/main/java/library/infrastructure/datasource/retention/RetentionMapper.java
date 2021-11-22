@@ -21,20 +21,17 @@ public interface RetentionMapper {
             @Param("retainedDate") RetainedDate retainedDate);
 
     void insert準備完了(
-            @Param("retentionNumber") RetentionNumber retentionNumber,
-            @Param("itemNumber") ItemNumber itemNumber);
+            @Param("retentionNumber") RetentionNumber retentionNumber);
 
     List<Retained> selectAll準備完了();
 
     Retained select準備完了(ItemNumber itemNumber);
-    void delete準備完了(ItemNumber itemNumber);
+    void delete準備完了(RetentionNumber retentionNumber);
 
-    void insert取置解放(
-            @Param("retentionNumber") RetentionNumber retentionNumber,
-            @Param("itemNumber") ItemNumber itemNumber);
+    void insert取置解放(RetentionNumber retentionNumber);
 
     void insert取置期限切れ(RetentionNumber retentionNumber);
 
     boolean exists準備完了(RetentionNumber retentionNumber);
-    boolean exists取置解放(@Param("retentionNumber") RetentionNumber retentionNumber, @Param("itemNumber") ItemNumber itemNumber);
+    boolean exists取置解放(RetentionNumber retentionNumber);
 }

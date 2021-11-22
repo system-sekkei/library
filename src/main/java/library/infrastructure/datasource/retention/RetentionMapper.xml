@@ -13,12 +13,12 @@
     </insert>
 
     <insert id="insert準備完了">
-        INSERT INTO 取置._準備完了(取置番号, 所蔵品番号)
-        VALUES (#{retentionNumber.value}, #{itemNumber.value})
+        INSERT INTO 取置._準備完了(取置番号)
+        VALUES (#{retentionNumber.value})
     </insert>
 
     <delete id="delete準備完了">
-        DELETE FROM 取置._準備完了 WHERE 所蔵品番号 = #{value}
+        DELETE FROM 取置._準備完了 WHERE 取置番号 = #{value}
     </delete>
 
     <resultMap id="準備完了" type="library.domain.model.retention.Retained">
@@ -55,8 +55,8 @@
     </select>
 
     <insert id="insert取置解放">
-        INSERT INTO 取置.取置解放(取置番号, 所蔵品番号)
-        VALUES (#{retentionNumber.value}, #{itemNumber.value})
+        INSERT INTO 取置.取置解放(取置番号)
+        VALUES (#{value})
     </insert>
 
     <insert id="insert取置期限切れ">
@@ -64,10 +64,10 @@
     </insert>
 
     <select id="exists準備完了" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置._準備完了 WHERE 取置番号 = #{value})
+        SELECT EXISTS(SELECT 取置番号 FROM 取置._準備完了 WHERE 取置番号 = #{value})
     </select>
 
     <select id="exists取置解放" resultType="boolean">
-        SELECT EXISTS(SELECT 所蔵品番号 FROM 取置.取置解放 WHERE 取置番号 = #{retentionNumber.value} AND 所蔵品番号 = #{itemNumber.value})
+        SELECT EXISTS(SELECT 取置番号 FROM 取置.取置解放 WHERE 取置番号 = #{value})
     </select>
 </mapper>
