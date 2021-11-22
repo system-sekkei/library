@@ -12,6 +12,7 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -189,12 +190,14 @@ class LoanFlowTest {
         返却("2-A");
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 予約がない資料の貸出を15日間延長できる() {
 
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 二回目の貸出延長はできない() {
     }
 

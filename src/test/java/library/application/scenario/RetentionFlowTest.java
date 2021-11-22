@@ -18,6 +18,7 @@ import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import library.infrastructure.datasource.retention.RetentionDatasource;
 import library.infrastructure.datasource.retention.RetentionMapper;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -108,17 +109,20 @@ class RetentionFlowTest {
         返却("4-A");
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 取置中の所蔵品を予約者以外に貸し出すことはできない() {
 
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 予約が取り消された取置を一覧できる() {
 
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 取置中の所蔵品を在庫に戻すことができる() {
     }
 

@@ -14,6 +14,7 @@ import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.retention.Retention;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -97,21 +98,24 @@ public class ReservationFlowTest {
         assertEquals(視聴覚資料予約不可, reservationAvailability);
     }
 
-    // @Test
+    @Test
+    @Disabled
     void 予約資料を予約者が受け取ったら予約履歴が削除される() {
 
     }
 
-    //    @Test
+    @Test
+    @Disabled
     void 貸出中の資料を予約することができる() {
 
     }
 
-//    @Test
+    @Test
+    @Disabled
     void 取置期限内に受け取らなかった予約が無効になる() {
     }
 
-    // @Test
+    @Test
     void 予約を取り消すことができる() {
 
     }
