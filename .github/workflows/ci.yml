@@ -5,6 +5,18 @@ on:
 jobs:
   ci-job:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:14.1-alpine
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: secret
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-java@v2
@@ -12,4 +24,9 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: gradle
-      - run: ./gradlew build --no-daemon
+      - name: Test PostgreSQL
+        run: ./gradlew test --no-daemon
+        env:
+          SPRING_DATASOURCE_URL: jdbc:postgresql:postgres
+          SPRING_DATASOURCE_USERNAME: postgres
+          SPRING_DATASOURCE_PASSWORD: secret
