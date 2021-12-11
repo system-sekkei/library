@@ -1,7 +1,7 @@
 package library.application.scenario;
 
+import library.application.service.retention.RetentionExpiredCheckService;
 import library.application.service.retention.RetentionRecordService;
-import library.domain.model.material.item.ItemNumber;
 import org.springframework.stereotype.Service;
 
 /**
@@ -9,17 +9,20 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RetentionExpireScenario {
-
     RetentionRecordService retentionRecordService;
+    RetentionExpiredCheckService retentionExpiredCheckService;
 
-    public RetentionExpireScenario(RetentionRecordService retentionRecordService) {
+    public RetentionExpireScenario(RetentionRecordService retentionRecordService, RetentionExpiredCheckService retentionExpiredCheckService) {
         this.retentionRecordService = retentionRecordService;
+        this.retentionExpiredCheckService = retentionExpiredCheckService;
     }
 
     /**
-     * 取置の期限切れ
+     * 期限内に受け取られなかった取置を期限切れにする
      */
-    public void expire(ItemNumber itemNumber) {
-        retentionRecordService.releaseAndExpire(itemNumber);
+    public void expire() {
+        retentionExpiredCheckService.期限切れの取置一覧().asList().forEach(retained -> {
+            retentionRecordService.releaseAndExpire(retained);
+        });
     }
 }

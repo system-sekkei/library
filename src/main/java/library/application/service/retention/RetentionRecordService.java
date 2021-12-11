@@ -2,15 +2,15 @@ package library.application.service.retention;
 
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.item.Item;
-import library.domain.model.material.item.ItemNumber;
-import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import org.springframework.stereotype.Service;
 
-import static library.domain.model.reservation.ReservationStatus.*;
+import static library.domain.model.reservation.ReservationStatus.未準備;
+import static library.domain.model.reservation.ReservationStatus.消込済;
 
 /**
  * 取置の登録
@@ -50,9 +50,8 @@ public class RetentionRecordService {
     /**
      * 取置を期限切れにする(準備完了を消し込む）
      */
-    public void releaseAndExpire(ItemNumber itemNumber) {
+    public void releaseAndExpire(Retained retained) {
 //        ensure(準備完了);
-        Retained retained = retentionRepository.findBy(itemNumber);
         retentionRepository.expired(retained);
         ensure(消込済);
     }

@@ -12,7 +12,7 @@ class ExpireDate {
     private ExpireDate(LocalDate value) {
         this.value = value;
     }
-
+    // TODO: 休館日を考慮
     static int 取置の最大日数 = 7;
     boolean isExpired() {
         LocalDate today = LocalDate.now();

@@ -38,6 +38,8 @@ class RetentionExpireScenarioTest {
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
 
+        // TODO: 連絡をした日の翌日から7開館日。
+
         ReservationWithWaitingOrder reservation = reservationQueryService
                 .未準備の予約一覧().asList().stream()
                 .filter(r -> r.memberNumber().sameValue(memberNumber)).toList().get(0);

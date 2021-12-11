@@ -29,6 +29,10 @@ public class RetainedList {
         return list.isEmpty();
     }
 
+    public RetainedList 期限切れの取置一覧() {
+
+    }
+
     @Override
     public String toString() {
         return "Retentions{" +
