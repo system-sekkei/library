@@ -8,6 +8,7 @@ import library.domain.model.reservation.Reservation;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
+import library.domain.model.retention.RetentionNumber;
 import org.springframework.stereotype.Service;
 
 import static library.domain.model.reservation.ReservationStatus.*;
@@ -50,9 +51,9 @@ public class RetentionRecordService {
     /**
      * 取置を期限切れにする(準備完了を消し込む）
      */
-    public void releaseAndExpire(ItemNumber itemNumber) {
+    public void releaseAndExpire(RetentionNumber retentionNumber) {
 //        ensure(準備完了);
-        Retained retained = retentionRepository.findBy(itemNumber);
+        Retained retained = retentionRepository.findBy(retentionNumber);
         retentionRepository.expired(retained);
         ensure(消込済);
     }

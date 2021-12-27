@@ -28,8 +28,13 @@ public class RetentionDatasource implements RetentionRepository {
     }
 
     @Override
+    public Retained findBy(RetentionNumber retentionNumber) {
+        return retentionMapper.select準備完了(retentionNumber);
+    }
+
+    @Override
     public Retained findBy(ItemNumber itemNumber) {
-        return retentionMapper.select準備完了(itemNumber);
+        return retentionMapper.select準備完了by所蔵品番号(itemNumber);
     }
 
     @Override

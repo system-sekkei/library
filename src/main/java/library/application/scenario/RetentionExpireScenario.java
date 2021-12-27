@@ -1,7 +1,7 @@
 package library.application.scenario;
 
 import library.application.service.retention.RetentionRecordService;
-import library.domain.model.material.item.ItemNumber;
+import library.domain.model.retention.RetentionNumber;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,7 +19,7 @@ public class RetentionExpireScenario {
     /**
      * 取置の期限切れ
      */
-    public void expire(ItemNumber itemNumber) {
-        retentionRecordService.releaseAndExpire(itemNumber);
+    public void expire(RetentionNumber retentionNumber) {
+        retentionRecordService.releaseAndExpire(retentionNumber);
     }
 }

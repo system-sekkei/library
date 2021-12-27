@@ -8,6 +8,7 @@ import library.domain.model.reservation.Reservation;
 import library.domain.model.retention.MaterialMatching;
 import library.domain.model.retention.RetainedList;
 import library.domain.model.retention.Retention;
+import library.domain.model.retention.RetentionNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -85,8 +86,8 @@ public class RetentionController {
     }
 
     @PostMapping(value = "loans", params = {"expired"})
-    String expired(@RequestParam("expired")ItemNumber itemNumber) {
-        retentionExpireScenario.expire(itemNumber);
+    String expired(@RequestParam("expired") RetentionNumber retentionNumber) {
+        retentionExpireScenario.expire(retentionNumber);
         return "redirect:/retentions";
     }
 

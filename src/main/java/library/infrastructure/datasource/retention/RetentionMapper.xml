@@ -42,7 +42,7 @@
         ORDER BY 取置日
     </select>
 
-    <select id="select準備完了" resultMap="準備完了">
+    <select id="select準備完了by所蔵品番号" resultMap="準備完了">
         SELECT
             取置.所蔵品番号 AS "itemNumber.value",
             _取置と会員.会員番号 AS "memberNumber.value",
@@ -52,6 +52,18 @@
         INNER JOIN 会員._取置と会員 ON _準備完了.取置番号 = _取置と会員.取置番号
         INNER JOIN 取置.取置 ON _準備完了.取置番号 = 取置.取置番号
         WHERE 取置.所蔵品番号 = #{value}
+    </select>
+
+    <select id="select準備完了" resultMap="準備完了">
+        SELECT
+            取置.所蔵品番号 AS "itemNumber.value",
+            _取置と会員.会員番号 AS "memberNumber.value",
+            _準備完了.取置番号 AS "retentionNumber.value",
+            取置.取置日 AS "retainedDate.value"
+        FROM 取置._準備完了
+                 INNER JOIN 会員._取置と会員 ON _準備完了.取置番号 = _取置と会員.取置番号
+                 INNER JOIN 取置.取置 ON _準備完了.取置番号 = 取置.取置番号
+        WHERE 取置.取置番号 = #{value}
     </select>
 
     <insert id="insert取置解放">

@@ -25,7 +25,8 @@ public interface RetentionMapper {
 
     List<Retained> selectAll準備完了();
 
-    Retained select準備完了(ItemNumber itemNumber);
+    Retained select準備完了by所蔵品番号(ItemNumber itemNumber);
+    Retained select準備完了(RetentionNumber retentionNumber);
     void delete準備完了(RetentionNumber retentionNumber);
 
     void insert取置解放(RetentionNumber retentionNumber);

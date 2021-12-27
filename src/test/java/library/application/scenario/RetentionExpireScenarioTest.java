@@ -7,6 +7,7 @@ import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
+import library.domain.model.retention.Retained;
 import library.domain.model.retention.Retention;
 import library.infrastructure.datasource.retention.RetentionDatasource;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,9 @@ class RetentionExpireScenarioTest {
         Retention 未準備の予約された所蔵品 = new Retention(reservation.reservationNumber(), itemNumber);
         retentionScenario.retain(未準備の予約された所蔵品);
 
-        retentionExpireScenario.expire(itemNumber);
+        Retained retained = retentionDatasource.findBy(itemNumber);
+
+        retentionExpireScenario.expire(retained.retentionNumber());
 
         assertTrue(retentionDatasource.retentions().isEmpty());
     }

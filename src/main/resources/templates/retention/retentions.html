@@ -32,7 +32,7 @@
           <th:block th:case="true">
             <td>
               <mark><span th:text="${retained.showExpireDate()}"></span></mark>
-              <button type="submit" name="expired" th:value="${retained.itemNumber()}">期限切れ処理</button>
+              <button type="submit" name="expired" th:value="${retained.retentionNumber()}">期限切れ処理</button>
             </td>
           </th:block>
         </th:block>
