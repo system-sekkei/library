@@ -1,10 +1,14 @@
 package library.domain.model.loan;
 
 /**
- * 貸出冊数
+ * 貸出点数
  */
 public class NumberOfLoans {
     int value;
+
+    public static final NumberOfLoans _5点 = of(5);
+    public static final NumberOfLoans _15点 = of(15);
+    public static final NumberOfLoans _20点 = of(20);
 
     public NumberOfLoans(int value) {
         this.value = value;

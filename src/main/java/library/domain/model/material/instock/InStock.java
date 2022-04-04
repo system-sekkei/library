@@ -7,10 +7,10 @@ public enum InStock {
     在庫あり("〇"),
     在庫なし("×");
 
-    String label;
+    String 表記;
 
-    InStock(String label) {
-        this.label = label;
+    InStock(String 表記) {
+        this.表記 = 表記;
     }
     public static InStock 在庫有無(StockQuantity 在庫数) {
         if (在庫数.value > 0) return 在庫あり;
@@ -18,6 +18,6 @@ public enum InStock {
     }
 
     public String show() {
-        return label;
+        return 表記;
     }
 }

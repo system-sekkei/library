@@ -1,4 +1,4 @@
 /**
- * 主たる業務活動の流れ
+ * 業務活動の流れ
  */
 package library.application.scenario;
