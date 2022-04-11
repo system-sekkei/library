@@ -3,6 +3,7 @@ package library.infrastructure.datasource.retention;
 import library.application.service.retention.RetentionRepository;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.reservation.Reservation;
+import library.domain.model.reservation.ReservationStatus;
 import library.domain.model.retention.*;
 import library.infrastructure.datasource.item.ItemMapper;
 import library.infrastructure.datasource.member.MemberMapper;
@@ -35,6 +36,11 @@ public class RetentionDatasource implements RetentionRepository {
     @Override
     public Retained findBy(ItemNumber itemNumber) {
         return retentionMapper.select準備完了by所蔵品番号(itemNumber);
+    }
+
+    @Override
+    public void ensureStatus(ReservationStatus expected) {
+        // TODO 実装
     }
 
     @Override
