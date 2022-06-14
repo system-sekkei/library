@@ -26,7 +26,8 @@ dependencies {
 
     testImplementation('com.github.irof:jig-erd:latest.release')
 
-    runtimeOnly("com.h2database:h2")
+    // https://github.com/irof/jig-erd/issues/90 暫定対応
+    runtimeOnly("com.h2database:h2:1.4.200")
     runtimeOnly("org.postgresql:postgresql")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
