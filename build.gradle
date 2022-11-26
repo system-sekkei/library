@@ -25,18 +25,18 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-validation")
-    runtimeOnly("org.springframework.boot:spring-boot-starter-thymeleaf")
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    runtimeOnly 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
 
-    testImplementation('com.github.irof:jig-erd:latest.release')
+    testImplementation 'com.github.irof:jig-erd:latest.release'
 
-    runtimeOnly("com.h2database:h2")
-    runtimeOnly("org.postgresql:postgresql")
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
 
-    testImplementation "org.springframework.boot:spring-boot-starter-test"
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
@@ -45,4 +45,3 @@ tasks.named('test') {
 
 [compileJava, processResources]*.shouldRunAfter(clean)
 jigReports.dependsOn(clean, classes)
-
