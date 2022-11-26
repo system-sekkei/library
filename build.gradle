@@ -1,8 +1,15 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+
 plugins {
     id 'java'
-    id "io.spring.dependency-management" version "1.0.11.RELEASE"
-    id 'org.springframework.boot' version '2.7.0'
-    id 'org.dddjava.jig-gradle-plugin' version '2022.6.1'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.dddjava.jig-gradle-plugin' version '2022.10.3'
 }
 
 sourceCompatibility = '17'
@@ -22,24 +29,18 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     runtimeOnly("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2")
+    implementation("org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0")
 
     testImplementation('com.github.irof:jig-erd:latest.release')
 
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
 
-    testImplementation("org.springframework.boot:spring-boot-starter-test") {
-        exclude(group: 'org.junit.vintage')
-    }
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
-}
-
-jig {
-    linkPrefix = "https://github.com/system-sekkei/library/tree/master/src/main/java"
 }
 
 [compileJava, processResources]*.shouldRunAfter(clean)

@@ -3,7 +3,7 @@ package library.domain.model.reservation.request;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * 予約依頼

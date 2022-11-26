@@ -3,7 +3,7 @@ package library.domain.model.loan;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * 貸出依頼

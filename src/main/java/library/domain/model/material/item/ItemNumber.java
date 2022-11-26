@@ -1,6 +1,6 @@
 package library.domain.model.material.item;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * 所蔵品番号

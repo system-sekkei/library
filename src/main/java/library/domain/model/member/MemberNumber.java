@@ -1,6 +1,6 @@
 package library.domain.model.member;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * 会員番号
