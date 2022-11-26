@@ -43,5 +43,9 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+tasks.named('build').configure {
+    mustRunAfter(tasks.named('clean'))
+}
+
 [compileJava, processResources]*.shouldRunAfter(clean)
 jigReports.dependsOn(clean, classes)
