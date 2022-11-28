@@ -9,11 +9,13 @@ import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.material.item.ItemLoanability;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.member.MemberStatus;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static library.domain.model.member.MemberStatus.有効;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -27,6 +29,15 @@ class LoanScenarioTest {
 
     @Autowired
     ReturnsScenario returnsScenario;
+
+    @Test
+    void 会員番号の有効性を確認する() {
+        LoanRequest loanRequest =
+                generate(1, "2-A", "2020-02-20");
+        MemberStatus memberStatus = loanScenario.memberStatus(loanRequest);
+
+        assertTrue(memberStatus == 有効);
+    }
 
     @Test
     void 図書を貸し出す() {
