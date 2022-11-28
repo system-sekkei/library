@@ -6,6 +6,7 @@ import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.loan.LoanRequest;
+import library.domain.model.loan.rule.ItemLoanability;
 import library.domain.model.loan.rule.LoanStatus;
 import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.item.*;
@@ -70,6 +71,6 @@ public class LoanScenario {
         Item 借りたい所蔵品 = itemQueryService.findBy(itemNumber);
         ItemWithStatus 借りたい所蔵品とその状態 = new ItemWithStatus(借りたい所蔵品, 所蔵品の状態);
 
-        return 借りたい所蔵品とその状態.貸出可能かどうか();
+        return ItemLoanability.貸出可能かどうか(借りたい所蔵品とその状態);
     }
 }
