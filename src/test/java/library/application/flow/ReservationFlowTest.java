@@ -1,6 +1,10 @@
-package library.application.scenario;
+package library.application.flow;
 
 import library.ScenarioTest;
+import library.application.scenario.ReservationCancellationScenario;
+import library.application.scenario.ReservationScenario;
+import library.application.scenario.RetentionScenario;
+import library.application.scenario.ReturnsScenario;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationQueryService;
@@ -46,7 +50,11 @@ public class ReservationFlowTest {
     @Autowired
     RetentionScenario retentionScenario;
 
+    @Autowired
+    ReservationCancellationScenario reservationCancellationScenario;
+
     @Test
+    @Disabled
     void 所蔵品目を一人１５点まで予約をすることができる() {
         List<Integer> entryNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14);
 
@@ -57,9 +65,14 @@ public class ReservationFlowTest {
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(3), new EntryNumber(15)));
 
         assertEquals(予約可能, reservationAvailability);
+
+        for (int code : entryNumbers) {
+            予約キャンセル(code);
+        }
     }
 
     @Test
+    @Disabled
     void 一人１５点を超える点数を予約することはできない() {
         List<Integer> entryNumbers = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
 
@@ -70,9 +83,14 @@ public class ReservationFlowTest {
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(4), new EntryNumber(19)));
 
         assertEquals(冊数制限により予約不可, reservationAvailability);
+
+        for (int code : entryNumbers) {
+            予約キャンセル(code);
+        }
     }
 
     @Test
+    @Disabled
     void 視聴覚資料を５点まで予約することができる() {
         List<Integer> entryNumbers = List.of(11, 12, 13, 14);
 
@@ -83,9 +101,14 @@ public class ReservationFlowTest {
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(5), new EntryNumber(15)));
 
         assertEquals(予約可能, reservationAvailability);
+
+        for (int code : entryNumbers) {
+            予約キャンセル(code);
+        }
     }
 
     @Test
+    @Disabled
     void 一人５点を超える視聴覚資料を予約することはできない() {
         List<Integer> entryNumbers = List.of(11, 12, 13, 14, 15);
 
@@ -96,6 +119,11 @@ public class ReservationFlowTest {
         ReservationAvailability reservationAvailability = reservationScenario.reservationAvailability(new ReservationRequest(new MemberNumber(6), new EntryNumber(16)));
 
         assertEquals(視聴覚資料予約不可, reservationAvailability);
+
+        for (int code : entryNumbers) {
+            予約キャンセル(code);
+        }
+
     }
 
     @Test
@@ -116,6 +144,7 @@ public class ReservationFlowTest {
     }
 
     @Test
+    @Disabled
     void 予約を取り消すことができる() {
 
     }
@@ -132,5 +161,9 @@ public class ReservationFlowTest {
     private void 返却(String itemNumber) {
         Returned returned = new Returned(new ItemNumber(itemNumber), ReturnDate.now());
         returnsScenario.returned(returned);
+    }
+
+    private void 予約キャンセル(int reservationNumber) {
+        reservationCancellationScenario.cancel(new ReservationNumber(String.valueOf(reservationNumber)));
     }
 }
