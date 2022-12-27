@@ -4,9 +4,14 @@ import library.ScenarioTest;
 import library.application.service.reservation.ReservationQueryService;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
+import library.domain.model.material.entry.Keyword;
+import library.domain.model.material.instock.EntryInStockList;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
+import library.domain.model.member.MemberStatus;
 import library.domain.model.reservation.ReservationNumber;
+import library.domain.model.reservation.availability.ReservationAvailability;
+import library.domain.model.reservation.request.ReservationRequest;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.retention.Retention;
 import library.domain.model.returned.ReturnDate;
@@ -15,6 +20,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static library.domain.model.material.entry.EntryType.図書;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ScenarioTest
@@ -32,7 +38,41 @@ public class ReservationScenarioTest {
     RetentionScenario retentionScenario;
 
     @Test
-    void 所蔵品目を予約をする() {
+    void 本を探す() {
+        EntryInStockList 検索結果 = reservationScenario.search(new Keyword("オブジェクト指向"));
+
+        assertEquals(検索結果.size(), 2);
+    }
+
+    @Test
+    void 本を見つける() {
+        EntryNumber entryNumber = new EntryNumber(2);
+        Entry 所蔵品目 = reservationScenario.findMaterial(entryNumber);
+
+        assertTrue(所蔵品目.entryNumber().sameValue(entryNumber));
+    }
+
+    @Test
+    void 会員番号の有効性を確認する() {
+        MemberNumber memberNumber = new MemberNumber(2);
+        MemberStatus memberStatus = reservationScenario.memberStatus(memberNumber);
+
+        assertEquals(MemberStatus.有効, memberStatus);
+    }
+
+    @Test
+    void 予約制限を判断する() {
+        EntryNumber entryNumber = new EntryNumber(2);
+        MemberNumber memberNumber = new MemberNumber(2);
+
+        ReservationRequest 予約依頼 = new ReservationRequest(memberNumber, entryNumber);
+        ReservationAvailability 予約可否 = reservationScenario.reservationAvailability(予約依頼);
+
+        assertEquals(ReservationAvailability.予約可能, 予約可否);
+    }
+
+    @Test
+    void 予約を記録する() {
         EntryNumber entryNumber = new EntryNumber(2);
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
