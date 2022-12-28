@@ -1,4 +1,4 @@
-package library.application.scenario;
+package library.application.scenario.returns;
 
 import library.application.service.returns.ReturnMaterialRecordService;
 import library.domain.model.returned.Returned;

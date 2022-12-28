@@ -1,4 +1,4 @@
-package library.application.scenario;
+package library.application.scenario.reservation;
 
 import library.application.service.reservation.ReservationQueryService;
 import library.application.service.reservation.ReservationRecordService;

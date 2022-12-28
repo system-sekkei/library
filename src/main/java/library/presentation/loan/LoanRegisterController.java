@@ -1,6 +1,6 @@
 package library.presentation.loan;
 
-import library.application.scenario.LoanScenario;
+import library.application.scenario.loan.LoanScenario;
 import library.domain.model.loan.rule.ItemLoanability;
 import library.domain.model.loan.LoanRequest;
 import library.domain.model.loan.rule.LoanStatus;

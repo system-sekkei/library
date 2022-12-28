@@ -1,6 +1,8 @@
 package library.application.scenario;
 
 import library.ScenarioTest;
+import library.application.scenario.retention.RetentionScenario;
+import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.reservation.ReservationRecordService;
 import library.domain.model.loan.Loan;

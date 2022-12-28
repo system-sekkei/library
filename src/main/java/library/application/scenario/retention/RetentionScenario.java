@@ -1,4 +1,4 @@
-package library.application.scenario;
+package library.application.scenario.retention;
 
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanRecordService;

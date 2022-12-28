@@ -1,6 +1,6 @@
 package library.presentation.reservation;
 
-import library.application.scenario.ReservationScenario;
+import library.application.scenario.reservation.ReservationScenario;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;
 import library.domain.model.member.MemberNumber;

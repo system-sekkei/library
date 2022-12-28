@@ -1,6 +1,6 @@
 package library.presentation.returns;
 
-import library.application.scenario.ReturnsScenario;
+import library.application.scenario.returns.ReturnsScenario;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;

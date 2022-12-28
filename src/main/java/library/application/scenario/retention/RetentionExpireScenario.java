@@ -1,4 +1,4 @@
-package library.application.scenario;
+package library.application.scenario.retention;
 
 import library.application.service.retention.RetentionRecordService;
 import library.domain.model.retention.RetentionNumber;

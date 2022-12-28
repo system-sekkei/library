@@ -1,6 +1,9 @@
 package library.application.scenario;
 
 import library.ScenarioTest;
+import library.application.scenario.reservation.ReservationScenario;
+import library.application.scenario.retention.RetentionScenario;
+import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.reservation.ReservationQueryService;
 import library.domain.model.material.entry.Entry;
 import library.domain.model.material.entry.EntryNumber;

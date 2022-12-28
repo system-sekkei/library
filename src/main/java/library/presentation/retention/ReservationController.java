@@ -1,7 +1,7 @@
 package library.presentation.retention;
 
-import library.application.scenario.ReservationCancellationScenario;
-import library.application.scenario.RetentionScenario;
+import library.application.scenario.reservation.ReservationCancellationScenario;
+import library.application.scenario.retention.RetentionScenario;
 import library.domain.model.reservation.Reservation;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;

@@ -1,10 +1,10 @@
 package library.application.flow;
 
 import library.ScenarioTest;
-import library.application.scenario.ReservationCancellationScenario;
-import library.application.scenario.ReservationScenario;
-import library.application.scenario.RetentionScenario;
-import library.application.scenario.ReturnsScenario;
+import library.application.scenario.reservation.ReservationCancellationScenario;
+import library.application.scenario.reservation.ReservationScenario;
+import library.application.scenario.retention.RetentionScenario;
+import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.material.MaterialQueryService;
 import library.application.service.member.MemberQueryService;
 import library.application.service.reservation.ReservationQueryService;

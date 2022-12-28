@@ -1,7 +1,7 @@
 package library.application.service.returns;
 
 import library.LibraryDBTest;
-import library.application.scenario.LoanScenario;
+import library.application.scenario.loan.LoanScenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.loan.LoanRecordService;
 import library.application.service.member.MemberQueryService;

@@ -1,7 +1,7 @@
 package library.presentation.retention;
 
-import library.application.scenario.RetentionExpireScenario;
-import library.application.scenario.RetentionScenario;
+import library.application.scenario.retention.RetentionExpireScenario;
+import library.application.scenario.retention.RetentionScenario;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.material.item.ItemStatus;
 import library.domain.model.reservation.Reservation;

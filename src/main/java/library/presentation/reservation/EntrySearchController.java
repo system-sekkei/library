@@ -1,6 +1,6 @@
 package library.presentation.reservation;
 
-import library.application.scenario.ReservationScenario;
+import library.application.scenario.reservation.ReservationScenario;
 import library.domain.model.material.entry.Keyword;
 import library.domain.model.material.instock.EntryInStockList;
 import org.springframework.stereotype.Controller;

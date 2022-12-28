@@ -1,8 +1,8 @@
 package library.application.flow;
 
 import library.ScenarioTest;
-import library.application.scenario.LoanScenario;
-import library.application.scenario.ReturnsScenario;
+import library.application.scenario.loan.LoanScenario;
+import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.loan.LoanQueryService;
 import library.domain.model.loan.Loan;
 import library.domain.model.loan.LoanDate;
