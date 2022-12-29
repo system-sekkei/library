@@ -15,6 +15,9 @@ import org.springframework.stereotype.Service;
 
 /**
  * 貸出シナリオ
+ *
+ * 貸出可否を判定する。
+ * 貸出を登録する。
  */
 @Service
 public class LoanScenario {
