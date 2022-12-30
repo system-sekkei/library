@@ -1,15 +1,14 @@
-package library.application.flow;
+package library.application.scenario.loan;
 
 import library.ScenarioTest;
-import library.application.scenario.loan.LoanScenario;
 import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.member.MemberQueryService;
 import library.domain.model.loan.LoanDate;
 import library.domain.model.loan.LoanRequest;
-import library.domain.model.loan.rule.Loanability;
 import library.domain.model.loan.rule.ItemLoanability;
+import library.domain.model.loan.rule.Loanability;
 import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.returned.ReturnDate;

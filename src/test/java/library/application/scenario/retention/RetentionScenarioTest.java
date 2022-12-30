@@ -1,7 +1,6 @@
-package library.application.scenario;
+package library.application.scenario.retention;
 
 import library.ScenarioTest;
-import library.application.scenario.retention.RetentionScenario;
 import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.loan.LoanQueryService;
 import library.application.service.reservation.ReservationRecordService;
@@ -11,10 +10,10 @@ import library.domain.model.material.item.ItemNumber;
 import library.domain.model.member.MemberNumber;
 import library.domain.model.reservation.ReservationNumber;
 import library.domain.model.reservation.request.ReservationRequest;
-import library.domain.model.retention.Retained;
-import library.domain.model.retention.Retention;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrder;
 import library.domain.model.reservation.wait.ReservationWithWaitingOrderList;
+import library.domain.model.retention.Retained;
+import library.domain.model.retention.Retention;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import library.infrastructure.datasource.retention.RetentionDatasource;

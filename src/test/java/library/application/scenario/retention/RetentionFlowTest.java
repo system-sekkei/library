@@ -1,8 +1,7 @@
-package library.application.flow;
+package library.application.scenario.retention;
 
 import library.ScenarioTest;
 import library.application.scenario.loan.LoanScenario;
-import library.application.scenario.retention.RetentionScenario;
 import library.application.scenario.returns.ReturnsScenario;
 import library.application.service.item.ItemQueryService;
 import library.application.service.loan.LoanQueryService;
