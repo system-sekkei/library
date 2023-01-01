@@ -18,6 +18,36 @@ Resources:
           Value: !Ref Flavor
         - Key: Name
           Value: !Sub "${Flavor}VPC"
+  # RouteTable
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}RouteTable"
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}InternetGateway"
+  VPCGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: !Ref VPC
+      InternetGatewayId: !Ref InternetGateway
+  PublicRouteViaInternetGateway:
+    Type: AWS::EC2::Route
+    DependsOn: VPCGatewayAttachment # Attachした後でないとInternetGatewayと繋げられないので明示する必要がある
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
   # Subnet: ALBが使うので2つのAZが必要
   PublicSubnetAz1:
     Type: AWS::EC2::Subnet
@@ -31,6 +61,11 @@ Resources:
           Value: !Ref Flavor
         - Key: Name
           Value: !Sub "${Flavor}PublicSubnet1"
+  PublicSubnetAz1SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTable
+      SubnetId: !Ref PublicSubnetAz1
   PublicSubnetAz2:
     Type: AWS::EC2::Subnet
     Properties:
@@ -43,3 +78,8 @@ Resources:
           Value: !Ref Flavor
         - Key: Name
           Value: !Sub "${Flavor}PublicSubnet2"
+  PublicSubnetAz2SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: !Ref RouteTable
+      SubnetId: !Ref PublicSubnetAz2
