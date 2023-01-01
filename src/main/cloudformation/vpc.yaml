@@ -13,3 +13,5 @@ Resources:
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}VPC"
