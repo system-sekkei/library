@@ -18,7 +18,7 @@ Resources:
           Value: !Ref Flavor
         - Key: Name
           Value: !Sub "${Flavor}VPC"
-  # ALBが使うので2つのAZが必要
+  # Subnet: ALBが使うので2つのAZが必要
   PublicSubnetAz1:
     Type: AWS::EC2::Subnet
     Properties:
