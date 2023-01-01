@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "library vpc"
+Parameters:
+  Flavor:
+    Type: String
+    Default: Library
+
+Resources:
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.1.0.0/16
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
