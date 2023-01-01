@@ -4,6 +4,9 @@ Parameters:
   Flavor:
     Type: String
     Default: Library
+  VpcAvailabilityZones:
+    Type: CommaDelimitedList
+    Default: "ap-northeast-1a,ap-northeast-1c"
 
 Resources:
   VPC:
@@ -15,23 +18,26 @@ Resources:
           Value: !Ref Flavor
         - Key: Name
           Value: !Sub "${Flavor}VPC"
-  PublicSubnet1:
+  # ALBが使うので2つのAZが必要
+  PublicSubnetAz1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.1.1.0/24
+      CidrBlock: 10.1.11.0/24
       MapPublicIpOnLaunch: true
+      AvailabilityZone: !Select [ 0, !Ref VpcAvailabilityZones ]
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}PublicSubnet2"
-  PublicSubnet2:
+          Value: !Sub "${Flavor}PublicSubnet1"
+  PublicSubnetAz2:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.1.2.0/24
+      CidrBlock: 10.1.12.0/24
       MapPublicIpOnLaunch: true
+      AvailabilityZone: !Select [ 1, !Ref VpcAvailabilityZones ]
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
