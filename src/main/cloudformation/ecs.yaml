@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "library vpc"
+Parameters:
+  Flavor:
+    Type: String
+    Default: Library
+  VpcStack:
+    Type: String
+    Default: "library-vpc"
+Resources:
+  Cluster:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterName: !Sub "${Flavor}Cluster"
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
