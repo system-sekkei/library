@@ -3,7 +3,7 @@ Description: "library vpc"
 Parameters:
   Flavor:
     Type: String
-    Default: Library
+    Default: library
   VpcAvailabilityZones:
     Type: CommaDelimitedList
     Default: "ap-northeast-1a,ap-northeast-1c"
@@ -17,7 +17,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}VPC"
+          Value: !Sub "${Flavor}-vpc"
   # RouteTable
   RouteTable:
     Type: AWS::EC2::RouteTable
@@ -27,7 +27,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}RouteTable"
+          Value: !Sub "${Flavor}-route-table"
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -35,7 +35,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}InternetGateway"
+          Value: !Sub "${Flavor}-internet-gateway"
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
@@ -49,7 +49,7 @@ Resources:
       DestinationCidrBlock: 0.0.0.0/0
       GatewayId: !Ref InternetGateway
   # Subnet: ALBが使うので2つのAZが必要
-  PublicSubnetAz1:
+  PublicSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
@@ -60,13 +60,13 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}PublicSubnet1"
+          Value: !Sub "${Flavor}-public-subnet-1"
   PublicSubnetAz1SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       RouteTableId: !Ref RouteTable
-      SubnetId: !Ref PublicSubnetAz1
-  PublicSubnetAz2:
+      SubnetId: !Ref PublicSubnet1
+  PublicSubnet2:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
@@ -77,22 +77,22 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}PublicSubnet2"
+          Value: !Sub "${Flavor}-public-subnet-2"
   PublicSubnetAz2SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
       RouteTableId: !Ref RouteTable
-      SubnetId: !Ref PublicSubnetAz2
+      SubnetId: !Ref PublicSubnet2
 Outputs:
   VPC:
     Value: !Ref VPC
     Export:
       Name: !Sub "${AWS::StackName}:VPC"
-  PublicSubnetAz1:
-    Value: !Ref PublicSubnetAz1
+  PublicSubnet1:
+    Value: !Ref PublicSubnet1
     Export:
       Name: !Sub "${AWS::StackName}:PublicSubnet1"
-  PublicSubnetAz2:
-    Value: !Ref PublicSubnetAz2
+  PublicSubnet2:
+    Value: !Ref PublicSubnet2
     Export:
       Name: !Sub "${AWS::StackName}:PublicSubnet2"

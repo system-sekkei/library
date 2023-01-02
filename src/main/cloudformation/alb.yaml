@@ -3,7 +3,7 @@ Description: "library vpc"
 Parameters:
   Flavor:
     Type: String
-    Default: Library
+    Default: library
   VpcStack:
     Type: String
     Default: "library-vpc"
@@ -12,8 +12,8 @@ Resources:
   PublicALBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub "${Flavor}PublicALBSecurityGroup"
-      GroupDescription: !Sub "${Flavor}PublicALBSecurityGroup"
+      GroupName: !Sub "${Flavor}-public-alb-security-group"
+      GroupDescription: !Sub "${Flavor} public ALB SecurityGroup"
       VpcId: !ImportValue
         Fn::Sub: "${VpcStack}:VPC"
       SecurityGroupEgress:
@@ -30,11 +30,11 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}PublicALBSecurityGroup"
-  ALB:
+          Value: !Sub "${Flavor}-public-alb-security-group"
+  PublicALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: !Sub "${Flavor}ApplicationLoadBalancer"
+      Name: !Sub "${Flavor}-alb"
       Type: application
       Scheme: internet-facing
       IpAddressType: ipv4
@@ -48,10 +48,10 @@ Resources:
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
-  ALBHttpListener:
+  PublicALBHttpListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
-      LoadBalancerArn: !Ref ALB
+      LoadBalancerArn: !Ref PublicALB
       Port: 80
       Protocol: HTTP
       DefaultActions:
@@ -61,9 +61,9 @@ Resources:
             StatusCode: 418
             MessageBody: Would you like a cup of coffee?
 Outputs:
-  ALB:
-    Value: !Ref ALB
+  PublicALB:
+    Value: !Ref PublicALB
     Export:
-      Name: !Sub "${AWS::StackName}:ALB"
-  DNSName:
-    Value: !GetAtt ALB.DNSName
+      Name: !Sub "${AWS::StackName}:PublicALB"
+  PublicALBDNSName:
+    Value: !GetAtt PublicALB.DNSName
