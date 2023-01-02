@@ -3,7 +3,7 @@ Description: "library vpc"
 Parameters:
   Flavor:
     Type: String
-    Default: Library
+    Default: library
   VpcStack:
     Type: String
     Default: "library-vpc"
@@ -11,10 +11,40 @@ Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: !Sub "${Flavor}Cluster"
+      ClusterName: !Sub "${Flavor}-cluster"
       ClusterSettings:
         - Name: containerInsights
           Value: enabled
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
+  WebContainerRepository:
+   Type: AWS::ECR::Repository
+   DeletionPolicy: Retain # 手動で削除する
+   Properties:
+     RepositoryName: !Sub "${Flavor}-web"
+     ImageTagMutability: MUTABLE
+     LifecyclePolicy:
+       LifecyclePolicyText: |
+         {
+           "rules": [
+             {
+               "rulePriority": 1,
+               "description": "delete untagged image",
+               "selection": {
+                 "tagStatus": "untagged",
+                 "countType": "imageCountMoreThan",
+                 "countNumber": 3
+               },
+               "action": {
+                 "type": "expire"
+               }
+             }
+           ]
+         }
+
+Outputs:
+  Cluster:
+    Value: !Ref Cluster
+    Export:
+      Name: !Sub "${AWS::StackName}:Cluster"
