@@ -65,6 +65,10 @@ Outputs:
     Value: !Ref PublicALB
     Export:
       Name: !Sub "${AWS::StackName}:PublicALB"
+  PublicALBHttpListener:
+    Value: !Ref PublicALBHttpListener
+    Export:
+      Name: !Sub "${AWS::StackName}:PublicALBHttpListener"
   PublicALBSecurityGroup:
     Value: !Ref PublicALBSecurityGroup
     Export:

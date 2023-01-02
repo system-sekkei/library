@@ -1,0 +1,118 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "library vpc"
+Parameters:
+  Flavor:
+    Type: String
+    Default: Library
+  VpcStack:
+    Type: String
+    Default: "library-vpc"
+  AlbStack:
+    Type: String
+    Default: "library-alb"
+  EcsStack:
+    Type: String
+    Default: "library-ecs"
+  DesiredCount:
+    Type: Number
+    Default: 0
+
+Resources:
+  # ECSが使用するTargetGroup
+  ServiceTargetGroup:
+    Type: AWS::ElasticLoadBalancingV2::TargetGroup
+    Properties:
+      Name: !Sub "${Flavor}-ecs-web-target-group"
+      VpcId: !ImportValue
+        Fn::Sub: "${VpcStack}:VPC"
+      TargetType: ip
+      IpAddressType: ipv4
+      Protocol: HTTP
+      ProtocolVersion: HTTP1
+      Port: 8080
+      HealthCheckPath: /actuator/health
+      HealthCheckProtocol: HTTP
+      HealthCheckPort: 8080
+      HealthCheckIntervalSeconds: 30
+      HealthCheckTimeoutSeconds: 10
+      HealthyThresholdCount: 2 # minimum
+      UnhealthyThresholdCount: 10 # maximum
+      Matcher:
+        HttpCode: 200-499
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+  # TargetGroupへのListenerRule
+  ServiceTargetGroupListenerRule:
+    Type: AWS::ElasticLoadBalancingV2::ListenerRule
+    Properties:
+      ListenerArn: !ImportValue
+        Fn::Sub: "${AlbStack}:PublicALBHttpListener"
+      Priority: 1
+      Conditions:
+        - Field: path-pattern
+          PathPatternConfig:
+            Values:
+              - "*"
+      Actions:
+        - Type: forward
+          TargetGroupArn: !Ref ServiceTargetGroup
+
+  ServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    DependsOn: ServiceTargetGroupListenerRule
+    Properties:
+      GroupName: !Sub "${Flavor}-ecs-web-service-security-group"
+      GroupDescription: !Sub "${Flavor} public ALB SecurityGroup"
+      VpcId: !ImportValue
+        Fn::Sub: "${VpcStack}:VPC"
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: all egress allowed
+          IpProtocol: -1
+      SecurityGroupIngress:
+        - Description: ingress from alb
+          IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          SourceSecurityGroupId: !ImportValue
+            Fn::Sub: "${AlbStack}:PublicALBSecurityGroup"
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}-ecs-web-service-security-group"
+  Service:
+    Type: AWS::ECS::Service
+    Properties:
+      ServiceName: !Sub "${Flavor}-ecs-web-service"
+      Cluster: !ImportValue
+        Fn::Sub: "${EcsStack}:Cluster"
+      TaskDefinition: "irof-sparrow:2"
+      DesiredCount: !Ref DesiredCount
+      LaunchType: FARGATE
+      PlatformVersion: LATEST
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - !Ref ServiceSecurityGroup
+          Subnets:
+            - !ImportValue
+                Fn::Sub: "${VpcStack}:PublicSubnet1"
+            - !ImportValue
+                Fn::Sub: "${VpcStack}:PublicSubnet2"
+      LoadBalancers:
+        - TargetGroupArn: !Ref ServiceTargetGroup
+          ContainerName: app # TODO TaskDefinitionから持ってきたい
+          ContainerPort: 8080
+      DeploymentController:
+        Type: ECS
+      DeploymentConfiguration:
+        MinimumHealthyPercent: 100
+        MaximumPercent: 200
+        DeploymentCircuitBreaker: # DeploymentController=ECS(rolling update)でのみ使用可能
+          Enable: true
+          Rollback: true
+      EnableECSManagedTags: true
+      PropagateTags: SERVICE
