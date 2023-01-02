@@ -24,11 +24,6 @@ Resources:
           IpProtocol: -1
       SecurityGroupIngress:
         - CidrIp: 0.0.0.0/0
-          Description: http ingress (provisional)
-          IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-        - CidrIp: 0.0.0.0/0
           Description: https ingress
           IpProtocol: tcp
           FromPort: 443
@@ -55,18 +50,6 @@ Resources:
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
-  PublicALBHttpListener:
-    Type: AWS::ElasticLoadBalancingV2::Listener
-    Properties:
-      LoadBalancerArn: !Ref PublicALB
-      Port: 80
-      Protocol: HTTP
-      DefaultActions:
-        - Type: fixed-response
-          FixedResponseConfig:
-            ContentType: text/plain
-            StatusCode: 418
-            MessageBody: Would you like a cup of coffee?
   PublicALBHttpsListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
@@ -87,12 +70,8 @@ Outputs:
     Value: !Ref PublicALB
     Export:
       Name: !Sub "${AWS::StackName}:PublicALB"
-  PublicALBHttpListener:
-    Value: !Ref PublicALBHttpListener
-    Export:
-      Name: !Sub "${AWS::StackName}:PublicALBHttpListener"
   PublicALBHttpsListener:
-    Value: !Ref PublicALBHttpListener
+    Value: !Ref PublicALBHttpsListener
     Export:
       Name: !Sub "${AWS::StackName}:PublicALBHttpsListener"
   PublicALBSecurityGroup:

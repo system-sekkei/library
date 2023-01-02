@@ -26,6 +26,8 @@ Parameters:
   ApplicationContainerName:
     Type: String
     Default: "application"
+  HostName: # DNS登録済みのホスト名のパターン
+    Type: String
 
 Resources:
   # ECSが使用するTargetGroup
@@ -57,13 +59,13 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
     Properties:
       ListenerArn: !ImportValue
-        Fn::Sub: "${AlbStack}:PublicALBHttpListener"
+        Fn::Sub: "${AlbStack}:PublicALBHttpsListener"
       Priority: 1
       Conditions:
-        - Field: path-pattern
-          PathPatternConfig:
+        - Field: host-header
+          HostHeaderConfig:
             Values:
-              - "*"
+              - !Ref HostName
       Actions:
         - Type: forward
           TargetGroupArn: !Ref ServiceTargetGroup
