@@ -1,9 +1,16 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "library vpc"
+Description: "library ecs web"
 Parameters:
   Flavor:
     Type: String
-    Default: Library
+    Default: "library"
+  Tier:
+    Type: String
+    Default: development
+    AllowedValues:
+      - development
+      - staging
+      - production
   VpcStack:
     Type: String
     Default: "library-vpc"
@@ -16,6 +23,9 @@ Parameters:
   DesiredCount:
     Type: Number
     Default: 0
+  ApplicationContainerName:
+    Type: String
+    Default: "application"
 
 Resources:
   # ECSが使用するTargetGroup
@@ -88,7 +98,7 @@ Resources:
       ServiceName: !Sub "${Flavor}-ecs-web-service"
       Cluster: !ImportValue
         Fn::Sub: "${EcsStack}:Cluster"
-      TaskDefinition: "irof-sparrow:2"
+      TaskDefinition: !Ref TaskDefinition
       DesiredCount: !Ref DesiredCount
       LaunchType: FARGATE
       PlatformVersion: LATEST
@@ -104,7 +114,7 @@ Resources:
                 Fn::Sub: "${VpcStack}:PublicSubnet2"
       LoadBalancers:
         - TargetGroupArn: !Ref ServiceTargetGroup
-          ContainerName: app # TODO TaskDefinitionから持ってきたい
+          ContainerName: !Ref ApplicationContainerName
           ContainerPort: 8080
       DeploymentController:
         Type: ECS
@@ -116,3 +126,45 @@ Resources:
           Rollback: true
       EnableECSManagedTags: true
       PropagateTags: SERVICE
+
+  LogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/ecs/${Flavor}/${Tier}/web"
+  TaskDefinition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      Family: !Sub "${Flavor}-ecs-web-task"
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        OperatingSystemFamily: LINUX
+        CpuArchitecture: X86_64
+      Cpu: 256
+      Memory: 512
+      NetworkMode: awsvpc
+      ExecutionRoleArn: !Sub "arn:aws:iam::${AWS::AccountId}:role/ecsTaskExecutionRole" # なかったら作っておく
+      #TaskRoleArn: String
+      ContainerDefinitions:
+        - Name: !Ref ApplicationContainerName
+          Image: irof/sparrow:web
+          Environment:
+            - Name: SPRING_PROFILES_ACTIVE
+              Value: !Sub "${Flavor},${Tier},aws"
+            - Name: BPL_JVM_THREAD_COUNT
+              Value: 50
+          PortMappings:
+            - ContainerPort: 8080
+              Protocol: tcp
+              Name: app-tcp-8080
+              AppProtocol: http
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group: !Ref LogGroup
+              awslogs-region: !Ref "AWS::Region"
+              awslogs-stream-prefix: !Sub "${Tier}-web"
+          Memory: 512
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
