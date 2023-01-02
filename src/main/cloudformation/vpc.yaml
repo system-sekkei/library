@@ -93,6 +93,6 @@ Outputs:
     Export:
       Name: !Sub "${AWS::StackName}:PublicSubnet1"
   PublicSubnetAz2:
-    Value: !Ref PublicSubnetAz1
+    Value: !Ref PublicSubnetAz2
     Export:
       Name: !Sub "${AWS::StackName}:PublicSubnet2"

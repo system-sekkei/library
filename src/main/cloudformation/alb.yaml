@@ -1,0 +1,69 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "library vpc"
+Parameters:
+  Flavor:
+    Type: String
+    Default: Library
+  VpcStack:
+    Type: String
+    Default: "library-vpc"
+
+Resources:
+  PublicALBSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub "${Flavor}PublicALBSecurityGroup"
+      GroupDescription: !Sub "${Flavor}PublicALBSecurityGroup"
+      VpcId: !ImportValue
+        Fn::Sub: "${VpcStack}:VPC"
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: all egress allowed
+          IpProtocol: -1
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          Description: http ingress (provisional)
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}PublicALBSecurityGroup"
+  ALB:
+    Type: AWS::ElasticLoadBalancingV2::LoadBalancer
+    Properties:
+      Name: !Sub "${Flavor}ApplicationLoadBalancer"
+      Type: application
+      Scheme: internet-facing
+      IpAddressType: ipv4
+      SecurityGroups:
+        - !Ref PublicALBSecurityGroup
+      Subnets:
+        - !ImportValue
+          Fn::Sub: "${VpcStack}:PublicSubnet1"
+        - !ImportValue
+          Fn::Sub: "${VpcStack}:PublicSubnet2"
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+  ALBHttpListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref ALB
+      Port: 80
+      Protocol: HTTP
+      DefaultActions:
+        - Type: fixed-response
+          FixedResponseConfig:
+            ContentType: text/plain
+            StatusCode: 418
+            MessageBody: Would you like a cup of coffee?
+Outputs:
+  ALB:
+    Value: !Ref ALB
+    Export:
+      Name: !Sub "${AWS::StackName}:ALB"
+  DNSName:
+    Value: !GetAtt ALB.DNSName
