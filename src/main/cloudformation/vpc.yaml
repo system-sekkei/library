@@ -83,3 +83,16 @@ Resources:
     Properties:
       RouteTableId: !Ref RouteTable
       SubnetId: !Ref PublicSubnetAz2
+Outputs:
+  VPC:
+    Value: !Ref VPC
+    Export:
+      Name: !Sub "${AWS::StackName}:VPC"
+  PublicSubnetAz1:
+    Value: !Ref PublicSubnetAz1
+    Export:
+      Name: !Sub "${AWS::StackName}:PublicSubnet1"
+  PublicSubnetAz2:
+    Value: !Ref PublicSubnetAz1
+    Export:
+      Name: !Sub "${AWS::StackName}:PublicSubnet2"
