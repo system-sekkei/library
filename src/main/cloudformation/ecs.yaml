@@ -48,3 +48,7 @@ Outputs:
     Value: !Ref Cluster
     Export:
       Name: !Sub "${AWS::StackName}:Cluster"
+  WebContainerRepository:
+    Value: !Ref WebContainerRepository
+    Export:
+      Name: !Sub "${AWS::StackName}:WebContainerRepository"
