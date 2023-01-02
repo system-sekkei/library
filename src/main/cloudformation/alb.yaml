@@ -65,5 +65,9 @@ Outputs:
     Value: !Ref PublicALB
     Export:
       Name: !Sub "${AWS::StackName}:PublicALB"
+  PublicALBSecurityGroup:
+    Value: !Ref PublicALBSecurityGroup
+    Export:
+      Name: !Sub "${AWS::StackName}:PublicALBSecurityGroup"
   PublicALBDNSName:
     Value: !GetAtt PublicALB.DNSName
