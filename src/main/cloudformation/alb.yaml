@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "library vpc"
+Description: "library alb"
 Parameters:
   Flavor:
     Type: String
