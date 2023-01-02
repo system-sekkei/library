@@ -7,6 +7,8 @@ Parameters:
   VpcStack:
     Type: String
     Default: "library-vpc"
+  SslCertificateArn:
+    Type: String
 
 Resources:
   PublicALBSecurityGroup:
@@ -26,6 +28,11 @@ Resources:
           IpProtocol: tcp
           FromPort: 80
           ToPort: 80
+        - CidrIp: 0.0.0.0/0
+          Description: https ingress
+          IpProtocol: tcp
+          FromPort: 443
+          ToPort: 443
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
@@ -60,6 +67,21 @@ Resources:
             ContentType: text/plain
             StatusCode: 418
             MessageBody: Would you like a cup of coffee?
+  PublicALBHttpsListener:
+    Type: AWS::ElasticLoadBalancingV2::Listener
+    Properties:
+      LoadBalancerArn: !Ref PublicALB
+      Port: 443
+      Protocol: HTTPS
+      SslPolicy: ELBSecurityPolicy-2016-08
+      Certificates:
+        - CertificateArn: !Ref SslCertificateArn
+      DefaultActions:
+        - Type: fixed-response
+          FixedResponseConfig:
+            ContentType: text/plain
+            StatusCode: 418
+            MessageBody: Would you like a cup of coffee?
 Outputs:
   PublicALB:
     Value: !Ref PublicALB
@@ -69,6 +91,10 @@ Outputs:
     Value: !Ref PublicALBHttpListener
     Export:
       Name: !Sub "${AWS::StackName}:PublicALBHttpListener"
+  PublicALBHttpsListener:
+    Value: !Ref PublicALBHttpListener
+    Export:
+      Name: !Sub "${AWS::StackName}:PublicALBHttpsListener"
   PublicALBSecurityGroup:
     Value: !Ref PublicALBSecurityGroup
     Export:
