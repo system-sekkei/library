@@ -4,9 +4,20 @@ Parameters:
   Flavor:
     Type: String
     Default: library
+  Tier:
+    Type: String
+    Default: development
+    AllowedValues:
+      - development
+      - staging
+      - production
   VpcStack:
     Type: String
     Default: "library-vpc"
+  AlbStack:
+    Type: String
+    Default: "library-alb"
+
 Resources:
   Cluster:
     Type: AWS::ECS::Cluster
@@ -42,6 +53,29 @@ Resources:
              }
            ]
          }
+  WebServiceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupName: !Sub "${Flavor}-${Tier}-ecs-web-service-security-group"
+      GroupDescription: !Sub "${Flavor} web Service SecurityGroup"
+      VpcId: !ImportValue
+        Fn::Sub: "${VpcStack}:VPC"
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: all egress allowed
+          IpProtocol: -1
+      SecurityGroupIngress:
+        - Description: ingress from alb
+          IpProtocol: tcp
+          FromPort: 8080
+          ToPort: 8080
+          SourceSecurityGroupId: !ImportValue
+            Fn::Sub: "${AlbStack}:PublicALBSecurityGroup"
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+        - Key: Name
+          Value: !Sub "${Flavor}-${Tier}-ecs-web-service-security-group"
 
 Outputs:
   Cluster:
@@ -52,3 +86,7 @@ Outputs:
     Value: !Ref WebContainerRepository
     Export:
       Name: !Sub "${AWS::StackName}:WebContainerRepository"
+  WebServiceSecurityGroup:
+    Value: !Ref WebServiceSecurityGroup
+    Export:
+      Name: !Sub "${AWS::StackName}:WebServiceSecurityGroup"
