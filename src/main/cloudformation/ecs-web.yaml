@@ -133,6 +133,10 @@ Resources:
     Type: AWS::Logs::LogGroup
     Properties:
       LogGroupName: !Sub "/ecs/${Flavor}/${Tier}/web"
+      RetentionInDays: 7
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
   TaskDefinition:
     Type: AWS::ECS::TaskDefinition
     Properties:
