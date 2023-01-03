@@ -1,0 +1,67 @@
+# 作成時にRDSが利用可能になるまで待つので10分くらいかかる
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "library rds"
+Parameters:
+  Flavor:
+    Type: String
+    Default: library
+  Tier:
+    Type: String
+    Default: development
+    AllowedValues:
+      - development
+      - staging
+      - production
+  DBAllocatedStorage:
+    Default: '50'
+    Type: Number
+    MinValue: '20'
+    MaxValue: '65536'
+  VpcStack:
+    Type: String
+    Default: "library-vpc"
+  EcsStack:
+    Type: String
+    Default: "library-ecs"
+
+Resources:
+  DBSubnetGroup:
+    Type: AWS::Neptune::DBSubnetGroup
+    Properties:
+      DBSubnetGroupName: !Sub "${Flavor}-${Tier}-rds-subnet-group"
+      DBSubnetGroupDescription: !Sub "${Flavor} ${Tier} rds subnet"
+      SubnetIds:
+        - !ImportValue
+            Fn::Sub: "${VpcStack}:PublicSubnet1"
+        - !ImportValue
+            Fn::Sub: "${VpcStack}:PublicSubnet2"
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
+  RDS:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      DBInstanceIdentifier: !Sub "${Flavor}-${Tier}-rds"
+      Engine: postgres
+      EngineVersion: 13.7
+      DBInstanceClass: db.t3.micro
+      AllocatedStorage: 20
+      MultiAZ: false
+      DBName: postgres
+      Port: 5432
+      MasterUsername: postgres
+      MasterUserPassword: password
+      MonitoringInterval: 60
+      MonitoringRoleArn: !Sub "arn:aws:iam::${AWS::AccountId}:role/rds-monitoring-role"
+      EnablePerformanceInsights: true
+      PerformanceInsightsRetentionPeriod: 7
+      EnableCloudwatchLogsExports:
+        - postgresql
+        - upgrade
+      DBSubnetGroupName: !Ref DBSubnetGroup
+      VPCSecurityGroups:
+        - !ImportValue
+            Fn::Sub: "${EcsStack}:RDSSecurityGroup"
+      Tags:
+        - Key: Flavor
+          Value: !Ref Flavor
