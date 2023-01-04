@@ -1,0 +1,15 @@
+spring:
+  sql:
+    init:
+      encoding: UTF-8
+      mode: always
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
+  h2:
+    console:
+      enabled: true
+  thymeleaf:
+    cache: false
+
+mybatis:
+  config-location: classpath:mybatis.xml
