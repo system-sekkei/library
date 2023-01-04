@@ -11,5 +11,11 @@ spring:
   thymeleaf:
     cache: false
 
+management:
+  tracing:
+    enabled: false
+    sampling:
+      probability: 1.0
+
 mybatis:
   config-location: classpath:mybatis.xml
