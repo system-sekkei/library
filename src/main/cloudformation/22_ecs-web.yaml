@@ -85,7 +85,7 @@ Resources:
           AssignPublicIp: ENABLED
           SecurityGroups:
             - !ImportValue
-                Fn::Sub: "${EcsStack}:WebServiceSecurityGroup"
+                Fn::Sub: "${VpcStack}:WebServiceSecurityGroup"
           Subnets:
             - !ImportValue
                 Fn::Sub: "${VpcStack}:PublicSubnet1"

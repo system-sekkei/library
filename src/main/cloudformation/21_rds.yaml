@@ -20,9 +20,6 @@ Parameters:
   VpcStack:
     Type: String
     Default: "library-development-vpc"
-  EcsStack:
-    Type: String
-    Default: "library-development-ecs"
 
 Resources:
   DBSubnetGroup:
@@ -61,7 +58,7 @@ Resources:
       DBSubnetGroupName: !Ref DBSubnetGroup
       VPCSecurityGroups:
         - !ImportValue
-            Fn::Sub: "${EcsStack}:RDSSecurityGroup"
+            Fn::Sub: "${VpcStack}:RDSSecurityGroup"
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
