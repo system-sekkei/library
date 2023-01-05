@@ -20,11 +20,11 @@ Mappings:
     development:
       VPC: 10.1.0.0/16
       PublicSubnet1: 10.1.11.0/24
-      PublicSubnet2: 10.1.11.0/24
+      PublicSubnet2: 10.1.12.0/24
     staging:
       VPC: 10.2.0.0/16
       PublicSubnet1: 10.2.11.0/24
-      PublicSubnet2: 10.2.11.0/24
+      PublicSubnet2: 10.2.12.0/24
 
 Resources:
   VPC:
