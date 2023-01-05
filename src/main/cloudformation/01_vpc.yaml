@@ -4,7 +4,7 @@ Parameters:
   Flavor:
     Type: String
     Default: library
-  Tier:
+  EnvironmentName:
     Type: String
     Default: development
     AllowedValues:
@@ -15,16 +15,27 @@ Parameters:
     Type: CommaDelimitedList
     Default: "ap-northeast-1a,ap-northeast-1c"
 
+Mappings:
+  CiderBlockMap:
+    development:
+      VPC: 10.1.0.0/16
+      PublicSubnet1: 10.1.11.0/24
+      PublicSubnet2: 10.1.11.0/24
+    staging:
+      VPC: 10.2.0.0/16
+      PublicSubnet1: 10.2.11.0/24
+      PublicSubnet2: 10.2.11.0/24
+
 Resources:
   VPC:
     Type: AWS::EC2::VPC
     Properties:
-      CidrBlock: 10.1.0.0/16
+      CidrBlock: !FindInMap [CiderBlockMap, !Ref EnvironmentName, VPC]
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-vpc"
+          Value: !Sub "${Flavor}-${EnvironmentName}-vpc"
   # RouteTable
   RouteTable:
     Type: AWS::EC2::RouteTable
@@ -34,7 +45,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-route-table"
+          Value: !Sub "${Flavor}-${EnvironmentName}-route-table"
   InternetGateway:
     Type: AWS::EC2::InternetGateway
     Properties:
@@ -42,7 +53,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-internet-gateway"
+          Value: !Sub "${Flavor}-${EnvironmentName}-internet-gateway"
   VPCGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
     Properties:
@@ -50,7 +61,7 @@ Resources:
       InternetGatewayId: !Ref InternetGateway
   PublicRouteViaInternetGateway:
     Type: AWS::EC2::Route
-    DependsOn: VPCGatewayAttachment # Attachした後でないとInternetGatewayと繋げられないので明示する必要がある
+    DependsOn: VPCGatewayAttachment # Attachした後でないとInternetGatewayと繋がらないため
     Properties:
       RouteTableId: !Ref RouteTable
       DestinationCidrBlock: 0.0.0.0/0
@@ -60,14 +71,14 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.1.11.0/24
+      CidrBlock: !FindInMap [CiderBlockMap, !Ref EnvironmentName, PublicSubnet1]
       MapPublicIpOnLaunch: true
       AvailabilityZone: !Select [ 0, !Ref VpcAvailabilityZones ]
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-public-subnet-1"
+          Value: !Sub "${Flavor}-${EnvironmentName}-public-subnet-1"
   PublicSubnetAz1SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:
@@ -77,14 +88,14 @@ Resources:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId: !Ref VPC
-      CidrBlock: 10.1.12.0/24
+      CidrBlock: !FindInMap [CiderBlockMap, !Ref EnvironmentName, PublicSubnet2]
       MapPublicIpOnLaunch: true
       AvailabilityZone: !Select [ 1, !Ref VpcAvailabilityZones ]
       Tags:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-public-subnet-2"
+          Value: !Sub "${Flavor}-${EnvironmentName}-public-subnet-2"
   PublicSubnetAz2SubnetRouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
     Properties:

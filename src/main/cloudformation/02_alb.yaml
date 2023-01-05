@@ -4,7 +4,7 @@ Parameters:
   Flavor:
     Type: String
     Default: library
-  Tier:
+  EnvironmentName:
     Type: String
     Default: development
     AllowedValues:
@@ -21,8 +21,8 @@ Resources:
   PublicALBSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub "${Flavor}-public-alb-security-group"
-      GroupDescription: !Sub "${Flavor} public ALB SecurityGroup"
+      GroupName: !Sub "${Flavor}-${EnvironmentName}-public-alb-security-group"
+      GroupDescription: !Sub "${Flavor} ${EnvironmentName} public ALB SecurityGroup"
       VpcId: !ImportValue
         Fn::Sub: "${VpcStack}:VPC"
       SecurityGroupEgress:
@@ -39,7 +39,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-public-alb-security-group"
+          Value: !Sub "${Flavor}-${EnvironmentName}-public-alb-security-group"
   PublicALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:

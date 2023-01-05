@@ -4,7 +4,7 @@ Parameters:
   Flavor:
     Type: String
     Default: library
-  Tier:
+  EnvironmentName:
     Type: String
     Default: development
     AllowedValues:
@@ -56,7 +56,7 @@ Resources:
   WebServiceSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub "${Flavor}-${Tier}-ecs-web-service-security-group"
+      GroupName: !Sub "${Flavor}-${EnvironmentName}-ecs-web-service-security-group"
       GroupDescription: !Sub "${Flavor} web Service SecurityGroup"
       VpcId: !ImportValue
         Fn::Sub: "${VpcStack}:VPC"
@@ -75,11 +75,11 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-${Tier}-ecs-web-service-security-group"
+          Value: !Sub "${Flavor}-${EnvironmentName}-ecs-web-service-security-group"
   RDSSecurityGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
-      GroupName: !Sub "${Flavor}-${Tier}-rds-security-group"
+      GroupName: !Sub "${Flavor}-${EnvironmentName}-rds-security-group"
       GroupDescription: "rds can only be accessed from application"
       VpcId: !ImportValue
         Fn::Sub: "${VpcStack}:VPC"
@@ -93,7 +93,7 @@ Resources:
         - Key: Flavor
           Value: !Ref Flavor
         - Key: Name
-          Value: !Sub "${Flavor}-${Tier}-rds-security-group"
+          Value: !Sub "${Flavor}-${EnvironmentName}-rds-security-group"
 
 Outputs:
   Cluster:

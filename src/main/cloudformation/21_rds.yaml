@@ -5,7 +5,7 @@ Parameters:
   Flavor:
     Type: String
     Default: library
-  Tier:
+  EnvironmentName:
     Type: String
     Default: development
     AllowedValues:
@@ -28,8 +28,8 @@ Resources:
   DBSubnetGroup:
     Type: AWS::Neptune::DBSubnetGroup
     Properties:
-      DBSubnetGroupName: !Sub "${Flavor}-${Tier}-rds-subnet-group"
-      DBSubnetGroupDescription: !Sub "${Flavor} ${Tier} rds subnet"
+      DBSubnetGroupName: !Sub "${Flavor}-${EnvironmentName}-rds-subnet-group"
+      DBSubnetGroupDescription: !Sub "${Flavor} ${EnvironmentName} rds subnet"
       SubnetIds:
         - !ImportValue
             Fn::Sub: "${VpcStack}:PublicSubnet1"
@@ -41,7 +41,7 @@ Resources:
   RDS:
     Type: AWS::RDS::DBInstance
     Properties:
-      DBInstanceIdentifier: !Sub "${Flavor}-${Tier}-rds"
+      DBInstanceIdentifier: !Sub "${Flavor}-${EnvironmentName}-rds"
       Engine: postgres
       EngineVersion: 13.7
       DBInstanceClass: db.t3.micro

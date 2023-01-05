@@ -4,7 +4,7 @@ Parameters:
   Flavor:
     Type: String
     Default: "library"
-  Tier:
+  EnvironmentName:
     Type: String
     Default: development
     AllowedValues:
@@ -109,7 +109,7 @@ Resources:
   LogGroup:
     Type: AWS::Logs::LogGroup
     Properties:
-      LogGroupName: !Sub "/ecs/${Flavor}/${Tier}/web"
+      LogGroupName: !Sub "/ecs/${Flavor}/${EnvironmentName}/web"
       RetentionInDays: 7
       Tags:
         - Key: Flavor
@@ -133,7 +133,7 @@ Resources:
           Image: irof/sparrow:web
           Environment:
             - Name: SPRING_PROFILES_ACTIVE
-              Value: !Sub "${Flavor},${Tier},aws"
+              Value: !Sub "${Flavor},${EnvironmentName},aws"
             - Name: BPL_JVM_THREAD_COUNT
               Value: 50
           PortMappings:
@@ -146,7 +146,7 @@ Resources:
             Options:
               awslogs-group: !Ref LogGroup
               awslogs-region: !Ref "AWS::Region"
-              awslogs-stream-prefix: !Sub "${Tier}-web"
+              awslogs-stream-prefix: !Sub "${EnvironmentName}-web"
           Memory: 512
       Tags:
         - Key: Flavor
