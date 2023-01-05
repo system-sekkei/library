@@ -107,8 +107,7 @@ Resources:
     Properties:
       GroupName: !Sub "${Flavor}-${EnvironmentName}-public-alb-security-group"
       GroupDescription: !Sub "${Flavor} ${EnvironmentName} public ALB SecurityGroup"
-      VpcId: !ImportValue
-        Fn::Sub: "${VpcStack}:VPC"
+      VpcId: !Ref VPC
       SecurityGroupEgress:
         - CidrIp: 0.0.0.0/0
           Description: all egress allowed
