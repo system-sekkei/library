@@ -4,6 +4,13 @@ Parameters:
   Flavor:
     Type: String
     Default: library
+  Tier:
+    Type: String
+    Default: development
+    AllowedValues:
+      - development
+      - staging
+      - production
   VpcAvailabilityZones:
     Type: CommaDelimitedList
     Default: "ap-northeast-1a,ap-northeast-1c"
