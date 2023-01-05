@@ -13,13 +13,13 @@ Parameters:
       - production
   VpcStack:
     Type: String
-    Default: "library-vpc"
+    Default: "library-development-vpc"
   AlbStack:
     Type: String
-    Default: "library-alb"
+    Default: "library-development-alb"
   EcsStack:
     Type: String
-    Default: "library-ecs"
+    Default: "library-development-ecs"
   DesiredCount:
     Type: Number
     Default: 0

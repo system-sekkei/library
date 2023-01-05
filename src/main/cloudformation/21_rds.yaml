@@ -19,10 +19,10 @@ Parameters:
     MaxValue: '65536'
   VpcStack:
     Type: String
-    Default: "library-vpc"
+    Default: "library-development-vpc"
   EcsStack:
     Type: String
-    Default: "library-ecs"
+    Default: "library-development-ecs"
 
 Resources:
   DBSubnetGroup:
