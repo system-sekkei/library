@@ -13,33 +13,11 @@ Parameters:
       - production
   VpcStack:
     Type: String
-    Default: "library-vpc"
+    Default: "library-development-vpc"
   SslCertificateArn:
     Type: String
 
 Resources:
-  PublicALBSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupName: !Sub "${Flavor}-${EnvironmentName}-public-alb-security-group"
-      GroupDescription: !Sub "${Flavor} ${EnvironmentName} public ALB SecurityGroup"
-      VpcId: !ImportValue
-        Fn::Sub: "${VpcStack}:VPC"
-      SecurityGroupEgress:
-        - CidrIp: 0.0.0.0/0
-          Description: all egress allowed
-          IpProtocol: -1
-      SecurityGroupIngress:
-        - CidrIp: 0.0.0.0/0
-          Description: https ingress
-          IpProtocol: tcp
-          FromPort: 443
-          ToPort: 443
-      Tags:
-        - Key: Flavor
-          Value: !Ref Flavor
-        - Key: Name
-          Value: !Sub "${Flavor}-${EnvironmentName}-public-alb-security-group"
   PublicALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
@@ -48,7 +26,8 @@ Resources:
       Scheme: internet-facing
       IpAddressType: ipv4
       SecurityGroups:
-        - !Ref PublicALBSecurityGroup
+        - !ImportValue
+          Fn::Sub: "${VpcStack}:PublicALBSecurityGroup"
       Subnets:
         - !ImportValue
           Fn::Sub: "${VpcStack}:PublicSubnet1"
@@ -81,9 +60,5 @@ Outputs:
     Value: !Ref PublicALBHttpsListener
     Export:
       Name: !Sub "${AWS::StackName}:PublicALBHttpsListener"
-  PublicALBSecurityGroup:
-    Value: !Ref PublicALBSecurityGroup
-    Export:
-      Name: !Sub "${AWS::StackName}:PublicALBSecurityGroup"
   PublicALBDNSName:
     Value: !GetAtt PublicALB.DNSName
