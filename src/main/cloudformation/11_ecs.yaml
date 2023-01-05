@@ -19,7 +19,7 @@ Resources:
   Cluster:
     Type: AWS::ECS::Cluster
     Properties:
-      ClusterName: !Sub "${Flavor}-cluster"
+      ClusterName: !Sub "${Flavor}-${EnvironmentName}-cluster"
       ClusterSettings:
         - Name: containerInsights
           Value: enabled
@@ -30,7 +30,7 @@ Resources:
    Type: AWS::ECR::Repository
    DeletionPolicy: Retain # 手動で削除する
    Properties:
-     RepositoryName: !Sub "${Flavor}-web"
+     RepositoryName: !Sub "${Flavor}-${EnvironmentName}-web"
      ImageTagMutability: MUTABLE
      LifecyclePolicy:
        LifecyclePolicyText: |

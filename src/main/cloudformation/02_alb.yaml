@@ -21,7 +21,7 @@ Resources:
   PublicALB:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
-      Name: !Sub "${Flavor}-alb"
+      Name: !Sub "${Flavor}-${EnvironmentName}-alb"
       Type: application
       Scheme: internet-facing
       IpAddressType: ipv4
