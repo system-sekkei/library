@@ -14,9 +14,6 @@ Parameters:
   VpcStack:
     Type: String
     Default: "library-development-vpc"
-  AlbStack:
-    Type: String
-    Default: "library-development-alb"
 
 Resources:
   Cluster:
@@ -53,47 +50,6 @@ Resources:
              }
            ]
          }
-  WebServiceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupName: !Sub "${Flavor}-${EnvironmentName}-ecs-web-service-security-group"
-      GroupDescription: !Sub "${Flavor} web Service SecurityGroup"
-      VpcId: !ImportValue
-        Fn::Sub: "${VpcStack}:VPC"
-      SecurityGroupEgress:
-        - CidrIp: 0.0.0.0/0
-          Description: all egress allowed
-          IpProtocol: -1
-      SecurityGroupIngress:
-        - Description: ingress from alb
-          IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
-          SourceSecurityGroupId: !ImportValue
-            Fn::Sub: "${AlbStack}:PublicALBSecurityGroup"
-      Tags:
-        - Key: Flavor
-          Value: !Ref Flavor
-        - Key: Name
-          Value: !Sub "${Flavor}-${EnvironmentName}-ecs-web-service-security-group"
-  RDSSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupName: !Sub "${Flavor}-${EnvironmentName}-rds-security-group"
-      GroupDescription: "rds can only be accessed from application"
-      VpcId: !ImportValue
-        Fn::Sub: "${VpcStack}:VPC"
-      SecurityGroupIngress:
-        - Description: ingress from alb
-          IpProtocol: tcp
-          FromPort: 5432
-          ToPort: 5432
-          SourceSecurityGroupId: !Ref WebServiceSecurityGroup
-      Tags:
-        - Key: Flavor
-          Value: !Ref Flavor
-        - Key: Name
-          Value: !Sub "${Flavor}-${EnvironmentName}-rds-security-group"
 
 Outputs:
   Cluster:
@@ -104,11 +60,4 @@ Outputs:
     Value: !Ref WebContainerRepository
     Export:
       Name: !Sub "${AWS::StackName}:WebContainerRepository"
-  WebServiceSecurityGroup:
-    Value: !Ref WebServiceSecurityGroup
-    Export:
-      Name: !Sub "${AWS::StackName}:WebServiceSecurityGroup"
-  RDSSecurityGroup:
-    Value: !Ref RDSSecurityGroup
-    Export:
-      Name: !Sub "${AWS::StackName}:RDSSecurityGroup"
+
