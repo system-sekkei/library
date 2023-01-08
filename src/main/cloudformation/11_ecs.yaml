@@ -60,4 +60,7 @@ Outputs:
     Value: !Ref WebContainerRepository
     Export:
       Name: !Sub "${AWS::StackName}:WebContainerRepository"
-
+  WebContainerRepositoryUri:
+    Value: !GetAtt WebContainerRepository.RepositoryUri
+    Export:
+      Name: !Sub "${AWS::StackName}:WebContainerRepository.RepositoryUri"
