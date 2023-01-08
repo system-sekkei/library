@@ -132,10 +132,16 @@ Resources:
         - Name: !Ref ApplicationContainerName
           Image: irof/sparrow:web
           Environment:
-            - Name: SPRING_PROFILES_ACTIVE
-              Value: !Sub "${Flavor},${EnvironmentName},aws"
+            - Name: LANG
+              Value: C.UTF-8
+            - Name: JAVA_TOOL_OPTIONS
+              Value: '-Xlog:gc*::time,level,tags'
             - Name: BPL_JVM_THREAD_COUNT
               Value: 50
+            - Name: SERVER_TOMCAT_THREADS_MAX
+              Value: 10
+            - Name: SPRING_PROFILES_ACTIVE
+              Value: !Sub "${Flavor},${EnvironmentName},aws"
           PortMappings:
             - ContainerPort: 8080
               Protocol: tcp
