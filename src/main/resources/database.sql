@@ -1,0 +1,4 @@
+DROP DATABASE IF EXISTS Library;
+CREATE DATABASE Library;
+
+USE Library;

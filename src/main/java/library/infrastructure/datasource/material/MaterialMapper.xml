@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.material.MaterialMapper">
-
+<!--    TOP #{limit}-->
     <select id="searchMaterials" resultType="library.domain.model.material.instock.EntryInStock">
         SELECT
             所蔵品目.所蔵品目番号 as "entry.entryNumber.value",
@@ -13,9 +13,10 @@
             (SELECT count(*) FROM 資料_所蔵品._貸出可能 INNER JOIN 資料_所蔵品.所蔵品 on _貸出可能.所蔵品番号 = 所蔵品.所蔵品番号
                 WHERE 所蔵品.所蔵品目番号 = 所蔵品目.所蔵品目番号) as "在庫数.value"
         FROM 資料_所蔵品目.所蔵品目
-        WHERE 所蔵品目.タイトル || 所蔵品目.著者 LIKE '%' || #{keyword.value} || '%'
+        WHERE 所蔵品目.タイトル + 所蔵品目.著者 LIKE CONCAT('%', #{keyword.value}, '%')
         ORDER BY 所蔵品目.所蔵品目番号
-        LIMIT #{limit}
+            OFFSET 0 ROWS
+            FETCH NEXT #{limit} ROWS ONLY
     </select>
 
     <select id="findMaterial" resultType="library.domain.model.material.entry.Entry">

@@ -3,11 +3,19 @@ spring:
     init:
       encoding: UTF-8
       mode: always
+      schema-locations:
+        - classpath:database.sql
+        - classpath:schema.sql
+      data-locations:
+        - classpath:data.sql
   datasource:
-    url: jdbc:h2:mem:testdb;MODE=PostgreSQL
-  h2:
-    console:
-      enabled: true
+    url: jdbc:sqlserver://localhost:1433;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: MyStrong!!Password
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+#  h2:
+#    console:
+#      enabled: true
   thymeleaf:
     cache: false
 
@@ -19,3 +27,8 @@ management:
 
 mybatis:
   config-location: classpath:mybatis.xml
+
+logging:
+  level:
+    library.infrastructure:
+      datasource: DEBUG
