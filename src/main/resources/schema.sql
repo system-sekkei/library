@@ -1,16 +1,6 @@
--- DROP DATABASE Library;
--- CREATE DATABASE Library;
---
--- USE Library;
-
--- DROP SCHEMA IF EXISTS 貸出 ;
--- DROP SCHEMA IF EXISTS 取置 ;
--- DROP SCHEMA IF EXISTS 予約 ;
--- DROP SCHEMA  IF EXISTS 資料_所蔵品目 ;
--- DROP SCHEMA IF EXISTS 会員 ;
 
 -- <editor-fold desc="資料_所蔵品目スキーマ">
-CREATE SCHEMA IF NOT EXISTS 資料_所蔵品目;
+CREATE SCHEMA 資料_所蔵品目;
 CREATE TABLE 資料_所蔵品目.所蔵品目
 (
   所蔵品目番号  int PRIMARY KEY,
@@ -23,7 +13,7 @@ CREATE TABLE 資料_所蔵品目.所蔵品目
 -- </editor-fold>
 
 -- <editor-fold desc="資料_所蔵品目スキーマ">
-CREATE SCHEMA IF NOT EXISTS 資料_所蔵品;
+CREATE SCHEMA 資料_所蔵品;
 CREATE TABLE 資料_所蔵品.所蔵品
 (
   所蔵品番号 VARCHAR(40) PRIMARY KEY,
@@ -52,7 +42,7 @@ CREATE TABLE 資料_所蔵品._取置中
 
 
 -- <editor-fold desc="貸出スキーマ">
-CREATE SCHEMA IF NOT EXISTS  貸出;
+CREATE SCHEMA 貸出;
 CREATE SEQUENCE 貸出.貸出番号;
 
 CREATE TABLE 貸出.貸出
@@ -72,7 +62,7 @@ CREATE TABLE 貸出.返却
 -- </editor-fold>
 
 -- <editor-fold desc="予約スキーマ">
-CREATE SCHEMA IF NOT EXISTS 予約;
+CREATE SCHEMA 予約;
 CREATE SEQUENCE 予約.予約連番;
 
 CREATE TABLE 予約.予約
@@ -96,7 +86,7 @@ CREATE TABLE 予約.予約取消
 -- </editor-fold>
 
 -- <editor-fold desc="取置スキーマ">
-CREATE SCHEMA IF NOT EXISTS 取置;
+CREATE SCHEMA 取置;
 CREATE SEQUENCE 取置.取置番号;
 
 CREATE TABLE 取置.取置
@@ -131,7 +121,7 @@ CREATE TABLE 取置.取置期限切れ
 
 
 -- <editor-fold desc="会員スキーマ">
-CREATE SCHEMA IF NOT EXISTS 会員;
+CREATE SCHEMA 会員;
 
 CREATE TABLE 会員.会員
 (

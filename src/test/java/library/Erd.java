@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.sql.DataSource;
 
+@Disabled("mssqlはサポート対象外")
 @SpringBootTest
 public class Erd {
 
