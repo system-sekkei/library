@@ -69,6 +69,9 @@ public class LoanScenario {
         return loanQueryService.status(loanRequest.memberNumber());
     }
 
+    /**
+     * 所蔵品の貸出可否を提示する
+     */
     public ItemLoanability 貸出可能な所蔵品かどうか(ItemNumber itemNumber) {
         ItemStatus 所蔵品の状態 = itemQueryService.status(itemNumber);
         Item 借りたい所蔵品 = itemQueryService.findBy(itemNumber);

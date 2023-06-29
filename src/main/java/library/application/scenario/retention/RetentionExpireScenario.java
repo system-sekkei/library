@@ -17,7 +17,7 @@ public class RetentionExpireScenario {
     }
 
     /**
-     * 取置の期限切れ
+     * 取置を期限切れにする
      */
     public void expire(RetentionNumber retentionNumber) {
         retentionRecordService.releaseAndExpire(retentionNumber);

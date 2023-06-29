@@ -17,6 +17,7 @@ import library.domain.model.retention.Retention;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
 import library.infrastructure.datasource.retention.RetentionDatasource;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -54,6 +55,30 @@ class RetentionScenarioTest {
         取置(未準備の予約.reservationNumber().toString(), "2-A");
         貸出("2-A");
         返却("2-A");
+    }
+
+    @Disabled
+    @Test
+    void 予約を見つける() {
+
+    }
+
+    @Disabled
+    @Test
+    void 予約された本であることを確認する() {
+
+    }
+
+    @Disabled
+    @Test
+    void 所蔵品の状態を確認する() {
+
+    }
+
+    @Disabled
+    @Test
+    void 準備完了を一覧する() {
+
     }
 
     @Test

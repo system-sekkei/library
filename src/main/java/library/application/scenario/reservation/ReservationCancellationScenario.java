@@ -20,7 +20,7 @@ public class ReservationCancellationScenario {
     }
 
     /**
-     * 予約の取り消し
+     * 予約を取り消す
      */
     public void cancel(ReservationNumber reservationNumber) {
         Reservation reservation = reservationQueryService.reservationOf(reservationNumber);

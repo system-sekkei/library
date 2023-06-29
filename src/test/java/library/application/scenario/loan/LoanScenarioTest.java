@@ -13,6 +13,7 @@ import library.domain.model.member.MemberNumber;
 import library.domain.model.member.MemberStatus;
 import library.domain.model.returned.ReturnDate;
 import library.domain.model.returned.Returned;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -76,6 +77,12 @@ class LoanScenarioTest {
         assertTrue(loanStatus.memberNumber().sameValue(new MemberNumber(1)));
 
         返却("2-A");
+    }
+
+    @Disabled
+    @Test
+    void 所蔵品の貸出可否を提示する() {
+
     }
 
     private LoanRequest generate(int memberNumber, String itemNumber, String loanDate) {

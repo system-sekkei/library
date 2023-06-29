@@ -35,7 +35,7 @@ class RetentionExpireScenarioTest {
     RetentionDatasource retentionDatasource;
 
     @Test
-    void 期限内に受け取らなかった取置を無効にする() {
+    void 取置を期限切れにする() {
         EntryNumber entryNumber = new EntryNumber(2);
         MemberNumber memberNumber = new MemberNumber(2);
         reservationScenario.reserve(new Entry(entryNumber, null, null, 図書), memberNumber);
