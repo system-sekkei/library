@@ -50,9 +50,9 @@ public class LoanRegisterController {
             return "loan/form";
         }
 
-        ItemLoanability 貸出可能な所蔵品かどうか = coordinator.貸出可能な所蔵品かどうか(loanRequest.itemNumber());
-        if (貸出可能な所蔵品かどうか != ItemLoanability.貸出可能) {
-            bindingResult.addError(new ObjectError("error", 貸出可能な所蔵品かどうか.message()));
+        ItemLoanability 所蔵品の貸出可否 = coordinator.所蔵品の貸出可否を提示する(loanRequest.itemNumber());
+        if (所蔵品の貸出可否 != ItemLoanability.貸出可能) {
+            bindingResult.addError(new ObjectError("error", 所蔵品の貸出可否.message()));
             return "loan/form";
         }
 

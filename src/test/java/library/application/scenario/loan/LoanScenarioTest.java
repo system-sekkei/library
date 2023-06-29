@@ -60,7 +60,7 @@ class LoanScenarioTest {
                 generate(1, "1-A", "2020-02-20");
         loanScenario.loan(loanRequest);
 
-        ItemLoanability 貸出可能な所蔵品かどうか = loanScenario.貸出可能な所蔵品かどうか(new ItemNumber("1-A"));
+        ItemLoanability 貸出可能な所蔵品かどうか = loanScenario.所蔵品の貸出可否を提示する(new ItemNumber("1-A"));
         assertSame(貸出可能な所蔵品かどうか, ItemLoanability.貸出中により貸出不可能);
 
         返却("1-A");

@@ -72,7 +72,7 @@ public class LoanScenario {
     /**
      * 所蔵品の貸出可否を提示する
      */
-    public ItemLoanability 貸出可能な所蔵品かどうか(ItemNumber itemNumber) {
+    public ItemLoanability 所蔵品の貸出可否を提示する(ItemNumber itemNumber) {
         ItemStatus 所蔵品の状態 = itemQueryService.status(itemNumber);
         Item 借りたい所蔵品 = itemQueryService.findBy(itemNumber);
         ItemWithStatus 借りたい所蔵品とその状態 = new ItemWithStatus(借りたい所蔵品, 所蔵品の状態);
