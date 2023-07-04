@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.loan.LoanMapper">
     <select id="newLoanNumber" resultType="int">
-        SELECT NEXTVAL('貸出.貸出番号')
+        SELECT NEXT VALUE FOR 貸出.貸出番号
     </select>
 
     <resultMap id="loan" type="library.domain.model.loan.Loan">

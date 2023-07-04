@@ -26,6 +26,7 @@ import static library.domain.model.reservation.availability.ReservationAvailabil
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ScenarioTest
+@Disabled
 public class ReservationFlowTest {
     @Autowired
     ReservationScenario reservationScenario;

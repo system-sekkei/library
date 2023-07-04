@@ -1,0 +1,15 @@
+version: '3'
+services:
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
+    ports:
+      - "1433:1433"
+    restart: always
+    environment:
+      ACCEPT_EULA: Y
+      MSSQL_SA_PASSWORD: MyStrong!!Password
+      TZ: "Asia/Tokyo"
+      MSSQL_LCID: 1041
+      MSSQL_COLLECTION: Japanese_CI_AS
+

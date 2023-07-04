@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.retention.RetentionMapper">
     <select id="nextNumber" resultType="library.domain.model.retention.RetentionNumber">
-        SELECT NEXTVAL('取置.取置番号') AS "value"
+        SELECT NEXT VALUE FOR 取置.取置番号 AS "value"
     </select>
 
     <insert id="insert取置">

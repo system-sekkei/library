@@ -14,10 +14,14 @@
     </resultMap>
 
     <select id="exists" resultType="boolean">
-    SELECT EXISTS (
-           SELECT 会員番号 FROM 会員.会員 WHERE 会員番号 = #{value}
-       )
+        SELECT CASE WHEN COUNT(会員番号) > 0 THEN 'true' ELSE 'false' END
+        FROM 会員.会員
+        WHERE 会員番号 = #{value}
+
     </select>
+<!--    SELECT EXISTS (-->
+<!--    SELECT 会員番号 FROM 会員.会員 WHERE 会員番号 = #{value}-->
+<!--    )-->
 
     <select id="selectMember" resultType="library.domain.model.member.Member">
         SELECT 会員番号 as "memberNumber.value",

@@ -1,5 +1,6 @@
 package library.infrastructure.datasource.member;
 
+import library.LibraryDBTest;
 import library.domain.model.member.Member;
 import library.domain.model.member.MemberNumber;
 import org.junit.jupiter.api.Test;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * こういうこともできるという例
  * 推奨しているわけではない
  */
+@LibraryDBTest
 @SpringBootTest
 class MemberMapperTest {
 

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="library.infrastructure.datasource.reservation.ReservationMapper">
     <select id="nextNumber" resultType="library.domain.model.reservation.ReservationNumber">
-        SELECT NEXTVAL('予約.予約番号') AS "value"
+        SELECT NEXT VALUE FOR 予約.予約連番 AS "value"
     </select>
 
     <insert id="insertReservation">
@@ -26,8 +26,8 @@
                _予約と会員.会員番号 as "memberNumber.value",
                予約.所蔵品目番号 as "entryNumber.value"
         FROM 予約._未準備
-        INNER JOIN 予約.予約 USING (予約番号)
-        INNER JOIN 会員._予約と会員 USING (予約番号)
+        INNER JOIN 予約.予約 ON 予約.予約番号 = _未準備.予約番号
+        INNER JOIN 会員._予約と会員 ON _予約と会員.予約番号 = _未準備.予約番号
         ORDER BY _未準備.予約番号
     </select>
 
@@ -35,7 +35,7 @@
         <![CDATA[
         SELECT count(予約.予約番号) as "value"
         FROM 予約._未準備
-        INNER JOIN 予約.予約 USING (予約番号)
+        INNER JOIN 予約.予約 ON 予約.予約番号 = _未準備.予約番号
         WHERE 予約.予約.所蔵品目番号 = #{entryNumber.value} AND 予約.予約.予約番号 <= #{reservationNumber.value}
         ]]>
     </select>
@@ -73,10 +73,12 @@
     </insert>
 
     <select id="exist未準備" resultType="boolean">
-        SELECT EXISTS(SELECT 予約番号 FROM 予約._未準備 WHERE 予約番号 = #{value})
+        SELECT CASE WHEN COUNT(予約番号) > 0 THEN 'true' ELSE 'false' END
+        FROM 予約._未準備 WHERE 予約番号 = #{value}
     </select>
 
     <select id="exists予約" resultType="boolean">
-        SELECT EXISTS(SELECT 予約番号 FROM 予約.予約 WHERE 予約番号 = #{value})
+        SELECT CASE WHEN COUNT(予約番号) > 0 THEN 'true' ELSE 'false' END
+        FROM 予約.予約 WHERE 予約番号 = #{value}
     </select>
 </mapper>
