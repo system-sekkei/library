@@ -25,8 +25,10 @@ class DaysPeriodsTest {
 
         DaysPeriod 最大遅延日数 = daysPeriods.最大遅延日数();
 
-        assertEquals(2, 最大遅延日数.months.value());
-        assertEquals(0, 最大遅延日数.days.value());
+        assertAll(
+                () -> assertEquals(2, 最大遅延日数.months.value()),
+                () -> assertEquals(0, 最大遅延日数.days.value())
+        );
     }
 
 }

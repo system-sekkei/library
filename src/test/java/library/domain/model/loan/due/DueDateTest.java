@@ -29,8 +29,10 @@ class DueDateTest {
     void 遅延日数を取得する() {
         DueDate sut = new DueDate(LocalDate.parse("2023-05-03"));
         DaysPeriod 遅延期間 = sut.遅延期間(CurrentDate.parse("2023-07-03"));
-        assertEquals(2, 遅延期間.monthsIntValue());
-        assertEquals(61, 遅延期間.daysIntValue());
+        assertAll(
+                () -> assertEquals(2, 遅延期間.monthsIntValue()),
+                () -> assertEquals(61, 遅延期間.daysIntValue())
+        );
     }
 
 }
