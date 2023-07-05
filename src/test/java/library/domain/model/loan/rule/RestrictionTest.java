@@ -73,7 +73,6 @@ class RestrictionTest {
         @Test
         void 遅延日数１５日未満での貸出可否判定を取得する() {
             // Arrange
-            // TODO 貸出リスト（Loans）と貸出要求から貸出制限が導出されるのが自然？遅延状態はメソッド内で導出
             Restriction sut = new Restriction(小学生, 貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
             // Act
             Loanability 貸出可否判定 = sut.貸出可否判定();
