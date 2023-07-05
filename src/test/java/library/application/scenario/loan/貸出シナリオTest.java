@@ -90,7 +90,7 @@ class 貸出シナリオTest {
     }
 
     @Test
-    @Disabled("sut.loanStatus()の引数は会員が良いと思う")
+    @Disabled("LoanScenario#loanStatus()の引数は会員が良いと思う")
     void loanStatus() {
         fail();
     }
