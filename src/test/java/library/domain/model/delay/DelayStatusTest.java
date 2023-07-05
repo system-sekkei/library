@@ -12,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class DelayStatusTest {
 
     // TODO 遅延していない場合の区分がない
-    //  DaysPeriodクラスは生成の前提がある？　0か月、100日の遅延の扱いは？
     @Test
     void _14日の遅延は15日未満() {
         DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(0), new Days(14)));
@@ -20,20 +19,20 @@ class DelayStatusTest {
     }
 
     @Test
-    void _1か月31日の遅延は2か月未満() {
-        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(1), new Days(31)));
+    void _60日の遅延は2か月未満() {
+        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(1), new Days(60)));
         assertEquals(DelayStatus.遅延日数２ヶ月未満, level);
     }
 
     @Test
-    void _2か月3日の遅延は2ヶ月以上() {
-        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(2), new Days(3)));
+    void _70日の遅延は2ヶ月以上() {
+        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(2), new Days(70)));
         assertEquals(DelayStatus.遅延日数２ヶ月以上, level);
     }
 
     @Test
-    void _1か月1日の遅延は2か月未満() {
-        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(1), new Days(1)));
+    void _34日の遅延は2か月未満() {
+        DelayStatus level = DelayStatus.level(new DaysPeriod(new Months(1), new Days(34)));
         assertEquals(DelayStatus.遅延日数２ヶ月未満, level);
     }
 }
