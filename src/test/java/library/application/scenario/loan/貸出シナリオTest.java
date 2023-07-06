@@ -48,11 +48,6 @@ class 貸出シナリオTest {
     @Autowired
     LoanQueryService loanQueryService;
 
-    @Test
-    void memberStatus() {
-        fail();
-    }
-
     Member 高橋雄一 = new Member(new MemberNumber(1009), new Name("高橋雄一"), MemberType.中学生以上);
     Entry entry = new Entry(new EntryNumber(898912), new Title("マイクロサービスアーキテクチャー"), new WorkOf("Sam Newman"), EntryType.図書);
     Item item = new Item(new ItemNumber("77878"), entry);
