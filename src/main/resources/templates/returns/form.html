@@ -10,7 +10,7 @@
 
 <main>
   <article>
-    <h3>本の返却</h3>
+    <h3 id="title-return">本の返却</h3>
     <form method="post" action="#"
           th:object="${returned}"
           th:action="@{/returns}">
@@ -34,7 +34,7 @@
               <mark><span th:errors="*{returnDate.value}"></span></mark>
             </p>
 
-        <button>登録</button>
+        <button id="button-return">登録</button>
     </form>
   </article>
 </main>

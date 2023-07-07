@@ -12,7 +12,7 @@
   <p th:text="${retainedList.showCount()}">件</p>
   <form th:unless="${retainedList.isEmpty()}"
       th:action="@{/retentions/loans}" method="post">
-    <table>
+    <table id="table-retentions">
       <thead>
       <tr>
         <th>取置期限</th>
