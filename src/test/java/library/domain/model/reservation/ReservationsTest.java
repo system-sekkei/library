@@ -15,7 +15,6 @@ class ReservationsTest {
 
     @Test
     void 視聴覚資料の冊数() {
-
         Reservations sut = new Reservations(List.of(
                 new Reservation(new ReservationNumber("10001"), member, リファクタリング),
                 new Reservation(new ReservationNumber("10002"), member, 耳をすませば),
@@ -24,6 +23,7 @@ class ReservationsTest {
                 new Reservation(new ReservationNumber("10005"), member, ゴッドファーザー2),
                 new Reservation(new ReservationNumber("10006"), member, ゴッドファーザー3)
         ));
+
         NumberOfReservation 視聴覚資料の冊数 = sut.視聴覚資料の冊数();
 
         assertEquals(5, 視聴覚資料の冊数.value);

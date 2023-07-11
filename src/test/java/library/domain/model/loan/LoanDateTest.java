@@ -13,10 +13,10 @@ class LoanDateTest {
 
     @Test
     void 貸出日の表示文字列の取得() {
-
         LoanDate sut = new LoanDate(LocalDate.parse("2023-07-01"));
-        String show = sut.show();
-        assertEquals("7月1日(土)", show);
 
+        String show = sut.show();
+
+        assertEquals("7月1日(土)", show);
     }
 }

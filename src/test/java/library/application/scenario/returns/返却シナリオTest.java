@@ -51,8 +51,8 @@ class 返却シナリオTest {
         LoanRequest 貸出依頼 = new LoanRequest(高橋雄一.number(), item.所蔵品番号(), new LoanDate(LocalDate.parse("2023-07-04")));
         loanScenario.loan(貸出依頼);
 
-
         Returned 返却 = new Returned(item.所蔵品番号(), ReturnDate.parse("2023-02-19"));
+
         // Act
         sut.returned(返却);
 

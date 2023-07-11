@@ -88,13 +88,12 @@ class 予約受付シナリオTest {
 
     @Test
     void 予約依頼に対する予約可否を取得する() {
-        // ARRANGE
         memberFixture.会員を登録する(高橋雄一);
         entryFixture.所蔵品目を登録する(現場ねこ写真集);
         ReservationRequest 予約依頼 = new ReservationRequest(高橋雄一.number(), 現場ねこ写真集.entryNumber());
-        // ACT
+
         ReservationAvailability result = sut.reservationAvailability(予約依頼);
-        // ASSERT
+
         assertEquals(ReservationAvailability.予約可能, result);
     }
 

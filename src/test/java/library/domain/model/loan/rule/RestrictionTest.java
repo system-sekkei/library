@@ -30,33 +30,30 @@ class RestrictionTest {
 
         @Test
         void 遅延日数１５日未満での貸出可否判定を取得する() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.貸出可能, 貸出可否判定);
 
         }
 
         @Test
         void 遅延日数２ヶ月未満で貸出可否判定を取得する() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数２ヶ月未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.新規貸出不可, 貸出可否判定);
 
         }
 
         @Test
         void 遅延日数２ヶ月以上で貸出可否判定を取得する() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数２ヶ月以上);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.貸出一定期間停止, 貸出可否判定);
 
         }
@@ -80,42 +77,38 @@ class RestrictionTest {
 
         @Test
         void 小学生の貸出上限以上での貸出判定() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 小学生の上限の貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.冊数制限により貸出不可, 貸出可否判定);
         }
 
         @Test
         void 小学生の貸出上限以内での貸出判定() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 小学生の貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.貸出可能, 貸出可否判定);
         }
 
 
         @Test
         void 一般の貸出上限以上での貸出判定() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 一般の上限の貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.冊数制限により貸出不可, 貸出可否判定);
         }
 
         @Test
         void 一般の貸出上限以内での貸出判定() {
-            // Arrange
             Restriction sut = new Restriction(小学生, 一般の貸出リスト, あなたの絵に物語性を与える方法, DelayStatus.遅延日数１５日未満);
-            // Act
+
             Loanability 貸出可否判定 = sut.貸出可否判定();
-            // Assert
+
             assertEquals(Loanability.貸出可能, 貸出可否判定);
         }
 

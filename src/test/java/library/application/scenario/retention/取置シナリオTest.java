@@ -105,13 +105,16 @@ class 取置シナリオTest {
 
         MaterialMatching materialMatching =
                 sut.isSameMaterial(予約, new Retention(予約.reservationNumber(), 現場ねこ写真集_1.所蔵品番号()));
+
         assertEquals(MaterialMatching.一致, materialMatching);
     }
 
     @Test
     void 所蔵品の状態を確認する() {
         itemFixture.貸出可能な状態を登録する(現場ねこ写真集_1);
+
         ItemStatus itemStatus = sut.itemStatus(現場ねこ写真集_1.所蔵品番号());
+
         assertEquals(ItemStatus.在庫中, itemStatus);
     }
 

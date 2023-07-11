@@ -20,7 +20,9 @@ class ReservationWithWaitingOrderTest {
     void 在庫数より待ち人数が少ない場合の取置可否を取得する() {
         ReservationWithWaitingOrder sut =
                 new ReservationWithWaitingOrder(null, new EntryInStock(予想どおりに不合理, new StockQuantity(4)), new WaitingOrder(4));
+
         RetentionAvailability retentionAvailability = sut.retentionAvailability();
+
         assertEquals(RetentionAvailability.取置可能, retentionAvailability);
     }
 
@@ -28,7 +30,9 @@ class ReservationWithWaitingOrderTest {
     void 在庫数より待ち人数が多い場合の取置可否を取得する() {
         ReservationWithWaitingOrder sut =
             new ReservationWithWaitingOrder(null, new EntryInStock(予想どおりに不合理, new StockQuantity(4)), new WaitingOrder(5));
+
         RetentionAvailability retentionAvailability = sut.retentionAvailability();
+
         assertEquals(RetentionAvailability.取置不可, retentionAvailability);
     }
 }

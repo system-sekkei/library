@@ -70,16 +70,12 @@ class 貸出シナリオTest {
 
     @Test
     void 貸出() {
-        // Arrange
         memberFixture.会員を登録する(高橋雄一);
         entryFixture.所蔵品目を登録する(entry);
         itemFixture.所蔵品を登録する(item);
 
-        // Act
         sut.loan(new LoanRequest(高橋雄一.number(), item.所蔵品番号(), new LoanDate(LocalDate.parse("2023-07-04"))));
 
-        // Assert
-        //sut.loanStatus(); // TODO 引数は会員が良い？　
         LoanStatus status = loanQueryService.status(高橋雄一.number());
         assertEquals(1, status.loans().冊数().value());
     }
@@ -92,16 +88,12 @@ class 貸出シナリオTest {
 
     @Test
     void 所蔵品の貸出可否を提示する() {
-        // Arrange
         entryFixture.所蔵品目を登録する(entry);
         itemFixture.所蔵品を登録する(item);
         itemFixture.貸出可能な状態を登録する(item);
 
-        // TODO 所蔵品の番号がわかるということは実物を手に持っているということだから所蔵品の状態は取得しなくても良いのでは？
-        //   予約時に所蔵品目(Entry)番号から、全所蔵品の状態を取得することはある？
-        // Act
         ItemLoanability 所蔵品の貸出可否 = sut.所蔵品の貸出可否を提示する(item.所蔵品番号());
-        // Assert
+
         assertEquals(ItemLoanability.貸出可能, 所蔵品の貸出可否);
     }
 }

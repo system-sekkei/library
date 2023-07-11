@@ -46,7 +46,6 @@ class LoansTest {
         Loans sut = new Loans(list);
 
         NumberOfLoans 視聴覚資料の数 = sut.視聴覚資料の数();
-
         assertEquals(2, 視聴覚資料の数.value());
     }
 }
