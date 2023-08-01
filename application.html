@@ -1,0 +1,1912 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="./assets/style.css" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.ico">
+    <title>application</title>
+</head>
+<body>
+<header class="top">
+    <a href="./index.html">[INDEX]</a>
+    <b>application</b>
+</header>
+<div class="sideNavMain">
+    <nav class="tree">
+        <details open>
+            <summary class="package">
+                <a href="#library.application">ビジネスアクション</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.application.scenario">業務活動の流れ</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.application.scenario.loan">貸出</a>
+            </summary>
+            <div><a href="#library.application.scenario.loan.LoanScenario">貸出シナリオ</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.scenario.retention">取置</a>
+            </summary>
+            <div><a href="#library.application.scenario.retention.RetentionScenario">取置シナリオ</a></div><div><a href="#library.application.scenario.retention.RetentionExpireScenario">取置期限切れシナリオ</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.scenario.returns">返却</a>
+            </summary>
+            <div><a href="#library.application.scenario.returns.ReturnsScenario">返却シナリオ</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.scenario.reservation">予約</a>
+            </summary>
+            <div><a href="#library.application.scenario.reservation.ReservationScenario">予約受付シナリオ</a></div><div><a href="#library.application.scenario.reservation.ReservationCancellationScenario">予約キャンセルシナリオ</a></div>
+        </details>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service">ビジネスアクションの基本単位</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.application.service.material">資料</a>
+            </summary>
+            <div><a href="#library.application.service.material.MaterialQueryService">資料の参照と検索</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.returns">返却</a>
+            </summary>
+            <div><a href="#library.application.service.returns.ReturnMaterialRecordService">返却の登録</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.loan">貸出</a>
+            </summary>
+            <div><a href="#library.application.service.loan.LoanRecordService">貸出の記録</a></div><div><a href="#library.application.service.loan.LoanExpiredCheckService">貸出期限切れ確認サービス</a></div><div><a href="#library.application.service.loan.LoanQueryService">貸出記録の参照</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.item">所蔵品</a>
+            </summary>
+            <div><a href="#library.application.service.item.ItemQueryService">所蔵品の検索</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.reservation">予約</a>
+            </summary>
+            <div><a href="#library.application.service.reservation.ReservationQueryService">予約の参照</a></div><div><a href="#library.application.service.reservation.ReservationRecordService">予約</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.retention">取置</a>
+            </summary>
+            <div><a href="#library.application.service.retention.RetentionQueryService">取置の参照</a></div><div><a href="#library.application.service.retention.RetentionRecordService">取置の登録</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.application.service.member">会員</a>
+            </summary>
+            <div><a href="#library.application.service.member.MemberQueryService">会員の参照</a></div>
+        </details>
+        </details>
+        </details>
+        
+    </nav>
+    <main>
+        
+            <section class="package">
+        <h2><a name="library">library</a></h2>
+        <small class="fully-qualified-name">library</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application">ビジネスアクション</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application">ビジネスアクション</a></h2>
+        <small class="fully-qualified-name">library.application</small>
+
+        
+            <section class="markdown">
+システム化の目的:
+図書館員の作業（書籍購買の自動連携）を支援し、本の貸出・返却業務において会員を待たせないスムーズな運用を実現する。
+蔵書管理をリアルタイムで行い検索、在庫など会員サービスを向上させる。</section>
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.scenario">業務活動の流れ</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service">ビジネスアクションの基本単位</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.scenario">業務活動の流れ</a></h2>
+        <small class="fully-qualified-name">library.application.scenario</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.scenario.loan">貸出</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.scenario.retention">取置</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.scenario.returns">返却</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.scenario.reservation">予約</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.scenario.loan">貸出</a></h2>
+        <small class="fully-qualified-name">library.application.scenario.loan</small>
+
+        
+            <section class="markdown">
+図書館の書架から本を探し窓口で本を借りるまでのシステム機能
+一人最大5冊まで借りれるが、返却遅延している本がある場合は本を借りられない</section>
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.loan.LoanScenario">貸出シナリオ</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.scenario.reservation">予約</a></h2>
+        <small class="fully-qualified-name">library.application.scenario.reservation</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.reservation.ReservationScenario">予約受付シナリオ</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.reservation.ReservationCancellationScenario">予約キャンセルシナリオ</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.scenario.retention">取置</a></h2>
+        <small class="fully-qualified-name">library.application.scenario.retention</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.retention.RetentionScenario">取置シナリオ</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.retention.RetentionExpireScenario">取置期限切れシナリオ</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.scenario.returns">返却</a></h2>
+        <small class="fully-qualified-name">library.application.scenario.returns</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.scenario.returns.ReturnsScenario">返却シナリオ</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service">ビジネスアクションの基本単位</a></h2>
+        <small class="fully-qualified-name">library.application.service</small>
+
+        
+            <section class="markdown">
+・情報の記録・参照
+・外部への通知・依頼</section>
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.material">資料</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.returns">返却</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.loan">貸出</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.item">所蔵品</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.reservation">予約</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.retention">取置</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>▶︎ </span>
+                            <a href="#library.application.service.member">会員</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.item">所蔵品</a></h2>
+        <small class="fully-qualified-name">library.application.service.item</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.item.ItemQueryService">所蔵品の検索</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.loan">貸出</a></h2>
+        <small class="fully-qualified-name">library.application.service.loan</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.loan.LoanRecordService">貸出の記録</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.loan.LoanExpiredCheckService">貸出期限切れ確認サービス</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.loan.LoanQueryService">貸出記録の参照</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.material">資料</a></h2>
+        <small class="fully-qualified-name">library.application.service.material</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.material.MaterialQueryService">資料の参照と検索</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.member">会員</a></h2>
+        <small class="fully-qualified-name">library.application.service.member</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.member.MemberQueryService">会員の参照</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.reservation">予約</a></h2>
+        <small class="fully-qualified-name">library.application.service.reservation</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.reservation.ReservationQueryService">予約の参照</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.reservation.ReservationRecordService">予約</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.retention">取置</a></h2>
+        <small class="fully-qualified-name">library.application.service.retention</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.retention.RetentionQueryService">取置の参照</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.retention.RetentionRecordService">取置の登録</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+            <section class="package">
+        <h2><a name="library.application.service.returns">返却</a></h2>
+        <small class="fully-qualified-name">library.application.service.returns</small>
+
+        
+            
+        
+
+        
+            <section>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>名前</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <a href="#library.application.service.returns.ReturnMaterialRecordService">返却の登録</a>
+                        </td>
+                    </tr>
+                </table>
+            </section>
+        
+    </section>
+        
+
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.loan.LoanScenario">貸出シナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.loan.LoanScenario</div>
+
+        
+            <section class="markdown">
+貸出可否を判定する。
+貸出を登録する。</section>
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>memberQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.member.MemberQueryService">会員の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>loanQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanQueryService">貸出記録の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>loanRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanRecordService">貸出の記録</a>
+                </td>
+            </tr>
+            <tr>
+                <td>returnMaterialRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.returns.ReturnMaterialRecordService">返却の登録</a>
+                </td>
+            </tr>
+            <tr>
+                <td>itemQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.item.ItemQueryService">所蔵品の検索</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 貸し出す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 貸出状況を提示する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.LoanStatus">貸出状況</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 貸出制限を判断する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.Loanability">貸出可否</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 会員番号の有効性を確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.member.MemberStatus">会員登録の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 所蔵品の貸出可否を提示する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.ItemLoanability">所蔵品の貸出可否</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.reservation.ReservationCancellationScenario">予約キャンセルシナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.reservation.ReservationCancellationScenario</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>reservationQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationQueryService">予約の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>reservationRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationRecordService">予約</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 予約を取り消す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.ReservationNumber">予約番号</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.reservation.ReservationScenario">予約受付シナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.reservation.ReservationScenario</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>reservationRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationRecordService">予約</a>
+                </td>
+            </tr>
+            <tr>
+                <td>reservationQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationQueryService">予約の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>memberQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.member.MemberQueryService">会員の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>materialQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.material.MaterialQueryService">資料の参照と検索</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 本を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.EntryNumber">所蔵品目番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.entry.Entry">所蔵品目</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 会員番号の有効性を確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.member.MemberStatus">会員登録の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約制限を判断する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.request.ReservationRequest">予約依頼</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.availability.ReservationAvailability">予約可否</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約を記録する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.Entry">所蔵品目</a><a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 本を探す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.Keyword">検索キーワード</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.instock.EntryInStockList">本と在庫数の一覧</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.retention.RetentionExpireScenario">取置期限切れシナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.retention.RetentionExpireScenario</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>retentionRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionRecordService">取置の登録</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 取置を期限切れにする</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.retention.RetentionNumber">取置番号</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.retention.RetentionScenario">取置シナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.retention.RetentionScenario</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>reservationQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationQueryService">予約の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>reservationRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationRecordService">予約</a>
+                </td>
+            </tr>
+            <tr>
+                <td>retentionQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionQueryService">取置の参照</a>
+                </td>
+            </tr>
+            <tr>
+                <td>retentionRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionRecordService">取置の登録</a>
+                </td>
+            </tr>
+            <tr>
+                <td>itemQueryService</td>
+                <td>
+                    
+                    <a href="#library.application.service.item.ItemQueryService">所蔵品の検索</a>
+                </td>
+            </tr>
+            <tr>
+                <td>loanRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanRecordService">貸出の記録</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 予約された本であることを確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.Reservation">*貸出予約</a><a class="method-argument-item" href="#library.domain.model.retention.Retention">取置依頼</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.MaterialMatching">所蔵品と本の照合結果</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 所蔵品の状態を確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.item.ItemStatus">所蔵品の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 取置を貸し出す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.ReservationNumber">予約番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.Reservation">*貸出予約</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 取り置く</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.retention.Retention">取置依頼</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 準備完了を一覧する</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.RetainedList">準備完了の一覧</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 未準備の予約を一覧する</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.wait.ReservationWithWaitingOrderList">待ち順番と貸出予約リスト</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.scenario.returns.ReturnsScenario">返却シナリオ</a></h2>
+        <div class="fully-qualified-name">library.application.scenario.returns.ReturnsScenario</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>returnMaterialRecordService</td>
+                <td>
+                    
+                    <a href="#library.application.service.returns.ReturnMaterialRecordService">返却の登録</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 返却する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.returned.Returned">返却</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.item.ItemQueryService">所蔵品の検索</a></h2>
+        <div class="fully-qualified-name">library.application.service.item.ItemQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>itemRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.item.ItemRepository">所蔵品リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 所蔵品を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.item.Item">*所蔵品</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 所蔵品の状態を調べる</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.item.ItemStatus">所蔵品の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.loan.LoanExpiredCheckService">貸出期限切れ確認サービス</a></h2>
+        <div class="fully-qualified-name">library.application.service.loan.LoanExpiredCheckService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>notificationRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.NotificationRepository">通知リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 貸出期限切れを確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.Loan">*貸出</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.loan.LoanQueryService">貸出記録の参照</a></h2>
+        <div class="fully-qualified-name">library.application.service.loan.LoanQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>loanRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanRepository">貸出リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 貸出を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.Loan">*貸出</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 会員の貸出を一覧する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.LoanStatus">貸出状況</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.loan.LoanRecordService">貸出の記録</a></h2>
+        <div class="fully-qualified-name">library.application.service.loan.LoanRecordService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>loanRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanRepository">貸出リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 取り置いた所蔵品を貸し出す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 取り置いた所蔵品を貸し出す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.LoanRequest">貸出依頼</a><a class="method-argument-item" href="#library.domain.model.retention.Retained">取置資料</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.material.MaterialQueryService">資料の参照と検索</a></h2>
+        <div class="fully-qualified-name">library.application.service.material.MaterialQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>materialRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.material.MaterialRepository">本リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 資料番号で本を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.EntryNumber">所蔵品目番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.entry.Entry">所蔵品目</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ キーワードで本を探す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.Keyword">検索キーワード</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.instock.EntryInStockList">本と在庫数の一覧</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.member.MemberQueryService">会員の参照</a></h2>
+        <div class="fully-qualified-name">library.application.service.member.MemberQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>memberRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.member.MemberRepository">会員リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 会員を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.member.Member">会員</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 会員登録の状態を確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.member.MemberStatus">会員登録の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.reservation.ReservationQueryService">予約の参照</a></h2>
+        <div class="fully-qualified-name">library.application.service.reservation.ReservationQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>reservationRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationRepository">予約リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 予約を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.ReservationNumber">予約番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.Reservation">*貸出予約</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約の状態を調べる</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.ReservationNumber">予約番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.ReservationStatus">予約の状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 会員の予約一覧を取得する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.member.MemberNumber">会員番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.Reservations">貸出予約リスト</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 未準備の予約を一覧する</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.reservation.wait.ReservationWithWaitingOrderList">待ち順番と貸出予約リスト</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.reservation.ReservationRecordService">予約</a></h2>
+        <div class="fully-qualified-name">library.application.service.reservation.ReservationRecordService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>reservationRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.reservation.ReservationRepository">予約リポジトリ</a>
+                </td>
+            </tr>
+            <tr>
+                <td>retentionNotification</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionNotification">RetentionNotification</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 予約を取消す</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.Reservation">*貸出予約</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.reservation.request.ReservationRequest">予約依頼</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.retention.RetentionQueryService">取置の参照</a></h2>
+        <div class="fully-qualified-name">library.application.service.retention.RetentionQueryService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>retentionRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionRepository">取置リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 準備完了を見つける</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemNumber">所蔵品番号</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.Retained">取置資料</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 準備完了を一覧する</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.RetainedList">準備完了の一覧</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.retention.RetentionRecordService">取置の登録</a></h2>
+        <div class="fully-qualified-name">library.application.service.retention.RetentionRecordService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>retentionRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionRepository">取置リポジトリ</a>
+                </td>
+            </tr>
+            <tr>
+                <td>retentionNotification</td>
+                <td>
+                    
+                    <a href="#library.application.service.retention.RetentionNotification">RetentionNotification</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 予約された本であることを確認する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.Item">*所蔵品</a><a class="method-argument-item" href="#library.domain.model.reservation.Reservation">*貸出予約</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.MaterialMatching">所蔵品と本の照合結果</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 取置を期限切れにする(準備完了を消し込む）</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.retention.RetentionNumber">取置番号</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+                <tr>
+                    <td class="method-name">+ 予約された本を取り置く</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.retention.Retention">取置依頼</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+            <section class="type">
+        <h2><a name="library.application.service.returns.ReturnMaterialRecordService">返却の登録</a></h2>
+        <div class="fully-qualified-name">library.application.service.returns.ReturnMaterialRecordService</div>
+
+        
+            
+        
+
+        
+
+        <table class="fields">
+            <thead>
+            <tr>
+                <th width="20%">フィールド</th>
+                <th>フィールド型</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>loanRepository</td>
+                <td>
+                    
+                    <a href="#library.application.service.loan.LoanRepository">貸出リポジトリ</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 返却を記録する</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.returned.Returned">返却</a>
+                    </td>
+                    <td>
+                        <a href="#void">void</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        
+            
+        
+    </section>
+        
+    </main>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@5.1.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.min.js"></script>
+    <script src="./assets/jig.js"></script>
+
+</body>
+</html>

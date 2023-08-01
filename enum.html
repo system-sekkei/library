@@ -1,0 +1,1054 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="./assets/style.css" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.ico">
+    <title>enum</title>
+</head>
+<body>
+<header class="top">
+    <a href="./index.html">[INDEX]</a>
+    <b>enum</b>
+</header>
+<div class="sideNavMain">
+    <nav class="tree">
+        <details open>
+            <summary class="package">
+                <a href="#library.domain.model">ビジネスルールを表現する複合型</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.domain.model.retention">取置</a>
+            </summary>
+            <div><a href="#library.domain.model.retention.MaterialMatching">所蔵品と本の照合結果</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.material">所蔵品目と所蔵品</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.domain.model.material.item">所蔵品</a>
+            </summary>
+            <div><a href="#library.domain.model.material.item.ItemStatus">所蔵品の状態</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.material.entry">所蔵品目</a>
+            </summary>
+            <div><a href="#library.domain.model.material.entry.EntryType">所蔵品目種別</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.material.instock">在庫有無</a>
+            </summary>
+            <div><a href="#library.domain.model.material.instock.InStock">在庫有無</a></div>
+        </details>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.reservation">予約</a>
+            </summary>
+            <div><a href="#library.domain.model.reservation.ReservationStatus">予約の状態</a></div><details open>
+            <summary class="package">
+                <a href="#library.domain.model.reservation.availability">予約可否</a>
+            </summary>
+            <div><a href="#library.domain.model.reservation.availability.ReservationAvailability">予約可否</a></div><div><a href="#library.domain.model.reservation.availability.RetentionAvailability">取置可否</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.reservation.rule">予約ルール</a>
+            </summary>
+            <div><a href="#library.domain.model.reservation.rule.RestrictionOfReservationQuantity">予約制限</a></div>
+        </details>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.delay">遅延</a>
+            </summary>
+            <div><a href="#library.domain.model.delay.DelayStatus">遅延状態</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.loan">貸出</a>
+            </summary>
+            <details open>
+            <summary class="package">
+                <a href="#library.domain.model.loan.rule">貸出ルール</a>
+            </summary>
+            <div><a href="#library.domain.model.loan.rule.ItemLoanability">所蔵品の貸出可否</a></div><div><a href="#library.domain.model.loan.rule.Loanability">貸出可否</a></div><div><a href="#library.domain.model.loan.rule.RestrictionOfDelay">*遅延状態による制限(判定結果)</a></div><div><a href="#library.domain.model.loan.rule.RestrictionOfQuantity">*貸出点数の制限</a></div>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.loan.due">期限</a>
+            </summary>
+            <div><a href="#library.domain.model.loan.due.DueDateStatus">*貸出期限状態</a></div>
+        </details>
+        </details><details open>
+            <summary class="package">
+                <a href="#library.domain.model.member">会員</a>
+            </summary>
+            <div><a href="#library.domain.model.member.MemberStatus">会員登録の状態</a></div><div><a href="#library.domain.model.member.MemberType">会員種別</a></div>
+        </details>
+        </details>
+        
+    </nav>
+
+    <main>
+        <section class="type">
+            <h2><a name="library.domain.model.delay.DelayStatus">遅延状態</a></h2>
+            <div class="fully-qualified-name">library.domain.model.delay.DelayStatus</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">遅延日数１５日未満</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">遅延日数２ヶ月未満</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">遅延日数２ヶ月以上</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">staticメソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ level</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.delay.DaysPeriod">遅延期間</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.delay.DelayStatus">遅延状態</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.loan.due.DueDateStatus">*貸出期限状態</a></h2>
+            <div class="fully-qualified-name">library.domain.model.loan.due.DueDateStatus</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">期限内</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">期限切れ</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.loan.rule.ItemLoanability">所蔵品の貸出可否</a></h2>
+            <div class="fully-qualified-name">library.domain.model.loan.rule.ItemLoanability</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">貸出可能</td>
+                    <td>&quot;&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">貸出中により貸出不可能</td>
+                    <td>&quot;貸出中であるため貸し出すことができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">予約中により貸出不可能</td>
+                    <td>&quot;予約中であるため貸し出すことができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">その他の理由で貸出不可能</td>
+                    <td>&quot;貸し出すことができません。&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>message</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ message</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#java.lang.String">String</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">staticメソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 貸出可能かどうか</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.item.ItemWithStatus">所蔵品とその状態</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.ItemLoanability">所蔵品の貸出可否</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.loan.rule.Loanability">貸出可否</a></h2>
+            <div class="fully-qualified-name">library.domain.model.loan.rule.Loanability</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">冊数制限により貸出不可</td>
+                    <td>&quot;これ以上本を貸し出すことができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">視聴覚資料貸出不可</td>
+                    <td>&quot;これ以上視聴覚資料を貸し出すことができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">新規貸出不可</td>
+                    <td>&quot;貸出停止中です。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">貸出一定期間停止</td>
+                    <td>&quot;貸出一定期間停止中です。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">貸出可能</td>
+                    <td>&quot;&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>message</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ message</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#java.lang.String">String</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.loan.rule.RestrictionOfDelay">*遅延状態による制限(判定結果)</a></h2>
+            <div class="fully-qualified-name">library.domain.model.loan.rule.RestrictionOfDelay</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">貸出可能</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">新規貸出不可</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">貸出停止</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.loan.rule.RestrictionOfQuantity">*貸出点数の制限</a></h2>
+            <div class="fully-qualified-name">library.domain.model.loan.rule.RestrictionOfQuantity</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>書籍の貸出冊数上限</th>
+                    <th>視聴覚資料の貸出点数上限</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">貸出１５点_視聴覚資料5点まで</td>
+                    <td>_15点</td>
+                    <td>_5点</td>
+                </tr>
+                <tr>
+                    <td class="method-name">貸出２０点_視聴覚資料5点まで</td>
+                    <td>_20点</td>
+                    <td>_5点</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>書籍の貸出冊数上限</td>
+                    <td>
+                        
+                        <a href="./domain.html#library.domain.model.loan.NumberOfLoans">貸出点数</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>視聴覚資料の貸出点数上限</td>
+                    <td>
+                        
+                        <a href="./domain.html#library.domain.model.loan.NumberOfLoans">貸出点数</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 貸出可能冊数による判定</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.loan.Loans">貸出のリスト</a><a class="method-argument-item" href="#library.domain.model.material.item.Item">*所蔵品</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.loan.rule.Loanability">貸出可否</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.material.entry.EntryType">所蔵品目種別</a></h2>
+            <div class="fully-qualified-name">library.domain.model.material.entry.EntryType</div>
+
+            
+                <section class="markdown">
+図書と視聴覚資料(DVD等)ごとに貸出可能数が異なる</section>
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">図書</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">視聴覚資料</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.material.instock.InStock">在庫有無</a></h2>
+            <div class="fully-qualified-name">library.domain.model.material.instock.InStock</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>表記</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">在庫あり</td>
+                    <td>&quot;〇&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">在庫なし</td>
+                    <td>&quot;×&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>表記</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ show</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#java.lang.String">String</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">staticメソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ 在庫有無</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.instock.StockQuantity">在庫数</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.material.instock.InStock">在庫有無</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.material.item.ItemStatus">所蔵品の状態</a></h2>
+            <div class="fully-qualified-name">library.domain.model.material.item.ItemStatus</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">未登録</td>
+                    <td>&quot;登録されていません&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">在庫中</td>
+                    <td>&quot;在庫あり(館内閲覧中の可能性あり)&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">予約中</td>
+                    <td>&quot;次の予約があります&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">取置中</td>
+                    <td>&quot;貸出予約により取り置いています&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">貸出中</td>
+                    <td>&quot;貸し出しています&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">その他</td>
+                    <td>&quot;図書館都合により貸出を停止中です&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>description</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ description</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#java.lang.String">String</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.member.MemberStatus">会員登録の状態</a></h2>
+            <div class="fully-qualified-name">library.domain.model.member.MemberStatus</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">未登録</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">有効</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">無効</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.member.MemberType">会員種別</a></h2>
+            <div class="fully-qualified-name">library.domain.model.member.MemberType</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">中学生以上</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">小学生以下</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.reservation.ReservationStatus">予約の状態</a></h2>
+            <div class="fully-qualified-name">library.domain.model.reservation.ReservationStatus</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">未準備</td>
+                    <td>&quot;予約があるが、未取置&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">消込済</td>
+                    <td>&quot;貸出または取置期限切れにより取置を解放&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>description</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.reservation.availability.ReservationAvailability">予約可否</a></h2>
+            <div class="fully-qualified-name">library.domain.model.reservation.availability.ReservationAvailability</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>message</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">冊数制限により予約不可</td>
+                    <td>&quot;これ以上本を貸し出すことができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">視聴覚資料予約不可</td>
+                    <td>&quot;これ以上視聴覚資料を予約することができません。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">予約一定期間停止</td>
+                    <td>&quot;予約一定期間停止中です。&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">予約可能</td>
+                    <td>&quot;&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>message</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.reservation.availability.RetentionAvailability">取置可否</a></h2>
+            <div class="fully-qualified-name">library.domain.model.reservation.availability.RetentionAvailability</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">取置可能</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">取置不可</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.reservation.rule.RestrictionOfReservationQuantity">予約制限</a></h2>
+            <div class="fully-qualified-name">library.domain.model.reservation.rule.RestrictionOfReservationQuantity</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">予約点数まで貸出可</td>
+                    
+                </tr>
+                <tr>
+                    <td class="method-name">予約停止</td>
+                    
+                </tr>
+            </table>
+
+            
+
+            
+            
+        
+            
+            
+        
+        </section>
+        <section class="type">
+            <h2><a name="library.domain.model.retention.MaterialMatching">所蔵品と本の照合結果</a></h2>
+            <div class="fully-qualified-name">library.domain.model.retention.MaterialMatching</div>
+
+            
+                
+            
+
+            <table class="fields">
+                <thead>
+                <tr>
+                    <th>列挙定数名</th>
+                    <th>description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">一致</td>
+                    <td>&quot;この所蔵品は該当の資料です&quot;</td>
+                </tr>
+                <tr>
+                    <td class="method-name">不一致</td>
+                    <td>&quot;この所蔵品は該当の資料ではありません&quot;</td>
+                </tr>
+            </table>
+
+            <table>
+                <thead class="enum">
+                <tr>
+                    <th width="20%">フィールド</th>
+                    <th>フィールド型</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>description</td>
+                    <td>
+                        <span class="weak">java.lang.String</span>
+                        
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">メソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ description</td>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <a href="#java.lang.String">String</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+            
+            <table>
+                <thead>
+                <tr>
+                    <th width="20%">staticメソッド</th>
+                    <th>引数</th>
+                    <th>戻り値型</th>
+                    <th>説明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="method-name">+ isSame</td>
+                    <td>
+                        <a class="method-argument-item" href="#library.domain.model.material.entry.Entry">所蔵品目</a><a class="method-argument-item" href="#library.domain.model.material.entry.Entry">所蔵品目</a>
+                    </td>
+                    <td>
+                        <a href="#library.domain.model.retention.MaterialMatching">所蔵品と本の照合結果</a>
+                    </td>
+                    <td class="markdown"></td>
+                </tr>
+            </table>
+        
+        </section>
+    </main>
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@5.1.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.min.js"></script>
+    <script src="./assets/jig.js"></script>
+
+</body>
+</html>

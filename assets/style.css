@@ -1,0 +1,169 @@
+body {
+    margin: 0;
+    height: 100vh;
+}
+main, nav {
+    padding: 0 1em;
+}
+
+a {
+    color: #000;
+    text-decoration-line: none;
+}
+a:hover {
+    text-decoration-line: underline;
+}
+
+header.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2em;
+    background-color: #243D1E;
+    color: #FFF;
+}
+header a {
+    color: #FFF;
+    font-size: 0.8em;
+}
+
+/* 一般 */
+.weak {
+    font-size: 0.9em;
+    color: gray;
+}
+.fully-qualified-name {
+    font-size: 0.8em;
+    color: silver;
+}
+
+/* メインコンテンツ */
+/* テーブル */
+main table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 0.5em;
+}
+main table tr > * {
+    border: #000 solid 1px;
+    padding-left: 0.5em;
+    text-align: left;
+}
+main table thead {
+    color: #FFF;
+    background-color: #465DAA;
+}
+
+/* markdown */
+.markdown {
+    margin: 0.5em;
+}
+.markdown table thead {
+    color: #000;
+    background-color: #CCC;
+}
+
+/* サイドナビのあるコンテナ */
+.sideNavMain {
+    display: flex;
+    flex-wrap: nowrap;
+}
+.sideNavMain > nav, .sideNavMain > main {
+    height: calc(100vh - 3em);
+    overflow: auto;
+}
+.sideNavMain > nav {
+    resize: horizontal;
+    background-color: #EEE;
+    font-size: 0.8em;
+    border-right: solid 1px #AAA;
+}
+.sideNavMain > main {
+    flex-grow: 1;
+}
+
+/* ナビのツリー  */
+.sideNavMain > nav.tree a, .sideNavMain > nav.tree summary {
+    word-break: keep-all;
+    white-space: nowrap;
+}
+.sideNavMain > nav.tree details > div {
+    margin-left: 1.5em;
+}
+
+section.package > h2, section.type > h2, section.type {
+    margin-bottom: 0px;
+}
+section.package, section.type {
+    border-top: #000 solid 1px;
+    padding-left: 1em;
+    padding-bottom: 1em;
+}
+
+.method-name {
+    white-space: nowrap;
+}
+.method-argument-item {
+    display: block;
+}
+
+main table.fields thead {
+    color: #FFF;
+    background-color: #009900;
+}
+.enum-param-item {
+    display: block;
+    white-space: nowrap;
+}
+
+/* index */
+.index > header {
+    border-bottom:solid 2px #000;
+}
+.index > header > h1 {
+    margin-bottom: 0;
+}
+.index > header > p {
+    font-size: 0.8em;
+    color: #aaa;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.index > header, .index > main {
+    margin:0 auto;
+    max-width: 800px;
+}
+.index .diagram img {
+    max-width: 800px;
+}
+.index > main > section h2 {
+    border-bottom:solid 1px #000;
+}
+.index > main > section h3 {
+    border-bottom:solid 1px #999;
+}
+
+/* ユースケース概要 */
+.usecase .depends {
+    background-color: #ddd;
+}
+.usecase h3 {
+    margin-bottom: 0px;
+}
+.usecase .method > :not(:first-child) {
+    margin-left: 2em;
+}
+
+/* 用語集 */
+.terms .identifier {
+    text-overflow: clip;
+    overflow: scroll;
+    white-space: nowrap;
+}
+.terms .term, .terms .kind {
+    white-space: nowrap;
+}
+
+.terms #termTable .hidden {
+    display: none;
+}

@@ -1,0 +1,1320 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8"/>
+    <link href="./assets/style.css" rel="stylesheet">
+    <link rel="icon" href="./assets/favicon.ico">
+    <title>term</title>
+</head>
+<body>
+<header class="top">
+    <a href="./index.html">[INDEX]</a>
+    <b>term</b>
+</header>
+<main class="terms">
+    <div>
+        表示切り替え:
+        <button onclick="toggleTableColumn('termTable', 0)">用語（物理名）</button>
+        <button onclick="toggleTableColumn('termTable', 3)">種類</button>
+        <button onclick="toggleTableColumn('termTable', 4)">識別子</button>
+    </div>
+    <div>
+        <label for="filterText">フィルタ: </label><input type="text" id="filterText" placeholder="部分一致" size="50">
+        <button onclick="filterTable('termTable', 'filterText')">実行</button>
+    </div>
+
+    <table id="termTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable('termTable', 0)">用語（物理名）</th>
+            <th onclick="sortTable('termTable', 1)">用語</th>
+            <th>説明</th>
+            <th onclick="sortTable('termTable', 3)">種類</th>
+            <th onclick="sortTable('termTable', 4)">識別子</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="term">application</td>
+            <td class="term">ビジネスアクション</td>
+            <td class="markdown">システム化の目的:
+図書館員の作業（書籍購買の自動連携）を支援し、本の貸出・返却業務において会員を待たせないスムーズな運用を実現する。
+蔵書管理をリアルタイムで行い検索、在庫など会員サービスを向上させる。</td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application</td>
+        </tr>
+        <tr>
+            <td class="term">activity</td>
+            <td class="term">業務活動のまとまり</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.activity</td>
+        </tr>
+        <tr>
+            <td class="term">scenario</td>
+            <td class="term">業務活動の流れ</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.scenario</td>
+        </tr>
+        <tr>
+            <td class="term">loan</td>
+            <td class="term">貸出</td>
+            <td class="markdown">図書館の書架から本を探し窓口で本を借りるまでのシステム機能
+一人最大5冊まで借りれるが、返却遅延している本がある場合は本を借りられない</td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.scenario.loan</td>
+        </tr>
+        <tr>
+            <td class="term">reservation</td>
+            <td class="term">予約</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.scenario.reservation</td>
+        </tr>
+        <tr>
+            <td class="term">retention</td>
+            <td class="term">取置</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.scenario.retention</td>
+        </tr>
+        <tr>
+            <td class="term">returns</td>
+            <td class="term">返却</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.scenario.returns</td>
+        </tr>
+        <tr>
+            <td class="term">service</td>
+            <td class="term">ビジネスアクションの基本単位</td>
+            <td class="markdown">・情報の記録・参照
+・外部への通知・依頼</td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service</td>
+        </tr>
+        <tr>
+            <td class="term">item</td>
+            <td class="term">所蔵品</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.item</td>
+        </tr>
+        <tr>
+            <td class="term">loan</td>
+            <td class="term">貸出</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.loan</td>
+        </tr>
+        <tr>
+            <td class="term">material</td>
+            <td class="term">資料</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.material</td>
+        </tr>
+        <tr>
+            <td class="term">member</td>
+            <td class="term">会員</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.member</td>
+        </tr>
+        <tr>
+            <td class="term">reservation</td>
+            <td class="term">予約</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.reservation</td>
+        </tr>
+        <tr>
+            <td class="term">retention</td>
+            <td class="term">取置</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.retention</td>
+        </tr>
+        <tr>
+            <td class="term">returns</td>
+            <td class="term">返却</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.application.service.returns</td>
+        </tr>
+        <tr>
+            <td class="term">domain</td>
+            <td class="term">ビジネスルール</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain</td>
+        </tr>
+        <tr>
+            <td class="term">model</td>
+            <td class="term">ビジネスルールを表現する複合型</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model</td>
+        </tr>
+        <tr>
+            <td class="term">delay</td>
+            <td class="term">遅延</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.delay</td>
+        </tr>
+        <tr>
+            <td class="term">loan</td>
+            <td class="term">貸出</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.loan</td>
+        </tr>
+        <tr>
+            <td class="term">due</td>
+            <td class="term">期限</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.loan.due</td>
+        </tr>
+        <tr>
+            <td class="term">rule</td>
+            <td class="term">貸出ルール</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.loan.rule</td>
+        </tr>
+        <tr>
+            <td class="term">material</td>
+            <td class="term">所蔵品目と所蔵品</td>
+            <td class="markdown">## 所蔵品目
+所蔵品目は図書館で管理する「資料」の種類。\
+所蔵品目は「本」と「視聴覚資料」に大別する。\
+現時点では、この２種類のみとする。
+
+参考:所蔵品目種別(EntryType)
+
+## 所蔵品
+所蔵品は、一点一点の本やDVD
+
+## 所蔵品目と所蔵品の関係
+
+所蔵品目|所蔵品
+---|---
+1|0..n
+
+所蔵品目として登録されているが、所蔵数はゼロという可能性がある。</td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.material</td>
+        </tr>
+        <tr>
+            <td class="term">entry</td>
+            <td class="term">所蔵品目</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.material.entry</td>
+        </tr>
+        <tr>
+            <td class="term">instock</td>
+            <td class="term">在庫有無</td>
+            <td class="markdown">貸出可能な所蔵品を「在庫」として管理する</td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.material.instock</td>
+        </tr>
+        <tr>
+            <td class="term">item</td>
+            <td class="term">所蔵品</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.material.item</td>
+        </tr>
+        <tr>
+            <td class="term">member</td>
+            <td class="term">会員</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.member</td>
+        </tr>
+        <tr>
+            <td class="term">reservation</td>
+            <td class="term">予約</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.reservation</td>
+        </tr>
+        <tr>
+            <td class="term">availability</td>
+            <td class="term">予約可否</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.reservation.availability</td>
+        </tr>
+        <tr>
+            <td class="term">request</td>
+            <td class="term">依頼</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.reservation.request</td>
+        </tr>
+        <tr>
+            <td class="term">rule</td>
+            <td class="term">予約ルール</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.reservation.rule</td>
+        </tr>
+        <tr>
+            <td class="term">wait</td>
+            <td class="term">待ち順番</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.reservation.wait</td>
+        </tr>
+        <tr>
+            <td class="term">retention</td>
+            <td class="term">取置</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.retention</td>
+        </tr>
+        <tr>
+            <td class="term">returned</td>
+            <td class="term">返却</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.model.returned</td>
+        </tr>
+        <tr>
+            <td class="term">type</td>
+            <td class="term">ビジネスルールを表現する基本型</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.type</td>
+        </tr>
+        <tr>
+            <td class="term">date</td>
+            <td class="term">日付</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.domain.type.date</td>
+        </tr>
+        <tr>
+            <td class="term">infrastructure</td>
+            <td class="term">データソース層</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.infrastructure</td>
+        </tr>
+        <tr>
+            <td class="term">presentation</td>
+            <td class="term">プレゼンテーション層</td>
+            <td class="markdown"></td>
+            <td class="kind">パッケージ</td>
+            <td class="identifier">library.presentation</td>
+        </tr>
+        <tr>
+            <td class="term">LoanScenario</td>
+            <td class="term">貸出シナリオ</td>
+            <td class="markdown">貸出可否を判定する。
+貸出を登録する。</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationCancellationScenario</td>
+            <td class="term">予約キャンセルシナリオ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationCancellationScenario</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationScenario</td>
+            <td class="term">予約受付シナリオ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionExpireScenario</td>
+            <td class="term">取置期限切れシナリオ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.retention.RetentionExpireScenario</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionScenario</td>
+            <td class="term">取置シナリオ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario</td>
+        </tr>
+        <tr>
+            <td class="term">ReturnsScenario</td>
+            <td class="term">返却シナリオ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.scenario.returns.ReturnsScenario</td>
+        </tr>
+        <tr>
+            <td class="term">ItemQueryService</td>
+            <td class="term">所蔵品の検索</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.item.ItemQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">ItemRepository</td>
+            <td class="term">所蔵品リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.item.ItemRepository</td>
+        </tr>
+        <tr>
+            <td class="term">LoanExpiredCheckService</td>
+            <td class="term">貸出期限切れ確認サービス</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.loan.LoanExpiredCheckService</td>
+        </tr>
+        <tr>
+            <td class="term">LoanQueryService</td>
+            <td class="term">貸出記録の参照</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.loan.LoanQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">LoanRecordService</td>
+            <td class="term">貸出の記録</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.loan.LoanRecordService</td>
+        </tr>
+        <tr>
+            <td class="term">LoanRepository</td>
+            <td class="term">貸出リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.loan.LoanRepository</td>
+        </tr>
+        <tr>
+            <td class="term">NotificationRepository</td>
+            <td class="term">通知リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.loan.NotificationRepository</td>
+        </tr>
+        <tr>
+            <td class="term">MaterialQueryService</td>
+            <td class="term">資料の参照と検索</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.material.MaterialQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">MaterialRepository</td>
+            <td class="term">本リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.material.MaterialRepository</td>
+        </tr>
+        <tr>
+            <td class="term">MemberQueryService</td>
+            <td class="term">会員の参照</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.member.MemberQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">MemberRepository</td>
+            <td class="term">会員リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.member.MemberRepository</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationQueryService</td>
+            <td class="term">予約の参照</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.reservation.ReservationQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationRecordService</td>
+            <td class="term">予約</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.reservation.ReservationRecordService</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationRepository</td>
+            <td class="term">予約リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.reservation.ReservationRepository</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionQueryService</td>
+            <td class="term">取置の参照</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.retention.RetentionQueryService</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionRecordService</td>
+            <td class="term">取置の登録</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.retention.RetentionRecordService</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionRepository</td>
+            <td class="term">取置リポジトリ</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.retention.RetentionRepository</td>
+        </tr>
+        <tr>
+            <td class="term">ReturnMaterialRecordService</td>
+            <td class="term">返却の登録</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.application.service.returns.ReturnMaterialRecordService</td>
+        </tr>
+        <tr>
+            <td class="term">DaysPeriod</td>
+            <td class="term">遅延期間</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.delay.DaysPeriod</td>
+        </tr>
+        <tr>
+            <td class="term">DaysPeriods</td>
+            <td class="term">遅延期間のリスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.delay.DaysPeriods</td>
+        </tr>
+        <tr>
+            <td class="term">DelayStatus</td>
+            <td class="term">遅延状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.delay.DelayStatus</td>
+        </tr>
+        <tr>
+            <td class="term">Loan</td>
+            <td class="term">*貸出</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.Loan</td>
+        </tr>
+        <tr>
+            <td class="term">LoanDate</td>
+            <td class="term">貸出日</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.LoanDate</td>
+        </tr>
+        <tr>
+            <td class="term">LoanNumber</td>
+            <td class="term">貸出番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.LoanNumber</td>
+        </tr>
+        <tr>
+            <td class="term">LoanRequest</td>
+            <td class="term">貸出依頼</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.LoanRequest</td>
+        </tr>
+        <tr>
+            <td class="term">Loans</td>
+            <td class="term">貸出のリスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.Loans</td>
+        </tr>
+        <tr>
+            <td class="term">NumberOfLoans</td>
+            <td class="term">貸出点数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.NumberOfLoans</td>
+        </tr>
+        <tr>
+            <td class="term">DueDate</td>
+            <td class="term">貸出期限日</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.due.DueDate</td>
+        </tr>
+        <tr>
+            <td class="term">DueDateStatus</td>
+            <td class="term">*貸出期限状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.due.DueDateStatus</td>
+        </tr>
+        <tr>
+            <td class="term">Dues</td>
+            <td class="term">貸出期限のリスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.due.Dues</td>
+        </tr>
+        <tr>
+            <td class="term">ItemLoanability</td>
+            <td class="term">所蔵品の貸出可否</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.ItemLoanability</td>
+        </tr>
+        <tr>
+            <td class="term">LoanStatus</td>
+            <td class="term">貸出状況</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.LoanStatus</td>
+        </tr>
+        <tr>
+            <td class="term">Loanability</td>
+            <td class="term">貸出可否</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.Loanability</td>
+        </tr>
+        <tr>
+            <td class="term">Restriction</td>
+            <td class="term">*貸出制限</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.Restriction</td>
+        </tr>
+        <tr>
+            <td class="term">RestrictionOfDelay</td>
+            <td class="term">*遅延状態による制限(判定結果)</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.RestrictionOfDelay</td>
+        </tr>
+        <tr>
+            <td class="term">RestrictionOfDelayMap</td>
+            <td class="term">*遅延状態による貸出制限の表条件</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.RestrictionOfDelayMap</td>
+        </tr>
+        <tr>
+            <td class="term">RestrictionOfQuantity</td>
+            <td class="term">*貸出点数の制限</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.RestrictionOfQuantity</td>
+        </tr>
+        <tr>
+            <td class="term">RestrictionOfQuantityMap</td>
+            <td class="term">*貸出冊数制限の表条件</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.loan.rule.RestrictionOfQuantityMap</td>
+        </tr>
+        <tr>
+            <td class="term">Entries</td>
+            <td class="term">所蔵品目のリスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.Entries</td>
+        </tr>
+        <tr>
+            <td class="term">Entry</td>
+            <td class="term">所蔵品目</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.Entry</td>
+        </tr>
+        <tr>
+            <td class="term">EntryNumber</td>
+            <td class="term">所蔵品目番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.EntryNumber</td>
+        </tr>
+        <tr>
+            <td class="term">EntryNumbers</td>
+            <td class="term">資料番号のリスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.EntryNumbers</td>
+        </tr>
+        <tr>
+            <td class="term">EntryType</td>
+            <td class="term">所蔵品目種別</td>
+            <td class="markdown">図書と視聴覚資料(DVD等)ごとに貸出可能数が異なる</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.EntryType</td>
+        </tr>
+        <tr>
+            <td class="term">Keyword</td>
+            <td class="term">検索キーワード</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.Keyword</td>
+        </tr>
+        <tr>
+            <td class="term">NumberOfEntry</td>
+            <td class="term">所蔵品目の点数</td>
+            <td class="markdown">(所蔵品目の種類の数)</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.NumberOfEntry</td>
+        </tr>
+        <tr>
+            <td class="term">Title</td>
+            <td class="term">所蔵品目の題名</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.Title</td>
+        </tr>
+        <tr>
+            <td class="term">WorkOf</td>
+            <td class="term">著者・アーティスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.entry.WorkOf</td>
+        </tr>
+        <tr>
+            <td class="term">EntryInStock</td>
+            <td class="term">所蔵品目と在庫数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.instock.EntryInStock</td>
+        </tr>
+        <tr>
+            <td class="term">EntryInStockList</td>
+            <td class="term">本と在庫数の一覧</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.instock.EntryInStockList</td>
+        </tr>
+        <tr>
+            <td class="term">InStock</td>
+            <td class="term">在庫有無</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.instock.InStock</td>
+        </tr>
+        <tr>
+            <td class="term">StockQuantity</td>
+            <td class="term">在庫数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.instock.StockQuantity</td>
+        </tr>
+        <tr>
+            <td class="term">Item</td>
+            <td class="term">*所蔵品</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.item.Item</td>
+        </tr>
+        <tr>
+            <td class="term">ItemNumber</td>
+            <td class="term">所蔵品番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.item.ItemNumber</td>
+        </tr>
+        <tr>
+            <td class="term">ItemStatus</td>
+            <td class="term">所蔵品の状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.item.ItemStatus</td>
+        </tr>
+        <tr>
+            <td class="term">ItemWithStatus</td>
+            <td class="term">所蔵品とその状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.material.item.ItemWithStatus</td>
+        </tr>
+        <tr>
+            <td class="term">Member</td>
+            <td class="term">会員</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.member.Member</td>
+        </tr>
+        <tr>
+            <td class="term">MemberNumber</td>
+            <td class="term">会員番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.member.MemberNumber</td>
+        </tr>
+        <tr>
+            <td class="term">MemberStatus</td>
+            <td class="term">会員登録の状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.member.MemberStatus</td>
+        </tr>
+        <tr>
+            <td class="term">MemberType</td>
+            <td class="term">会員種別</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.member.MemberType</td>
+        </tr>
+        <tr>
+            <td class="term">Name</td>
+            <td class="term">名前</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.member.Name</td>
+        </tr>
+        <tr>
+            <td class="term">NumberOfReservation</td>
+            <td class="term">予約の件数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.NumberOfReservation</td>
+        </tr>
+        <tr>
+            <td class="term">Reservation</td>
+            <td class="term">*貸出予約</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.Reservation</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationNumber</td>
+            <td class="term">予約番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.ReservationNumber</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationStatus</td>
+            <td class="term">予約の状態</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.ReservationStatus</td>
+        </tr>
+        <tr>
+            <td class="term">Reservations</td>
+            <td class="term">貸出予約リスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.Reservations</td>
+        </tr>
+        <tr>
+            <td class="term">ReservedMaterial</td>
+            <td class="term">予約図書</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.ReservedMaterial</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationAvailability</td>
+            <td class="term">予約可否</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.availability.ReservationAvailability</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionAvailability</td>
+            <td class="term">取置可否</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.availability.RetentionAvailability</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationRequest</td>
+            <td class="term">予約依頼</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.request.ReservationRequest</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationRestriction</td>
+            <td class="term">予約制限</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.rule.ReservationRestriction</td>
+        </tr>
+        <tr>
+            <td class="term">RestrictionOfReservationQuantity</td>
+            <td class="term">予約制限</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.rule.RestrictionOfReservationQuantity</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationWithWaitingOrder</td>
+            <td class="term">貸出予約と待ち順番</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.wait.ReservationWithWaitingOrder</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationWithWaitingOrderList</td>
+            <td class="term">待ち順番と貸出予約リスト</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.wait.ReservationWithWaitingOrderList</td>
+        </tr>
+        <tr>
+            <td class="term">WaitingOrder</td>
+            <td class="term">待ち順番</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.reservation.wait.WaitingOrder</td>
+        </tr>
+        <tr>
+            <td class="term">ExpireDate</td>
+            <td class="term">取置期限</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.ExpireDate</td>
+        </tr>
+        <tr>
+            <td class="term">MaterialMatching</td>
+            <td class="term">所蔵品と本の照合結果</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.MaterialMatching</td>
+        </tr>
+        <tr>
+            <td class="term">Retained</td>
+            <td class="term">取置資料</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.Retained</td>
+        </tr>
+        <tr>
+            <td class="term">RetainedDate</td>
+            <td class="term">取置日</td>
+            <td class="markdown">RDRAのバリエーション図では貸出準備完了日</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.RetainedDate</td>
+        </tr>
+        <tr>
+            <td class="term">RetainedList</td>
+            <td class="term">準備完了の一覧</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.RetainedList</td>
+        </tr>
+        <tr>
+            <td class="term">Retention</td>
+            <td class="term">取置依頼</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.Retention</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionNumber</td>
+            <td class="term">取置番号</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.retention.RetentionNumber</td>
+        </tr>
+        <tr>
+            <td class="term">ReturnDate</td>
+            <td class="term">返却日</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.returned.ReturnDate</td>
+        </tr>
+        <tr>
+            <td class="term">Returned</td>
+            <td class="term">返却</td>
+            <td class="markdown">（イベント）</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.returned.Returned</td>
+        </tr>
+        <tr>
+            <td class="term">Returns</td>
+            <td class="term">返却一覧</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.model.returned.Returns</td>
+        </tr>
+        <tr>
+            <td class="term">CurrentDate</td>
+            <td class="term">現在日</td>
+            <td class="markdown">（状態の時点を表現するクラス）</td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.type.date.CurrentDate</td>
+        </tr>
+        <tr>
+            <td class="term">Days</td>
+            <td class="term">日数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.type.date.Days</td>
+        </tr>
+        <tr>
+            <td class="term">Months</td>
+            <td class="term">月数</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.domain.type.date.Months</td>
+        </tr>
+        <tr>
+            <td class="term">ExpireCheck</td>
+            <td class="term">期限切れチェック</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.api.ExpireCheck</td>
+        </tr>
+        <tr>
+            <td class="term">LoanRegisterController</td>
+            <td class="term">貸出の登録画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.loan.LoanRegisterController</td>
+        </tr>
+        <tr>
+            <td class="term">EntrySearchController</td>
+            <td class="term">所蔵品目の検索画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.reservation.EntrySearchController</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationController</td>
+            <td class="term">予約の登録画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.reservation.ReservationController</td>
+        </tr>
+        <tr>
+            <td class="term">ReservationController</td>
+            <td class="term">予約の管理画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.retention.ReservationController</td>
+        </tr>
+        <tr>
+            <td class="term">RetentionController</td>
+            <td class="term">取置の管理画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.retention.RetentionController</td>
+        </tr>
+        <tr>
+            <td class="term">ReturnMaterialController</td>
+            <td class="term">返却の登録画面</td>
+            <td class="markdown"></td>
+            <td class="kind">クラス</td>
+            <td class="identifier">library.presentation.returns.ReturnMaterialController</td>
+        </tr>
+        <tr>
+            <td class="term">loan</td>
+            <td class="term">貸し出す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario#loan()</td>
+        </tr>
+        <tr>
+            <td class="term">loanStatus</td>
+            <td class="term">貸出状況を提示する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario#loanStatus()</td>
+        </tr>
+        <tr>
+            <td class="term">loanability</td>
+            <td class="term">貸出制限を判断する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario#loanability()</td>
+        </tr>
+        <tr>
+            <td class="term">memberStatus</td>
+            <td class="term">会員番号の有効性を確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario#memberStatus()</td>
+        </tr>
+        <tr>
+            <td class="term">所蔵品の貸出可否を提示する</td>
+            <td class="term">所蔵品の貸出可否を提示する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.loan.LoanScenario#所蔵品の貸出可否を提示する()</td>
+        </tr>
+        <tr>
+            <td class="term">cancel</td>
+            <td class="term">予約を取り消す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationCancellationScenario#cancel()</td>
+        </tr>
+        <tr>
+            <td class="term">findMaterial</td>
+            <td class="term">本を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario#findMaterial()</td>
+        </tr>
+        <tr>
+            <td class="term">memberStatus</td>
+            <td class="term">会員番号の有効性を確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario#memberStatus()</td>
+        </tr>
+        <tr>
+            <td class="term">reservationAvailability</td>
+            <td class="term">予約制限を判断する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario#reservationAvailability()</td>
+        </tr>
+        <tr>
+            <td class="term">reserve</td>
+            <td class="term">予約を記録する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario#reserve()</td>
+        </tr>
+        <tr>
+            <td class="term">search</td>
+            <td class="term">本を探す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.reservation.ReservationScenario#search()</td>
+        </tr>
+        <tr>
+            <td class="term">expire</td>
+            <td class="term">取置を期限切れにする</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionExpireScenario#expire()</td>
+        </tr>
+        <tr>
+            <td class="term">isSameMaterial</td>
+            <td class="term">予約された本であることを確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#isSameMaterial()</td>
+        </tr>
+        <tr>
+            <td class="term">itemStatus</td>
+            <td class="term">所蔵品の状態を確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#itemStatus()</td>
+        </tr>
+        <tr>
+            <td class="term">loan</td>
+            <td class="term">取置を貸し出す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#loan()</td>
+        </tr>
+        <tr>
+            <td class="term">reservationOf</td>
+            <td class="term">予約を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#reservationOf()</td>
+        </tr>
+        <tr>
+            <td class="term">retain</td>
+            <td class="term">取り置く</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#retain()</td>
+        </tr>
+        <tr>
+            <td class="term">retainedList</td>
+            <td class="term">準備完了を一覧する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#retainedList()</td>
+        </tr>
+        <tr>
+            <td class="term">未準備の予約一覧</td>
+            <td class="term">未準備の予約を一覧する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.retention.RetentionScenario#未準備の予約一覧()</td>
+        </tr>
+        <tr>
+            <td class="term">returned</td>
+            <td class="term">返却する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.scenario.returns.ReturnsScenario#returned()</td>
+        </tr>
+        <tr>
+            <td class="term">findBy</td>
+            <td class="term">所蔵品を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.item.ItemQueryService#findBy()</td>
+        </tr>
+        <tr>
+            <td class="term">status</td>
+            <td class="term">所蔵品の状態を調べる</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.item.ItemQueryService#status()</td>
+        </tr>
+        <tr>
+            <td class="term">expiredCheck</td>
+            <td class="term">貸出期限切れを確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.loan.LoanExpiredCheckService#expiredCheck()</td>
+        </tr>
+        <tr>
+            <td class="term">findBy</td>
+            <td class="term">貸出を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.loan.LoanQueryService#findBy()</td>
+        </tr>
+        <tr>
+            <td class="term">status</td>
+            <td class="term">会員の貸出を一覧する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.loan.LoanQueryService#status()</td>
+        </tr>
+        <tr>
+            <td class="term">loaned</td>
+            <td class="term">取り置いた所蔵品を貸し出す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.loan.LoanRecordService#loaned()</td>
+        </tr>
+        <tr>
+            <td class="term">findMaterial</td>
+            <td class="term">資料番号で本を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.material.MaterialQueryService#findMaterial()</td>
+        </tr>
+        <tr>
+            <td class="term">search</td>
+            <td class="term">キーワードで本を探す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.material.MaterialQueryService#search()</td>
+        </tr>
+        <tr>
+            <td class="term">findMember</td>
+            <td class="term">会員を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.member.MemberQueryService#findMember()</td>
+        </tr>
+        <tr>
+            <td class="term">status</td>
+            <td class="term">会員登録の状態を確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.member.MemberQueryService#status()</td>
+        </tr>
+        <tr>
+            <td class="term">reservationOf</td>
+            <td class="term">予約を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationQueryService#reservationOf()</td>
+        </tr>
+        <tr>
+            <td class="term">reservationStatus</td>
+            <td class="term">予約の状態を調べる</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationQueryService#reservationStatus()</td>
+        </tr>
+        <tr>
+            <td class="term">予約一覧</td>
+            <td class="term">会員の予約一覧を取得する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationQueryService#予約一覧()</td>
+        </tr>
+        <tr>
+            <td class="term">未準備の予約一覧</td>
+            <td class="term">未準備の予約を一覧する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationQueryService#未準備の予約一覧()</td>
+        </tr>
+        <tr>
+            <td class="term">cancel</td>
+            <td class="term">予約を取消す</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationRecordService#cancel()</td>
+        </tr>
+        <tr>
+            <td class="term">reserve</td>
+            <td class="term">予約する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.reservation.ReservationRecordService#reserve()</td>
+        </tr>
+        <tr>
+            <td class="term">findBy</td>
+            <td class="term">準備完了を見つける</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.retention.RetentionQueryService#findBy()</td>
+        </tr>
+        <tr>
+            <td class="term">retentions</td>
+            <td class="term">準備完了を一覧する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.retention.RetentionQueryService#retentions()</td>
+        </tr>
+        <tr>
+            <td class="term">materialMatching</td>
+            <td class="term">予約された本であることを確認する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.retention.RetentionRecordService#materialMatching()</td>
+        </tr>
+        <tr>
+            <td class="term">releaseAndExpire</td>
+            <td class="term">取置を期限切れにする(準備完了を消し込む）</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.retention.RetentionRecordService#releaseAndExpire()</td>
+        </tr>
+        <tr>
+            <td class="term">retain</td>
+            <td class="term">予約された本を取り置く</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.retention.RetentionRecordService#retain()</td>
+        </tr>
+        <tr>
+            <td class="term">returned</td>
+            <td class="term">返却を記録する</td>
+            <td class="markdown"></td>
+            <td class="kind">メソッド</td>
+            <td class="identifier">library.application.service.returns.ReturnMaterialRecordService#returned()</td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@5.1.0/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.2.3/dist/mermaid.min.js"></script>
+    <script src="./assets/jig.js"></script>
+
+</body>
+</html>
