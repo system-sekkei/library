@@ -50,6 +50,8 @@ sonar {
         property "sonar.projectKey", "system-sekkei_library"
         property "sonar.organization", "system-sekkei"
         property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.coverage.jacoco.xmlReportPaths", "build/reports/jacoco/test/jacocoTestReport.xml"
+        property "sonar.junit.reportPaths", "build/test-results/test/TEST-*.xml"
     }
 }
 
