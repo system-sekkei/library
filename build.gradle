@@ -3,6 +3,7 @@ plugins {
     id 'org.springframework.boot' version '3.1.1'
     id 'io.spring.dependency-management' version '1.1.0'
     id 'org.dddjava.jig-gradle-plugin' version '2023.6.3'
+    id "org.sonarqube" version "4.2.1.3168"
 }
 
 sourceCompatibility = '17'
@@ -42,3 +43,11 @@ tasks.named('test') {
 
 classes.mustRunAfter(clean)
 jigReports.dependsOn(clean, classes)
+
+sonar {
+    properties {
+        property "sonar.projectKey", "system-sekkei_library"
+        property "sonar.organization", "system-sekkei"
+        property "sonar.host.url", "https://sonarcloud.io"
+    }
+}
