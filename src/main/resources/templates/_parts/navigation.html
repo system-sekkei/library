@@ -9,7 +9,7 @@
   <nav>
     <!--    <a></a>-->
     <ul>
-      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/}" id="link-to-home">ホーム</a></li>
       <li><a th:href="@{/reservation/entries/search}">本を探す</a></li>
       <li><a th:href="@{/reservation/register}">本の貸出予約</a></li>
     </ul>
@@ -19,16 +19,16 @@
 <header th:fragment="loan">
   <nav>
     <ul>
-      <li><a th:href="@{/}">ホーム</a></li>
-      <li><a th:href="@{/loan/register}">本の貸出</a></li>
-      <li><a th:href="@{/returns}">本の返却</a></li>
+      <li><a th:href="@{/}" id="link-to-home">ホーム</a></li>
+      <li><a th:href="@{/loan/register}" id="link-loan">本の貸出</a></li>
+      <li><a th:href="@{/returns}" id="link-return">本の返却</a></li>
     </ul>
   </nav>
 </header>
 <header th:fragment="retention">
   <nav>
     <ul>
-      <li><a th:href="@{/}">ホーム</a></li>
+      <li><a th:href="@{/}" id="link-to-home">ホーム</a></li>
       <li><a th:href="@{/retentions/requests}">予約の管理</a></li>
       <li><a th:href="@{/retentions}">取置の管理</a></li>
     </ul>

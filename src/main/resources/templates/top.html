@@ -14,15 +14,15 @@
     <h3>利用者向け</h3>
     <ul>
       <li>一般：<a th:href="@{/}">ご利用案内</a>　<small>未実装</small></li>
-      <li>会員：<a th:href="@{/reservation/entries/search}">本の予約</a></li>
+      <li>会員：<a th:href="@{/reservation/entries/search}" id="link-reservation-for-member">本の予約</a></li>
     </ul>
     <h3>図書館スタッフ用</h3>
     <ul>
-    <li><a th:href="@{/loan/register}">貸出と返却</a></li>
-    <li><a th:href="@{/retentions/requests}">予約の管理</a></li>
-    <li><a th:href="@{/retentions}">取置の管理</a></li>
-    <li><a th:href="@{/}">会員の管理</a>　<small>未実装</small></li>
-    <li><a th:href="@{/}">所蔵品の管理</a>　<small>未実装</small></li>
+    <li><a th:href="@{/loan/register}" id="link-loan-return">貸出と返却</a></li>
+    <li><a th:href="@{/retentions/requests}" id="link-reservations">予約の管理</a></li>
+    <li><a th:href="@{/retentions}" id="link-retentions">取置の管理</a></li>
+    <li><a th:href="@{/}" id="link-members">会員の管理</a>　<small>未実装</small></li>
+    <li><a th:href="@{/}" id="link-items">所蔵品の管理</a>　<small>未実装</small></li>
     </ul>
   </article>
 </main>

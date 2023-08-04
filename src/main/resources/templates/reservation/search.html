@@ -12,15 +12,15 @@
     <form method="get" action="#" th:action="@{/reservation/entries/search}">
       <label>キーワード検索（空白で全件を検索します）</label>
       <input class="input" type="text" placeholder="キーワード" th:field="${searchKeyword.value}">
-      <button>本を探す</button>
+      <button id="button-search">本を探す</button>
     </form>
   </article>
 
     <article>
-      <h4>検索結果：
+      <h4 id="header-search-result">検索結果：
         <span th:text="${entryInStockList.numberOfMaterial().show()}"></span>
       </h4>
-      <table th:if="${entryInStockList.size()} > 0">
+      <table id="table-search-result" th:if="${entryInStockList.size()} > 0">
         <thead>
         <tr>
           <th></th>

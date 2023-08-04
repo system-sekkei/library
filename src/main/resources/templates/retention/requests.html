@@ -9,10 +9,10 @@
 <header th:replace="_parts/navigation::retention"></header>
 <main>
   <article>
-    <h1>予約の管理</h1>
+    <h1 id="header-reservation-management">予約の管理</h1>
     <p th:text="${reservations.numberOfReservation()}">件</p>
     <form>
-    <table th:unless="${reservations.isEmpty()}">
+    <table th:unless="${reservations.isEmpty()}" id="table-reservations">
       <thead>
       <tr>
         <th>アクション</th>
@@ -26,6 +26,7 @@
 
         <td>
             <button type="submit"
+                    id="button-retention"
                     th:formmethod="get" th:formaction="@{/retentions/requests/{reservation}(reservation=${reservation.reservationNumber()})}">
               取置</button>
             <button type="submit" name="notAvailable"

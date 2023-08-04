@@ -36,6 +36,10 @@ dependencies {
     runtimeOnly 'io.opentelemetry:opentelemetry-exporter-zipkin'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'org.seleniumhq.selenium:selenium-java:4.10.0'
+    testImplementation 'com.codeborne:selenide:6.16.0'
+
+
 }
 
 tasks.named('test') {
